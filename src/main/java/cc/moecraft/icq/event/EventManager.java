@@ -30,4 +30,33 @@ public class EventManager
     private ArrayList<IcqListener> registeredListeners = new ArrayList<>();
     @Getter
     private HashMap<String, ArrayList<RegisteredListenerMethod>> registeredListenerMethods = new HashMap<>();
+
+    /**
+     * 注册一个事件监听器
+     * @param listener 监听器
+     * @return 这个实例
+     */
+    public EventManager registerListener(IcqListener listener)
+    {
+        registeredListeners.add(listener);
+
+        for (Method method : listener.getClass().getMethods())
+        {
+            if (method.getParameterCount() != 1) continue;
+
+            Class<?> event = method.getParameterTypes()[0];
+
+            if (!Event.class.isAssignableFrom(event)) continue;
+            if (!method.isAnnotationPresent(EventHandler.class)) continue;
+
+            String mapKey = event.getName();
+
+            if (registeredListenerMethods.containsKey(mapKey))
+                registeredListenerMethods.get(mapKey).add(new RegisteredListenerMethod(method, listener));
+            else
+                registeredListenerMethods.put(mapKey, new ArrayList<>(Collections.singletonList(new RegisteredListenerMethod(method, listener))));
+        }
+
+        return this;
+    }
 }
