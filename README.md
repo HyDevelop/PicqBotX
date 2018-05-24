@@ -1,9 +1,12 @@
 <h1 align="center">
   <br>
+  <br>
   PicqBotX
   <h4 align="center">
   一个基于酷Q HTTP插件的QQ机器人类库
   </h4>
+  <br>
+  <br>
   <br>
 </h1>
 
