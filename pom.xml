@@ -36,6 +36,12 @@
             <scope>provided</scope>
         </dependency>
 
+        <dependency>
+            <groupId>io.jboot</groupId>
+            <artifactId>jboot</artifactId>
+            <version>1.4.8</version>
+        </dependency>
+
         <!-- JSON库 -->
         <dependency>
             <groupId>com.google.code.gson</groupId>
