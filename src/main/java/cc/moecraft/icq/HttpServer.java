@@ -31,11 +31,13 @@ public class HttpServer
         this.logger = bot.getLogger();
     }
 
-    //处理post请求
-    private String process(BufferedReader reader)
+    /**
+     * 处理请求
+     * @param data JSON
+     */
+    private void process(String data)
     {
-
-        return "[]";
+        bot.getEventManager().call(data);
     }
 
     /**
@@ -62,7 +64,7 @@ public class HttpServer
             try
             {
                 // 关闭上次的Socket, 这样就能直接continue了
-                if (out != null) out = sendResponseAndClose(out, "[]");
+                if (out != null) out.close();
                 if (socket != null && !socket.isClosed()) socket.close();
 
                 // 获取新的请求
@@ -70,7 +72,8 @@ public class HttpServer
 
                 // 读取请求字符
                 InputStream inputStream = socket.getInputStream();
-                BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+                DataInputStream reader = new DataInputStream(inputStream);
+                // BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream,"utf-8"));
                 out = socket.getOutputStream();
 
                 String line = reader.readLine();
@@ -135,8 +138,7 @@ public class HttpServer
                     logger.debug("- 数据: " + data);
                 }
 
-                String jsonString = process(reader);
-                out = sendResponseAndClose(out, jsonString);
+                process(data);
 
                 // 关闭接收
                 socket.close();
@@ -154,7 +156,7 @@ public class HttpServer
      * @param reader 读取器
      * @return 所有行的列表
      */
-    public static ArrayList<String> readOtherInfo(BufferedReader reader)
+    public static ArrayList<String> readOtherInfo(DataInputStream reader)
     {
         ArrayList<String> result = new ArrayList<>();
 
