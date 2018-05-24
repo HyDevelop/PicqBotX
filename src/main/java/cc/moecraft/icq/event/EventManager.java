@@ -59,4 +59,27 @@ public class EventManager
 
         return this;
     }
+
+    /**
+     * 执行事件
+     * @param event 事件对象
+     */
+    public void call(Event event)
+    {
+        String mapKey = event.getClass().getName();
+
+        if (!registeredListenerMethods.containsKey(mapKey)) return;
+
+        registeredListenerMethods.get(mapKey).forEach(registeredListenerMethod ->
+        {
+            try
+            {
+                registeredListenerMethod.call(event);
+            }
+            catch (InvocationTargetException | IllegalAccessException e)
+            {
+                e.printStackTrace(); // 这些理论上绝对不会出现
+            }
+        });
+    }
 }
