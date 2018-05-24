@@ -15,4 +15,7 @@ import lombok.Data;
 @Data
 public abstract class Event
 {
+    @SerializedName("post_type")
+    @Expose
+    public String postType;
 }
