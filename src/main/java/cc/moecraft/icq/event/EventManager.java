@@ -82,4 +82,62 @@ public class EventManager
             }
         });
     }
+
+    /**
+     * 执行事件
+     * @param inputJsonString ICQ发来的Json字符串
+     */
+    public void call(String inputJsonString)
+    {
+        JsonObject json = new JsonParser().parse(inputJsonString).getAsJsonObject();
+
+        switch (json.get("post_type").getAsString())
+        {
+            case "message":
+            {
+                callMessage(json);
+                break;
+            }
+            case "event":
+            {
+                // TODO
+                break;
+            }
+            case "request":
+            {
+                // TODO
+                break;
+            }
+            default:
+            {
+
+            }
+        }
+    }
+
+    /**
+     * 执行消息事件
+     * @param json JSON输入
+     */
+    public void callMessage(JsonObject json)
+    {
+        switch (json.get("message_type").getAsString())
+        {
+            case "private":
+            {
+                call(new Gson().fromJson(json, EventPrivateMessage.class));
+                break;
+            }
+            case "group":
+            {
+                call(new Gson().fromJson(json, EventGroupMessage.class));
+                break;
+            }
+            case "discuss":
+            {
+                call(new Gson().fromJson(json, EventDiscussMessage.class));
+                break;
+            }
+        }
+    }
 }
