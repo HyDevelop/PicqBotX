@@ -1,5 +1,6 @@
 package cc.moecraft.icq;
 
+import cc.moecraft.icq.event.EventManager;
 import cc.moecraft.icq.exceptions.HttpServerStartFailedException;
 import cc.moecraft.logger.DebugLogger;
 import lombok.Getter;
@@ -23,12 +24,16 @@ public class PicqBotX
     private boolean debug;
 
     @Getter
+    private EventManager eventManager;
+
+    @Getter
     private DebugLogger logger = new DebugLogger("PicqBotX", true);
 
     public PicqBotX(int port, boolean debug)
     {
         httpServer = new HttpServer(port, this);
         setDebug(debug);
+        eventManager = new EventManager();
     }
 
     public void startBot() throws HttpServerStartFailedException
