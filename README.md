@@ -30,7 +30,7 @@ Maven 导入:
         <version>版本号</version>
     </dependency>
 
-环境 & 使用:
+配置环境:
 --------
 
 ##### 注意: 下面的教程是对于Windows的酷Q v5.11.13的, Linux教程以后可能会补充
