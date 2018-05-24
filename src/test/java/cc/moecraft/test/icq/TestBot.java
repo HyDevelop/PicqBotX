@@ -18,6 +18,7 @@ public class TestBot
         PicqBotX bot = new PicqBotX(31092, true);
         try
         {
+            bot.getEventManager().registerListener(new TestListener());
             bot.startBot();
         }
         catch (HttpServerStartFailedException e)
