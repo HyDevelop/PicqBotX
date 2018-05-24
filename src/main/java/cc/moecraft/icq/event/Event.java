@@ -1,5 +1,6 @@
 package cc.moecraft.icq.event;
 
+import cc.moecraft.icq.PicqBotX;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import lombok.Data;
@@ -18,4 +19,12 @@ public abstract class Event
     @SerializedName("post_type")
     @Expose
     public String postType;
+
+    public PicqBotX bot;
+
+    public Event setBot(PicqBotX bot)
+    {
+        this.bot = bot;
+        return this;
+    }
 }
