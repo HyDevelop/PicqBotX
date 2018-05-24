@@ -1,6 +1,7 @@
 package cc.moecraft.test.icq;
 
 import cc.moecraft.icq.PicqBotX;
+import cc.moecraft.icq.exceptions.HttpServerStartFailedException;
 
 /**
  * 此类由 Hykilpikonna 在 2018/05/24 创建!
@@ -14,6 +15,14 @@ public class TestBot
 {
     public static void main(String[] args)
     {
-        PicqBotX bot = new PicqBotX(13501);
+        PicqBotX bot = new PicqBotX(31092, true);
+        try
+        {
+            bot.startBot();
+        }
+        catch (HttpServerStartFailedException e)
+        {
+            e.printStackTrace();
+        }
     }
 }
