@@ -12,7 +12,7 @@ import java.util.Map;
  *
  * @author Hykilpikonna
  */
-@Data
+@Data @Deprecated
 public class IcqHttpResponse
 {
     private int returnCode;

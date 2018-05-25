@@ -2,6 +2,7 @@ package cc.moecraft.icq.sender;
 
 import cc.moecraft.icq.utils.MapBuilder;
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
 import com.xiaoleilu.hutool.http.HttpUtil;
 import lombok.Data;
 
@@ -64,9 +65,9 @@ public class IcqHttpApi
      * @param parameters 参数
      * @return 响应
      */
-    public IcqHttpResponse send(String request, Map<String, Object> parameters)
+    public JsonElement send(String request, Map<String, Object> parameters)
     {
-        return new Gson().fromJson(HttpUtil.post(baseURL + request, parameters, 5000), IcqHttpResponse.class);
+        return new Gson().fromJson(HttpUtil.post(baseURL + request, parameters, 5000), JsonElement.class);
     }
 
     /**
@@ -75,7 +76,7 @@ public class IcqHttpApi
      * @param parameters 参数
      * @return 响应
      */
-    public IcqHttpResponse send(String request, Object... parameters)
+    public JsonElement send(String request, Object... parameters)
     {
         return send(request, MapBuilder.build(String.class, Object.class, parameters));
     }
@@ -85,9 +86,20 @@ public class IcqHttpApi
      * @param qq      QQ号
      * @param message 消息
      */
-    public IcqHttpResponse sendPrivateMsg(long qq, String message)
+    public JsonElement sendPrivateMsg(long qq, String message)
     {
         return send(SEND_PRIVATE_MSG, "user_id", qq, "message", message);
+    }
+
+    /**
+     * 发送私聊消息
+     * @param qq      QQ号
+     * @param message 消息
+     * @param autoEscape 是否纯文本发送
+     */
+    public JsonElement sendPrivateMsg(long qq, String message, boolean autoEscape)
+    {
+        return send(SEND_PRIVATE_MSG, "user_id", qq, "message", message, "auto_escape", autoEscape);
     }
 
     /**
@@ -95,9 +107,20 @@ public class IcqHttpApi
      * @param groupId 群ID
      * @param message 消息
      */
-    public IcqHttpResponse sendGroupMsg(long groupId, String message)
+    public JsonElement sendGroupMsg(long groupId, String message)
     {
         return send(SEND_GROUP_MSG, "group_id", groupId, "message", message);
+    }
+
+    /**
+     * 发送群聊消息
+     * @param groupId 群ID
+     * @param message 消息
+     * @param autoEscape 是否纯文本发送
+     */
+    public JsonElement sendGroupMsg(long groupId, String message, boolean autoEscape)
+    {
+        return send(SEND_GROUP_MSG, "group_id", groupId, "message", message, "auto_escape", autoEscape);
     }
 
     /**
@@ -105,7 +128,7 @@ public class IcqHttpApi
      * @param groupId 讨论组ID
      * @param message 消息
      */
-    public IcqHttpResponse sendDiscussMsg(long groupId, String message)
+    public JsonElement sendDiscussMsg(long groupId, String message)
     {
         return send(SEND_DISCUSS_MSG, "discuss_id", groupId, "message", message);
     }
@@ -114,7 +137,7 @@ public class IcqHttpApi
      * 撤回消息
      * @param messageId 消息ID
      */
-    public IcqHttpResponse deleteMsg(long messageId)
+    public JsonElement deleteMsg(long messageId)
     {
         return send(DELETE_MSG, "message_id", messageId);
     }
@@ -124,7 +147,7 @@ public class IcqHttpApi
      * @param qq    QQ号
      * @param times 赞的次数，每个好友每天最多 10 次
      */
-    public IcqHttpResponse sendLike(long qq, long times)
+    public JsonElement sendLike(long qq, long times)
     {
         return send(SEND_LIKE, "user_id", qq, "times", times);
     }
@@ -134,7 +157,7 @@ public class IcqHttpApi
      * @param qq      QQ
      * @param groupId 群号
      */
-    public IcqHttpResponse setGroupKick(long qq, long groupId)
+    public JsonElement setGroupKick(long qq, long groupId)
     {
         return send(SET_GROUP_KICK, "user_id", qq, "group_id", groupId);
     }
@@ -146,7 +169,7 @@ public class IcqHttpApi
      * @param duration 禁言时长，单位秒，0 表示取消禁言
      */
 
-    public IcqHttpResponse setGroupBan(long qq, long groupId, long duration)
+    public JsonElement setGroupBan(long qq, long groupId, long duration)
     {
         return send(SET_GROUP_BAN, "user_id", qq, "group_id", groupId, "duration", duration);
     }
@@ -157,7 +180,7 @@ public class IcqHttpApi
      * @param groupId  群号
      * @param duration 禁言时长，单位秒，无法取消匿名用户禁言
      */
-    public IcqHttpResponse setGroupAnonymousBan(String flag, long groupId, long duration)
+    public JsonElement setGroupAnonymousBan(String flag, long groupId, long duration)
     {
         return send(SET_GROUP_ANONYMOUS_BAN, "flag", flag, "group_id", groupId, "duration", duration);
     }
@@ -167,7 +190,7 @@ public class IcqHttpApi
      * @param groupId 群号
      * @param enable  是否禁言
      */
-    public IcqHttpResponse setGroupWholeBan(long groupId, boolean enable)
+    public JsonElement setGroupWholeBan(long groupId, boolean enable)
     {
         return send(SET_GROUP_WHOLE_BAN, "group_id", groupId, "enable", enable);
     }
@@ -178,7 +201,7 @@ public class IcqHttpApi
      * @param qq      要设置管理员的 QQ 号
      * @param enable  true 为设置，false 为取消
      */
-    public IcqHttpResponse setGroupAdmin(long groupId, long qq, boolean enable)
+    public JsonElement setGroupAdmin(long groupId, long qq, boolean enable)
     {
         return send(SET_GROUP_ADMIN, "group_id", groupId, "user_id", qq, "enable", enable);
     }
@@ -186,7 +209,7 @@ public class IcqHttpApi
     /**
      * 获取群列表
      */
-    public IcqHttpResponse getGroupList()
+    public JsonElement getGroupList()
     {
         return send(GET_GROUP_LIST);
     }
@@ -196,7 +219,7 @@ public class IcqHttpApi
      * @param groupId 群号
      * @param qq      QQ 号（不可以是登录号）
      */
-    public IcqHttpResponse getGroupMemberInfo(long groupId, long qq)
+    public JsonElement getGroupMemberInfo(long groupId, long qq)
     {
         return send(GET_GROUP_MEMBER_INFO, "group_id", groupId, "user_id", qq);
     }
@@ -205,7 +228,7 @@ public class IcqHttpApi
      * 获取群成员列表
      * @param groupId 群号
      */
-    public IcqHttpResponse getGroupMemberList(long groupId)
+    public JsonElement getGroupMemberList(long groupId)
     {
         return send(GET_GROUP_MEMBER_LIST, "group_id", groupId);
     }
@@ -213,7 +236,7 @@ public class IcqHttpApi
     /**
      * 获取酷 Q 及 HTTP API 插件的版本信息
      */
-    public IcqHttpResponse getVersionInfo()
+    public JsonElement getVersionInfo()
     {
         return send(GET_VERSION_INFO);
     }
@@ -221,7 +244,7 @@ public class IcqHttpApi
     /**
      * 重启酷 Q，并以当前登录号自动登录（需勾选快速登录）
      */
-    public IcqHttpResponse setRestart()
+    public JsonElement setRestart()
     {
         return send(SET_RESTART);
     }
@@ -229,7 +252,7 @@ public class IcqHttpApi
     /**
      * 重启 HTTP API 插件
      */
-    public IcqHttpResponse setRestartPlugin()
+    public JsonElement setRestartPlugin()
     {
         return send(SET_RESTART_PLUGIN);
     }
