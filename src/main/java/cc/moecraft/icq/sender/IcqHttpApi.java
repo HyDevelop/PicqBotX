@@ -57,4 +57,26 @@ public class IcqHttpApi
 
         baseURL = baseUrl + ":" + port + "/";
     }
+
+    /**
+     * 发送请求
+     * @param request 请求
+     * @param parameters 参数
+     * @return 响应
+     */
+    public IcqHttpResponse send(String request, Map<String, Object> parameters)
+    {
+        return new Gson().fromJson(HttpUtil.post(baseURL + request, parameters, 5000), IcqHttpResponse.class);
+    }
+
+    /**
+     * 发送请求 封装
+     * @param request 请求
+     * @param parameters 参数
+     * @return 响应
+     */
+    public IcqHttpResponse send(String request, Object... parameters)
+    {
+        return send(request, MapBuilder.build(String.class, Object.class, parameters));
+    }
 }
