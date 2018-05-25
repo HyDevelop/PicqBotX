@@ -110,6 +110,31 @@ public class IcqHttpApi
     {
         return send(typeOfT, request, MapBuilder.build(String.class, Object.class, parameters));
     }
+
+    /**
+     * 发送请求 封装
+     * @param typeOfT 返回数据类型
+     * @param request 请求
+     * @param parameters 参数
+     * @return 响应
+     */
+    public <T extends ReturnPojoBase> ReturnListData<T> sendReturnList(Type typeOfT, String request, Map<String, Object> parameters)
+    {
+        return new Gson().fromJson(send(request, parameters), RawReturnData.class).processDataAsList(typeOfT);
+    }
+
+    /**
+     * 发送请求 封装
+     * @param typeOfT 返回数据类型
+     * @param request 请求
+     * @param parameters 参数
+     * @return 响应
+     */
+    public <T extends ReturnPojoBase> ReturnListData<T> sendReturnList(Class<T> typeOfT, String request, Object... parameters)
+    {
+        return sendReturnList(typeOfT, request, MapBuilder.build(String.class, Object.class, parameters));
+    }
+
     /**
      * 发送私聊消息
      * @param qq      QQ号
