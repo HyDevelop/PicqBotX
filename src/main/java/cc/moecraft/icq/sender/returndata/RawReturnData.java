@@ -32,4 +32,21 @@ public class RawReturnData
     @SerializedName("status")
     @Expose
     public ReturnStatus status;
+
+    /**
+     * 处理数据
+     * @param typeOfT Data的POJO数据类型 例子: RLoginInfo.class
+     * @param <T> 数据类型
+     * @return 处理后的数据
+     */
+    public <T extends ReturnPojoBase> ReturnData<T> processData(Type typeOfT)
+    {
+        ReturnData<T> returnData = new ReturnData<>();
+
+        returnData.setReturnCode(returnCode);
+        returnData.setStatus(status);
+        returnData.setData(new Gson().fromJson(data, typeOfT));
+
+        return returnData;
+    }
 }
