@@ -78,4 +78,39 @@ Maven 导入:
 #### 4. 启动酷Q, 配置完成!
 
 <a name="development"></a>
+开发:
+--------
+
+#### 监听事件:
+
+	public class 类名随意 extends IcqListener // 继承监听器类
+	{
+	    @EventHandler // 这个注解必须加, 用于反射时判断哪些方法是事件方法的, 因为是反射就不用@Override了
+	    public void 方法名随意(事件类名 event) // 想监听什么方法就写在这里, 一个方法只能有一个事件对象
+	    {
+		// 处理
+	    }
+	    
+	    @EventHandler
+	    public void 方法名随意(事件类名 event) // 同一个类下可以添加无限个监听器方法
+	    ...
+	}
+	
+嗯... 创建一个类, 写成上面那个样子就行了_(:з」∠)_
+
+##### 例子:
+
+	public class TestListener extends IcqListener
+	{
+	    @EventHandler
+	    public void onPMEvent(EventPrivateMessage event)
+	    {
+		System.out.println("接到消息");
+
+		if (event.getMessage().equals("你以为这是yangjinhe/maintain-robot?"))
+		    event.respond("其实是我Hykilpikonna/PicqBotX哒!");
+	    }
+	}
+	
+
 <a name="license"></a>
