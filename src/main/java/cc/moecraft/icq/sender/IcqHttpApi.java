@@ -22,7 +22,6 @@ public class IcqHttpApi
     public static final String SEND_PRIVATE_MSG = "send_private_msg";
     public static final String SEND_GROUP_MSG = "send_group_msg";
     public static final String SEND_DISCUSS_MSG = "send_discuss_msg";
-    public static final String SEND_MSG = "send_msg";
     public static final String SEND_LIKE = "send_like";
 
     public static final String DELETE_MSG = "delete_msg";
@@ -48,6 +47,9 @@ public class IcqHttpApi
     public static final String GET_GROUP_MEMBER_INFO = "get_group_member_info";
     public static final String GET_GROUP_MEMBER_LIST = "get_group_member_list";
     public static final String GET_VERSION_INFO = "get_version_info";
+
+    @Deprecated
+    public static final String SEND_MSG = "send_msg";  // 这个不需要, 因为最后也要指定类型
 
     private final String baseURL;
 
