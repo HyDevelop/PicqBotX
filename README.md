@@ -5,18 +5,20 @@
   <h4 align="center">
   一个基于酷Q HTTP插件的Java QQ机器人类库
   </h4>
-  <br>
-  <br>
-  <br>
-</h1>
-
-<h5 align="center">
+  <h5 align="center">
 <a href="https://circleci.com/gh/hykilpikonna/PicqBotX">CircleCI</a>&nbsp;&nbsp;
 <a href="#maven">Maven导入</a>&nbsp;&nbsp;
 <a href="#environment">环境</a>&nbsp;&nbsp;
 <a href="#development">开发</a>&nbsp;&nbsp;
 <a href="#license">开源条款</a>
 </h5>
+  <br>
+  <br>
+  <br>
+  <br>
+</h1>
+
+
 
 <a name="maven"></a>
 Maven 导入:
