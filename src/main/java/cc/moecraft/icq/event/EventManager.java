@@ -1,5 +1,6 @@
 package cc.moecraft.icq.event;
 
+import cc.moecraft.icq.PicqBotX;
 import cc.moecraft.icq.event.events.message.EventDiscussMessage;
 import cc.moecraft.icq.event.events.message.EventGroupMessage;
 import cc.moecraft.icq.event.events.message.EventPrivateMessage;
@@ -7,7 +8,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -23,13 +24,14 @@ import java.util.HashMap;
  *
  * @author Hykilpikonna
  */
-@NoArgsConstructor
+@RequiredArgsConstructor
 public class EventManager
 {
     @Getter
     private ArrayList<IcqListener> registeredListeners = new ArrayList<>();
     @Getter
     private HashMap<String, ArrayList<RegisteredListenerMethod>> registeredListenerMethods = new HashMap<>();
+    private final PicqBotX bot;
 
     /**
      * 注册一个事件监听器
@@ -66,6 +68,8 @@ public class EventManager
      */
     public void call(Event event)
     {
+        event.setBot(bot);
+
         String mapKey = event.getClass().getName();
 
         if (!registeredListenerMethods.containsKey(mapKey)) return;
