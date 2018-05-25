@@ -49,4 +49,10 @@ public abstract class EventMessage extends Event
     @SerializedName("user_id")
     @Expose
     public Long userId;
+
+    /**
+     * 回复消息
+     * @param message 消息
+     */
+    public abstract void respond(String message);
 }
