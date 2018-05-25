@@ -20,4 +20,14 @@ public class EventDiscussMessage extends EventMessage
     @SerializedName("discuss_id")
     @Expose
     public Long discussId;
+
+    /**
+     * 回复一条讨论组消息
+     * @param message 消息
+     */
+    @Override
+    public void respond(String message)
+    {
+        getBot().getHttpApi().sendDiscussMsg(discussId, message);
+    }
 }

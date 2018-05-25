@@ -20,4 +20,10 @@ public class EventPrivateMessage extends EventMessage
     @SerializedName("sub_type")
     @Expose
     public String subType;
+
+    @Override
+    public void respond(String message)
+    {
+        getBot().getHttpApi().sendPrivateMsg(getUserId(), message);
+    }
 }
