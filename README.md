@@ -10,14 +10,13 @@
   <br>
 </h1>
 
-<p align="center">
-    <a href="https://circleci.com/gh/hykilpikonna/HyOsuIRCBot">
-        <img src="https://circleci.com/gh/hykilpikonna/HyOsuIRCBot.svg?style=shield&circle-token=62fa0e3b9d4ac062f2d024bb9dedcbf036004c5d"></a>&nbsp;&nbsp;&nbsp;
-    <a href="#maven"><img src="https://img.shields.io/badge/Maven-导入-01D282.svg"></a>
-    <a href="#environment"><img src="https://img.shields.io/badge/Environment-环境-02B5A1.svg"></a>
-    <a href="#development"><img src="https://img.shields.io/badge/Development-开发-039DBA.svg"></a>
-    <a href="#licence"><img src="https://img.shields.io/badge/License-开源条款-0577E5.svg"></a>
-</p>
+<h5 align="center">
+<a href="https://circleci.com/gh/hykilpikonna/PicqBotX">CircleCI</a>&nbsp;&nbsp;
+<a href="#maven">Maven导入</a>&nbsp;&nbsp;
+<a href="#environment">环境</a>&nbsp;&nbsp;
+<a href="#development">开发</a>&nbsp;&nbsp;
+<a href="#license">开源条款</a>
+</h5>
 
 <a name="maven"></a>
 Maven 导入:
