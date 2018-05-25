@@ -2,6 +2,7 @@ package cc.moecraft.icq;
 
 import cc.moecraft.icq.event.EventManager;
 import cc.moecraft.icq.exceptions.HttpServerStartFailedException;
+import cc.moecraft.icq.sender.IcqHttpApi;
 import cc.moecraft.logger.DebugLogger;
 import lombok.Getter;
 
@@ -27,13 +28,17 @@ public class PicqBotX
     private EventManager eventManager;
 
     @Getter
+    private IcqHttpApi httpApi;
+
+    @Getter
     private DebugLogger logger = new DebugLogger("PicqBotX", true);
 
-    public PicqBotX(int port, boolean debug)
+    public PicqBotX(String postUrl, int postPort, int socketPort, boolean debug)
     {
-        httpServer = new HttpServer(port, this);
         setDebug(debug);
-        eventManager = new EventManager();
+        httpServer = new HttpServer(socketPort, this);
+        eventManager = new EventManager(this);
+        httpApi = new IcqHttpApi(postUrl, postPort);
     }
 
     public void startBot() throws HttpServerStartFailedException
