@@ -81,6 +81,40 @@ Maven 导入:
 开发:
 --------
 
+#### 启动机器人 (Main类):
+
+	public class 类名
+	{
+	    // 这里其实不一定要用psvm, 任何其他方式只要能启动就行
+	    public static void main(String[] args) throws HttpServerStartFailedException
+	    {
+		PicqBotX bot = new PicqBotX(发送到的URL, 发送到的端口号, 接收的端口号, 后台是否显示debug消息);
+		
+		bot.getEventManager().registerListener(new 监听器类()); // 注册事件监听器
+		
+		bot.startBot(); // 启动 (会占用主线程, 如果要同时运行其他东西的话, 需要异步)
+	    }
+	}
+	
+##### 例子:
+
+	public class TestBot
+	{
+	    public static void main(String[] args)
+	    {
+		PicqBotX bot = new PicqBotX("127.0.0.1", 31091, 31092, true);
+		try
+		{
+		    bot.getEventManager().registerListener(new TestListener());
+		    bot.startBot();
+		}
+		catch (HttpServerStartFailedException e)
+		{
+		    e.printStackTrace();
+		}
+	    }
+	}
+
 #### 监听事件:
 
 	public class 类名随意 extends IcqListener // 继承监听器类
