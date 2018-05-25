@@ -36,10 +36,11 @@
             <scope>provided</scope>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/com.xiaoleilu/hutool-all -->
         <dependency>
-            <groupId>io.jboot</groupId>
-            <artifactId>jboot</artifactId>
-            <version>1.4.8</version>
+            <groupId>com.xiaoleilu</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>3.2.1</version>
         </dependency>
 
         <!-- JSON库 -->
