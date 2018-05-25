@@ -79,4 +79,158 @@ public class IcqHttpApi
     {
         return send(request, MapBuilder.build(String.class, Object.class, parameters));
     }
+
+    /**
+     * 发送私聊消息
+     * @param qq      QQ号
+     * @param message 消息
+     */
+    public IcqHttpResponse sendPrivateMsg(long qq, String message)
+    {
+        return send(SEND_PRIVATE_MSG, "user_id", qq, "message", message);
+    }
+
+    /**
+     * 发送群聊消息
+     * @param groupId 群ID
+     * @param message 消息
+     */
+    public IcqHttpResponse sendGroupMsg(long groupId, String message)
+    {
+        return send(SEND_GROUP_MSG, "group_id", groupId, "message", message);
+    }
+
+    /**
+     * 发送讨论组消息
+     * @param groupId 讨论组ID
+     * @param message 消息
+     */
+    public IcqHttpResponse sendDiscussMsg(long groupId, String message)
+    {
+        return send(SEND_DISCUSS_MSG, "discuss_id", groupId, "message", message);
+    }
+
+    /**
+     * 撤回消息
+     * @param messageId 消息ID
+     */
+    public IcqHttpResponse deleteMsg(long messageId)
+    {
+        return send(DELETE_MSG, "message_id", messageId);
+    }
+
+    /**
+     * 发送好友赞
+     * @param qq    QQ号
+     * @param times 赞的次数，每个好友每天最多 10 次
+     */
+    public IcqHttpResponse sendLike(long qq, long times)
+    {
+        return send(SEND_LIKE, "user_id", qq, "times", times);
+    }
+
+    /**
+     * 群组踢人
+     * @param qq      QQ
+     * @param groupId 群号
+     */
+    public IcqHttpResponse setGroupKick(long qq, long groupId)
+    {
+        return send(SET_GROUP_KICK, "user_id", qq, "group_id", groupId);
+    }
+
+    /**
+     * 群组单人禁言
+     * @param qq       QQ
+     * @param groupId  群号
+     * @param duration 禁言时长，单位秒，0 表示取消禁言
+     */
+
+    public IcqHttpResponse setGroupBan(long qq, long groupId, long duration)
+    {
+        return send(SET_GROUP_BAN, "user_id", qq, "group_id", groupId, "duration", duration);
+    }
+
+    /**
+     * 群组匿名用户禁言
+     * @param flag     要禁言的匿名用户的 flag（需从群消息上报的数据中获得）
+     * @param groupId  群号
+     * @param duration 禁言时长，单位秒，无法取消匿名用户禁言
+     */
+    public IcqHttpResponse setGroupAnonymousBan(String flag, long groupId, long duration)
+    {
+        return send(SET_GROUP_ANONYMOUS_BAN, "flag", flag, "group_id", groupId, "duration", duration);
+    }
+
+    /**
+     * 群组全员禁言
+     * @param groupId 群号
+     * @param enable  是否禁言
+     */
+    public IcqHttpResponse setGroupWholeBan(long groupId, boolean enable)
+    {
+        return send(SET_GROUP_WHOLE_BAN, "group_id", groupId, "enable", enable);
+    }
+
+    /**
+     * 群组设置管理员
+     * @param groupId 群号
+     * @param qq      要设置管理员的 QQ 号
+     * @param enable  true 为设置，false 为取消
+     */
+    public IcqHttpResponse setGroupAdmin(long groupId, long qq, boolean enable)
+    {
+        return send(SET_GROUP_ADMIN, "group_id", groupId, "user_id", qq, "enable", enable);
+    }
+
+    /**
+     * 获取群列表
+     */
+    public IcqHttpResponse getGroupList()
+    {
+        return send(GET_GROUP_LIST);
+    }
+
+    /**
+     * 获取群成员信息
+     * @param groupId 群号
+     * @param qq      QQ 号（不可以是登录号）
+     */
+    public IcqHttpResponse getGroupMemberInfo(long groupId, long qq)
+    {
+        return send(GET_GROUP_MEMBER_INFO, "group_id", groupId, "user_id", qq);
+    }
+
+    /**
+     * 获取群成员列表
+     * @param groupId 群号
+     */
+    public IcqHttpResponse getGroupMemberList(long groupId)
+    {
+        return send(GET_GROUP_MEMBER_LIST, "group_id", groupId);
+    }
+
+    /**
+     * 获取酷 Q 及 HTTP API 插件的版本信息
+     */
+    public IcqHttpResponse getVersionInfo()
+    {
+        return send(GET_VERSION_INFO);
+    }
+
+    /**
+     * 重启酷 Q，并以当前登录号自动登录（需勾选快速登录）
+     */
+    public IcqHttpResponse setRestart()
+    {
+        return send(SET_RESTART);
+    }
+
+    /**
+     * 重启 HTTP API 插件
+     */
+    public IcqHttpResponse setRestartPlugin()
+    {
+        return send(SET_RESTART_PLUGIN);
+    }
 }
