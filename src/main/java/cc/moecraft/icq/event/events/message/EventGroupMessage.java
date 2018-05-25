@@ -32,4 +32,10 @@ public class EventGroupMessage extends EventMessage
     @SerializedName("sub_type")
     @Expose
     public String subType;
+
+    @Override
+    public void respond(String message)
+    {
+        getBot().getHttpApi().sendGroupMsg(groupId, message);
+    }
 }
