@@ -69,7 +69,7 @@ public class IcqHttpApi
      */
     public JsonElement send(String request, Map<String, Object> parameters)
     {
-        return new Gson().fromJson(HttpUtil.post(baseURL + request, parameters, 5000), JsonElement.class);
+        return new JsonParser().parse(HttpUtil.post(baseURL + request, parameters, 5000));
     }
 
     /**
