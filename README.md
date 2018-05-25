@@ -173,3 +173,6 @@ Maven 导入:
 #### 如果有Bug的话, 联系我QQ: 871674895哦!
 
 <a name="license"></a>
+[GNU/GPL 开源条款](https://choosealicense.com/licenses/gpl-3.0/)
+--------
+
