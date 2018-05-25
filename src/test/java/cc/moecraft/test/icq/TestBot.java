@@ -15,7 +15,7 @@ public class TestBot
 {
     public static void main(String[] args)
     {
-        PicqBotX bot = new PicqBotX(31092, true);
+        PicqBotX bot = new PicqBotX("127.0.0.1", 31091, 31092, true);
         try
         {
             bot.getEventManager().registerListener(new TestListener());
