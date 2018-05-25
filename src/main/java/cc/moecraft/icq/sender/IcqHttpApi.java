@@ -1,12 +1,16 @@
 package cc.moecraft.icq.sender;
 
+import cc.moecraft.icq.sender.returndata.RawReturnData;
+import cc.moecraft.icq.sender.returndata.ReturnData;
+import cc.moecraft.icq.sender.returndata.ReturnListData;
+import cc.moecraft.icq.sender.returndata.returnpojo.ReturnPojoBase;
 import cc.moecraft.icq.utils.MapBuilder;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.xiaoleilu.hutool.http.HttpUtil;
-import lombok.Data;
 
+import java.lang.reflect.Type;
 import java.util.Map;
 
 /**
@@ -83,6 +87,29 @@ public class IcqHttpApi
         return send(request, MapBuilder.build(String.class, Object.class, parameters));
     }
 
+    /**
+     * 发送请求 封装
+     * @param typeOfT 返回数据类型
+     * @param request 请求
+     * @param parameters 参数
+     * @return 响应
+     */
+    public <T extends ReturnPojoBase> ReturnData<T> send(Type typeOfT, String request, Map<String, Object> parameters)
+    {
+        return new Gson().fromJson(send(request, parameters), RawReturnData.class).processData(typeOfT);
+    }
+
+    /**
+     * 发送请求 封装
+     * @param typeOfT 返回数据类型
+     * @param request 请求
+     * @param parameters 参数
+     * @return 响应
+     */
+    public <T extends ReturnPojoBase> ReturnData<T> send(Class<T> typeOfT, String request, Object... parameters)
+    {
+        return send(typeOfT, request, MapBuilder.build(String.class, Object.class, parameters));
+    }
     /**
      * 发送私聊消息
      * @param qq      QQ号
