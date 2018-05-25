@@ -18,5 +18,9 @@ public class TestListener extends IcqListener
     public void onPMEvent(EventPrivateMessage event)
     {
         System.out.println("接到消息");
+
+        // 纯属测试没有嘲讽意思啦...
+        if (event.getMessage().equals("你以为这是yangjinhe/maintain-robot?"))
+            event.respond("其实是我Hykilpikonna/PicqBotX哒!");
     }
 }
