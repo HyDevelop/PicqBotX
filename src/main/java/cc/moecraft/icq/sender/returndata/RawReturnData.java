@@ -49,4 +49,21 @@ public class RawReturnData
 
         return returnData;
     }
+
+    /**
+     * 处理数据为列表格式
+     * @param typeOfT Data的POJO数据类型 例子: RGroupList.class
+     * @param <T> 数据类型
+     * @return 处理后的数据
+     */
+    public <T extends ReturnPojoBase> ReturnListData<T> processDataAsList(Type typeOfT)
+    {
+        ReturnListData<T> returnData = new ReturnListData<>();
+
+        returnData.setReturnCode(returnCode);
+        returnData.setStatus(status);
+        returnData.setData(new Gson().fromJson(data, ArrayList.class));
+
+        return returnData;
+    }
 }
