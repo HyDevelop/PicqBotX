@@ -112,5 +112,30 @@ Maven 导入:
 	    }
 	}
 	
+##### 发送信息:
+
+需要一个bot对象, **请不要使用全局变量存bot对象**<br>
+其实监听器里的话直接用 `event.getBot()` 就行了, 不是监听器的话也很少会直接用到bot对象...<br>
+
+如果已经封装过了的话, 这样发送:
+
+	IcqHttpResponse response = event.getBot().getHttpApi().封装方法名(参数); // response就是响应数据
+
+例子:
+
+	IcqHttpResponse response = event.getBot().getHttpApi().sendPrivateMsg(565656, "hi"); // 给565656发送hi
+	
+如果没有封装过的话, 或者想手动添加参数对的话, 这样发送:
+
+	IcqHttpResponse response = event.getBot().getHttpApi().send(请求目标, 参数); // 请求目标在IcqHttpApi里面有常量
+
+例子:
+
+	IcqHttpResponse response = event.getBot().getHttpApi().send(IcqHttpApi.SEND_PRIVATE_MSG, 
+                "user_id", 565656,
+                "message", "hi",
+                "auto_escape", false); // 这个参数因为不常用就没有封装, 所以要用的话这样发送
+
+##### 如果有Bug的话, 联系我QQ: 565656哦!
 
 <a name="license"></a>
