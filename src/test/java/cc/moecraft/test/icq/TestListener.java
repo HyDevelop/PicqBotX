@@ -3,6 +3,9 @@ package cc.moecraft.test.icq;
 import cc.moecraft.icq.event.EventHandler;
 import cc.moecraft.icq.event.IcqListener;
 import cc.moecraft.icq.event.events.message.EventPrivateMessage;
+import cc.moecraft.icq.sender.IcqHttpApi;
+import cc.moecraft.icq.sender.IcqHttpResponse;
+import com.google.gson.JsonElement;
 
 /**
  * 此类由 Hykilpikonna 在 2018/05/24 创建!
@@ -22,5 +25,10 @@ public class TestListener extends IcqListener
         // 纯属测试没有嘲讽意思啦...
         if (event.getMessage().equals("你以为这是yangjinhe/maintain-robot?"))
             event.respond("其实是我Hykilpikonna/PicqBotX哒!");
+
+        JsonElement response = event.getBot().getHttpApi().send(IcqHttpApi.SEND_PRIVATE_MSG,
+                "user_id", 871674895,
+                "message", "hi",
+                "auto_escape", false);
     }
 }
