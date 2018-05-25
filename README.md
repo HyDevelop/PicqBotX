@@ -10,6 +10,16 @@
   <br>
 </h1>
 
+<p align="center">
+    <a href="https://circleci.com/gh/hykilpikonna/HyOsuIRCBot">
+        <img src="https://circleci.com/gh/hykilpikonna/HyOsuIRCBot.svg?style=shield&circle-token=62fa0e3b9d4ac062f2d024bb9dedcbf036004c5d"></a>&nbsp;&nbsp;&nbsp;
+    <a href="#maven"><img src="https://img.shields.io/badge/Maven-导入-01D282.svg"></a>
+    <a href="#environment"><img src="https://img.shields.io/badge/Environment-环境-02B5A1.svg"></a>
+    <a href="#development"><img src="https://img.shields.io/badge/Development-开发-039DBA.svg"></a>
+    <a href="#licence"><img src="https://img.shields.io/badge/License-开源条款-0577E5.svg"></a>
+</p>
+
+<a name="maven"></a>
 Maven 导入:
 --------
 
@@ -30,6 +40,7 @@ Maven 导入:
         <version>版本号</version>
     </dependency>
 
+<a name="environment"></a>
 配置环境:
 --------
 
@@ -60,8 +71,11 @@ Maven 导入:
 	post_url=http://127.0.0.1:发送端口
 
 
-把发送端口和接收端口改成你的机器人程序里用的端口 (默认为31091和31092)<br>
+把发送端口和接收端口改成你的机器人程序里用的端口 (测试机器人的接收为31091, 发送31092)<br>
 如果酷Q要和你的机器人程序分开运行的话, 127.0.0.1改成你的机器人部署的服务器的地址<br>
 保存配置文件<br>
 
 #### 4. 启动酷Q, 配置完成!
+
+<a name="development"></a>
+<a name="license"></a>
