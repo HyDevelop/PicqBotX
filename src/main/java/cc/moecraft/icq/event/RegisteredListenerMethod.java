@@ -27,9 +27,9 @@ public class RegisteredListenerMethod
      * @throws InvocationTargetException 反射失败
      * @throws IllegalAccessException 无访问权限 (不可能发生)
      */
-    public String call(Event event) throws InvocationTargetException, IllegalAccessException 
+    public void call(Event event) throws InvocationTargetException, IllegalAccessException
     {
         method.setAccessible(true);
-        return (String) method.invoke(listener, event);
+        method.invoke(listener, event);
     }
 }
