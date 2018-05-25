@@ -3,6 +3,7 @@ package cc.moecraft.icq.sender;
 import cc.moecraft.icq.utils.MapBuilder;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 import com.xiaoleilu.hutool.http.HttpUtil;
 import lombok.Data;
 
@@ -16,7 +17,6 @@ import java.util.Map;
  *
  * @author Hykilpikonna
  */
-@Data
 public class IcqHttpApi
 {
     public static final String SEND_PRIVATE_MSG = "send_private_msg";
@@ -134,6 +134,17 @@ public class IcqHttpApi
     }
 
     /**
+     * 发送讨论组消息
+     * @param groupId 讨论组ID
+     * @param message 消息
+     * @param autoEscape 是否纯文本发送
+     */
+    public JsonElement sendDiscussMsg(long groupId, String message, boolean autoEscape)
+    {
+        return send(SEND_DISCUSS_MSG, "discuss_id", groupId, "message", message, "auto_escape", autoEscape);
+    }
+
+    /**
      * 撤回消息
      * @param messageId 消息ID
      */
@@ -207,6 +218,150 @@ public class IcqHttpApi
     }
 
     /**
+     * 群组设置匿名
+     * @param groupId 群号
+     * @param enable  是否允许匿名聊天
+     */
+    public JsonElement setGroupAnonymous(long groupId, boolean enable)
+    {
+        return send(SET_GROUP_ANONYMOUS, "group_id", groupId, "enable", enable);
+    }
+
+    /**
+     * 设置群名片（群备注）
+     * @param groupId 群号
+     * @param qq      要设置的 QQ 号
+     * @param card  群名片内容，不填或空字符串表示删除群名片
+     */
+    public JsonElement setGroupCard(long groupId, long qq, String card)
+    {
+        return send(SET_GROUP_CARD, "group_id", groupId, "user_id", qq, "card", card);
+    }
+
+    /**
+     * 退出群组
+     * @param groupId 群号
+     * @param dismiss 是否解散，如果登录号是群主，则仅在此项为 true 时能够解散
+     */
+    public JsonElement setGroupLeave(long groupId, boolean dismiss)
+    {
+        return send(SET_GROUP_LEAVE, "group_id", groupId, "is_dismiss", dismiss);
+    }
+
+    /**
+     * 设置群组专属头衔
+     * @param groupId 群号
+     * @param qq 要设置的QQ号
+     * @param specialTitle 专属头衔，不填或空字符串表示删除专属头衔
+     */
+    public JsonElement setGroupSpecialTitle(long groupId, long qq, String specialTitle)
+    {
+        return send(SET_GROUP_SPECIAL_TITLE, "group_id", groupId, "user_id", qq, "special_title", specialTitle);
+    }
+
+    /**
+     * 设置群组专属头衔
+     * @param groupId 群号
+     * @param qq 要设置的QQ号
+     * @param specialTitle 专属头衔，不填或空字符串表示删除专属头衔
+     * @param duration 专属头衔有效期，单位秒，-1 表示永久，不过此项似乎没有效果，可能是只有某些特殊的时间长度有效，有待测试
+     */
+    public JsonElement setGroupSpecialTitle(long groupId, long qq, String specialTitle, long duration)
+    {
+        return send(SET_GROUP_SPECIAL_TITLE, "group_id", groupId, "user_id", qq, "special_title", specialTitle, "duration", duration);
+    }
+
+    /**
+     * 退出讨论组
+     * @param discussId 讨论组 ID（正常情况下看不到，需要从讨论组消息上报的数据中获得）
+     */
+    public JsonElement setDiscussLeave(long discussId)
+    {
+        return send(SET_DISCUSS_LEAVE, "discuss_id", discussId);
+    }
+
+    /**
+     * 处理加好友请求
+     * @param flag 加好友请求的 flag（需从上报的数据中获得）
+     * @param approve 是否同意请求
+     */
+    public JsonElement setFriendAndRequest(String flag, boolean approve)
+    {
+        return send(SET_FRIEND_ADD_REQUEST, "flag", flag, "approve", approve);
+    }
+
+    /**
+     * 处理加好友请求
+     * @param flag 加好友请求的 flag（需从上报的数据中获得）
+     * @param approve 是否同意请求
+     * @param remark 添加后的好友备注（仅在同意时有效）
+     */
+    public JsonElement setFriendAndRequest(String flag, boolean approve, String remark)
+    {
+        return send(SET_FRIEND_ADD_REQUEST, "flag", flag, "approve", approve, "remark", remark);
+    }
+
+    /**
+     * 处理加群请求／邀请
+     * @param flag 加好友请求的 flag（需从上报的数据中获得）
+     * @param type add 或 invite，请求类型（需要和上报消息中的 sub_type 字段相符）
+     * @param approve 是否同意请求／邀请
+     * @param reason 拒绝理由（仅在拒绝时有效）
+     */
+    public JsonElement setGroupAndRequest(String flag, String type, boolean approve, String reason)
+    {
+        return send(SET_GROUP_ADD_REQUEST, "flag", flag, "type", type, "approve", approve, "reason", reason);
+    }
+
+    /**
+     * 同意加群请求／邀请
+     * @param flag 加好友请求的 flag（需从上报的数据中获得）
+     * @param type add 或 invite，请求类型（需要和上报消息中的 sub_type 字段相符）
+     */
+    public JsonElement approveGroupRequest(String flag, String type)
+    {
+        return setGroupAndRequest(flag, type, true, "");
+    }
+
+    /**
+     * 拒绝加群请求／邀请
+     * @param flag 加好友请求的 flag（需从上报的数据中获得）
+     * @param type add 或 invite，请求类型（需要和上报消息中的 sub_type 字段相符）
+     * @param reason 拒绝理由
+     */
+    public JsonElement rejectGroupRequest(String flag, String type, String reason)
+    {
+        return setGroupAndRequest(flag, type, false, reason);
+    }
+
+    /**
+     * 获取登录号信息
+     */
+    public JsonElement getLoginInfo()
+    {
+        return send(GET_LOGIN_INFO);
+    }
+
+    /**
+     * 获取陌生人信息
+     * @param qq QQ号
+     * @param noCache 是否不使用缓存（使用缓存可能更新不及时，但响应更快）
+     */
+    public JsonElement getStrangerInfo(long qq, boolean noCache)
+    {
+        return send(GET_STRANGER_INFO, "user_id", qq, "no_cache", noCache);
+    }
+
+    /**
+     * 获取陌生人信息, 默认使用缓存
+     * @param qq QQ号
+     */
+    public JsonElement getStrangerInfo(long qq)
+    {
+        return getStrangerInfo(qq, true);
+    }
+
+    /**
      * 获取群列表
      */
     public JsonElement getGroupList()
@@ -217,7 +372,7 @@ public class IcqHttpApi
     /**
      * 获取群成员信息
      * @param groupId 群号
-     * @param qq      QQ 号（不可以是登录号）
+     * @param qq QQ 号（不可以是登录号）
      */
     public JsonElement getGroupMemberInfo(long groupId, long qq)
     {
