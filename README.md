@@ -40,6 +40,9 @@ Maven 导入:
         <version>版本号</version>
     </dependency>
 
+
+<br>
+
 <a name="environment"></a>
 配置环境:
 --------
@@ -76,6 +79,9 @@ Maven 导入:
 保存配置文件<br>
 
 #### 4. 启动酷Q, 配置完成!
+
+
+<br>
 
 <a name="development"></a>
 开发:
@@ -172,7 +178,10 @@ Maven 导入:
 
 #### 如果有Bug的话, 联系我QQ: 565656哦!
 
+
+<br>
+
 <a name="license"></a>
-[GNU/GPL 开源条款](https://choosealicense.com/licenses/gpl-3.0/)
+[开源条款](https://choosealicense.com/licenses/gpl-3.0/): GNU / GPL
 --------
 
