@@ -103,7 +103,9 @@ public class 类名
     {
 	PicqBotX bot = new PicqBotX(发送到的URL, 发送到的端口号, 接收的端口号, 后台是否显示debug消息);
 
-	bot.getEventManager().registerListener(new 监听器类()); // 注册事件监听器
+	bot.getEventManager()
+		.registerListener(new 监听器类1()) // 注册事件监听器
+		.registerListener(new 监听器类2()); // 可以注册多个监听器
 
 	bot.startBot(); // 启动 (会占用主线程, 如果要同时运行其他东西的话, 需要异步)
     }
@@ -167,6 +169,8 @@ public class TestListener extends IcqListener
 ```
 
 ##### 其他例子去看[TestBot](https://github.com/HyDevelop/PicqBotX/blob/master/src/test/java/cc/moecraft/test/icq/TestBot.java)!
+
+<br>
 
 #### 发送信息:
 
