@@ -42,7 +42,7 @@ public class PicqBotX
     public PicqBotX(String postUrl, int postPort, int socketPort, boolean debug)
     {
         setDebug(debug);
-        httpApi = new IcqHttpApi(postUrl, postPort);
+        httpApi = new IcqHttpApi(eventManager, postUrl, postPort);
         httpServer = new HttpServer(socketPort, this);
         eventManager = new EventManager(this);
     }
