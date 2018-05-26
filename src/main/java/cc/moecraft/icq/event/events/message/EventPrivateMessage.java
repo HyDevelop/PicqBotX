@@ -24,6 +24,6 @@ public class EventPrivateMessage extends EventMessage
     @Override
     public void respond(String message)
     {
-        getBot().getHttpApi().sendPrivateMsg(getUserId(), message);
+        respondPrivateMessage(message);
     }
 }
