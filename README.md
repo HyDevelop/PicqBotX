@@ -124,40 +124,72 @@ enable_backward_compatibility=false
 
 #### 启动机器人 (Main类):
 
+main方法里面, 先创建一个机器人对象: <br>
+注意: 因为所有事件和指令执行的时候都能获取到机器人对象, <br>
+所以不建议把机器人对象弄成static或者全局变量.
+
 ```java
-public class 类名
-{
-    // 这里其实不一定要用psvm, 任何其他方式只要能启动就行
-    public static void main(String[] args) throws HttpServerStartFailedException
-    {
-	PicqBotX bot = new PicqBotX(发送到的URL, 发送到的端口号, 接收的端口号, 后台是否显示debug消息);
-
-	bot.getEventManager()
-		.registerListener(new 监听器类1()) // 注册事件监听器
-		.registerListener(new 监听器类2()); // 可以注册多个监听器
-
-	bot.startBot(); // 启动 (会占用主线程, 如果要同时运行其他东西的话, 需要异步)
-    }
-}
+// 创建机器人对象 ( 信息发送URL, 发送端口, 接收端口, 是否DEBUG )
+PicqBotX bot = new PicqBotX("127.0.0.1", 31091, 31092, false);
 ```
 
-##### 例子:
+注册监听器: <br>
+可以注册多个监听器 <br>
+监听器的构造器可以有参数
+
+```java
+bot.getEventManager().registerListener(new 监听器());
+```
+
+启用指令管理器: <br>
+如果不想用自带的指令管理器, 想自己写指令管理器, 不写这行就好了. <br>
+不过这个指令管理器真的很方便哦! 注册都完全是自动的_(:з」∠)_ <br>
+因为完全自动注册, 所以只要这一行就行了!
+
+```java
+// 启用指令管理器, 启用的时候会自动注册指令
+// 这些字符串是指令前缀, 比如!help的前缀就是!
+bot.enableCommandManager("bot -", "!", "/", "~");
+```
+
+启动机器人: 
+
+```java
+// 启动机器人, 这个因为会占用线程, 所以必须放到最后
+bot.startBot(); 
+```
+
+嗯, 然后就没了!<br>
+就这么简单方便!!<br>
+完整例子代码:
 
 ```java
 public class TestBot
 {
     public static void main(String[] args)
     {
-	PicqBotX bot = new PicqBotX("127.0.0.1", 31091, 31092, true);
-	try
-	{
-	    bot.getEventManager().registerListener(new TestListener());
-	    bot.startBot();
-	}
-	catch (HttpServerStartFailedException e)
-	{
-	    e.printStackTrace();
-	}
+        // 创建机器人对象 ( 信息发送URL, 发送端口, 接收端口, 是否DEBUG )
+        PicqBotX bot = new PicqBotX("127.0.0.1", 31091, 31092, false);
+
+        try
+        {
+            bot.getEventManager()
+                    .registerListener(new TestListener()) // 注册监听器
+                    .registerListener(new RequestListener()); // 可以注册多个监听器
+					
+            if (!bot.isDebug()) bot.getEventManager().registerListener(new SimpleTextLoggingListener()); // 条件下注册监听器
+
+            // 启用指令管理器, 启用的时候会自动注册指令
+            // 这些字符串是指令前缀, 比如!help的前缀就是!
+            bot.enableCommandManager("bot -", "!", "/", "~");
+
+			// 启动机器人, 这个因为会占用线程, 所以必须放到最后
+            bot.startBot(); 
+        }
+        catch (HttpServerStartFailedException | VersionIncorrectException | IllegalAccessException | InstantiationException e)
+        {
+            e.printStackTrace(); // 启动失败, 结束程序
+        }
     }
 }
 ```
