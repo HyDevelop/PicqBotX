@@ -3,7 +3,6 @@ package cc.moecraft.icq.exceptions;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.RequiredArgsConstructor;
 
 /**
  * 此类由 Hykilpikonna 在 2018/05/26 创建!

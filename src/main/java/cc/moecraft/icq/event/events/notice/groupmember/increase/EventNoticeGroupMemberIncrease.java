@@ -1,6 +1,5 @@
 package cc.moecraft.icq.event.events.notice.groupmember.increase;
 
-import cc.moecraft.icq.event.events.notice.EventNotice;
 import cc.moecraft.icq.event.events.notice.groupmember.EventNoticeGroupMemberChange;
 
 /**
