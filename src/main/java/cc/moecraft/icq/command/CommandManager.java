@@ -42,6 +42,22 @@ public class CommandManager
     private final String[] prefixes;
 
     /**
+     * 自动循环commands下的所有包找指令类
+     * 然后反射实例注册
+     */
+    public void registerAllCommands() throws IllegalAccessException, InstantiationException
+    {
+        Reflections reflections = new Reflections();
+
+        // 获取包下的所有继承Command的类
+        Set<Class<? extends IcqCommand>> commands = reflections.getSubTypesOf(IcqCommand.class);
+
+        // 循环注册
+        for (Class<? extends IcqCommand> command : commands)
+            if (!command.isInterface() && !Modifier.isAbstract(command.getModifiers())) registerCommand(command.newInstance());
+    }
+
+    /**
      * 注册指令
      * @param command 指令
      * @return 是否注册成功
