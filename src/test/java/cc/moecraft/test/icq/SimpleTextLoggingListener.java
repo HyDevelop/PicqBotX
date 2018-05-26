@@ -2,6 +2,8 @@ package cc.moecraft.test.icq;
 
 import cc.moecraft.icq.event.EventHandler;
 import cc.moecraft.icq.event.IcqListener;
+import cc.moecraft.icq.event.events.local.EventLocalSendMessage;
+import cc.moecraft.icq.event.events.message.EventDiscussMessage;
 import cc.moecraft.icq.event.events.message.EventGroupMessage;
 import cc.moecraft.icq.event.events.message.EventMessage;
 import cc.moecraft.icq.event.events.message.EventPrivateMessage;
@@ -40,6 +42,11 @@ public class SimpleTextLoggingListener extends IcqListener
     public static String getNickname(EventMessage event)
     {
         return event.getBot().getHttpApi().getStrangerInfo(event.getSenderId()).getData().getNickname();
+    }
+
+    public static String getNickname(EventLocalSendMessage event)
+    {
+        return event.getBot().getHttpApi().getStrangerInfo(event.getId()).getData().getNickname();
     }
 
     public static String getSelfNickname(EventMessage event)
@@ -96,6 +103,24 @@ public class SimpleTextLoggingListener extends IcqListener
     {
         event.getBot().getLogger().log(String.format("%s[%sGM%s] [%s%s%s]%s %s%s >> %s%s", WHITE, RED, WHITE, RED,
                 getFixedLengthNickname(getGroupName(event), true, true), WHITE, CYAN.getBright(),
+                getFixedLengthNickname(getNickname(event), true, false), RED, RESET,
+                event.getMessage()));
+    }
+
+    @EventHandler
+    public void onDMEvent(EventDiscussMessage event)
+    {
+        event.getBot().getLogger().log(String.format("%s[%sDM%s] [%s%s%s]%s %s%s >> %s%s", WHITE, WHITE, WHITE, WHITE,
+                getFixedLengthNickname(String.valueOf(event.getDiscussId()), true, true), WHITE, CYAN.getBright(),
+                getFixedLengthNickname(getNickname(event), true, false), RED, RESET,
+                event.getMessage()));
+    }
+
+    @EventHandler
+    public void onSendEvent(EventLocalSendMessage event)
+    {
+        event.getBot().getLogger().log(String.format("%s[%sSO%s] [%s%s%s]%s %s%s >> %s%s", WHITE, GREEN, WHITE, GREEN,
+                getFixedLengthNickname("这个机器人 ", true, true), WHITE, CYAN.getBright(),
                 getFixedLengthNickname(getNickname(event), true, false), RED, RESET,
                 event.getMessage()));
     }
