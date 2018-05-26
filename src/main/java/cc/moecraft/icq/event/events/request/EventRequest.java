@@ -30,4 +30,14 @@ public abstract class EventRequest extends Event
     @SerializedName("user_id")
     @Expose
     public Long userId;
+
+    /**
+     * 同意申请
+     */
+    public abstract void accept();
+
+    /**
+     * 拒绝申请
+     */
+    public abstract void reject(String reason);
 }
