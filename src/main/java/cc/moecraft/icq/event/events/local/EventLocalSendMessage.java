@@ -13,10 +13,20 @@ import lombok.RequiredArgsConstructor;
  * @author Hykilpikonna
  */
 @EqualsAndHashCode(callSuper = true)
-@Data @RequiredArgsConstructor @AllArgsConstructor
+@Data
 public class EventLocalSendMessage extends Event
 {
-    public final long id;
-    public final String message;
+    public long id;
+    public String message;
     public boolean autoEscape = false;
+
+    public EventLocalSendMessage(long id, String message)
+    {
+        this(id, message, false);
+    }
+
+    public EventLocalSendMessage(long id, String message, boolean autoEscape)
+    {
+        setId(id); setMessage(message); setAutoEscape(autoEscape);
+    }
 }
