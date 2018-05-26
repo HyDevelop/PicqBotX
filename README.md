@@ -351,7 +351,40 @@ new MessageBuilder()
 | ComponentRockPaperSissors | 猜拳组件 (只能单独发送) |
 | ComponentShake | 抖一抖组件 (只能单独发送) |
 
+<br>
 
+#### 指令
+
+每一个指令需要单独创建一个类, 实现一个指令接口<br>
+如果这个指令在所有消息环境内都能执行的话, 实现 `EverywhereCommand` 类<br>
+如果这个指令只需要在 群 或者 讨论组 或者 私聊 执行的话, <br>
+实现 `GroupCommand` 或者 `DiscussCommand` 或者 `PrivateCommand` 就可以了<br>
+因为启动的时候自动注册指令, 不需要做任何其他事情, 只创建类就能用了!
+
+例子:
+
+```java
+public class CommandVersion implements EverywhereCommand // 实现EverywhereCommand就是无论私聊群聊还是讨论组都能收到的指令
+{
+	// 指令属性
+    @Override
+    public CommandProperties properties()
+    {
+		// 这个括号里填指令名和其他名称, 指令名必须至少有一个
+		// 这个的话, 用"!v", "!version", 和"!版本"都能触发指令 (感叹号为你设置的前缀, 不一定必须要感叹号)
+        return new CommandProperties("version", "v", "版本");
+    }
+	
+	// 机器人接到指令后会执行这个方法 ( 实现不同的接口的话方法名不一定一样 )
+    @Override
+    public String run(EventMessage event, User sender, String command, ArrayList<String> args)
+    {
+		// 处理, 返回值会自动回复回去
+		// 这里因为这个指令是用来查版本的, 所以直接返回字符串了
+        return "TestBot - PicqBotX v1.0.1";
+    }
+}
+```
 
 
 #### 如果有Bug的话, 联系我QQ: 565656哦!
