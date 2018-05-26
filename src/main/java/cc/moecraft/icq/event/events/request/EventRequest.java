@@ -23,9 +23,9 @@ public abstract class EventRequest extends Event
     @Expose
     public String flag;
 
-    @SerializedName("message")
+    @SerializedName("comment")
     @Expose
-    public String message;
+    public String comment;
 
     @SerializedName("user_id")
     @Expose
