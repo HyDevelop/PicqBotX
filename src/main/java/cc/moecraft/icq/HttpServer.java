@@ -140,6 +140,8 @@ public class HttpServer
 
                 process(data);
 
+                sendResponseAndClose(out, "[]");
+
                 // 关闭接收
                 socket.close();
             }
@@ -183,19 +185,17 @@ public class HttpServer
      * 回复JSON
      * @param out 输出流
      * @param jsonString JSON字符串
-     * @throws IOException IO异常
      */
-    public OutputStream sendResponseAndClose(OutputStream out, String jsonString) throws IOException
-    {
+    public OutputStream sendResponseAndClose(OutputStream out, String jsonString) {
         String response = "";
-        response += "HTTP/1.1 200 OK/n";
-        response += "Content-Type: application/json; charset=UTF-8";
-        response += "/n";
+        response += "HTTP/1.1 204 OK\n";
+        response += "Content-Type: application/json; charset=UTF-8\n";
+        response += "\n";
 
         try
         {
             out.write(response.getBytes());
-            out.write(jsonString.getBytes());
+            // out.write(jsonString.getBytes());
             out.flush();
 
             out.close();
