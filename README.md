@@ -327,11 +327,31 @@ new MessageBuilder()
     .add(123)
     .add(16.5f)
     .newLine() // 换行
-    .add(new ComponentImage("此处填图片文件路径或者URL"))
-    .add(new ComponentImageBase64("此处填图片Base64码"))
-    .add(new ComponentRecord("此处填语音文件路径或者URL"))
+    .add(new ComponentImage("此处填图片文件路径或者URL")) // 图片组件
+    .add(new ComponentImageBase64("此处填图片Base64码")) // Base64图片组件
+    .add(new ComponentRecord("此处填语音文件路径或者URL")) // 语音组件
     .toString();
 ```
+
+可用组件 (需要酷Q Pro才能用, 详细介绍看[CQ码](https://d.cqp.me/Pro/CQ%E7%A0%81)):
+
+| 组件类名 				| 组件介绍 |
+| :------------ | :------------ |
+| ComponentAt | @组件 |
+| ComponentBFace | 原创表情组件 |
+| ComponentEmoji | Emoji表情组件 |
+| ComponentFace | QQ表情组件 |
+| ComponentImage | 图片组件 |
+| ComponentImageBase64 | Base64编码图片组件 |
+| ComponentSFace | 小表情组件 |
+| ComponentShare | 分享链接组件 |
+| ComponentDice | 掷骰子组件 (只能单独发送) |
+| ComponentMusic | 音乐组件 (只能单独发送) |
+| ComponentRecord | 语音组件 (只能单独发送) |
+| ComponentRockPaperSissors | 猜拳组件 (只能单独发送) |
+| ComponentShake | 抖一抖组件 (只能单独发送) |
+
+
 
 
 #### 如果有Bug的话, 联系我QQ: 565656哦!
