@@ -15,6 +15,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.xiaoleilu.hutool.http.HttpUtil;
+import com.xiaoleilu.hutool.json.JSONObject;
 
 import java.lang.reflect.Type;
 import java.util.Map;
@@ -92,7 +93,7 @@ public class IcqHttpApi
      */
     public JsonElement send(String request, Map<String, Object> parameters)
     {
-        return new JsonParser().parse(HttpUtil.post(baseURL + request, parameters, 5000));
+        return new JsonParser().parse(HttpUtil.post(baseURL + request, new JSONObject(parameters).toString(), 5000));
     }
 
     /**
