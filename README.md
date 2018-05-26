@@ -25,21 +25,23 @@ Maven 导入:
 
 没有添加JitPack的Repo的话首先添加Repo, 在pom里面把这些粘贴进去:
 
-    <repositories>
-		<repository>
-		    <id>jitpack.io</id>
-		    <url>https://jitpack.io</url>
-		</repository>
-	</repositories>
+```xml
+<repositories>
+    <repository>
+	<id>jitpack.io</id>
+	<url>https://jitpack.io</url>
+    </repository>
+</repositories>
+```
 
 然后添加这个库, 把版本号改成Release下的最新版本号即可:
-
-    <dependency>
-        <groupId>com.github.hykilpikonna</groupId>
-        <artifactId>PicqBotX</artifactId>
-        <version>版本号</version>
-    </dependency>
-
+```xml
+<dependency>
+    <groupId>com.github.hykilpikonna</groupId>
+    <artifactId>PicqBotX</artifactId>
+    <version>版本号</version>
+</dependency>
+```
 
 <br>
 
