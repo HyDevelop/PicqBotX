@@ -166,30 +166,51 @@ public class TestListener extends IcqListener
 }
 ```
 
+##### 其他例子去看[TestBot](https://github.com/HyDevelop/PicqBotX/blob/master/src/test/java/cc/moecraft/test/icq/TestBot.java)!
+
 #### 发送信息:
 
 需要一个bot对象, **请不要使用全局变量存bot对象**<br>
 其实监听器里的话直接用 `event.getBot()` 就行了, 不是监听器的话也很少会直接用到bot对象...<br>
+返回数据为 `ReturnData<Pojo数据类>` 形式, 获取数据的话用 `response.getData()` 就行了.<br>
 
 ##### 如果已经封装过了的话, 这样发送:
 ```java
-JsonElement response = event.getBot().getHttpApi().封装方法名(参数); // response就是响应数据
+ReturnData<RMessageReturnData> response = event.getBot().getHttpApi().封装方法名(参数); // response就是响应数据
 ```
 ##### 例子:
 ```java
-JsonElement response = event.getBot().getHttpApi().sendPrivateMsg(871674895, "hi"); // 给871674895发送hi
+ReturnData<RMessageReturnData> response = event.getBot().getHttpApi().sendPrivateMsg(871674895, "hi"); // 给871674895发送hi
 ```
 ##### 如果没有封装过的话, 或者想手动添加参数对的话, 这样发送:
 ```java
-JsonElement response = event.getBot().getHttpApi().send(请求目标, 参数); // 请求目标在IcqHttpApi里面有常量
+ReturnData<RMessageReturnData> response = event.getBot().getHttpApi().send(请求目标, 参数); // 请求目标在IcqHttpApi里面有常量
 ```
 ##### 例子:
 ```java
-JsonElement response = event.getBot().getHttpApi().send(IcqHttpApi.SEND_PRIVATE_MSG, 
+ReturnData<RMessageReturnData> response = event.getBot().getHttpApi().send(IcqHttpApi.SEND_PRIVATE_MSG, 
 	"user_id", 871674895,
 	"message", "hi",
 	"auto_escape", false); // 这个参数因为不常用就没有封装, 所以要用的话这样发送
 ```
+
+##### 复杂的消息建造 (比如图片什么的) 用MessageBuilder类:
+
+注意: .add(object) 方法对于所有类型的对象都有效, 只要能toString就行
+
+```java
+new MessageBuilder()
+    .add("添加一条字符串消息")
+    .add(123)
+    .add(16.5f)
+    .newLine() // 换行
+    .add(new ComponentImage("此处填图片文件路径或者URL"))
+    .add(new ComponentImageBase64("此处填图片Base64码"))
+    .add(new ComponentRecord("此处填语音文件路径或者URL"))
+    .toString();
+```
+
+
 #### 如果有Bug的话, 联系我QQ: 871674895哦!
 
 
