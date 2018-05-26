@@ -4,17 +4,18 @@ import cc.moecraft.icq.PicqBotX;
 import cc.moecraft.icq.event.events.message.EventDiscussMessage;
 import cc.moecraft.icq.event.events.message.EventGroupMessage;
 import cc.moecraft.icq.event.events.message.EventPrivateMessage;
+import cc.moecraft.icq.event.events.request.EventFriendRequest;
+import cc.moecraft.icq.event.events.request.EventGroupAddRequest;
+import cc.moecraft.icq.event.events.request.EventGroupInviteRequest;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import org.reflections.Reflections;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
+import java.util.*;
 
 /**
  * 此类由 Hykilpikonna 在 2018/05/24 创建!
@@ -24,7 +25,6 @@ import java.util.HashMap;
  *
  * @author Hykilpikonna
  */
-@RequiredArgsConstructor
 public class EventManager
 {
     @Getter
@@ -32,6 +32,15 @@ public class EventManager
     @Getter
     private HashMap<String, ArrayList<RegisteredListenerMethod>> registeredListenerMethods = new HashMap<>();
     private final PicqBotX bot;
+    private Set<Class<? extends Event>> eventClasses;
+
+    public EventManager(PicqBotX bot)
+    {
+        this.bot = bot;
+
+        Reflections reflections = new Reflections();
+        eventClasses = reflections.getSubTypesOf(Event.class);
+    }
 
     /**
      * 注册一个事件监听器
@@ -51,12 +60,16 @@ public class EventManager
             if (!Event.class.isAssignableFrom(event)) continue;
             if (!method.isAnnotationPresent(EventHandler.class)) continue;
 
-            String mapKey = event.getName();
+            for (Class<? extends Event> eventClass : eventClasses) // 向下注册所有子类
+            {
+                if (!event.isAssignableFrom(eventClass)) continue;
 
-            if (registeredListenerMethods.containsKey(mapKey))
-                registeredListenerMethods.get(mapKey).add(new RegisteredListenerMethod(method, listener));
-            else
-                registeredListenerMethods.put(mapKey, new ArrayList<>(Collections.singletonList(new RegisteredListenerMethod(method, listener))));
+                String mapKey = eventClass.getName();
+
+                if (registeredListenerMethods.containsKey(mapKey))
+                    registeredListenerMethods.get(mapKey).add(new RegisteredListenerMethod(method, listener));
+                else registeredListenerMethods.put(mapKey, new ArrayList<>(Collections.singletonList(new RegisteredListenerMethod(method, listener))));
+            }
         }
 
         return this;
@@ -102,14 +115,14 @@ public class EventManager
                 callMessage(json);
                 break;
             }
-            case "event":
+            case "event": case "notice": // event 对应版本 v3.*, notice 对应版本 v4.0
             {
                 // TODO
                 break;
             }
             case "request":
             {
-                // TODO
+                callRequest(json);
                 break;
             }
             default:
@@ -140,6 +153,39 @@ public class EventManager
             case "discuss":
             {
                 call(new Gson().fromJson(json, EventDiscussMessage.class));
+                break;
+            }
+        }
+    }
+
+    /**
+     * 执行请求事件
+     * @param json JSON输入
+     */
+    public void callRequest(JsonObject json)
+    {
+        switch (json.get("request_type").getAsString())
+        {
+            case "friend":
+            {
+                call(new Gson().fromJson(json, EventFriendRequest.class));
+                break;
+            }
+            case "group":
+            {
+                switch (json.get("sub_type").getAsString())
+                {
+                    case "add":
+                    {
+                        call(new Gson().fromJson(json, EventGroupAddRequest.class));
+                        break;
+                    }
+                    case "invite":
+                    {
+                        call(new Gson().fromJson(json, EventGroupInviteRequest.class));
+                        break;
+                    }
+                }
                 break;
             }
         }
