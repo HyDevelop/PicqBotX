@@ -1,6 +1,7 @@
 package cc.moecraft.icq;
 
 import cc.moecraft.icq.exceptions.HttpServerStartFailedException;
+import cc.moecraft.logger.AnsiColor;
 import cc.moecraft.logger.DebugLogger;
 import lombok.Data;
 
@@ -50,6 +51,7 @@ public class HttpServer
         try
         {
             serverSocket = new ServerSocket(this.port);
+            logger.log(AnsiColor.GREEN + "启动成功! 开始接收消息...");
         }
         catch (IOException e)
         {
