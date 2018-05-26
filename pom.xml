@@ -43,6 +43,12 @@
             <version>3.2.1</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.reflections</groupId>
+            <artifactId>reflections</artifactId>
+            <version>0.9.11</version>
+        </dependency>
+
         <!-- JSON库 -->
         <dependency>
             <groupId>com.google.code.gson</groupId>
