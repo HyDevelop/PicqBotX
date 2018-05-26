@@ -20,7 +20,7 @@ public class CommandVersion implements EverywhereCommand
     @Override
     public String run(EventMessage event, User sender, String command, ArrayList<String> args)
     {
-        return "TestBot - PicqBotX v1.0.0";
+        return "TestBot - PicqBotX v1.0.1";
     }
 
     @Override
