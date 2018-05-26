@@ -20,7 +20,7 @@ public class User
     @Getter
     public final long id;
 
-    public RStrangerInfo info;
+    private RStrangerInfo info;
 
     /**
      * 获取数据
