@@ -5,11 +5,8 @@ import cc.moecraft.icq.event.EventHandler;
 import cc.moecraft.icq.event.IcqListener;
 import cc.moecraft.icq.event.events.message.EventPrivateMessage;
 import cc.moecraft.icq.sender.IcqHttpApi;
-import cc.moecraft.icq.sender.returndata.RawReturnData;
-import cc.moecraft.icq.sender.returndata.ReturnData;
 import cc.moecraft.icq.sender.returndata.ReturnListData;
-import cc.moecraft.icq.sender.returndata.returnpojo.get.RGroupList;
-import cc.moecraft.icq.sender.returndata.returnpojo.get.RLoginInfo;
+import cc.moecraft.icq.sender.returndata.returnpojo.get.RGroup;
 import com.google.gson.JsonElement;
 
 /**
@@ -57,7 +54,7 @@ public class TestListener extends IcqListener
         // bot.getLogger().log("Return Data = " + returnData);
 
         // 测试 #2: List泛型
-        ReturnListData<RGroupList> returnListData = bot.getHttpApi().getGroupList();
+        ReturnListData<RGroup> returnListData = bot.getHttpApi().getGroupList();
         bot.getLogger().log("Return List Data = " + returnListData);
     }
 }

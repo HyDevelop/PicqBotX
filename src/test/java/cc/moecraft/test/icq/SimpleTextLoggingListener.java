@@ -6,7 +6,7 @@ import cc.moecraft.icq.event.events.message.EventGroupMessage;
 import cc.moecraft.icq.event.events.message.EventMessage;
 import cc.moecraft.icq.event.events.message.EventPrivateMessage;
 import cc.moecraft.icq.sender.returndata.ReturnListData;
-import cc.moecraft.icq.sender.returndata.returnpojo.get.RGroupList;
+import cc.moecraft.icq.sender.returndata.returnpojo.get.RGroup;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -29,8 +29,8 @@ public class SimpleTextLoggingListener extends IcqListener
 
     public static String getGroupName(EventGroupMessage event)
     {
-        ReturnListData<RGroupList> returnListData = event.getBot().getHttpApi().getGroupList();
-        for (RGroupList group : returnListData.getData())
+        ReturnListData<RGroup> returnListData = event.getBot().getHttpApi().getGroupList();
+        for (RGroup group : returnListData.getData())
         {
             if (group.getGroupId().equals(event.getGroupId())) return group.getGroupName();
         }
