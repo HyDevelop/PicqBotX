@@ -72,6 +72,7 @@ Maven 导入:
 	host=0.0.0.0
 	port=接收端口
 	post_url=http://127.0.0.1:发送端口
+	enable_backward_compatibility=false
 
 
 把发送端口和接收端口改成你的机器人程序里用的端口 (测试机器人的接收为31091, 发送31092)<br>
