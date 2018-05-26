@@ -4,6 +4,9 @@ import cc.moecraft.icq.sender.returndata.RawReturnData;
 import cc.moecraft.icq.sender.returndata.ReturnData;
 import cc.moecraft.icq.sender.returndata.ReturnListData;
 import cc.moecraft.icq.sender.returndata.returnpojo.ReturnPojoBase;
+import cc.moecraft.icq.sender.returndata.returnpojo.get.RGroupList;
+import cc.moecraft.icq.sender.returndata.returnpojo.get.RLoginInfo;
+import cc.moecraft.icq.sender.returndata.returnpojo.get.RStrangerInfo;
 import cc.moecraft.icq.utils.MapBuilder;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
@@ -77,7 +80,7 @@ public class IcqHttpApi
     }
 
     /**
-     * 发送请求 封装
+     * 发送请求 封装x1
      * @param request 请求
      * @param parameters 参数
      * @return 响应
@@ -391,9 +394,9 @@ public class IcqHttpApi
     /**
      * 获取登录号信息
      */
-    public JsonElement getLoginInfo()
+    public ReturnData<RLoginInfo> getLoginInfo()
     {
-        return send(GET_LOGIN_INFO);
+        return send(RLoginInfo.class, GET_LOGIN_INFO);
     }
 
     /**
@@ -401,16 +404,16 @@ public class IcqHttpApi
      * @param qq QQ号
      * @param noCache 是否不使用缓存（使用缓存可能更新不及时，但响应更快）
      */
-    public JsonElement getStrangerInfo(long qq, boolean noCache)
+    public ReturnData<RStrangerInfo> getStrangerInfo(long qq, boolean noCache)
     {
-        return send(GET_STRANGER_INFO, "user_id", qq, "no_cache", noCache);
+        return send(RStrangerInfo.class, GET_STRANGER_INFO, "user_id", qq, "no_cache", noCache);
     }
 
     /**
      * 获取陌生人信息, 默认使用缓存
      * @param qq QQ号
      */
-    public JsonElement getStrangerInfo(long qq)
+    public ReturnData<RStrangerInfo> getStrangerInfo(long qq)
     {
         return getStrangerInfo(qq, true);
     }
@@ -418,9 +421,9 @@ public class IcqHttpApi
     /**
      * 获取群列表
      */
-    public JsonElement getGroupList()
+    public ReturnListData<RGroupList> getGroupList()
     {
-        return send(GET_GROUP_LIST);
+        return sendReturnList(RGroupList.class, GET_GROUP_LIST);
     }
 
     /**
