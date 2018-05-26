@@ -1,5 +1,10 @@
 package cc.moecraft.icq.sender;
 
+import cc.moecraft.icq.event.EventManager;
+import cc.moecraft.icq.event.events.local.EventLocalSendDiscussMessage;
+import cc.moecraft.icq.event.events.local.EventLocalSendGroupMessage;
+import cc.moecraft.icq.event.events.local.EventLocalSendPrivateMessage;
+import cc.moecraft.icq.event.events.message.EventPrivateMessage;
 import cc.moecraft.icq.sender.returndata.RawReturnData;
 import cc.moecraft.icq.sender.returndata.ReturnData;
 import cc.moecraft.icq.sender.returndata.ReturnListData;
@@ -69,9 +74,11 @@ public class IcqHttpApi
     public static final String SEND_MSG = "send_msg";  // 这个不需要, 因为最后也要指定类型
 
     private final String baseURL;
+    private final EventManager eventManager;
 
-    public IcqHttpApi(String baseUrl, int port)
+    public IcqHttpApi(EventManager eventManager, String baseUrl, int port)
     {
+        this.eventManager = eventManager;
         baseUrl = baseUrl.toLowerCase();
         if (!baseUrl.contains("http://")) baseUrl = "http://" + baseUrl;
 
@@ -155,7 +162,9 @@ public class IcqHttpApi
      */
     public ReturnData<RMessageReturnData> sendPrivateMsg(long qq, String message)
     {
-        return send(RMessageReturnData.class, SEND_PRIVATE_MSG, "user_id", qq, "message", message);
+        EventLocalSendPrivateMessage event = new EventLocalSendPrivateMessage(qq, message, false);
+        eventManager.call(event);
+        return send(RMessageReturnData.class, SEND_PRIVATE_MSG, "user_id", event.getId(), "message", event.getMessage(), "auto_escape", event.isAutoEscape());
     }
 
     /**
@@ -166,7 +175,9 @@ public class IcqHttpApi
      */
     public ReturnData<RMessageReturnData> sendPrivateMsg(long qq, String message, boolean autoEscape)
     {
-        return send(RMessageReturnData.class, SEND_PRIVATE_MSG, "user_id", qq, "message", message, "auto_escape", autoEscape);
+        EventLocalSendPrivateMessage event = new EventLocalSendPrivateMessage(qq, message, autoEscape);
+        eventManager.call(event);
+        return send(RMessageReturnData.class, SEND_PRIVATE_MSG, "user_id", event.getId(), "message", event.getMessage(), "auto_escape", event.isAutoEscape());
     }
 
     /**
@@ -176,7 +187,9 @@ public class IcqHttpApi
      */
     public ReturnData<RMessageReturnData> sendGroupMsg(long groupId, String message)
     {
-        return send(RMessageReturnData.class, SEND_GROUP_MSG, "group_id", groupId, "message", message);
+        EventLocalSendGroupMessage event = new EventLocalSendGroupMessage(groupId, message, false);
+        eventManager.call(event);
+        return send(RMessageReturnData.class, SEND_GROUP_MSG, "group_id", event.getId(), "message", event.getMessage(), "auto_escape", event.isAutoEscape());
     }
 
     /**
@@ -187,7 +200,9 @@ public class IcqHttpApi
      */
     public ReturnData<RMessageReturnData> sendGroupMsg(long groupId, String message, boolean autoEscape)
     {
-        return send(RMessageReturnData.class, SEND_GROUP_MSG, "group_id", groupId, "message", message, "auto_escape", autoEscape);
+        EventLocalSendGroupMessage event = new EventLocalSendGroupMessage(groupId, message, autoEscape);
+        eventManager.call(event);
+        return send(RMessageReturnData.class, SEND_GROUP_MSG, "group_id", event.getId(), "message", event.getMessage(), "auto_escape", event.isAutoEscape());
     }
 
     /**
@@ -197,7 +212,9 @@ public class IcqHttpApi
      */
     public ReturnData<RMessageReturnData> sendDiscussMsg(long groupId, String message)
     {
-        return send(RMessageReturnData.class, SEND_DISCUSS_MSG, "discuss_id", groupId, "message", message);
+        EventLocalSendDiscussMessage event = new EventLocalSendDiscussMessage(groupId, message, false);
+        eventManager.call(event);
+        return send(RMessageReturnData.class, SEND_DISCUSS_MSG, "discuss_id", event.getId(), "message", event.getMessage(), "auto_escape", event.isAutoEscape());
     }
 
     /**
@@ -208,7 +225,9 @@ public class IcqHttpApi
      */
     public ReturnData<RMessageReturnData> sendDiscussMsg(long groupId, String message, boolean autoEscape)
     {
-        return send(RMessageReturnData.class, SEND_DISCUSS_MSG, "discuss_id", groupId, "message", message, "auto_escape", autoEscape);
+        EventLocalSendDiscussMessage event = new EventLocalSendDiscussMessage(groupId, message, autoEscape);
+        eventManager.call(event);
+        return send(RMessageReturnData.class, SEND_DISCUSS_MSG, "discuss_id", event.getId(), "message", event.getMessage(), "auto_escape", event.isAutoEscape());
     }
 
     /**
