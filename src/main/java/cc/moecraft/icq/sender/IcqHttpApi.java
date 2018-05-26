@@ -485,9 +485,9 @@ public class IcqHttpApi
      * 获取群成员列表
      * @param groupId 群号
      */
-    public ReturnListData<RMessageReturnData> getGroupMemberList(long groupId)
+    public ReturnListData<RGroupMemberInfo> getGroupMemberList(long groupId)
     {
-        return sendReturnList(RMessageReturnData.class, GET_GROUP_MEMBER_LIST, "group_id", groupId);
+        return sendReturnList(RGroupMemberInfo.class, GET_GROUP_MEMBER_LIST, "group_id", groupId);
     }
 
     /**
