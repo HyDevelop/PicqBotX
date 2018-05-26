@@ -122,6 +122,8 @@ enable_backward_compatibility=false
 开发:
 --------
 
+##### [开发文档 (JavaDocs)](https://hydevelop.github.io/picqbotx/javadocs/)
+
 #### 启动机器人 (Main类):
 
 main方法里面, 先创建一个机器人对象: <br>
