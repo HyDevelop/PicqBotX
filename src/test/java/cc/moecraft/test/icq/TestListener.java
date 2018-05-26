@@ -8,6 +8,7 @@ import cc.moecraft.icq.sender.IcqHttpApi;
 import cc.moecraft.icq.sender.message.MessageBuilder;
 import cc.moecraft.icq.sender.message.components.ComponentImage;
 import cc.moecraft.icq.sender.message.components.ComponentImageBase64;
+import cc.moecraft.icq.sender.message.components.ComponentRecord;
 import cc.moecraft.icq.sender.returndata.ReturnListData;
 import cc.moecraft.icq.sender.returndata.returnpojo.get.RGroup;
 import com.google.gson.JsonElement;
