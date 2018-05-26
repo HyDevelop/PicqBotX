@@ -7,13 +7,13 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
- * 群列表返回值
+ * 获取群列表
  *
  * @author Hykilpikonna
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class RGroupList extends ReturnPojoBase
+public class RGroup extends ReturnPojoBase
 {
     @SerializedName("group_id")
     @Expose
