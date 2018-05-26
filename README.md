@@ -196,24 +196,59 @@ public class TestBot
 }
 ```
 
+##### 其他例子去看[TestBot](https://github.com/HyDevelop/PicqBotX/blob/master/src/test/java/cc/moecraft/test/icq/TestBot.java)!
+
+
 #### 监听事件:
 
 ```java
-public class 类名随意 extends IcqListener // 继承监听器类
+public class 类名随意 extends IcqListener // 必须继承IcqListener监听器类
 {
-    @EventHandler // 这个注解必须加, 用于反射时判断哪些方法是事件方法的, 因为是反射就不用@Override了
-    public void 方法名随意(事件类名 event) // 想监听什么方法就写在这里, 一个方法只能有一个事件对象
+    @EventHandler // 这个注解必须加, 用于反射时判断哪些方法是事件方法的, 不用@Override
+    public void 方法名随意(事件类名 event) // 想监听什么事件就写在事件类名这里, 一个方法只能有一个事件参数
     {
-	// 处理
+		// 处理
     }
 
     @EventHandler
-    public void 方法名随意(事件类名 event) // 同一个类下可以添加无限个监听器方法
+    public void 方法名随意(事件类名 event) // 同一个类下可以无限添加监听器方法
     ...
 }
 ```
 
 嗯... 创建一个类, 写成上面那个样子就行了_(:з」∠)_
+
+可用事件:
+
+| 事件类名 				| 事件介绍 |
+| :------------ | :------------ |
+| Event         		| 所有事件(不推荐监听) |
+| EventMessage  		| 所有消息事件 |
+| EventDiscussMessage 	| 讨论组消息事件 |
+| EventGroupMessage 	| 群聊消息事件 |
+| EventPrivateMessage 	| 私聊消息事件 |
+| EventNotice | 所有提醒事件 |
+| EventNoticeFriendAdd | 加好友提醒 |
+| EventNoticeGroupAdminChange | 所有群管理员数量更改事件 |
+| EventNoticeGroupAdminSet | 群员被设为管理员事件 |
+| EventNoticeGroupAdminRemove | 群员被取消管理员事件 |
+| EventNoticeGroupMemberChange | 所有群员数量更改事件 |
+| EventNoticeGroupMemberDecrease | 所有群员数量减少事件 |
+| EventNoticeGroupMemberKick | 群员被踢事件 |
+| EventNoticeGroupMemberKickBot | 自己被踢事件 |
+| EventNoticeGroupMemberLeave | 群员主动退出事件 |
+| EventNoticeGroupMemberIncrease | 所有群员数量增加事件 |
+| EventNoticeGroupMemberApprove | 群员被同意进群事件 |
+| EventNoticeGroupMemberInvite | 群员被邀请进群事件 |
+| EventNoticeGroupUpload | 上传群文件事件 |
+| EventRequest | 所有请求事件 |
+| EventFriendRequest | 加好友请求事件 |
+| EventGroupAddRequest | 加群请求事件 |
+| EventGroupInviteRequest | 拉你入群请求事件 |
+| EventLocalSendMessage | 所有本地向外发送的事件 |
+| EventLocalSendDiscussMessage | 发送讨论组消息事件 |
+| EventLocalSendGroupMessage | 发送群聊消息事件 |
+| EventLocalSendPrivateMessage | 发送私聊消息事件 |
 
 ##### 例子:
 
@@ -231,7 +266,7 @@ public class TestListener extends IcqListener
 }
 ```
 
-##### 其他例子去看[TestBot](https://github.com/HyDevelop/PicqBotX/blob/master/src/test/java/cc/moecraft/test/icq/TestBot.java)!
+
 
 <br>
 
