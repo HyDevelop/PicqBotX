@@ -38,17 +38,9 @@ public abstract class EventMessage extends Event
     @Expose
     public String rawMessage;
 
-    @SerializedName("self_id")
-    @Expose
-    public Long selfId;
-
-    @SerializedName("time")
-    @Expose
-    public Long time;
-
     @SerializedName("user_id")
     @Expose
-    public Long userId;
+    public Long senderId;
 
     /**
      * 回复消息
