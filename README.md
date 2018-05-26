@@ -69,13 +69,13 @@ Maven 导入:
 在 `io.github.richardchien.coolqhttpapi` 文件夹里创建一个叫做 `config.cfg` 的文件<br>
 配置文件内写入以下代码<br>
 
-
-	[general]
-	host=0.0.0.0
-	port=接收端口
-	post_url=http://127.0.0.1:发送端口
-	enable_backward_compatibility=false
-
+```
+[general]
+host=0.0.0.0
+port=接收端口
+post_url=http://127.0.0.1:发送端口
+enable_backward_compatibility=false
+```
 
 把发送端口和接收端口改成你的机器人程序里用的端口 (测试机器人的接收为31091, 发送31092)<br>
 如果酷Q要和你的机器人程序分开运行的话, 127.0.0.1改成你的机器人部署的服务器的地址<br>
@@ -92,93 +92,101 @@ Maven 导入:
 
 #### 启动机器人 (Main类):
 
-	public class 类名
-	{
-	    // 这里其实不一定要用psvm, 任何其他方式只要能启动就行
-	    public static void main(String[] args) throws HttpServerStartFailedException
-	    {
-		PicqBotX bot = new PicqBotX(发送到的URL, 发送到的端口号, 接收的端口号, 后台是否显示debug消息);
-		
-		bot.getEventManager().registerListener(new 监听器类()); // 注册事件监听器
-		
-		bot.startBot(); // 启动 (会占用主线程, 如果要同时运行其他东西的话, 需要异步)
-	    }
-	}
-	
+```java
+public class 类名
+{
+    // 这里其实不一定要用psvm, 任何其他方式只要能启动就行
+    public static void main(String[] args) throws HttpServerStartFailedException
+    {
+	PicqBotX bot = new PicqBotX(发送到的URL, 发送到的端口号, 接收的端口号, 后台是否显示debug消息);
+
+	bot.getEventManager().registerListener(new 监听器类()); // 注册事件监听器
+
+	bot.startBot(); // 启动 (会占用主线程, 如果要同时运行其他东西的话, 需要异步)
+    }
+}
+```
+
 ##### 例子:
 
-	public class TestBot
+```java
+public class TestBot
+{
+    public static void main(String[] args)
+    {
+	PicqBotX bot = new PicqBotX("127.0.0.1", 31091, 31092, true);
+	try
 	{
-	    public static void main(String[] args)
-	    {
-		PicqBotX bot = new PicqBotX("127.0.0.1", 31091, 31092, true);
-		try
-		{
-		    bot.getEventManager().registerListener(new TestListener());
-		    bot.startBot();
-		}
-		catch (HttpServerStartFailedException e)
-		{
-		    e.printStackTrace();
-		}
-	    }
+	    bot.getEventManager().registerListener(new TestListener());
+	    bot.startBot();
 	}
+	catch (HttpServerStartFailedException e)
+	{
+	    e.printStackTrace();
+	}
+    }
+}
+```
 
 #### 监听事件:
 
-	public class 类名随意 extends IcqListener // 继承监听器类
-	{
-	    @EventHandler // 这个注解必须加, 用于反射时判断哪些方法是事件方法的, 因为是反射就不用@Override了
-	    public void 方法名随意(事件类名 event) // 想监听什么方法就写在这里, 一个方法只能有一个事件对象
-	    {
-		// 处理
-	    }
-	    
-	    @EventHandler
-	    public void 方法名随意(事件类名 event) // 同一个类下可以添加无限个监听器方法
-	    ...
-	}
-	
+```java
+public class 类名随意 extends IcqListener // 继承监听器类
+{
+    @EventHandler // 这个注解必须加, 用于反射时判断哪些方法是事件方法的, 因为是反射就不用@Override了
+    public void 方法名随意(事件类名 event) // 想监听什么方法就写在这里, 一个方法只能有一个事件对象
+    {
+	// 处理
+    }
+
+    @EventHandler
+    public void 方法名随意(事件类名 event) // 同一个类下可以添加无限个监听器方法
+    ...
+}
+```
+
 嗯... 创建一个类, 写成上面那个样子就行了_(:з」∠)_
 
 ##### 例子:
 
-	public class TestListener extends IcqListener
-	{
-	    @EventHandler
-	    public void onPMEvent(EventPrivateMessage event)
-	    {
-		System.out.println("接到消息");
+```java
+public class TestListener extends IcqListener
+{
+    @EventHandler
+    public void onPMEvent(EventPrivateMessage event)
+    {
+	System.out.println("接到消息");
 
-		if (event.getMessage().equals("你以为这是yangjinhe/maintain-robot?"))
-		    event.respond("其实是我Hykilpikonna/PicqBotX哒!");
-	    }
-	}
-	
+	if (event.getMessage().equals("你以为这是yangjinhe/maintain-robot?"))
+	    event.respond("其实是我Hykilpikonna/PicqBotX哒!");
+    }
+}
+```
+
 #### 发送信息:
 
 需要一个bot对象, **请不要使用全局变量存bot对象**<br>
 其实监听器里的话直接用 `event.getBot()` 就行了, 不是监听器的话也很少会直接用到bot对象...<br>
 
 ##### 如果已经封装过了的话, 这样发送:
-
-	JsonElement response = event.getBot().getHttpApi().封装方法名(参数); // response就是响应数据
-
+```java
+JsonElement response = event.getBot().getHttpApi().封装方法名(参数); // response就是响应数据
+```
 ##### 例子:
-
-	JsonElement response = event.getBot().getHttpApi().sendPrivateMsg(871674895, "hi"); // 给871674895发送hi
-	
+```java
+JsonElement response = event.getBot().getHttpApi().sendPrivateMsg(871674895, "hi"); // 给871674895发送hi
+```
 ##### 如果没有封装过的话, 或者想手动添加参数对的话, 这样发送:
-
-	JsonElement response = event.getBot().getHttpApi().send(请求目标, 参数); // 请求目标在IcqHttpApi里面有常量
-
+```java
+JsonElement response = event.getBot().getHttpApi().send(请求目标, 参数); // 请求目标在IcqHttpApi里面有常量
+```
 ##### 例子:
-
-	JsonElement response = event.getBot().getHttpApi().send(IcqHttpApi.SEND_PRIVATE_MSG, 
-                "user_id", 871674895,
-                "message", "hi",
-                "auto_escape", false); // 这个参数因为不常用就没有封装, 所以要用的话这样发送
-
+```java
+JsonElement response = event.getBot().getHttpApi().send(IcqHttpApi.SEND_PRIVATE_MSG, 
+	"user_id", 871674895,
+	"message", "hi",
+	"auto_escape", false); // 这个参数因为不常用就没有封装, 所以要用的话这样发送
+```
 #### 如果有Bug的话, 联系我QQ: 871674895哦!
 
 
