@@ -6,6 +6,8 @@ import cc.moecraft.icq.exceptions.VersionIncorrectException;
 import cc.moecraft.icq.exceptions.VersionRecommendException;
 import cc.moecraft.icq.sender.IcqHttpApi;
 import cc.moecraft.icq.sender.returndata.returnpojo.get.RVersionInfo;
+import cc.moecraft.icq.user.GroupManager;
+import cc.moecraft.icq.user.UserManager;
 import cc.moecraft.logger.AnsiColor;
 import cc.moecraft.logger.DebugLogger;
 import lombok.Getter;
@@ -22,25 +24,33 @@ import lombok.Setter;
 public class PicqBotX
 {
     @Getter
-    private HttpServer httpServer;
+    private HttpServer httpServer; // HTTP监听服务器
 
     @Getter
-    private boolean debug;
+    private boolean debug; // 是否输出DEBUG消息
 
     @Getter @Setter
     private boolean noVerify = false; // 这个为true是跳过版本验证, 需要手动设置
 
     @Getter
-    private EventManager eventManager;
+    private EventManager eventManager; // 事件管理器
 
     @Getter
-    private IcqHttpApi httpApi;
+    private IcqHttpApi httpApi; // HTTP发送器
 
     @Getter
-    private DebugLogger logger = new DebugLogger("PicqBotX", true);
+    private UserManager userManager; // 用户对象缓存管理器
+
+    @Getter
+    private GroupManager groupManager; // 群对象缓存管理器
+
+    @Getter
+    private DebugLogger logger = new DebugLogger("PicqBotX", true); // Logger
 
     public PicqBotX(String postUrl, int postPort, int socketPort, boolean debug)
     {
+        userManager = new UserManager(this);
+        groupManager = new GroupManager(this);
         setDebug(debug);
         eventManager = new EventManager(this);
         httpApi = new IcqHttpApi(eventManager, postUrl, postPort);
