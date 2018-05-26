@@ -260,13 +260,34 @@ public class TestListener extends IcqListener
     {
 	System.out.println("接到消息");
 
+	// 判断消息是不是这段文字, 如果是就回复那段文字, 很简单的测试_(:з」∠)_
 	if (event.getMessage().equals("你以为这是yangjinhe/maintain-robot?"))
 	    event.respond("其实是我Hykilpikonna/PicqBotX哒!");
     }
 }
 ```
 
+##### 用事件监听实现消息替换过滤:
 
+```java
+public class TestFilter extends IcqListener
+{
+    @EventHandler
+    public void onAllLocalMessageEvent(EventLocalSendMessage event) // 监听所有发送消息的事件
+    {
+        // 获取消息
+        String message = event.getMessage();
+        
+        // 这里可以做任何处理
+        // 我把所有"%prefix%"变量替换成了"!"
+        message = message.replace("%prefix%", "!");
+        
+        // 设置消息, 因为这个事件是在发送之前执行的, 所以这样设置的消息能生效
+		// 设置为null就能拦截了
+        event.setMessage(message);
+    }
+}
+```
 
 <br>
 
