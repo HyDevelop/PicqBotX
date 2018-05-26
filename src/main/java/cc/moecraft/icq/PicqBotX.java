@@ -58,13 +58,21 @@ public class PicqBotX
 
     public PicqBotX(String postUrl, int postPort, int socketPort, boolean debug)
     {
+        long startTime = System.currentTimeMillis();
+
         userManager = new UserManager(this);
         groupUserManager = new GroupUserManager(this);
+        logger.log(AnsiColor.YELLOW + "用户缓存管理器 " + AnsiColor.GREEN + "初始化完成" + AnsiColor.YELLOW + " [" + AnsiColor.GREEN + "" + AnsiColor.RED + "******" + AnsiColor.YELLOW + "] ...(" + (System.currentTimeMillis() - startTime) + "ms)"); startTime = System.currentTimeMillis();
         groupManager = new GroupManager(this);
+        logger.log(AnsiColor.YELLOW + "群缓存管理器   " + AnsiColor.GREEN + "初始化完成" + AnsiColor.YELLOW + " [" + AnsiColor.GREEN + "*" + AnsiColor.RED + "*****" + AnsiColor.YELLOW + "] ...(" + (System.currentTimeMillis() - startTime) + "ms)"); startTime = System.currentTimeMillis();
         setDebug(debug);
+        logger.log(AnsiColor.YELLOW + "DEBUG设置      " + AnsiColor.GREEN + "初始化完成" + AnsiColor.YELLOW + " [" + AnsiColor.GREEN + "**" + AnsiColor.RED + "****" + AnsiColor.YELLOW + "] ...(" + (System.currentTimeMillis() - startTime) + "ms)"); startTime = System.currentTimeMillis();
         eventManager = new EventManager(this);
+        logger.log(AnsiColor.YELLOW + "事件管理器     " + AnsiColor.GREEN + "初始化完成" + AnsiColor.YELLOW + " [" + AnsiColor.GREEN + "***" + AnsiColor.RED + "***" + AnsiColor.YELLOW + "] ...(" + (System.currentTimeMillis() - startTime) + "ms)"); startTime = System.currentTimeMillis();
         httpApi = new IcqHttpApi(eventManager, postUrl, postPort);
+        logger.log(AnsiColor.YELLOW + "HTTP发送器     " + AnsiColor.GREEN + "初始化完成" + AnsiColor.YELLOW + " [" + AnsiColor.GREEN + "****" + AnsiColor.RED + "**" + AnsiColor.YELLOW + "] ...(" + (System.currentTimeMillis() - startTime) + "ms)"); startTime = System.currentTimeMillis();
         httpServer = new HttpServer(socketPort, this);
+        logger.log(AnsiColor.YELLOW + "HTTP监听服务器 " + AnsiColor.GREEN + "初始化完成" + AnsiColor.YELLOW + " [" + AnsiColor.GREEN + "*****" + AnsiColor.RED + "*" + AnsiColor.YELLOW + "] ...(" + (System.currentTimeMillis() - startTime) + "ms)");
     }
 
     /**
@@ -99,9 +107,11 @@ public class PicqBotX
      */
     public void enableCommandManager(String ... prefixes) throws InstantiationException, IllegalAccessException
     {
+        long startTime = System.currentTimeMillis();
         commandManager = new CommandManager(groupManager, userManager, groupUserManager, prefixes);
         commandManager.registerAllCommands();
         eventManager.registerListener(new CommandListener(commandManager));
+        logger.log(AnsiColor.YELLOW + "指令管理器     " + AnsiColor.GREEN + "初始化完成" + AnsiColor.YELLOW + " [" + AnsiColor.GREEN + "******" + AnsiColor.RED + "" + AnsiColor.YELLOW + "] ...(" + (System.currentTimeMillis() - startTime) + "ms)");
     }
 
     /**
