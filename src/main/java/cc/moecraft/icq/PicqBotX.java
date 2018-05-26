@@ -1,5 +1,7 @@
 package cc.moecraft.icq;
 
+import cc.moecraft.icq.command.CommandListener;
+import cc.moecraft.icq.command.CommandManager;
 import cc.moecraft.icq.event.EventManager;
 import cc.moecraft.icq.exceptions.HttpServerStartFailedException;
 import cc.moecraft.icq.exceptions.VersionIncorrectException;
@@ -7,6 +9,7 @@ import cc.moecraft.icq.exceptions.VersionRecommendException;
 import cc.moecraft.icq.sender.IcqHttpApi;
 import cc.moecraft.icq.sender.returndata.returnpojo.get.RVersionInfo;
 import cc.moecraft.icq.user.GroupManager;
+import cc.moecraft.icq.user.GroupUserManager;
 import cc.moecraft.icq.user.UserManager;
 import cc.moecraft.logger.AnsiColor;
 import cc.moecraft.logger.DebugLogger;
@@ -45,11 +48,18 @@ public class PicqBotX
     private GroupManager groupManager; // 群对象缓存管理器
 
     @Getter
+    private GroupUserManager groupUserManager; // 群用户对象缓存管理器
+
+    @Getter
+    private CommandManager commandManager; // 指令管理器
+
+    @Getter
     private DebugLogger logger = new DebugLogger("PicqBotX", true); // Logger
 
     public PicqBotX(String postUrl, int postPort, int socketPort, boolean debug)
     {
         userManager = new UserManager(this);
+        groupUserManager = new GroupUserManager(this);
         groupManager = new GroupManager(this);
         setDebug(debug);
         eventManager = new EventManager(this);
@@ -81,6 +91,17 @@ public class PicqBotX
         {
             logger.error("版本正确, 不过用酷Q Pro的话效果更好哦!");
         }
+    }
+
+    /**
+     * 启用指令系统
+     * @param prefixes 前缀
+     */
+    public void enableCommandManager(String ... prefixes) throws InstantiationException, IllegalAccessException
+    {
+        commandManager = new CommandManager(groupManager, userManager, groupUserManager, prefixes);
+        commandManager.registerAllCommands();
+        eventManager.registerListener(new CommandListener(commandManager));
     }
 
     /**
