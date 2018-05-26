@@ -18,7 +18,10 @@ public class TestBot
         PicqBotX bot = new PicqBotX("127.0.0.1", 31091, 31092, true);
         try
         {
-            bot.getEventManager().registerListener(new TestListener());
+            bot.getEventManager()
+                    .registerListener(new TestListener())
+                    .registerListener(new RequestListener());
+            if (!bot.isDebug()) bot.getEventManager().registerListener(new SimpleTextLoggingListener());
             bot.startBot();
         }
         catch (HttpServerStartFailedException e)
