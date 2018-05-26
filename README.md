@@ -34,14 +34,17 @@ Maven 导入:
 </repositories>
 ```
 
-然后添加这个库, 把版本号改成Release下的最新版本号即可:
+然后添加这个库:
+
 ```xml
 <dependency>
     <groupId>com.github.hykilpikonna</groupId>
     <artifactId>PicqBotX</artifactId>
-    <version>版本号</version>
+    <version>0.0.2</version>
 </dependency>
 ```
+
+然后reimport之后就导入好了!
 
 <br>
 
