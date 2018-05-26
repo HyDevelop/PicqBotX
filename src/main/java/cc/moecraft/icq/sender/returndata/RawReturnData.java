@@ -62,7 +62,15 @@ public class RawReturnData
 
         returnData.setReturnCode(returnCode);
         returnData.setStatus(status);
-        returnData.setData(new Gson().fromJson(data, ArrayList.class));
+
+        ArrayList<T> returnList = new ArrayList<>();
+
+        for (JsonElement element : data.getAsJsonArray())
+        {
+            returnList.add(new Gson().fromJson(element, typeOfT));
+        }
+
+        returnData.setData(returnList);
 
         return returnData;
     }
