@@ -4,6 +4,15 @@ import cc.moecraft.icq.PicqBotX;
 import cc.moecraft.icq.event.events.message.EventDiscussMessage;
 import cc.moecraft.icq.event.events.message.EventGroupMessage;
 import cc.moecraft.icq.event.events.message.EventPrivateMessage;
+import cc.moecraft.icq.event.events.notice.EventNoticeFriendAdd;
+import cc.moecraft.icq.event.events.notice.EventNoticeGroupUpload;
+import cc.moecraft.icq.event.events.notice.groupadmin.EventNoticeGroupAdminRemove;
+import cc.moecraft.icq.event.events.notice.groupadmin.EventNoticeGroupAdminSet;
+import cc.moecraft.icq.event.events.notice.groupmember.decrease.EventNoticeGroupMemberKick;
+import cc.moecraft.icq.event.events.notice.groupmember.decrease.EventNoticeGroupMemberKickBot;
+import cc.moecraft.icq.event.events.notice.groupmember.decrease.EventNoticeGroupMemberLeave;
+import cc.moecraft.icq.event.events.notice.groupmember.increase.EventNoticeGroupMemberApprove;
+import cc.moecraft.icq.event.events.notice.groupmember.increase.EventNoticeGroupMemberInvite;
 import cc.moecraft.icq.event.events.request.EventFriendRequest;
 import cc.moecraft.icq.event.events.request.EventGroupAddRequest;
 import cc.moecraft.icq.event.events.request.EventGroupInviteRequest;
@@ -115,9 +124,9 @@ public class EventManager
                 callMessage(json);
                 break;
             }
-            case "event": case "notice": // event 对应版本 v3.*, notice 对应版本 v4.0
+            case "notice": // 这里写成这样就只支持4.0了
             {
-                // TODO
+                callNotice(json);
                 break;
             }
             case "request":
@@ -183,6 +192,83 @@ public class EventManager
                     case "invite":
                     {
                         call(new Gson().fromJson(json, EventGroupInviteRequest.class));
+                        break;
+                    }
+                }
+                break;
+            }
+        }
+    }
+
+    /**
+     * 执行Notice事件
+     * @param json JSON输入
+     */
+    public void callNotice(JsonObject json)
+    {
+        switch (json.get("notice_type").getAsString())
+        {
+            case "group_upload":
+            {
+                call(new Gson().fromJson(json, EventNoticeGroupUpload.class));
+                break;
+            }
+            case "friend_add":
+            {
+                call(new Gson().fromJson(json, EventNoticeFriendAdd.class));
+                break;
+            }
+            case "group_admin":
+            {
+                switch (json.get("sub_type").getAsString())
+                {
+                    case "set":
+                    {
+                        call(new Gson().fromJson(json, EventNoticeGroupAdminSet.class));
+                        break;
+                    }
+                    case "unset":
+                    {
+                        call(new Gson().fromJson(json, EventNoticeGroupAdminRemove.class));
+                        break;
+                    }
+                }
+                break;
+            }
+            case "group_decrease":
+            {
+                switch (json.get("sub_type").getAsString())
+                {
+                    case "leave":
+                    {
+                        call(new Gson().fromJson(json, EventNoticeGroupMemberLeave.class));
+                        break;
+                    }
+                    case "kick":
+                    {
+                        call(new Gson().fromJson(json, EventNoticeGroupMemberKick.class));
+                        break;
+                    }
+                    case "kick_me":
+                    {
+                        call(new Gson().fromJson(json, EventNoticeGroupMemberKickBot.class));
+                        break;
+                    }
+                }
+                break;
+            }
+            case "group_increase":
+            {
+                switch (json.get("sub_type").getAsString())
+                {
+                    case "approve":
+                    {
+                        call(new Gson().fromJson(json, EventNoticeGroupMemberApprove.class));
+                        break;
+                    }
+                    case "invite":
+                    {
+                        call(new Gson().fromJson(json, EventNoticeGroupMemberInvite.class));
                         break;
                     }
                 }
