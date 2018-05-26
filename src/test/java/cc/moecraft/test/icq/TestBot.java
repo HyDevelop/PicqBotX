@@ -2,6 +2,7 @@ package cc.moecraft.test.icq;
 
 import cc.moecraft.icq.PicqBotX;
 import cc.moecraft.icq.exceptions.HttpServerStartFailedException;
+import cc.moecraft.icq.exceptions.VersionIncorrectException;
 
 /**
  * 此类由 Hykilpikonna 在 2018/05/24 创建!
@@ -24,7 +25,7 @@ public class TestBot
             if (!bot.isDebug()) bot.getEventManager().registerListener(new SimpleTextLoggingListener());
             bot.startBot();
         }
-        catch (HttpServerStartFailedException e)
+        catch (HttpServerStartFailedException | VersionIncorrectException e)
         {
             e.printStackTrace();
         }
