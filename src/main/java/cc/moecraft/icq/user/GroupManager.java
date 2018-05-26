@@ -28,6 +28,7 @@ public class GroupManager
     public Group getGroupFromID(long id)
     {
         if (groupCache.containsKey(id)) return groupCache.get(id);
-        return groupCache.put(id, new Group(bot, id));
+        groupCache.put(id, new Group(bot, id));
+        return getGroupFromID(id);
     }
 }
