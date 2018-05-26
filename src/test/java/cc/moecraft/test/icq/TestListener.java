@@ -5,6 +5,9 @@ import cc.moecraft.icq.event.EventHandler;
 import cc.moecraft.icq.event.IcqListener;
 import cc.moecraft.icq.event.events.message.EventPrivateMessage;
 import cc.moecraft.icq.sender.IcqHttpApi;
+import cc.moecraft.icq.sender.message.MessageBuilder;
+import cc.moecraft.icq.sender.message.components.ComponentImage;
+import cc.moecraft.icq.sender.message.components.ComponentImageBase64;
 import cc.moecraft.icq.sender.returndata.ReturnListData;
 import cc.moecraft.icq.sender.returndata.returnpojo.get.RGroup;
 import com.google.gson.JsonElement;
@@ -41,6 +44,16 @@ public class TestListener extends IcqListener
         if (event.getMessage().equals("测试回复数据"))
         {
             testDataReturn(event.getBot());
+        }
+
+        if (event.getMessage().equals("测试MessageBuilder"))
+        {
+            event.respond(new MessageBuilder()
+                    .add("图片前面的消息").newLine()
+                    .add(new ComponentImageBase64("iVBORw0KGgoAAAANSUhEUgAAABQAAAAVCAIAAADJt1n/AAAAKElEQVQ4EWPk5+RmIBcwkasRpG9UM4mhNxpgowFGMARGEwnBIEJVAAAdBgBNAZf+QAAAAABJRU5ErkJggg==")).newLine()
+                    .add("图片后面的").newLine()
+                    .add("换行之后的消息")
+                    .toString());
         }
     }
 
