@@ -28,8 +28,8 @@ Maven 导入:
 ```xml
 <repositories>
     <repository>
-	<id>jitpack.io</id>
-	<url>https://jitpack.io</url>
+    <id>jitpack.io</id>
+    <url>https://jitpack.io</url>
     </repository>
 </repositories>
 ```
@@ -56,10 +56,10 @@ Gradle 导入:
 
 ```gradle
 allprojects {
-	repositories {
-		...
-		maven { url 'https://jitpack.io' }
-	}
+    repositories {
+        ...
+        maven { url 'https://jitpack.io' }
+    }
 }
 ```
 
@@ -67,7 +67,7 @@ allprojects {
 
 ```gradle
 dependencies {
-	implementation 'com.github.hykilpikonna:PicqBotX:1.0.1'
+    implementation 'com.github.hykilpikonna:PicqBotX:1.0.1'
 }
 ```
 
@@ -178,14 +178,14 @@ public class TestBot
             bot.getEventManager()
                     .registerListener(new TestListener()) // 注册监听器
                     .registerListener(new RequestListener()); // 可以注册多个监听器
-					
+                    
             if (!bot.isDebug()) bot.getEventManager().registerListener(new SimpleTextLoggingListener()); // 条件下注册监听器
 
             // 启用指令管理器, 启用的时候会自动注册指令
             // 这些字符串是指令前缀, 比如!help的前缀就是!
             bot.enableCommandManager("bot -", "!", "/", "~");
 
-	    // 启动机器人, 这个因为会占用线程, 所以必须放到最后
+        // 启动机器人, 这个因为会占用线程, 所以必须放到最后
             bot.startBot(); 
         }
         catch (HttpServerStartFailedException | VersionIncorrectException | IllegalAccessException | InstantiationException e)
@@ -207,7 +207,7 @@ public class 类名随意 extends IcqListener // 必须继承IcqListener监听�
     @EventHandler // 这个注解必须加, 用于反射时判断哪些方法是事件方法的, 不用@Override
     public void 方法名随意(事件类名 event) // 想监听什么事件就写在事件类名这里, 一个方法只能有一个事件参数
     {
-	// 处理
+    // 处理
     }
 
     @EventHandler
@@ -220,13 +220,13 @@ public class 类名随意 extends IcqListener // 必须继承IcqListener监听�
 
 可用事件:
 
-| 事件类名 				| 事件介绍 |
+| 事件类名                 | 事件介绍 |
 | :------------ | :------------ |
-| Event         		| 所有事件(不推荐监听) |
-| EventMessage  		| 所有消息事件 |
-| EventDiscussMessage 	| 讨论组消息事件 |
-| EventGroupMessage 	| 群聊消息事件 |
-| EventPrivateMessage 	| 私聊消息事件 |
+| Event                 | 所有事件(不推荐监听) |
+| EventMessage          | 所有消息事件 |
+| EventDiscussMessage     | 讨论组消息事件 |
+| EventGroupMessage     | 群聊消息事件 |
+| EventPrivateMessage     | 私聊消息事件 |
 | EventNotice | 所有提醒事件 |
 | EventNoticeFriendAdd | 加好友提醒 |
 | EventNoticeGroupAdminChange | 所有群管理员数量更改事件 |
@@ -258,11 +258,11 @@ public class TestListener extends IcqListener
     @EventHandler
     public void onPMEvent(EventPrivateMessage event)
     {
-	System.out.println("接到消息");
+    System.out.println("接到消息");
 
-	// 判断消息是不是这段文字, 如果是就回复那段文字, 很简单的测试_(:з」∠)_
-	if (event.getMessage().equals("你以为这是yangjinhe/maintain-robot?"))
-	    event.respond("其实是我Hykilpikonna/PicqBotX哒!");
+    // 判断消息是不是这段文字, 如果是就回复那段文字, 很简单的测试_(:з」∠)_
+    if (event.getMessage().equals("你以为这是yangjinhe/maintain-robot?"))
+        event.respond("其实是我Hykilpikonna/PicqBotX哒!");
     }
 }
 ```
@@ -283,7 +283,7 @@ public class TestFilter extends IcqListener
         message = message.replace("%prefix%", "!");
         
         // 设置消息, 因为这个事件是在发送之前执行的, 所以这样设置的消息能生效
-	// 设置为null就能拦截了
+    // 设置为null就能拦截了
         event.setMessage(message);
     }
 }
@@ -312,9 +312,9 @@ ReturnData<RMessageReturnData> response = event.getBot().getHttpApi().send(请�
 ##### 例子:
 ```java
 ReturnData<RMessageReturnData> response = event.getBot().getHttpApi().send(IcqHttpApi.SEND_PRIVATE_MSG, 
-	"user_id", 871674895,
-	"message", "hi",
-	"auto_escape", false); // 这个参数因为不常用就没有封装, 所以要用的话这样发送
+    "user_id", 871674895,
+    "message", "hi",
+    "auto_escape", false); // 这个参数因为不常用就没有封装, 所以要用的话这样发送
 ```
 
 ##### 复杂的消息建造 (比如图片什么的) 用MessageBuilder类:
@@ -335,7 +335,7 @@ new MessageBuilder()
 
 可用组件 (需要酷Q Pro才能用, 详细介绍看[CQ码](https://d.cqp.me/Pro/CQ%E7%A0%81)):
 
-| 组件类名 				| 组件介绍 |
+| 组件类名                 | 组件介绍 |
 | :------------ | :------------ |
 | ComponentAt | @组件 |
 | ComponentBFace | 原创表情组件 |
@@ -374,7 +374,7 @@ public class CommandVersion implements EverywhereCommand // 实现EverywhereComm
         // 这个的话, 用"!v", "!version", 和"!版本"都能触发指令 (感叹号为你设置的前缀, 不一定必须要感叹号)
         return new CommandProperties("version", "v", "版本");
     }
-	
+    
     // 机器人接到指令后会执行这个方法 ( 实现不同的接口的话方法名不一定一样 )
     @Override
     public String run(EventMessage event, User sender, String command, ArrayList<String> args)
