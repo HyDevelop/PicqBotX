@@ -26,19 +26,20 @@ import java.util.Map;
  */
 public class IcqHttpApi
 {
+    // 发送区
     public static final String SEND_PRIVATE_MSG = "send_private_msg";
     public static final String SEND_GROUP_MSG = "send_group_msg";
     public static final String SEND_DISCUSS_MSG = "send_discuss_msg";
     public static final String SEND_LIKE = "send_like";
 
+    // 撤回消息单独一类哈哈哈哈
     public static final String DELETE_MSG = "delete_msg";
 
+    // 应用设置区
     public static final String SET_GROUP_KICK = "set_group_kick";
     public static final String SET_GROUP_BAN = "set_group_ban";
     public static final String SET_GROUP_ANONYMOUS_BAN = "set_group_anonymous_ban";
     public static final String SET_GROUP_WHOLE_BAN = "set_group_whole_ban";
-    public static final String SET_RESTART = "set_restart";
-    public static final String SET_RESTART_PLUGIN = "set_restart_plugin";
     public static final String SET_GROUP_ADMIN = "set_group_admin";
     public static final String SET_GROUP_ANONYMOUS = "set_group_anonymous";
     public static final String SET_GROUP_CARD = "set_group_card";
@@ -48,12 +49,22 @@ public class IcqHttpApi
     public static final String SET_FRIEND_ADD_REQUEST = "set_friend_add_request";
     public static final String SET_GROUP_ADD_REQUEST = "set_group_add_request";
 
+    // ICQ(酷Q, 以及HTTP插件)设置区
+    public static final String SET_RESTART = "set_restart";
+    public static final String SET_RESTART_PLUGIN = "set_restart_plugin";
+    public static final String CLEAN_DATA_DIR = "clean_data_dir";
+
+    // 应用内获取区
     public static final String GET_LOGIN_INFO = "get_login_info";
     public static final String GET_STRANGER_INFO = "get_stranger_info";
     public static final String GET_GROUP_LIST = "get_group_list";
     public static final String GET_GROUP_MEMBER_INFO = "get_group_member_info";
     public static final String GET_GROUP_MEMBER_LIST = "get_group_member_list";
+    public static final String GET_FRIEND_LIST = "_get_friend_list";
+
+    // ICQ(酷Q, 以及HTTP插件)获取区
     public static final String GET_VERSION_INFO = "get_version_info";
+    public static final String GET_STATUS = "get_status";
 
     @Deprecated
     public static final String SEND_MSG = "send_msg";  // 这个不需要, 因为最后也要指定类型
