@@ -20,6 +20,14 @@ public abstract class Event
     @Expose
     public String postType;
 
+    @SerializedName("self_id")
+    @Expose
+    public Long selfId;
+
+    @SerializedName("time")
+    @Expose
+    public Long time;
+
     public PicqBotX bot;
 
     public Event setBot(PicqBotX bot)
