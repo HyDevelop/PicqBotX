@@ -47,4 +47,13 @@ public abstract class EventMessage extends Event
      * @param message 消息
      */
     public abstract void respond(String message);
+
+    /**
+     * 回复到私聊
+     * @param message 消息
+     */
+    public void respondPrivateMessage(String message)
+    {
+        getBot().getHttpApi().sendPrivateMsg(getSenderId(), message);
+    }
 }
