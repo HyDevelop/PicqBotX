@@ -35,4 +35,11 @@ public class RequestListener extends IcqListener
             event.reject("开发我的人不叫\"" + answer + "\"哦! 再试试吧!"); // TODO: 把这些输错的人记录下来
         }
     }
+
+    @EventHandler
+    public void onGroupInvite(EventGroupInviteRequest event)
+    {
+        // 接受所有群邀请
+        event.accept();
+    }
 }
