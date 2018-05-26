@@ -4,7 +4,6 @@ import cc.moecraft.icq.event.EventManager;
 import cc.moecraft.icq.event.events.local.EventLocalSendDiscussMessage;
 import cc.moecraft.icq.event.events.local.EventLocalSendGroupMessage;
 import cc.moecraft.icq.event.events.local.EventLocalSendPrivateMessage;
-import cc.moecraft.icq.event.events.message.EventPrivateMessage;
 import cc.moecraft.icq.sender.returndata.RawReturnData;
 import cc.moecraft.icq.sender.returndata.ReturnData;
 import cc.moecraft.icq.sender.returndata.ReturnListData;

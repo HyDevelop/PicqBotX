@@ -1,6 +1,9 @@
 package cc.moecraft.test.general;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 /**
  * 此类由 Hykilpikonna 在 2018/05/24 创建!

@@ -1,8 +1,6 @@
 package cc.moecraft.icq.sender.returndata;
 
 import cc.moecraft.icq.sender.returndata.returnpojo.ReturnPojoBase;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
 import lombok.Data;
 
 import java.util.List;
