@@ -40,7 +40,7 @@ Maven 导入:
 <dependency>
     <groupId>com.github.hykilpikonna</groupId>
     <artifactId>PicqBotX</artifactId>
-    <version>0.0.2</version>
+    <version>0.0.3</version>
 </dependency>
 ```
 
