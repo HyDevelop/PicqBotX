@@ -37,10 +37,14 @@ public class CommandArgs
 
         if (prefix.equals("") && isChannel) throw new NotACommandException(); // 不是指令
 
-        String command = fullCommand.replace(prefix, "").toLowerCase(); // "echo"
-        fullCommand = fullCommand.replace(command, ""); // ["hi", "there"]
+        // 例子: !ecHO hi there
 
-        ArrayList<String> args = new ArrayList<>(Arrays.asList(fullCommand.split(" "))); // String "!ecHO hi" -> ArrayList ["!ecHO", "hi", "there"]
+        fullCommand = fullCommand.replace(prefix, ""); // "ecHO hi there"
+
+        ArrayList<String> args = new ArrayList<>(Arrays.asList(fullCommand.split(" "))); // String "!ecHO hi there" -> ArrayList ["!ecHO", "hi", "there"]
+
+        String command = args.get(0).toLowerCase(); // "echo"
+        args.remove(0); // ["hi", "there"]
 
         if (!commandManager.getRegisteredCommands().containsKey(command)) throw new CommandNotFoundException(); // 无法找到指令
 
