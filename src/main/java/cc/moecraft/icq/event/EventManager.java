@@ -20,6 +20,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 import org.reflections.Reflections;
 
 import java.lang.reflect.InvocationTargetException;
@@ -50,7 +51,9 @@ public class EventManager
     {
         this.bot = bot;
 
-        Reflections reflections = new Reflections();
+        // 为了性能, 暂时不支持自己添加事件
+        // 如果不加包名, 平均耗时4000ms, 加上包名, 平均耗时300ms
+        Reflections reflections = new Reflections("cc.moecraft.icq.event");
         eventClasses = reflections.getSubTypesOf(Event.class);
     }
 
