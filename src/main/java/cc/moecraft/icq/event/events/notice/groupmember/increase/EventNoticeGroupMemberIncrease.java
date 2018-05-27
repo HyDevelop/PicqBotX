@@ -9,5 +9,8 @@ import cc.moecraft.icq.event.events.notice.groupmember.EventNoticeGroupMemberCha
  */
 public class EventNoticeGroupMemberIncrease extends EventNoticeGroupMemberChange
 {
-
+    public void kick()
+    {
+        getBot().getHttpApi().setGroupKick(getGroupId(), getUserId());
+    }
 }
