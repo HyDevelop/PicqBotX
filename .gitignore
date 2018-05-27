@@ -4,3 +4,4 @@
 *.class
 
 target/
+*.log
