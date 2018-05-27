@@ -32,6 +32,6 @@ public class CommandVersion implements EverywhereCommand // 继承EverywhereComm
     {
         // 处理, 返回值会自动回复回去
         // 这里因为这个指令是用来查版本的, 所以直接返回字符串了
-        return "TestBot - PicqBotX v1.0.1";
+        return "TestBot - PicqBotX v1.0.1.2";
     }
 }
