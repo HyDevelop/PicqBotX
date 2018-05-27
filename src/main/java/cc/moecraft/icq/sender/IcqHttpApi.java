@@ -251,22 +251,22 @@ public class IcqHttpApi
 
     /**
      * 群组踢人
-     * @param qq      QQ
      * @param groupId 群号
+     * @param qq      QQ
      */
-    public void setGroupKick(long qq, long groupId)
+    public void setGroupKick(long groupId, long qq)
     {
         send(SET_GROUP_KICK, "user_id", qq, "group_id", groupId);
     }
 
     /**
      * 群组单人禁言
-     * @param qq       QQ
      * @param groupId  群号
+     * @param qq       QQ
      * @param duration 禁言时长，单位秒，0 表示取消禁言
      */
 
-    public void setGroupBan(long qq, long groupId, long duration)
+    public void setGroupBan(long groupId, long qq, long duration)
     {
         send(SET_GROUP_BAN, "user_id", qq, "group_id", groupId, "duration", duration);
     }
