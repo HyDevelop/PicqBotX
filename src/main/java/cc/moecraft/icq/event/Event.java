@@ -1,6 +1,7 @@
 package cc.moecraft.icq.event;
 
 import cc.moecraft.icq.PicqBotX;
+import cc.moecraft.icq.sender.IcqHttpApi;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import lombok.Data;
@@ -34,5 +35,10 @@ public abstract class Event
     {
         this.bot = bot;
         return this;
+    }
+
+    public IcqHttpApi getHttpApi()
+    {
+        return getBot().getHttpApi();
     }
 }
