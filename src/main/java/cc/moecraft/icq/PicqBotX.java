@@ -54,7 +54,7 @@ public class PicqBotX
     private CommandManager commandManager; // 指令管理器
 
     @Getter
-    private DebugLogger logger = new DebugLogger("PicqBotX", true); // Logger
+    private DebugLogger logger = new DebugLogger("PicqBotX", true, "logs", "PicqBotX-Log"); // Logger
 
     public PicqBotX(String postUrl, int postPort, int socketPort, boolean debug)
     {
