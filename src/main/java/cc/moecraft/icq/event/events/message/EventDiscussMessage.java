@@ -1,5 +1,7 @@
 package cc.moecraft.icq.event.events.message;
 
+import cc.moecraft.icq.sender.returndata.ReturnData;
+import cc.moecraft.icq.sender.returndata.returnpojo.send.RMessageReturnData;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import lombok.Data;
@@ -26,8 +28,8 @@ public class EventDiscussMessage extends EventMessage
      * @param message 消息
      */
     @Override
-    public void respond(String message)
+    public ReturnData<RMessageReturnData> respond(String message)
     {
-        getBot().getHttpApi().sendDiscussMsg(discussId, message);
+        return getBot().getHttpApi().sendDiscussMsg(discussId, message);
     }
 }

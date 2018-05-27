@@ -1,5 +1,7 @@
 package cc.moecraft.icq.event.events.message;
 
+import cc.moecraft.icq.sender.returndata.ReturnData;
+import cc.moecraft.icq.sender.returndata.returnpojo.send.RMessageReturnData;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import lombok.Data;
@@ -22,8 +24,8 @@ public class EventPrivateMessage extends EventMessage
     public String subType;
 
     @Override
-    public void respond(String message)
+    public ReturnData<RMessageReturnData> respond(String message)
     {
-        respondPrivateMessage(message);
+        return respondPrivateMessage(message);
     }
 }

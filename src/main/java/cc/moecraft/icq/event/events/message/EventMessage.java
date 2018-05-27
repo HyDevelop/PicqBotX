@@ -1,6 +1,8 @@
 package cc.moecraft.icq.event.events.message;
 
 import cc.moecraft.icq.event.Event;
+import cc.moecraft.icq.sender.returndata.ReturnData;
+import cc.moecraft.icq.sender.returndata.returnpojo.send.RMessageReturnData;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import lombok.Data;
@@ -46,14 +48,14 @@ public abstract class EventMessage extends Event
      * 回复消息
      * @param message 消息
      */
-    public abstract void respond(String message);
+    public abstract ReturnData<RMessageReturnData> respond(String message);
 
     /**
      * 回复到私聊
      * @param message 消息
      */
-    public void respondPrivateMessage(String message)
+    public ReturnData<RMessageReturnData> respondPrivateMessage(String message)
     {
-        getBot().getHttpApi().sendPrivateMsg(getSenderId(), message);
+        return getBot().getHttpApi().sendPrivateMsg(getSenderId(), message);
     }
 }
