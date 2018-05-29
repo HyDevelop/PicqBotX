@@ -25,7 +25,7 @@ public class RequestListener extends IcqListener
     public void onFriendRequest(EventFriendRequest event)
     {
         // 因为我这里设置的问题是 "开发我的人叫什么?" 所以答案这样判断...
-        String answer = event.getComment().replace("问题1:开发我的人叫什么?\n回答:", "");
+        String answer = event.getComment().replaceAll("问题.*:开发我的人叫什么.*\n回答:", "");
         if (acceptedFriendRequestMessage.contains(answer.toLowerCase()))
         {
             event.accept();
