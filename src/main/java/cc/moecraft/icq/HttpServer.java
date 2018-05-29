@@ -136,10 +136,10 @@ public class HttpServer
                 if (bot.isDebug())
                 {
                     logger.debug("收到新请求: " + line);
-                    logger.debug("- 请求方法: " + method);
-                    logger.debug("- 请求URL : " + requestUrl);
-                    logger.debug("- HTTP版本: " + httpVersion);
-                    logger.debug("- 其他信息: " + otherInfo);
+                    //logger.debug("- 请求方法: " + method);
+                    //logger.debug("- 请求URL : " + requestUrl);
+                    //logger.debug("- HTTP版本: " + httpVersion);
+                    logger.debug("- 信息: " + otherInfo);
                     logger.debug("- 数据: " + data);
                 }
 
