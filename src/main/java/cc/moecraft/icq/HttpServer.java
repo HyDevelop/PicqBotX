@@ -118,7 +118,15 @@ public class HttpServer
                 // 验证信息
                 if (contentType.equals("UNINITIALIZED") || !contentType.equals("application/json")) continue;
                 if (charset.equals("UNINITIALIZED") || !charset.equals("charset=UTF-8")) continue;
-                if (userAgent.equals("UNINITIALIZED") || !userAgent.equals("CQHttp/4.0.0-alpha.4")) continue;
+                if (userAgent.equals("UNINITIALIZED") || !userAgent.matches(bot.getHttpApiVersionDetection()))
+                {
+                    // 版本不正确
+                    logger.error("HTTP API请求版本不正确, 设置的兼容版本为: " + bot.getHttpApiVersionDetection());
+                    logger.error("当前版本为: " + userAgent);
+                    logger.error("推荐更新这个类库或者HTTP API的版本");
+                    logger.error("如果要无视版本检查, 请在启动前加上 \"机器人对象.setHttpApiVersionDetection(\"*\");\"");
+                    continue;
+                }
 
                 // 获取Post数据
                 String data = "UNINITIALIZED";

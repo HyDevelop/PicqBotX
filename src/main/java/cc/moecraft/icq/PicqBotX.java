@@ -15,6 +15,7 @@ import cc.moecraft.logger.AnsiColor;
 import cc.moecraft.logger.DebugLogger;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 此类由 Hykilpikonna 在 2018/05/24 创建!
@@ -52,6 +53,9 @@ public class PicqBotX
 
     @Getter
     private CommandManager commandManager; // 指令管理器
+
+    @Getter @Setter
+    private String httpApiVersionDetection = "CQHttp/4.0.0-beta.2"; // 兼容版本检测
 
     @Getter
     private DebugLogger logger = new DebugLogger("PicqBotX", true, "logs", "PicqBotX-Log"); // Logger
