@@ -109,6 +109,28 @@ public class IcqHttpApi
 
     /**
      * 发送请求 封装
+     * @param request 请求
+     * @param parameters 参数
+     * @return 响应
+     */
+    public RawReturnData sendReturnRaw(String request, Map<String, Object> parameters)
+    {
+        return new Gson().fromJson(send(request, parameters), RawReturnData.class);
+    }
+
+    /**
+     * 发送请求 封装
+     * @param request 请求
+     * @param parameters 参数
+     * @return 响应
+     */
+    public RawReturnData sendReturnRaw(String request, Object... parameters)
+    {
+        return sendReturnRaw(request, MapBuilder.build(String.class, Object.class, parameters));
+    }
+
+    /**
+     * 发送请求 封装
      * @param typeOfT 返回数据类型
      * @param request 请求
      * @param parameters 参数
@@ -116,7 +138,7 @@ public class IcqHttpApi
      */
     public <T extends ReturnPojoBase> ReturnData<T> send(Type typeOfT, String request, Map<String, Object> parameters)
     {
-        return new Gson().fromJson(send(request, parameters), RawReturnData.class).processData(typeOfT);
+        return sendReturnRaw(request, parameters).processData(typeOfT);
     }
 
     /**
@@ -140,7 +162,7 @@ public class IcqHttpApi
      */
     public <T extends ReturnPojoBase> ReturnListData<T> sendReturnList(Type typeOfT, String request, Map<String, Object> parameters)
     {
-        return new Gson().fromJson(send(request, parameters), RawReturnData.class).processDataAsList(typeOfT);
+        return sendReturnRaw(request, parameters).processDataAsList(typeOfT);
     }
 
     /**
