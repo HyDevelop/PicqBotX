@@ -256,9 +256,9 @@ public class IcqHttpApi
      * 撤回消息
      * @param messageId 消息ID
      */
-    public void deleteMsg(long messageId)
+    public RawReturnData deleteMsg(long messageId)
     {
-        send(DELETE_MSG, "message_id", messageId);
+        return sendReturnRaw(DELETE_MSG, "message_id", messageId);
     }
 
     /**
@@ -266,9 +266,9 @@ public class IcqHttpApi
      * @param qq    QQ号
      * @param times 赞的次数，每个好友每天最多 10 次
      */
-    public void sendLike(long qq, long times)
+    public RawReturnData sendLike(long qq, long times)
     {
-        send(SEND_LIKE, "user_id", qq, "times", times);
+        return sendReturnRaw(SEND_LIKE, "user_id", qq, "times", times);
     }
 
     /**
@@ -276,9 +276,9 @@ public class IcqHttpApi
      * @param groupId 群号
      * @param qq      QQ
      */
-    public void setGroupKick(long groupId, long qq)
+    public RawReturnData setGroupKick(long groupId, long qq)
     {
-        send(SET_GROUP_KICK, "user_id", qq, "group_id", groupId);
+        return sendReturnRaw(SET_GROUP_KICK, "user_id", qq, "group_id", groupId);
     }
 
     /**
@@ -288,9 +288,9 @@ public class IcqHttpApi
      * @param duration 禁言时长，单位秒，0 表示取消禁言
      */
 
-    public void setGroupBan(long groupId, long qq, long duration)
+    public RawReturnData setGroupBan(long groupId, long qq, long duration)
     {
-        send(SET_GROUP_BAN, "user_id", qq, "group_id", groupId, "duration", duration);
+        return sendReturnRaw(SET_GROUP_BAN, "user_id", qq, "group_id", groupId, "duration", duration);
     }
 
     /**
@@ -299,9 +299,9 @@ public class IcqHttpApi
      * @param groupId  群号
      * @param duration 禁言时长，单位秒，无法取消匿名用户禁言
      */
-    public void setGroupAnonymousBan(String flag, long groupId, long duration)
+    public RawReturnData setGroupAnonymousBan(String flag, long groupId, long duration)
     {
-        send(SET_GROUP_ANONYMOUS_BAN, "flag", flag, "group_id", groupId, "duration", duration);
+        return sendReturnRaw(SET_GROUP_ANONYMOUS_BAN, "flag", flag, "group_id", groupId, "duration", duration);
     }
 
     /**
@@ -309,9 +309,9 @@ public class IcqHttpApi
      * @param groupId 群号
      * @param enable  是否禁言
      */
-    public void setGroupWholeBan(long groupId, boolean enable)
+    public RawReturnData setGroupWholeBan(long groupId, boolean enable)
     {
-        send(SET_GROUP_WHOLE_BAN, "group_id", groupId, "enable", enable);
+        return sendReturnRaw(SET_GROUP_WHOLE_BAN, "group_id", groupId, "enable", enable);
     }
 
     /**
@@ -320,9 +320,9 @@ public class IcqHttpApi
      * @param qq      要设置管理员的 QQ 号
      * @param enable  true 为设置，false 为取消
      */
-    public void setGroupAdmin(long groupId, long qq, boolean enable)
+    public RawReturnData setGroupAdmin(long groupId, long qq, boolean enable)
     {
-        send(SET_GROUP_ADMIN, "group_id", groupId, "user_id", qq, "enable", enable);
+        return sendReturnRaw(SET_GROUP_ADMIN, "group_id", groupId, "user_id", qq, "enable", enable);
     }
 
     /**
@@ -330,9 +330,9 @@ public class IcqHttpApi
      * @param groupId 群号
      * @param enable  是否允许匿名聊天
      */
-    public void setGroupAnonymous(long groupId, boolean enable)
+    public RawReturnData setGroupAnonymous(long groupId, boolean enable)
     {
-        send(SET_GROUP_ANONYMOUS, "group_id", groupId, "enable", enable);
+        return sendReturnRaw(SET_GROUP_ANONYMOUS, "group_id", groupId, "enable", enable);
     }
 
     /**
@@ -341,9 +341,9 @@ public class IcqHttpApi
      * @param qq      要设置的 QQ 号
      * @param card  群名片内容，不填或空字符串表示删除群名片
      */
-    public void setGroupCard(long groupId, long qq, String card)
+    public RawReturnData setGroupCard(long groupId, long qq, String card)
     {
-        send(SET_GROUP_CARD, "group_id", groupId, "user_id", qq, "card", card);
+        return sendReturnRaw(SET_GROUP_CARD, "group_id", groupId, "user_id", qq, "card", card);
     }
 
     /**
@@ -351,9 +351,9 @@ public class IcqHttpApi
      * @param groupId 群号
      * @param dismiss 是否解散，如果登录号是群主，则仅在此项为 true 时能够解散
      */
-    public void setGroupLeave(long groupId, boolean dismiss)
+    public RawReturnData setGroupLeave(long groupId, boolean dismiss)
     {
-        send(SET_GROUP_LEAVE, "group_id", groupId, "is_dismiss", dismiss);
+        return sendReturnRaw(SET_GROUP_LEAVE, "group_id", groupId, "is_dismiss", dismiss);
     }
 
     /**
@@ -362,9 +362,9 @@ public class IcqHttpApi
      * @param qq 要设置的QQ号
      * @param specialTitle 专属头衔，不填或空字符串表示删除专属头衔
      */
-    public void setGroupSpecialTitle(long groupId, long qq, String specialTitle)
+    public RawReturnData setGroupSpecialTitle(long groupId, long qq, String specialTitle)
     {
-        send(SET_GROUP_SPECIAL_TITLE, "group_id", groupId, "user_id", qq, "special_title", specialTitle);
+        return sendReturnRaw(SET_GROUP_SPECIAL_TITLE, "group_id", groupId, "user_id", qq, "special_title", specialTitle);
     }
 
     /**
@@ -374,18 +374,18 @@ public class IcqHttpApi
      * @param specialTitle 专属头衔，不填或空字符串表示删除专属头衔
      * @param duration 专属头衔有效期，单位秒，-1 表示永久，不过此项似乎没有效果，可能是只有某些特殊的时间长度有效，有待测试
      */
-    public void setGroupSpecialTitle(long groupId, long qq, String specialTitle, long duration)
+    public RawReturnData setGroupSpecialTitle(long groupId, long qq, String specialTitle, long duration)
     {
-        send(SET_GROUP_SPECIAL_TITLE, "group_id", groupId, "user_id", qq, "special_title", specialTitle, "duration", duration);
+        return sendReturnRaw(SET_GROUP_SPECIAL_TITLE, "group_id", groupId, "user_id", qq, "special_title", specialTitle, "duration", duration);
     }
 
     /**
      * 退出讨论组
      * @param discussId 讨论组 ID（正常情况下看不到，需要从讨论组消息上报的数据中获得）
      */
-    public void setDiscussLeave(long discussId)
+    public RawReturnData setDiscussLeave(long discussId)
     {
-        send(SET_DISCUSS_LEAVE, "discuss_id", discussId);
+        return sendReturnRaw(SET_DISCUSS_LEAVE, "discuss_id", discussId);
     }
 
     /**
@@ -393,9 +393,9 @@ public class IcqHttpApi
      * @param flag 加好友请求的 flag（需从上报的数据中获得）
      * @param approve 是否同意请求
      */
-    public void setFriendAndRequest(String flag, boolean approve)
+    public RawReturnData setFriendAndRequest(String flag, boolean approve)
     {
-        send(SET_FRIEND_ADD_REQUEST, "flag", flag, "approve", approve);
+        return sendReturnRaw(SET_FRIEND_ADD_REQUEST, "flag", flag, "approve", approve);
     }
 
     /**
@@ -404,9 +404,9 @@ public class IcqHttpApi
      * @param approve 是否同意请求
      * @param remark 添加后的好友备注（仅在同意时有效）
      */
-    public void setFriendAndRequest(String flag, boolean approve, String remark)
+    public RawReturnData setFriendAndRequest(String flag, boolean approve, String remark)
     {
-        send(SET_FRIEND_ADD_REQUEST, "flag", flag, "approve", approve, "remark", remark);
+        return sendReturnRaw(SET_FRIEND_ADD_REQUEST, "flag", flag, "approve", approve, "remark", remark);
     }
 
     /**
@@ -416,9 +416,9 @@ public class IcqHttpApi
      * @param approve 是否同意请求／邀请
      * @param reason 拒绝理由（仅在拒绝时有效）
      */
-    public void setGroupAndRequest(String flag, String type, boolean approve, String reason)
+    public RawReturnData setGroupAndRequest(String flag, String type, boolean approve, String reason)
     {
-        send(SET_GROUP_ADD_REQUEST, "flag", flag, "type", type, "approve", approve, "reason", reason);
+        return sendReturnRaw(SET_GROUP_ADD_REQUEST, "flag", flag, "type", type, "approve", approve, "reason", reason);
     }
 
     /**
@@ -426,9 +426,9 @@ public class IcqHttpApi
      * @param flag 加好友请求的 flag（需从上报的数据中获得）
      * @param type add 或 invite，请求类型（需要和上报消息中的 sub_type 字段相符）
      */
-    public void approveGroupRequest(String flag, String type)
+    public RawReturnData approveGroupRequest(String flag, String type)
     {
-        setGroupAndRequest(flag, type, true, "");
+        return setGroupAndRequest(flag, type, true, "");
     }
 
     /**
@@ -437,34 +437,34 @@ public class IcqHttpApi
      * @param type add 或 invite，请求类型（需要和上报消息中的 sub_type 字段相符）
      * @param reason 拒绝理由
      */
-    public void rejectGroupRequest(String flag, String type, String reason)
+    public RawReturnData rejectGroupRequest(String flag, String type, String reason)
     {
-        setGroupAndRequest(flag, type, false, reason);
+        return setGroupAndRequest(flag, type, false, reason);
     }
 
     /**
      * 重启酷 Q，并以当前登录号自动登录（需勾选快速登录）
      */
-    public void setRestart()
+    public RawReturnData setRestart()
     {
-        send(SET_RESTART);
+        return sendReturnRaw(SET_RESTART);
     }
 
     /**
      * 重启酷 Q，并以当前登录号自动登录（需勾选快速登录）
      * @param cleanCache 是否清除酷Q当前登录号缓存数据
      */
-    public void setRestart(boolean cleanCache)
+    public RawReturnData setRestart(boolean cleanCache)
     {
-        send(SET_RESTART, "clean_cache", cleanCache);
+        return sendReturnRaw(SET_RESTART, "clean_cache", cleanCache);
     }
 
     /**
      * 重启 HTTP API 插件
      */
-    public void setRestartPlugin()
+    public RawReturnData setRestartPlugin()
     {
-        send(SET_RESTART_PLUGIN);
+        return sendReturnRaw(SET_RESTART_PLUGIN);
     }
 
     /**
@@ -548,8 +548,8 @@ public class IcqHttpApi
     /**
      * 获取插件运行状态
      */
-    public void cleanDataDir()
+    public RawReturnData cleanDataDir()
     {
-        send(CLEAN_DATA_DIR);
+        return sendReturnRaw(CLEAN_DATA_DIR);
     }
 }
