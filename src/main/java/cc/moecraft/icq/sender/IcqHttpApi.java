@@ -429,6 +429,15 @@ public class IcqHttpApi
     }
 
     /**
+     * 重启酷 Q，并以当前登录号自动登录（需勾选快速登录）
+     * @param cleanCache 是否清除酷Q当前登录号缓存数据
+     */
+    public void setRestart(boolean cleanCache)
+    {
+        send(SET_RESTART, "clean_cache", cleanCache);
+    }
+
+    /**
      * 重启 HTTP API 插件
      */
     public void setRestartPlugin()
