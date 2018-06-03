@@ -42,7 +42,7 @@ public class CommandVersion implements EverywhereCommand // 继承EverywhereComm
 
         // 这里因为这个指令是用来查版本的, 所以直接返回字符串了
         return new MessageBuilder()
-                .add("TestBot - PicqBotX v1.0.3").newLine()
+                .add("TestBot - PicqBotX v1.0.4").newLine()
                 .add("- 酷Q ").add(versionInfo.getCoolqEdition()).add(" HTTP插件: ")
                     .add(versionInfo.getPluginVersion()).add(" b").add(versionInfo.getPluginBuildNumber()).newLine()
                 .add("- 运行状态: Good: ").add(status.getGood()).add(", ").add(status.getPluginsGood())
