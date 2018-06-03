@@ -388,7 +388,7 @@ public class CommandVersion implements EverywhereCommand // 实现EverywhereComm
 
 
 #### 如果有Bug的话, 联系我QQ: 871674895哦!
-
+#### 或者加群498386389
 
 <br>
 
