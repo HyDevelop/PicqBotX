@@ -1,10 +1,7 @@
 package cc.moecraft.icq.event.events.local;
 
-import cc.moecraft.icq.event.Event;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.RequiredArgsConstructor;
 
 /**
  * 从机器人发送消息事件
@@ -14,7 +11,7 @@ import lombok.RequiredArgsConstructor;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class EventLocalSendMessage extends Event
+public class EventLocalSendMessage extends EventLocal
 {
     public long id;
     public String message;
