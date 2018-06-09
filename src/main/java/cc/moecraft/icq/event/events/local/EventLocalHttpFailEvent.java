@@ -19,6 +19,6 @@ public class EventLocalHttpFailEvent extends EventLocalHttpEvent{
     public String data;
 
     public EventLocalHttpFailEvent(String fail) {
-        fail = fail;
+        this.fail = fail;
     }
 }
