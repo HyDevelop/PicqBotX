@@ -47,6 +47,7 @@ public class CommandManager
      */
     public void registerAllCommands() throws IllegalAccessException, InstantiationException
     {
+        // 不填包名就是全局扫描
         Reflections reflections = new Reflections();
 
         // 获取包下的所有继承Command的类
