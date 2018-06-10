@@ -174,7 +174,7 @@ public class HttpServer
 
                 bot.getEventManager().call(event);
 
-                if (!event.isCancelled) process(data);
+                if (!event.isCancelled()) process(data);
 
                 sendResponseAndClose(out, "[]");
 
