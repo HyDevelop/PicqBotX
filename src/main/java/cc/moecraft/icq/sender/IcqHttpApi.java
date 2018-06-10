@@ -197,7 +197,7 @@ public class IcqHttpApi
     {
         EventLocalSendPrivateMessage event = new EventLocalSendPrivateMessage(qq, message, autoEscape);
         eventManager.call(event);
-        if (event.isCancelled) return null;
+        if (event.isCancelled()) return null;
         return send(RMessageReturnData.class, SEND_PRIVATE_MSG, "user_id", event.getId(), "message", event.getMessage(), "auto_escape", event.isAutoEscape());
     }
 
@@ -221,7 +221,7 @@ public class IcqHttpApi
     {
         EventLocalSendGroupMessage event = new EventLocalSendGroupMessage(groupId, message, autoEscape);
         eventManager.call(event);
-        if (event.isCancelled) return null;
+        if (event.isCancelled()) return null;
         return send(RMessageReturnData.class, SEND_GROUP_MSG, "group_id", event.getId(), "message", event.getMessage(), "auto_escape", event.isAutoEscape());
     }
 
@@ -245,7 +245,7 @@ public class IcqHttpApi
     {
         EventLocalSendDiscussMessage event = new EventLocalSendDiscussMessage(groupId, message, autoEscape);
         eventManager.call(event);
-        if (event.isCancelled) return null;
+        if (event.isCancelled()) return null;
         return send(RMessageReturnData.class, SEND_DISCUSS_MSG, "discuss_id", event.getId(), "message", event.getMessage(), "auto_escape", event.isAutoEscape());
     }
 
