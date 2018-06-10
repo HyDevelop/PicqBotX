@@ -38,8 +38,8 @@ Maven 导入:
 
 ```xml
 <dependency>
-	  <groupId>com.github.hydevelop</groupId>
-	  <artifactId>PicqBotX</artifactId>
+    <groupId>com.github.hydevelop</groupId>
+    <artifactId>PicqBotX</artifactId>
     <version>1.0.4.2</version>
 </dependency>
 ```
