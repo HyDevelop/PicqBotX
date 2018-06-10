@@ -38,8 +38,8 @@ Maven 导入:
 
 ```xml
 <dependency>
-    <groupId>com.github.hykilpikonna</groupId>
-    <artifactId>PicqBotX</artifactId>
+	  <groupId>com.github.hydevelop</groupId>
+	  <artifactId>PicqBotX</artifactId>
     <version>1.0.4</version>
 </dependency>
 ```
@@ -67,13 +67,13 @@ allprojects {
 
 ```gradle
 dependencies {
-    implementation 'com.github.hykilpikonna:PicqBotX:1.0.4'
+    implementation 'com.github.hydevelop:PicqBotX:1.0.4'
 }
 ```
 
 <!-- 每次更新都要手动改这些版本号好烦的_(:з」∠)_... -->
 
-#### [其他导入(SBT / Leiningen)](https://jitpack.io/#hykilpikonna/PicqBotX/1.0.4)
+#### [其他导入(SBT / Leiningen)](https://jitpack.io/#hydevelop/PicqBotX/1.0.4)
 
 <br>
 
