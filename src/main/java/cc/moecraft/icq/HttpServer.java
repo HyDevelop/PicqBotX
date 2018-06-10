@@ -1,6 +1,6 @@
 package cc.moecraft.icq;
 
-import cc.moecraft.icq.event.events.local.EventLocalHttpEvent;
+import cc.moecraft.icq.event.events.local.EventLocalHttpReceiveEvent;
 import cc.moecraft.icq.event.events.local.EventLocalHttpFailEvent;
 import cc.moecraft.icq.exceptions.HttpServerStartFailedException;
 import cc.moecraft.logger.AnsiColor;
@@ -86,7 +86,7 @@ public class HttpServer
                 String line = reader.readLine();
                 if (line == null || line.isEmpty())
                 {
-                    bot.getEventManager().call(new EventLocalHttpFailEvent("empty"));
+                    bot.getEventManager().call(new EventLocalHttpFailEvent(EventLocalHttpFailEvent.FailType.requestIsEmpty));
                     continue;
                 }
 
@@ -98,7 +98,7 @@ public class HttpServer
 
                 if (!method.equalsIgnoreCase("post"))
                 {
-                    bot.getEventManager().call(new EventLocalHttpFailEvent("post"));
+                    bot.getEventManager().call(new EventLocalHttpFailEvent(EventLocalHttpFailEvent.FailType.incorrectRequestMethod));
                     continue;
                 }
 
@@ -128,12 +128,12 @@ public class HttpServer
                 // 验证信息
                 if (contentType.equals("UNINITIALIZED") || !contentType.equals("application/json"))
                 {
-                    bot.getEventManager().call(new EventLocalHttpFailEvent("application"));
+                    bot.getEventManager().call(new EventLocalHttpFailEvent(EventLocalHttpFailEvent.FailType.incorrectApplicationType));
                     continue;
                 }
                 if (charset.equals("UNINITIALIZED") || !charset.equals("charset=UTF-8"))
                 {
-                    bot.getEventManager().call(new EventLocalHttpFailEvent("charset"));
+                    bot.getEventManager().call(new EventLocalHttpFailEvent(EventLocalHttpFailEvent.FailType.incorrectCharset));
                     continue;
                 }
                 if (userAgent.equals("UNINITIALIZED") || !userAgent.matches(bot.getHttpApiVersionDetection()))
@@ -143,7 +143,7 @@ public class HttpServer
                     logger.error("当前版本为: " + userAgent);
                     logger.error("推荐更新这个类库或者HTTP API的版本");
                     logger.error("如果要无视版本检查, 请在启动前加上 \"机器人对象.setHttpApiVersionDetection(\"*\");\"");
-                    bot.getEventManager().call(new EventLocalHttpFailEvent("version"));
+                    bot.getEventManager().call(new EventLocalHttpFailEvent(EventLocalHttpFailEvent.FailType.incorrectVersion));
                     continue;
                 }
 
@@ -170,7 +170,7 @@ public class HttpServer
                     logger.debug("- 数据: " + data);
                 }
 
-                EventLocalHttpEvent event = new EventLocalHttpEvent(info.toString(), otherInfo, contentType, charset, userAgent, data);
+                EventLocalHttpReceiveEvent event = new EventLocalHttpReceiveEvent(info, otherInfo, contentType, charset, userAgent, data);
 
                 bot.getEventManager().call(event);
 
@@ -185,7 +185,7 @@ public class HttpServer
             {
                 logger.error("请求接收失败: ");
                 e.printStackTrace();
-                bot.getEventManager().call(new EventLocalHttpFailEvent("未知"));
+                bot.getEventManager().call(new EventLocalHttpFailEvent(EventLocalHttpFailEvent.FailType.unknown));
             }
         }
     }
