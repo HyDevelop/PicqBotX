@@ -63,6 +63,13 @@
             <version>v1.5.1</version>
         </dependency>
 
+        <!-- 工具库 -->
+        <dependency>
+            <groupId>com.github.hydevelop</groupId>
+            <artifactId>HyCommonUtils</artifactId>
+            <version>1.0.0.1</version>
+        </dependency>
+
         <!-- 其他 -->
         <dependency>
             <groupId>org.projectlombok</groupId>
