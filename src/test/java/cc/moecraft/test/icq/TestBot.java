@@ -23,7 +23,8 @@ public class TestBot
         {
             bot.getEventManager()
                     .registerListener(new TestListener()) // 注册监听器
-                    .registerListener(new RequestListener()); // 可以注册多个监听器
+                    .registerListener(new RequestListener())
+                    .registerListener(new AnnoyingListener()); // 可以注册多个监听器
             if (!bot.isDebug()) bot.getEventManager().registerListener(new SimpleTextLoggingListener()); // 这个只是在不开Debug的时候用来Log消息的
 
             // 启用指令管理器, 启用的时候会自动注册指令
