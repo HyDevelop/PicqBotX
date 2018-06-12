@@ -245,10 +245,13 @@ public class 类名随意 extends IcqListener // 必须继承IcqListener监听�
 | EventFriendRequest | 加好友请求事件 |
 | EventGroupAddRequest | 加群请求事件 |
 | EventGroupInviteRequest | 拉你入群请求事件 |
+| EventLocal | 所有本地事件 |
 | EventLocalSendMessage | 所有本地向外发送的事件 |
 | EventLocalSendDiscussMessage | 发送讨论组消息事件 |
 | EventLocalSendGroupMessage | 发送群聊消息事件 |
 | EventLocalSendPrivateMessage | 发送私聊消息事件 |
+| EventLocalHttpRecieveEvent | 接收HTTP请求事件 |
+| EventLocalHttpFailEvent | 接收HTTP请求失败事件 |
 
 ##### 例子:
 
