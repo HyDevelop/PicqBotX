@@ -1,4 +1,4 @@
-package cc.moecraft.test.icq;
+package cc.moecraft.test.icq.features.annoy;
 
 import cc.moecraft.icq.command.CommandProperties;
 import cc.moecraft.icq.command.interfaces.GroupCommand;
