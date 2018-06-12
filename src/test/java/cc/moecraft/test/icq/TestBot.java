@@ -3,6 +3,11 @@ package cc.moecraft.test.icq;
 import cc.moecraft.icq.PicqBotX;
 import cc.moecraft.icq.exceptions.HttpServerStartFailedException;
 import cc.moecraft.icq.exceptions.VersionIncorrectException;
+import cc.moecraft.test.icq.features.annoy.AnnoyingListener;
+import cc.moecraft.test.icq.features.antirecall.AntiRecallListener;
+import cc.moecraft.test.icq.listeners.RequestListener;
+import cc.moecraft.test.icq.listeners.SimpleTextLoggingListener;
+import cc.moecraft.test.icq.listeners.TestListener;
 
 /**
  * 此类由 Hykilpikonna 在 2018/05/24 创建!
@@ -24,6 +29,7 @@ public class TestBot
             bot.getEventManager()
                     .registerListener(new TestListener()) // 注册监听器
                     .registerListener(new RequestListener())
+                    .registerListener(new AntiRecallListener())
                     .registerListener(new AnnoyingListener()); // 可以注册多个监听器
             if (!bot.isDebug()) bot.getEventManager().registerListener(new SimpleTextLoggingListener()); // 这个只是在不开Debug的时候用来Log消息的
 
