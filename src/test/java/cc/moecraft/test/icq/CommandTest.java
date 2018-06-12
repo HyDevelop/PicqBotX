@@ -23,7 +23,7 @@ import java.util.ArrayList;
  *
  * @author Hykilpikonna
  */
-public class CommandTest implements GroupCommand, PrivateCommand, DiscussCommand
+public class CommandTest implements EverywhereCommand
 {
     @Override
     public CommandProperties properties()
@@ -32,19 +32,7 @@ public class CommandTest implements GroupCommand, PrivateCommand, DiscussCommand
     }
 
     @Override
-    public String privateMessage(EventPrivateMessage event, User sender, String command, ArrayList<String> args)
-    {
-        return "测试返回值 - 用户信息: " + sender.getInfo();
-    }
-
-    @Override
-    public String discussMessage(EventDiscussMessage event, GroupUser sender, Group discuss, String command, ArrayList<String> args)
-    {
-        return "测试返回值 - 用户信息: " + sender.getInfo();
-    }
-
-    @Override
-    public String groupMessage(EventGroupMessage event, GroupUser sender, Group group, String command, ArrayList<String> args)
+    public String run(EventMessage event, User sender, String command, ArrayList<String> args)
     {
         return "测试返回值 - 用户信息: " + sender.getInfo();
     }
