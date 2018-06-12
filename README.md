@@ -38,7 +38,7 @@ Maven 导入:
 
 ```xml
 <dependency>
-    <groupId>com.github.hydevelop</groupId>
+    <groupId>com.github.HyDevelop</groupId>
     <artifactId>PicqBotX</artifactId>
     <version>1.0.4.3</version>
 </dependency>
@@ -67,13 +67,13 @@ allprojects {
 
 ```gradle
 dependencies {
-    implementation 'com.github.hydevelop:PicqBotX:1.0.4.3'
+    implementation 'com.github.HyDevelop:PicqBotX:1.0.4.3'
 }
 ```
 
 <!-- 每次更新都要手动改这些版本号好烦的_(:з」∠)_... -->
 
-#### [其他导入(SBT / Leiningen)](https://jitpack.io/#hydevelop/PicqBotX/1.0.4.3)
+#### [其他导入(SBT / Leiningen)](https://jitpack.io/#HyDevelop/PicqBotX/1.0.4.3)
 
 <br>
 
@@ -122,7 +122,7 @@ enable_backward_compatibility=false
 开发:
 --------
 
-##### [开发文档 (JavaDocs)](https://hydevelop.github.io/picqbotx/javadocs/)
+##### [开发文档 (JavaDocs)](https://HyDevelop.github.io/picqbotx/javadocs/)
 
 #### 启动机器人 (Main类):
 
