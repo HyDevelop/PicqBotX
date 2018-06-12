@@ -65,6 +65,7 @@ public class IcqHttpApi
     public static final String GET_GROUP_MEMBER_INFO = "get_group_member_info";
     public static final String GET_GROUP_MEMBER_LIST = "get_group_member_list";
     public static final String GET_FRIEND_LIST = "_get_friend_list";
+    public static final String GET_GROUP_INFO = "_get_group_info";
 
     // ICQ(酷Q, 以及HTTP插件)获取区
     public static final String GET_VERSION_INFO = "get_version_info";
@@ -507,6 +508,15 @@ public class IcqHttpApi
     public ReturnData<RGroupMemberInfo> getGroupMemberInfo(long groupId, long qq)
     {
         return send(RGroupMemberInfo.class, GET_GROUP_MEMBER_INFO, "group_id", groupId, "user_id", qq);
+    }
+
+    /**
+     * 获取群信息
+     * @param groupId 群号
+     */
+    public ReturnData<RGroup> getGroupInfo(long groupId)
+    {
+        return send(RGroup.class, GET_GROUP_INFO, "group_id", groupId);
     }
 
     /**
