@@ -35,7 +35,7 @@ public class TestBot
 
             // 启用指令管理器, 启用的时候会自动注册指令
             // 这些字符串是指令前缀, 比如!help的前缀就是!
-            bot.enableCommandManager("bot -", "!", "/", "~");
+            bot.enableCommandManager("bot -", "!", "/", "~", "！", "我以令咒命之，", "我以令咒命之, ");
 
             bot.startBot(); // 启动机器人
         }
