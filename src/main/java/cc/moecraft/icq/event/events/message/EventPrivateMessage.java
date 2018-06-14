@@ -24,8 +24,8 @@ public class EventPrivateMessage extends EventMessage
     public String subType;
 
     @Override
-    public ReturnData<RMessageReturnData> respond(String message)
+    public ReturnData<RMessageReturnData> respond(String message, boolean raw)
     {
-        return respondPrivateMessage(message);
+        return respondPrivateMessage(message, raw);
     }
 }
