@@ -66,6 +66,16 @@ public abstract class EventMessage extends Event
      */
     public ReturnData<RMessageReturnData> respondPrivateMessage(String message)
     {
-        return getBot().getHttpApi().sendPrivateMsg(getSenderId(), message);
+        return respondPrivateMessage(message, false);
+    }
+
+    /**
+     * 回复到私聊
+     * @param message 消息
+     * @param raw 是否无加工发送
+     */
+    public ReturnData<RMessageReturnData> respondPrivateMessage(String message, boolean raw)
+    {
+        return getBot().getHttpApi().sendPrivateMsg(getSenderId(), message, raw);
     }
 }
