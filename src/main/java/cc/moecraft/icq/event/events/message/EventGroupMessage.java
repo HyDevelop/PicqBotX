@@ -36,8 +36,8 @@ public class EventGroupMessage extends EventMessage
     public String subType;
 
     @Override
-    public ReturnData<RMessageReturnData> respond(String message)
+    public ReturnData<RMessageReturnData> respond(String message, boolean raw)
     {
-        return getBot().getHttpApi().sendGroupMsg(groupId, message);
+        return getBot().getHttpApi().sendGroupMsg(groupId, message, raw);
     }
 }
