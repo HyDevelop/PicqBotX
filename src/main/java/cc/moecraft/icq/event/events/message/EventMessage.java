@@ -48,7 +48,17 @@ public abstract class EventMessage extends Event
      * 回复消息
      * @param message 消息
      */
-    public abstract ReturnData<RMessageReturnData> respond(String message);
+    public ReturnData<RMessageReturnData> respond(String message)
+    {
+        return respond(message, false);
+    }
+
+    /**
+     * 回复消息
+     * @param message 消息
+     * @param raw 是否无加工发送
+     */
+    public abstract ReturnData<RMessageReturnData> respond(String message, boolean raw);
 
     /**
      * 回复到私聊
