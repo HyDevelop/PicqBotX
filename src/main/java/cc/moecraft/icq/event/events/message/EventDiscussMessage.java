@@ -23,13 +23,9 @@ public class EventDiscussMessage extends EventMessage
     @Expose
     public Long discussId;
 
-    /**
-     * 回复一条讨论组消息
-     * @param message 消息
-     */
     @Override
-    public ReturnData<RMessageReturnData> respond(String message)
+    public ReturnData<RMessageReturnData> respond(String message, boolean raw)
     {
-        return getBot().getHttpApi().sendDiscussMsg(discussId, message);
+        return getBot().getHttpApi().sendDiscussMsg(discussId, message, raw);
     }
 }
