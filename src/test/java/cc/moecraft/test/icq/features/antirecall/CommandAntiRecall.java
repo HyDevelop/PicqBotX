@@ -24,7 +24,7 @@ public class CommandAntiRecall implements GroupCommand
     {
         int messageIndex;
         ArrayList<String> messages = AntiRecallListener.groupTexts.get(group.getId());
-        if (messages == null) return "未记录";
+        if (messages == null) return "目前这个群里还没有消息记录";
 
         if (args.size() == 0)
         {
@@ -58,7 +58,14 @@ public class CommandAntiRecall implements GroupCommand
         }
         else return "你要干什么?";
 
-        return messages.get(messageIndex);
+        try
+        {
+            return messages.get(messageIndex);
+        }
+        catch (IndexOutOfBoundsException e)
+        {
+            return "数字超出记录范围了, 目前这个群里只记录了" + messages.size() + "项消息";
+        }
     }
 
     @Override
