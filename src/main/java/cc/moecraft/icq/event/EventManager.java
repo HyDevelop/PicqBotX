@@ -3,6 +3,7 @@ package cc.moecraft.icq.event;
 import cc.moecraft.icq.PicqBotX;
 import cc.moecraft.icq.event.events.message.EventDiscussMessage;
 import cc.moecraft.icq.event.events.message.EventGroupMessage;
+import cc.moecraft.icq.event.events.message.EventMessage;
 import cc.moecraft.icq.event.events.message.EventPrivateMessage;
 import cc.moecraft.icq.event.events.notice.EventNoticeFriendAdd;
 import cc.moecraft.icq.event.events.notice.EventNoticeGroupUpload;
@@ -16,6 +17,7 @@ import cc.moecraft.icq.event.events.notice.groupmember.increase.EventNoticeGroup
 import cc.moecraft.icq.event.events.request.EventFriendRequest;
 import cc.moecraft.icq.event.events.request.EventGroupAddRequest;
 import cc.moecraft.icq.event.events.request.EventGroupInviteRequest;
+import cc.moecraft.icq.utils.CQUtils;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -97,6 +99,9 @@ public class EventManager
     public void call(Event event)
     {
         event.setBot(bot);
+
+        if (event instanceof EventMessage)
+            ((EventMessage) event).message = CQUtils.decodeMessage(((EventMessage) event).getMessage());
 
         String mapKey = event.getClass().getName();
 
