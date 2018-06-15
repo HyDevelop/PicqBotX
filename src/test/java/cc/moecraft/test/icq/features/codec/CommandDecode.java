@@ -9,6 +9,7 @@ import cc.moecraft.icq.utils.StringCodecUtils;
 
 import java.util.ArrayList;
 
+import static cc.moecraft.icq.utils.StringCodecUtils.*;
 import static cc.moecraft.test.icq.features.codec.CommandEncode.MESSAGE_POSSIBLE_TYPES;
 
 /**
@@ -26,12 +27,18 @@ public class CommandDecode implements EverywhereCommand
     {
         if (args.size() < 2) return "bot -decode [类型] [加密的字符串] || 类型可能为: " + MESSAGE_POSSIBLE_TYPES;
 
-        switch (args.get(0))
+        String text;
+        String encoded = ArrayUtils.getTheRestArgsAsString(args, 1);
+
+        switch (args.get(0).toLowerCase())
         {
-            case "hex": return sender.getInfo().getNickname() + " >> " + StringCodecUtils.fromHex(ArrayUtils.getTheRestArgsAsString(args, 1));
-            case "b32": return sender.getInfo().getNickname() + " >> " + StringCodecUtils.fromBase32(ArrayUtils.getTheRestArgsAsString(args, 1));
+            case "hex": text = fromHex(encoded); break;
+            case "b32": case "base32": text = fromBase32(encoded); break;
+            case "ascii": text = fromAscii(encoded); break;
             default: return "不支持的类型, 类型可能为: " + MESSAGE_POSSIBLE_TYPES;
         }
+
+        return sender.getInfo().getNickname() + " >> " + text;
     }
 
     @Override
