@@ -61,11 +61,21 @@ public class StringCodecUtils
         return new String(bytes);
     }
 
+    /**
+     * 字符串转换成Base32
+     * @param original 源字符串
+     * @return Base32字符串
+     */
     public static String toBase32(String original)
     {
         return new Base32().encodeAsString(original.getBytes());
     }
 
+    /**
+     * Base32转换回字符串
+     * @param base32 Base32字符串
+     * @return 还原字符串
+     */
     public static String fromBase32(String base32)
     {
         return new String(new Base32().decode(base32));
