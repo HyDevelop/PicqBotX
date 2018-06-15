@@ -1,6 +1,5 @@
 package cc.moecraft.test.general;
-
-import cc.moecraft.icq.utils.StringCodecUtils;
+import cc.moecraft.utils.StringCodecUtils;
 import org.junit.jupiter.api.Test;
 
 /**

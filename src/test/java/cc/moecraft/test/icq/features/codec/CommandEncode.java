@@ -4,11 +4,11 @@ import cc.moecraft.icq.command.CommandProperties;
 import cc.moecraft.icq.command.interfaces.EverywhereCommand;
 import cc.moecraft.icq.event.events.message.EventMessage;
 import cc.moecraft.icq.user.User;
-import cc.moecraft.icq.utils.ArrayUtils;
+import cc.moecraft.utils.ArrayUtils;
 
 import java.util.ArrayList;
 
-import static cc.moecraft.icq.utils.StringCodecUtils.*;
+import static cc.moecraft.utils.StringCodecUtils.*;
 
 /**
  * 此类由 Hykilpikonna 在 2018/06/13 创建!
