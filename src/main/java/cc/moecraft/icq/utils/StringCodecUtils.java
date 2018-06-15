@@ -80,4 +80,37 @@ public class StringCodecUtils
     {
         return new String(new Base32().decode(base32));
     }
+
+    /**
+     * 字符串转换成ASCII串
+     * @param original 源字符串
+     * @return ASCII串
+     */
+    public static String toAscii(String original)
+    {
+        StringBuilder stringBuilder = new StringBuilder();
+        char[] chars = original.toCharArray();
+        for (int i = 0; i < chars.length - 1; i++)
+        {
+            stringBuilder.append((int) chars[i]).append(" ");
+        }
+        stringBuilder.append((int) chars[chars.length - 1]);
+        return stringBuilder.toString();
+    }
+
+    /**
+     * ASCII串转字符串
+     * @param ascii ASCII串 (空格分割)
+     * @return 还原字符串
+     */
+    public static String fromAscii(String ascii)
+    {
+        StringBuilder stringBuilder = new StringBuilder();
+        String[] chars = ascii.split(" ");
+        for (String aChar : chars)
+        {
+            stringBuilder.append((char) Integer.parseInt(aChar));
+        }
+        return stringBuilder.toString();
+    }
 }
