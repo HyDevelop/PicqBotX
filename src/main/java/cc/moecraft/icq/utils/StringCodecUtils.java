@@ -18,13 +18,13 @@ public class StringCodecUtils
 
     /**
      * 字符串转换成十六进制字符串
-     * @param str 待转换的ASCII字符串
-     * @return String 每个Byte之间空格分隔，如: [61 6C 6B]
+     * @param original 源字符串
+     * @return HEX字符串
      */
-    public static String toHex(String str)
+    public static String toHex(String original)
     {
         StringBuilder sb = new StringBuilder("");
-        byte[] bs = str.getBytes();
+        byte[] bs = original.getBytes();
         int bit;
 
         for (int i = 0; i < bs.length; i++)
@@ -40,8 +40,8 @@ public class StringCodecUtils
 
     /**
      * 十六进制转换字符串
-     * @param hexStr Byte字符串(Byte之间无分隔符 如:[616C6B])
-     * @return String 对应的字符串
+     * @param hexStr HEX字符串
+     * @return 还原字符串
      */
     public static String fromHex(String hexStr)
     {
