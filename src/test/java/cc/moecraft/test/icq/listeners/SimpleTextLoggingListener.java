@@ -1,8 +1,11 @@
 package cc.moecraft.test.icq.listeners;
 
+import cc.moecraft.icq.PicqBotX;
 import cc.moecraft.icq.event.EventHandler;
 import cc.moecraft.icq.event.IcqListener;
+import cc.moecraft.icq.event.events.local.EventLocalSendGroupMessage;
 import cc.moecraft.icq.event.events.local.EventLocalSendMessage;
+import cc.moecraft.icq.event.events.local.EventLocalSendPrivateMessage;
 import cc.moecraft.icq.event.events.message.EventDiscussMessage;
 import cc.moecraft.icq.event.events.message.EventGroupMessage;
 import cc.moecraft.icq.event.events.message.EventMessage;
@@ -30,12 +33,12 @@ public class SimpleTextLoggingListener extends IcqListener
 {
     private static final int nicknameLength = 16;
 
-    public static String getGroupName(EventGroupMessage event)
+    public static String getGroupName(PicqBotX bot, long groupId)
     {
-        ReturnListData<RGroup> returnListData = event.getBot().getHttpApi().getGroupList();
+        ReturnListData<RGroup> returnListData = bot.getHttpApi().getGroupList();
         for (RGroup group : returnListData.getData())
         {
-            if (group.getGroupId().equals(event.getGroupId())) return group.getGroupName();
+            if (group.getGroupId().equals(groupId)) return group.getGroupName();
         }
         return "未知群聊";
     }
@@ -105,7 +108,7 @@ public class SimpleTextLoggingListener extends IcqListener
     {
         if (StringUtils.countMatches(event.getMessage(), "\n") > 10) return;
         event.getBot().getLogger().log(String.format("%s[%sGM%s] [%s%s%s]%s %s%s >> %s%s", WHITE, RED, WHITE, RED,
-                getFixedLengthNickname(getGroupName(event), true, true), WHITE, CYAN.getBright(),
+                getFixedLengthNickname(getGroupName(event.getBot(), event.getGroupId()), true, true), WHITE, CYAN.getBright(),
                 getFixedLengthNickname(getNickname(event), true, false), RED, RESET,
                 event.getMessage()));
     }
@@ -121,12 +124,22 @@ public class SimpleTextLoggingListener extends IcqListener
     }
 
     @EventHandler
-    public void onSendEvent(EventLocalSendMessage event)
+    public void onSendPMEvent(EventLocalSendPrivateMessage event)
     {
         if (StringUtils.countMatches(event.getMessage(), "\n") > 10) return;
         event.getBot().getLogger().log(String.format("%s[%sSO%s] [%s%s%s]%s %s%s >> %s%s", WHITE, GREEN, WHITE, GREEN,
                 getFixedLengthNickname("这个机器人 ", true, true), WHITE, CYAN.getBright(),
                 getFixedLengthNickname(getNickname(event), true, false), RED, RESET,
+                event.getMessage()));
+    }
+
+    @EventHandler
+    public void onSendEvent(EventLocalSendGroupMessage event)
+    {
+        if (StringUtils.countMatches(event.getMessage(), "\n") > 10) return;
+        event.getBot().getLogger().log(String.format("%s[%sSO%s] [%s%s%s]%s %s%s >> %s%s", WHITE, GREEN, WHITE, GREEN,
+                getFixedLengthNickname("这个机器人 ", true, true), WHITE, CYAN.getBright(),
+                getFixedLengthNickname(getGroupName(event.getBot(), event.getId()), true, false), RED, RESET,
                 event.getMessage()));
     }
 }
