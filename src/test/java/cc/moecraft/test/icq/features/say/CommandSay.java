@@ -1,4 +1,4 @@
-package cc.moecraft.test.icq.commands;
+package cc.moecraft.test.icq.features.say;
 
 import cc.moecraft.icq.command.CommandProperties;
 import cc.moecraft.icq.command.interfaces.EverywhereCommand;
@@ -16,20 +16,19 @@ import java.util.ArrayList;
  *
  * @author Hykilpikonna
  */
-public class CommandSayRaw implements EverywhereCommand
+public class CommandSay implements EverywhereCommand
 {
     @Override
     public String run(EventMessage event, User sender, String command, ArrayList<String> args)
     {
         if (args.size() < 1) return "你要说什么?";
 
-        event.respond(sender.getInfo().getNickname() + " >> " + ArrayUtils.getTheRestArgsAsString(args, 0), true);
-        return null;
+        return sender.getInfo().getNickname() + " >> " + ArrayUtils.getTheRestArgsAsString(args, 0);
     }
 
     @Override
     public CommandProperties properties()
     {
-        return new CommandProperties("sayraw", "echoraw", "meraw");
+        return new CommandProperties("say", "echo", "me", "说", "重复");
     }
 }
