@@ -25,7 +25,7 @@ public class CommandCls implements EverywhereCommand
         if (clsMessage == null)
         {
             clsMessage = "";
-            for (int i = 0; i < 5000; i++) clsMessage += "\n";
+            for (int i = 0; i < 2000; i++) clsMessage += "\n";
             clsMessage += "已清屏!";
         }
 
