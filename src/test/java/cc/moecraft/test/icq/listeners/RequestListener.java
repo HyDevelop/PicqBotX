@@ -46,7 +46,9 @@ public class RequestListener extends IcqListener
     @EventHandler
     public void onGroupAdd(EventGroupAddRequest event)
     {
-        String answer = event.getComment().replace("问题：填任意一个HyDEV的项目\n答案：", "");
+        event.accept(); // 接受所有
+
+        /*String answer = event.getComment().replace("问题：填任意一个HyDEV的项目\n答案：", "");
         if (acceptedGroupRequestMessage.contains(answer.toLowerCase()))
         {
             event.accept();
@@ -54,6 +56,6 @@ public class RequestListener extends IcqListener
         else
         {
             event.reject("\"" + answer + "\"不是HyDEV的项目哦! 再试试吧!"); // TODO: 把这些输错的人记录下来
-        }
+        }*/
     }
 }
