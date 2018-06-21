@@ -114,23 +114,26 @@ public class CommandManager
                     eventIsGroup ? groupManager.getGroupFromID(((EventGroupMessage) event).getGroupId()) :
                     eventIsDiscuss ? groupManager.getGroupFromID(((EventDiscussMessage) event).getDiscussId()) : null;
 
-            IcqCommand commandRunner = commandArgs.getCommandRunner();
+            ArrayList<IcqCommand> commandRunners = commandArgs.getCommandRunners();
 
-            boolean runnerIsGroup = commandRunner instanceof GroupCommand;
-            boolean runnerIsDiscuss = commandRunner instanceof DiscussCommand;
-            boolean runnerIsPrivate = commandRunner instanceof PrivateCommand;
+            commandRunners.forEach(commandRunner ->
+            {
+                boolean runnerIsGroup = commandRunner instanceof GroupCommand;
+                boolean runnerIsDiscuss = commandRunner instanceof DiscussCommand;
+                boolean runnerIsPrivate = commandRunner instanceof PrivateCommand;
 
-            if (eventIsGroup && runnerIsGroup)
-                event.respond(((GroupCommand) commandRunner).groupMessage((EventGroupMessage) event, groupUserManager.getUserFromID(user.id, group), group, commandArgs.getCommandName(), commandArgs.getArgs()));
+                if (eventIsGroup && runnerIsGroup)
+                    event.respond(((GroupCommand) commandRunner).groupMessage((EventGroupMessage) event, groupUserManager.getUserFromID(user.id, group), group, commandArgs.getCommandName(), commandArgs.getArgs()));
 
-            if (eventIsDiscuss && runnerIsDiscuss)
-                event.respond(((DiscussCommand) commandRunner).discussMessage((EventDiscussMessage) event, groupUserManager.getUserFromID(user.id, group), group, commandArgs.getCommandName(), commandArgs.getArgs()));
+                if (eventIsDiscuss && runnerIsDiscuss)
+                    event.respond(((DiscussCommand) commandRunner).discussMessage((EventDiscussMessage) event, groupUserManager.getUserFromID(user.id, group), group, commandArgs.getCommandName(), commandArgs.getArgs()));
 
-            if (eventIsPrivate && runnerIsPrivate)
-                event.respond(((PrivateCommand) commandRunner).privateMessage((EventPrivateMessage) event, user, commandArgs.getCommandName(), commandArgs.getArgs()));
+                if (eventIsPrivate && runnerIsPrivate)
+                    event.respond(((PrivateCommand) commandRunner).privateMessage((EventPrivateMessage) event, user, commandArgs.getCommandName(), commandArgs.getArgs()));
 
-            if (commandRunner instanceof EverywhereCommand)
-                event.respond(((EverywhereCommand) commandRunner).run(event, user, commandArgs.getCommandName(), commandArgs.getArgs()));
+                if (commandRunner instanceof EverywhereCommand)
+                    event.respond(((EverywhereCommand) commandRunner).run(event, user, commandArgs.getCommandName(), commandArgs.getArgs()));
+            });
 
             return RunResult.SUCCESS;
         }
