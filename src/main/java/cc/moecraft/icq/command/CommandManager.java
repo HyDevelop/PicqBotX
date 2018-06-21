@@ -15,10 +15,7 @@ import lombok.Setter;
 import org.reflections.Reflections;
 
 import java.lang.reflect.Modifier;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * 此类由 Hykilpikonna 在 2018/05/26 创建!
