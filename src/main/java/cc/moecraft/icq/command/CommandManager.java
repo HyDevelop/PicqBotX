@@ -174,9 +174,9 @@ public class CommandManager
     {
         ArrayList<String> result = new ArrayList<>();
 
-        registeredCommands.forEach((k, v) ->
+        getCommandList().forEach(command ->
         {
-            if (!result.contains(v.properties().getName())) result.add(v.properties().getName());
+            if (!result.contains(command.properties().getName())) result.add(command.properties().getName());
         });
 
         return result;
