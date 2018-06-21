@@ -25,7 +25,6 @@ import java.util.*;
  *
  * @author Hykilpikonna
  */
-@RequiredArgsConstructor
 public class CommandManager
 {
     @Getter
@@ -40,6 +39,20 @@ public class CommandManager
 
     @Getter
     private final String[] prefixes;
+
+    public CommandManager(GroupManager groupManager, UserManager userManager, GroupUserManager groupUserManager, ConflictOperation conflictOperation, String ... prefixes)
+    {
+        this.groupUserManager = groupUserManager;
+        this.groupManager = groupManager;
+        this.userManager = userManager;
+        this.conflictOperation = conflictOperation;
+        this.prefixes = prefixes;
+    }
+
+    public CommandManager(GroupManager groupManager, UserManager userManager, GroupUserManager groupUserManager, String ... prefixes)
+    {
+        this (groupManager, userManager, groupUserManager, ConflictOperation.ENABLE_ALL, prefixes);
+    }
 
     /**
      * 自动循环commands下的所有包找指令类
