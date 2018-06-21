@@ -31,6 +31,9 @@ public class CommandManager
     @Getter
     private Map<String, IcqCommand> registeredCommands = new HashMap<>();    // 已注册的指令, String 是指令名, IcqCommand 是指令对象
 
+    @Setter @Getter
+    private ConflictOperation conflictOperation;
+
     private final GroupManager groupManager;
     private final UserManager userManager;
     private final GroupUserManager groupUserManager;
