@@ -111,9 +111,19 @@ public class PicqBotX
      */
     public void enableCommandManager(String ... prefixes) throws InstantiationException, IllegalAccessException
     {
+        enableCommandManager(true, prefixes);
+    }
+
+    /**
+     * 启用指令系统
+     * @param registerAllCommands 是否自动注册所有指令
+     * @param prefixes 前缀
+     */
+    public void enableCommandManager(boolean registerAllCommands, String ... prefixes) throws InstantiationException, IllegalAccessException
+    {
         long startTime = System.currentTimeMillis();
         commandManager = new CommandManager(groupManager, userManager, groupUserManager, prefixes);
-        commandManager.registerAllCommands();
+        if (registerAllCommands) commandManager.registerAllCommands();
         eventManager.registerListener(new CommandListener(commandManager));
         logger.log(AnsiColor.YELLOW + "指令管理器     " + AnsiColor.GREEN + "初始化完成" + AnsiColor.YELLOW + " [" + AnsiColor.GREEN + "******" + AnsiColor.RED + "" + AnsiColor.YELLOW + "] ...(" + (System.currentTimeMillis() - startTime) + "ms)");
     }
