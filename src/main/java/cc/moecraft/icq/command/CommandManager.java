@@ -29,7 +29,7 @@ import java.util.*;
 public class CommandManager
 {
     @Getter
-    private Map<String, IcqCommand> registeredCommands = new HashMap<>();    // 已注册的指令, String 是指令名, IcqCommand 是指令对象
+    private Map<String, ArrayList<IcqCommand>> registeredCommands = new HashMap<>();    // 已注册的指令, String 是指令名, IcqCommand 是指令对象
 
     @Setter @Getter
     private ConflictOperation conflictOperation;
