@@ -8,9 +8,7 @@ import cc.moecraft.icq.event.events.message.EventGroupMessage;
 import cc.moecraft.icq.event.events.message.EventMessage;
 import cc.moecraft.icq.event.events.message.EventPrivateMessage;
 import cc.moecraft.icq.user.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.reflections.Reflections;
 
@@ -78,16 +76,42 @@ public class CommandManager
      */
     public boolean registerCommand(IcqCommand command)
     {
-        if (registeredCommands.containsKey(command.properties().getName()))
+        return registerCommandWithPrefix(command, "");
+    }
+
+    /**
+     * 注册指令
+     * @param command 指令
+     * @return 是否注册成功
+     */
+    public boolean registerCommandWithPrefix(IcqCommand command, String prefix)
+    {
+        if (conflictOperation == ConflictOperation.ENABLE_ALL)
         {
-            return false;
+            String baseKey = prefix + command.properties().getName().toLowerCase();
+
+            if (!registeredCommands.containsKey(baseKey)) registeredCommands.put(baseKey, new ArrayList<>());
+            registeredCommands.get(baseKey).add(command);
+
+            command.properties().getAlias().forEach(alias ->
+            {
+                String key = prefix + alias.toLowerCase();
+
+                if (!registeredCommands.containsKey(key)) registeredCommands.put(key, new ArrayList<>());
+                registeredCommands.get(key).add(command);
+            });
         }
         else
         {
-            registeredCommands.put(command.properties().getName().toLowerCase(), command);
-            command.properties().getAlias().forEach(alias -> registeredCommands.put(alias.toLowerCase(), command));
-            return true;
+            registeredCommands.put(prefix + command.properties().getName().toLowerCase(), new ArrayList<>(Collections.singletonList(command)));
+            command.properties().getAlias().forEach(alias -> registeredCommands.put(prefix + alias.toLowerCase(), new ArrayList<>(Collections.singletonList(command))));
         }
+        return true;
+    }
+
+    public boolean registerCommandWithAndWithoutPrefix(IcqCommand command, String prefix)
+    {
+        return registerCommandWithPrefix(command, prefix) && registerCommand(command);
     }
 
     /**
