@@ -22,7 +22,7 @@ public class CommandArgs
 {
     private String prefix;
     private String commandName;
-    private IcqCommand commandRunner;
+    private ArrayList<IcqCommand> commandRunners;
     private ArrayList<String> args;
 
     /**
@@ -48,7 +48,7 @@ public class CommandArgs
 
         if (!commandManager.getRegisteredCommands().containsKey(command)) throw new CommandNotFoundException(); // 无法找到指令
 
-        IcqCommand commandToRun = commandManager.getRegisteredCommands().get(command);
+        ArrayList<IcqCommand> commandToRun = commandManager.getRegisteredCommands().get(command);
 
         return new CommandArgs(prefix, command, commandToRun, args);
     }
