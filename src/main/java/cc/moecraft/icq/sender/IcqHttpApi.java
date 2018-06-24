@@ -57,6 +57,7 @@ public class IcqHttpApi
     public static final String SET_RESTART = "set_restart";
     public static final String SET_RESTART_PLUGIN = "set_restart_plugin";
     public static final String CLEAN_DATA_DIR = "clean_data_dir";
+    public static final String CLEAN_PLUGIN_LOG = "clean_plugin_log";
 
     // 应用内获取区
     public static final String GET_LOGIN_INFO = "get_login_info";
@@ -553,10 +554,18 @@ public class IcqHttpApi
     }
 
     /**
-     * 获取插件运行状态
+     * 清空数据文件夹
      */
     public RawReturnData cleanDataDir()
     {
         return sendReturnRaw(CLEAN_DATA_DIR);
+    }
+
+    /**
+     * 清空插件日志
+     */
+    public RawReturnData cleanPluginLog()
+    {
+        return sendReturnRaw(CLEAN_PLUGIN_LOG);
     }
 }
