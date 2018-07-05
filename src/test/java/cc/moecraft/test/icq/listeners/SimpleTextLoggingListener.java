@@ -17,7 +17,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.apache.commons.lang3.StringUtils;
 
-import static cc.moecraft.logger.AnsiColor.*;
+import static cc.moecraft.logger.format.AnsiColor.*;
 
 /**
  * 此类由 Hykilpikonna 在 2018/05/25 创建!

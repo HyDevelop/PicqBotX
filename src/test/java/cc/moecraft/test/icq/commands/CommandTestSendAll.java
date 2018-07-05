@@ -5,7 +5,7 @@ import cc.moecraft.icq.command.interfaces.EverywhereCommand;
 import cc.moecraft.icq.event.events.message.EventMessage;
 import cc.moecraft.icq.sender.returndata.returnpojo.send.RMessageReturnData;
 import cc.moecraft.icq.user.User;
-import cc.moecraft.logger.DebugLogger;
+import cc.moecraft.logger.HyLogger;
 
 import java.util.ArrayList;
 import java.util.logging.Logger;
@@ -23,7 +23,7 @@ public class CommandTestSendAll implements EverywhereCommand
     @Override
     public String run(EventMessage event, User sender, String command, ArrayList<String> args)
     {
-        DebugLogger logger = event.getBot().getLogger();
+        HyLogger logger = event.getBot().getLogger();
 
         {
             logger.log("测试撤回...");

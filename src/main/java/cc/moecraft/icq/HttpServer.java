@@ -3,8 +3,8 @@ package cc.moecraft.icq;
 import cc.moecraft.icq.event.events.local.EventLocalHttpReceiveEvent;
 import cc.moecraft.icq.event.events.local.EventLocalHttpFailEvent;
 import cc.moecraft.icq.exceptions.HttpServerStartFailedException;
-import cc.moecraft.logger.AnsiColor;
-import cc.moecraft.logger.DebugLogger;
+import cc.moecraft.logger.format.AnsiColor;
+import cc.moecraft.logger.HyLogger;
 import lombok.Data;
 
 import java.io.DataInputStream;
@@ -27,7 +27,7 @@ import java.util.ArrayList;
 public class HttpServer
 {
     private final int port;
-    private final DebugLogger logger;
+    private final HyLogger logger;
     private final PicqBotX bot;
 
     public HttpServer(int port, PicqBotX bot)
