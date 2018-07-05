@@ -94,6 +94,7 @@ public class PicqBotX
         logger.log(YELLOW + "HTTP发送器     " + GREEN + "初始化完成" + YELLOW + " [" + GREEN + "****" + RED + "**" + YELLOW + "] ...(" + (System.currentTimeMillis() - startTime) + "ms)"); startTime = System.currentTimeMillis();
 
         httpServer = new HttpServer(socketPort, this);
+        logger.log(YELLOW + "HTTP监听服务器 " + GREEN + "初始化完成" + YELLOW + " [" + GREEN + "*****" + RED + "*" + YELLOW + "] ...(" + (System.currentTimeMillis() - startTime) + "ms)");
     }
 
     /**
@@ -105,8 +106,16 @@ public class PicqBotX
     {
         try
         {
-            verifyHttpPluginVersion();
-            logger.log(AnsiColor.GREEN + "检测版本正确, 正在启动...");
+            try
+            {
+                verifyHttpPluginVersion();
+            }
+            catch (VersionRecommendException e)
+            {
+                logger.error("版本正确, 不过用酷Q Pro的话效果更好哦!");
+            }
+
+            logger.log(GREEN + "检测版本正确, 正在启动...");
             httpServer.start();
         }
         catch (VersionIncorrectException e)
@@ -115,10 +124,6 @@ public class PicqBotX
                     "\n- 当前版本: " + e.getCurrentVersion() +
                     "\n- 需要的版本: " + e.getRequiredVersion());
             throw e;
-        }
-        catch (VersionRecommendException e)
-        {
-            logger.error("版本正确, 不过用酷Q Pro的话效果更好哦!");
         }
     }
 
