@@ -58,9 +58,9 @@
 
         <!-- Logger库 -->
         <dependency>
-            <groupId>com.github.hykilpikonna</groupId>
-            <artifactId>hylogger</artifactId>
-            <version>v1.5.1</version>
+            <groupId>com.github.HyDevelop</groupId>
+            <artifactId>HyLogger</artifactId>
+            <version>2.5.20</version>
         </dependency>
 
         <!-- 工具库 -->
