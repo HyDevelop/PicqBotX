@@ -1,6 +1,6 @@
 package cc.moecraft.icq.exceptions;
 
-import cc.moecraft.logger.DebugLogger;
+import cc.moecraft.logger.HyLogger;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -17,7 +17,7 @@ import lombok.EqualsAndHashCode;
 @Data @AllArgsConstructor
 public class HttpServerStartFailedException extends Exception
 {
-    private DebugLogger logger;
+    private HyLogger logger;
     private Exception subException;
 
     @Override
