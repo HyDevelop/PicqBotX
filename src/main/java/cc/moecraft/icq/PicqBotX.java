@@ -11,11 +11,17 @@ import cc.moecraft.icq.sender.returndata.returnpojo.get.RVersionInfo;
 import cc.moecraft.icq.user.GroupManager;
 import cc.moecraft.icq.user.GroupUserManager;
 import cc.moecraft.icq.user.UserManager;
-import cc.moecraft.logger.AnsiColor;
-import cc.moecraft.logger.DebugLogger;
+import cc.moecraft.logger.HyLogger;
+import cc.moecraft.logger.LoggerInstanceManager;
+import cc.moecraft.logger.environments.ConsoleColoredEnv;
+import cc.moecraft.logger.environments.FileEnv;
+import cc.moecraft.logger.format.AnsiColor;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.extern.slf4j.Slf4j;
+
+import java.io.IOException;
+
+import static cc.moecraft.logger.format.AnsiColor.*;
 
 /**
  * 此类由 Hykilpikonna 在 2018/05/24 创建!
@@ -58,25 +64,36 @@ public class PicqBotX
     private String httpApiVersionDetection = "CQHttp/4.1.*"; // 兼容版本检测
 
     @Getter
-    private DebugLogger logger = new DebugLogger("PicqBotX", true, "logs", "PicqBotX-Log"); // Logger
+    private LoggerInstanceManager loggerInstanceManager; // Logger实例管理器
+
+    @Getter
+    private HyLogger logger; // Logger
 
     public PicqBotX(String postUrl, int postPort, int socketPort, boolean debug)
     {
         long startTime = System.currentTimeMillis();
 
+        this.debug = debug;
+
+        loggerInstanceManager = new LoggerInstanceManager(new ConsoleColoredEnv(), new FileEnv("logs", "PicqBotX-Log"));
+        logger = loggerInstanceManager.getLoggerInstance("PicqBotX", debug);
+        logger.log(YELLOW + "日志管理器     " + GREEN + "初始化完成" + YELLOW + " [" + GREEN + "" + RED + "******" + YELLOW + "] ...(" + (System.currentTimeMillis() - startTime) + "ms)"); startTime = System.currentTimeMillis();
+
         userManager = new UserManager(this);
         groupUserManager = new GroupUserManager(this);
-        logger.log(AnsiColor.YELLOW + "用户缓存管理器 " + AnsiColor.GREEN + "初始化完成" + AnsiColor.YELLOW + " [" + AnsiColor.GREEN + "" + AnsiColor.RED + "******" + AnsiColor.YELLOW + "] ...(" + (System.currentTimeMillis() - startTime) + "ms)"); startTime = System.currentTimeMillis();
         groupManager = new GroupManager(this);
-        logger.log(AnsiColor.YELLOW + "群缓存管理器   " + AnsiColor.GREEN + "初始化完成" + AnsiColor.YELLOW + " [" + AnsiColor.GREEN + "*" + AnsiColor.RED + "*****" + AnsiColor.YELLOW + "] ...(" + (System.currentTimeMillis() - startTime) + "ms)"); startTime = System.currentTimeMillis();
-        setDebug(debug);
-        logger.log(AnsiColor.YELLOW + "DEBUG设置      " + AnsiColor.GREEN + "初始化完成" + AnsiColor.YELLOW + " [" + AnsiColor.GREEN + "**" + AnsiColor.RED + "****" + AnsiColor.YELLOW + "] ...(" + (System.currentTimeMillis() - startTime) + "ms)"); startTime = System.currentTimeMillis();
+        logger.log(YELLOW + "缓存管理器     " + GREEN + "初始化完成" + YELLOW + " [" + GREEN + "*" + RED + "*****" + YELLOW + "] ...(" + (System.currentTimeMillis() - startTime) + "ms)"); startTime = System.currentTimeMillis();
+
+        // setDebug(debug);
+        logger.log(YELLOW + "DEBUG设置      " + GREEN + "初始化完成" + YELLOW + " [" + GREEN + "**" + RED + "****" + YELLOW + "] ...(" + (System.currentTimeMillis() - startTime) + "ms)"); startTime = System.currentTimeMillis();
+
         eventManager = new EventManager(this);
-        logger.log(AnsiColor.YELLOW + "事件管理器     " + AnsiColor.GREEN + "初始化完成" + AnsiColor.YELLOW + " [" + AnsiColor.GREEN + "***" + AnsiColor.RED + "***" + AnsiColor.YELLOW + "] ...(" + (System.currentTimeMillis() - startTime) + "ms)"); startTime = System.currentTimeMillis();
+        logger.log(YELLOW + "事件管理器     " + GREEN + "初始化完成" + YELLOW + " [" + GREEN + "***" + RED + "***" + YELLOW + "] ...(" + (System.currentTimeMillis() - startTime) + "ms)"); startTime = System.currentTimeMillis();
+
         httpApi = new IcqHttpApi(eventManager, postUrl, postPort);
-        logger.log(AnsiColor.YELLOW + "HTTP发送器     " + AnsiColor.GREEN + "初始化完成" + AnsiColor.YELLOW + " [" + AnsiColor.GREEN + "****" + AnsiColor.RED + "**" + AnsiColor.YELLOW + "] ...(" + (System.currentTimeMillis() - startTime) + "ms)"); startTime = System.currentTimeMillis();
+        logger.log(YELLOW + "HTTP发送器     " + GREEN + "初始化完成" + YELLOW + " [" + GREEN + "****" + RED + "**" + YELLOW + "] ...(" + (System.currentTimeMillis() - startTime) + "ms)"); startTime = System.currentTimeMillis();
+
         httpServer = new HttpServer(socketPort, this);
-        logger.log(AnsiColor.YELLOW + "HTTP监听服务器 " + AnsiColor.GREEN + "初始化完成" + AnsiColor.YELLOW + " [" + AnsiColor.GREEN + "*****" + AnsiColor.RED + "*" + AnsiColor.YELLOW + "] ...(" + (System.currentTimeMillis() - startTime) + "ms)");
     }
 
     /**
@@ -125,17 +142,7 @@ public class PicqBotX
         commandManager = new CommandManager(groupManager, userManager, groupUserManager, prefixes);
         if (registerAllCommands) commandManager.registerAllCommands();
         eventManager.registerListener(new CommandListener(commandManager));
-        logger.log(AnsiColor.YELLOW + "指令管理器     " + AnsiColor.GREEN + "初始化完成" + AnsiColor.YELLOW + " [" + AnsiColor.GREEN + "******" + AnsiColor.RED + "" + AnsiColor.YELLOW + "] ...(" + (System.currentTimeMillis() - startTime) + "ms)");
-    }
-
-    /**
-     * 设置是否debug
-     * @param debug 是否debug
-     */
-    public void setDebug(boolean debug)
-    {
-        this.debug = debug;
-        logger.setDebug(debug);
+        logger.log(YELLOW + "指令管理器     " + GREEN + "初始化完成" + YELLOW + " [" + GREEN + "******" + RED + "" + YELLOW + "] ...(" + (System.currentTimeMillis() - startTime) + "ms)");
     }
 
     /**
