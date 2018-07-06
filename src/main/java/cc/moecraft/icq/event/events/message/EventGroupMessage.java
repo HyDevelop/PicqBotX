@@ -21,11 +21,7 @@ public class EventGroupMessage extends EventMessage
 {
     @SerializedName("anonymous")
     @Expose
-    public String anonymous;
-
-    @SerializedName("anonymous_flag")
-    @Expose
-    public String anonymousFlag;
+    public Anonymous anonymous;
 
     @SerializedName("group_id")
     @Expose
@@ -34,6 +30,22 @@ public class EventGroupMessage extends EventMessage
     @SerializedName("sub_type")
     @Expose
     public String subType;
+
+    @Data
+    public class Anonymous
+    {
+        @SerializedName("flag")
+        @Expose
+        public String flag;
+
+        @SerializedName("id")
+        @Expose
+        public Long id;
+
+        @SerializedName("name")
+        @Expose
+        public String name;
+    }
 
     @Override
     public ReturnData<RMessageReturnData> respond(String message, boolean raw)
