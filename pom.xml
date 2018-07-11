@@ -60,7 +60,7 @@
         <dependency>
             <groupId>com.github.HyDevelop</groupId>
             <artifactId>HyLogger</artifactId>
-            <version>2.5.20</version>
+            <version>2.5.23</version>
         </dependency>
 
         <!-- 工具库 -->
