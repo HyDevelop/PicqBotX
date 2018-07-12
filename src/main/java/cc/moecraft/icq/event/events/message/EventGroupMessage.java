@@ -91,6 +91,15 @@ public class EventGroupMessage extends EventGroupOrDiscussMessage
     }
 
     /**
+     * 获取发送者是不是匿名状态
+     * @return 是不是匿名
+     */
+    public boolean isSenderAnonymous()
+    {
+        return anonymous != null;
+    }
+
+    /**
      * 获取一个用户为GroupUser对象
      * @param userId 用户的QQ号
      * @return GroupUser对象
