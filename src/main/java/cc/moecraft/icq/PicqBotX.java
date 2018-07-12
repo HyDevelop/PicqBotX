@@ -143,9 +143,10 @@ public class PicqBotX
         }
         catch (VersionIncorrectException e)
         {
-            logger.error("HTTP插件版本不正确, 已停止启动" +
-                    "\n- 当前版本: " + e.getCurrentVersion() +
-                    "\n- 需要的版本: " + e.getRequiredVersion());
+            logger.error("HTTP插件版本不正确, 已停止启动");
+            logger.error("- 当前版本: " + e.getCurrentVersion());
+            logger.error("- 兼容的版本: " + e.getRequiredVersion());
+        }
             throw e;
         }
     }
