@@ -198,8 +198,8 @@ public class PicqBotX
 
         RVersionInfo versionInfo = httpApi.getVersionInfo().getData();
 
-        if (!versionInfo.getPluginVersion().startsWith("4."))
-            throw new VersionIncorrectException("4.*", versionInfo.getPluginVersion());
+            if (!versionInfo.getPluginVersion().matches(httpApiVersionDetection))
+                throw new VersionIncorrectException(httpApiVersionDetection, versionInfo.getPluginVersion());
 
         if (!versionInfo.getCoolqEdition().equalsIgnoreCase("pro"))
             throw new VersionRecommendException();
