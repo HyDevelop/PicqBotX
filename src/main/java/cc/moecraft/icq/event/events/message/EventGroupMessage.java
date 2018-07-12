@@ -90,5 +90,15 @@ public class EventGroupMessage extends EventGroupOrDiscussMessage
         getHttpApi().setGroupKick(groupId, senderId);
     }
 
+    /**
+     * 获取一个用户为GroupUser对象
+     * @param userId 用户的QQ号
+     * @return GroupUser对象
+     */
+    public GroupUser getGroupUser(long userId)
+    {
+        return getBot().getGroupUserManager().getUserFromID(userId, getGroup());
+    }
+
     }
 }
