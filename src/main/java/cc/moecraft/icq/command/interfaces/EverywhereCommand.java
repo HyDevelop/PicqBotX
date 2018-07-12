@@ -1,8 +1,6 @@
 package cc.moecraft.icq.command.interfaces;
 
-import cc.moecraft.icq.event.events.message.EventDiscussMessage;
 import cc.moecraft.icq.event.events.message.EventMessage;
-import cc.moecraft.icq.user.Group;
 import cc.moecraft.icq.user.User;
 
 import java.util.ArrayList;

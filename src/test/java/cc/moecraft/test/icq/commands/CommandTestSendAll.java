@@ -8,7 +8,6 @@ import cc.moecraft.icq.user.User;
 import cc.moecraft.logger.HyLogger;
 
 import java.util.ArrayList;
-import java.util.logging.Logger;
 
 /**
  * 此类由 Hykilpikonna 在 2018/05/26 创建!

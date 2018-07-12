@@ -1,6 +1,5 @@
 package cc.moecraft.icq.sender.message.components;
 
-import cc.moecraft.icq.sender.message.MessageBuilder;
 import cc.moecraft.icq.sender.message.MessageComponent;
 import lombok.AllArgsConstructor;
 

@@ -17,12 +17,9 @@ import cc.moecraft.logger.LoggerInstanceManager;
 import cc.moecraft.logger.environments.ColorSupportLevel;
 import cc.moecraft.logger.environments.ConsoleColoredEnv;
 import cc.moecraft.logger.environments.FileEnv;
-import cc.moecraft.logger.format.AnsiColor;
 import com.xiaoleilu.hutool.http.HttpException;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.io.IOException;
 
 import static cc.moecraft.logger.format.AnsiColor.*;
 

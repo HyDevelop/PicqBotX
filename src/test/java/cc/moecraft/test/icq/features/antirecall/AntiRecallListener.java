@@ -1,7 +1,6 @@
 package cc.moecraft.test.icq.features.antirecall;
 
 import cc.moecraft.icq.command.CommandArgs;
-import cc.moecraft.icq.command.CommandManager;
 import cc.moecraft.icq.command.exceptions.CommandNotFoundException;
 import cc.moecraft.icq.command.exceptions.NotACommandException;
 import cc.moecraft.icq.event.EventHandler;
