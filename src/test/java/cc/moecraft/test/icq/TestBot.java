@@ -2,6 +2,7 @@ package cc.moecraft.test.icq;
 
 import cc.moecraft.icq.PicqBotX;
 import cc.moecraft.icq.exceptions.HttpServerStartFailedException;
+import cc.moecraft.icq.exceptions.InvalidSendingURLException;
 import cc.moecraft.icq.exceptions.VersionIncorrectException;
 import cc.moecraft.test.icq.features.annoy.AnnoyingListener;
 import cc.moecraft.test.icq.features.antirecall.AntiRecallListener;
@@ -39,7 +40,7 @@ public class TestBot
 
             bot.startBot(); // 启动机器人
         }
-        catch (HttpServerStartFailedException | VersionIncorrectException | IllegalAccessException | InstantiationException e)
+        catch (HttpServerStartFailedException | VersionIncorrectException | IllegalAccessException | InstantiationException | InvalidSendingURLException e)
         {
             e.printStackTrace(); // 启动失败, 结束程序
         }
