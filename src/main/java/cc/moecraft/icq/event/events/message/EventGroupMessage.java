@@ -110,5 +110,12 @@ public class EventGroupMessage extends EventGroupOrDiscussMessage
         return getGroupUser(userId).isAdmin();
     }
 
+    /**
+     * 自己是不是管理员
+     * @return 是不是管理员
+     */
+    public boolean isAdmin()
+    {
+        return isAdmin(selfId);
     }
 }
