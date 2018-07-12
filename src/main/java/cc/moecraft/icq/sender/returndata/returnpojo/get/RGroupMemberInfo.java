@@ -3,8 +3,10 @@ package cc.moecraft.icq.sender.returndata.returnpojo.get;
 import cc.moecraft.icq.sender.returndata.returnpojo.ReturnPojoBase;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 /**
  * 获取群成员列表 / 群成员信息
@@ -12,7 +14,7 @@ import lombok.EqualsAndHashCode;
  * @author Hykilpikonna
  */
 @EqualsAndHashCode(callSuper = true)
-@Data
+@Data @AllArgsConstructor @NoArgsConstructor
 public class RGroupMemberInfo extends ReturnPojoBase
 {
     @SerializedName("age")
