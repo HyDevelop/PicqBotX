@@ -3,6 +3,7 @@ package cc.moecraft.icq.event.events.message;
 import cc.moecraft.icq.event.Event;
 import cc.moecraft.icq.sender.returndata.ReturnData;
 import cc.moecraft.icq.sender.returndata.returnpojo.send.RMessageReturnData;
+import cc.moecraft.icq.user.User;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import lombok.Data;
@@ -78,4 +79,10 @@ public abstract class EventMessage extends Event
     {
         return getBot().getHttpApi().sendPrivateMsg(getSenderId(), message, raw);
     }
+
+    /**
+     * 获取消息发送者的用户对象
+     * @return 用户对象
+     */
+    public abstract User getSender();
 }
