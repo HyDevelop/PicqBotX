@@ -146,7 +146,16 @@ public class PicqBotX
             logger.error("HTTP插件版本不正确, 已停止启动");
             logger.error("- 当前版本: " + e.getCurrentVersion());
             logger.error("- 兼容的版本: " + e.getRequiredVersion());
+
+            throw e;
         }
+        catch (InvalidSendingURLException e)
+        {
+            logger.error("HTTP发送地址验证失败, 已停止启动");
+            logger.error("- 请检查酷Q是否已经启动");
+            logger.error("- 请检查酷Q的接收端口是否和Picq的发送端口一样");
+            logger.error("- 请检查你的发送IP是不是写错了");
+            logger.error("- 如果是向外, 请检查这个主机有没有网络连接");
             throw e;
         }
     }
