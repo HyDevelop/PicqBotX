@@ -98,6 +98,22 @@ public class PicqBotX
 
         httpServer = new HttpServer(socketPort, this);
         logger.log(YELLOW + "HTTP监听服务器 " + GREEN + "初始化完成" + YELLOW + " [" + GREEN + "*****" + RED + "*" + YELLOW + "] ...(" + (System.currentTimeMillis() - startTime) + "ms)");
+
+    private void logInit(String name, int greens, int reds)
+    {
+        StringBuilder greenStars = new StringBuilder();
+        StringBuilder redStars = new StringBuilder();
+
+        for (int i = 0; i < greens; i++) greenStars.append("*");
+        for (int i = 0; i < reds; i++) redStars.append("*");
+
+        logger.log(String.format("%s%s%s初始化完成%s [%s%s%s%s%s] ...(%s ms)",
+                YELLOW, name, GREEN,
+                YELLOW,
+                GREEN, greenStars.toString(), RED, redStars.toString(), YELLOW,
+                Math.round(logger.timing.getMilliseconds() * 100d) / 100d));
+
+        logger.timing.reset();
     }
 
     /**
