@@ -2,6 +2,8 @@ package cc.moecraft.icq.event.events.message;
 
 import cc.moecraft.icq.sender.returndata.ReturnData;
 import cc.moecraft.icq.sender.returndata.returnpojo.send.RMessageReturnData;
+import cc.moecraft.icq.user.Group;
+import cc.moecraft.icq.user.User;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import lombok.Data;
@@ -17,7 +19,7 @@ import lombok.EqualsAndHashCode;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class EventDiscussMessage extends EventMessage
+public class EventDiscussMessage extends EventGroupOrDiscussMessage
 {
     @SerializedName("discuss_id")
     @Expose
