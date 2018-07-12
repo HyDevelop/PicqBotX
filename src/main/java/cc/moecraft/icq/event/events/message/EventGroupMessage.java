@@ -62,6 +62,14 @@ public class EventGroupMessage extends EventGroupOrDiscussMessage
      */
     public void ban(long duration)
     {
+        if (anonymous != null)
+        {
+            getHttpApi().setGroupAnonymousBan(anonymous, groupId, duration);
+        }
+        else
+        {
             getHttpApi().setGroupBan(groupId, senderId, duration);
+        }
+    }
     }
 }
