@@ -4,6 +4,7 @@ import cc.moecraft.icq.event.EventManager;
 import cc.moecraft.icq.event.events.local.EventLocalSendDiscussMessage;
 import cc.moecraft.icq.event.events.local.EventLocalSendGroupMessage;
 import cc.moecraft.icq.event.events.local.EventLocalSendPrivateMessage;
+import cc.moecraft.icq.event.events.message.EventGroupMessage;
 import cc.moecraft.icq.sender.returndata.RawReturnData;
 import cc.moecraft.icq.sender.returndata.ReturnData;
 import cc.moecraft.icq.sender.returndata.ReturnListData;
@@ -301,6 +302,15 @@ public class IcqHttpApi
     public RawReturnData setGroupAnonymousBan(String flag, long groupId, long duration)
     {
         return sendReturnRaw(SET_GROUP_ANONYMOUS_BAN, "flag", flag, "group_id", groupId, "duration", duration);
+    }
+
+    /**
+     * 群组匿名用户禁言
+     * @param anonymous 要禁言的匿名用户的 Anonymous对象（需从群消息上报的数据中获得）
+     */
+    public RawReturnData setGroupAnonymousBan(EventGroupMessage.Anonymous anonymous, long groupId, long duration)
+    {
+        return sendReturnRaw(SET_GROUP_ANONYMOUS_BAN, "anonymous", anonymous, "group_id", groupId, "duration", duration);
     }
 
     /**
