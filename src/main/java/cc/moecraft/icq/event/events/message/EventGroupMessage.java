@@ -84,5 +84,11 @@ public class EventGroupMessage extends EventGroupOrDiscussMessage
         return getBot().getGroupManager().getGroupFromID(groupId);
     }
 
+    @Override
+    public void kick()
+    {
+        getHttpApi().setGroupKick(groupId, senderId);
+    }
+
     }
 }
