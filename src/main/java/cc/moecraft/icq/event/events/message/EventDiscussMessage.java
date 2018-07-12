@@ -28,7 +28,8 @@ public class EventDiscussMessage extends EventGroupOrDiscussMessage
     @Override
     public ReturnData<RMessageReturnData> respond(String message, boolean raw)
     {
-        return getBot().getHttpApi().sendDiscussMsg(discussId, message, raw);
+        return getHttpApi().sendDiscussMsg(discussId, message, raw);
+    }
 
     @Override
     public Group getGroup()
