@@ -3,7 +3,6 @@ package cc.moecraft.test.icq.commands;
 import cc.moecraft.icq.command.CommandProperties;
 import cc.moecraft.icq.command.interfaces.GroupCommand;
 import cc.moecraft.icq.event.events.message.EventGroupMessage;
-import cc.moecraft.icq.sender.message.components.ComponentAt;
 import cc.moecraft.icq.user.Group;
 import cc.moecraft.icq.user.GroupUser;
 

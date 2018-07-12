@@ -1,16 +1,8 @@
 package cc.moecraft.test.icq.commands;
 
 import cc.moecraft.icq.command.CommandProperties;
-import cc.moecraft.icq.command.interfaces.DiscussCommand;
 import cc.moecraft.icq.command.interfaces.EverywhereCommand;
-import cc.moecraft.icq.command.interfaces.GroupCommand;
-import cc.moecraft.icq.command.interfaces.PrivateCommand;
-import cc.moecraft.icq.event.events.message.EventDiscussMessage;
-import cc.moecraft.icq.event.events.message.EventGroupMessage;
 import cc.moecraft.icq.event.events.message.EventMessage;
-import cc.moecraft.icq.event.events.message.EventPrivateMessage;
-import cc.moecraft.icq.user.Group;
-import cc.moecraft.icq.user.GroupUser;
 import cc.moecraft.icq.user.User;
 
 import java.util.ArrayList;

@@ -6,7 +6,6 @@ import cc.moecraft.icq.event.events.message.EventGroupMessage;
 import cc.moecraft.icq.user.Group;
 import cc.moecraft.icq.user.GroupUser;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**

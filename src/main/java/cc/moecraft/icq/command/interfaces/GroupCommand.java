@@ -3,7 +3,6 @@ package cc.moecraft.icq.command.interfaces;
 import cc.moecraft.icq.event.events.message.EventGroupMessage;
 import cc.moecraft.icq.user.Group;
 import cc.moecraft.icq.user.GroupUser;
-import cc.moecraft.icq.user.User;
 
 import java.util.ArrayList;
 

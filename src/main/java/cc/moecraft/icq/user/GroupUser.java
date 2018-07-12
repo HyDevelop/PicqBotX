@@ -2,7 +2,6 @@ package cc.moecraft.icq.user;
 
 import cc.moecraft.icq.PicqBotX;
 import cc.moecraft.icq.sender.returndata.returnpojo.get.RGroupMemberInfo;
-import cc.moecraft.icq.sender.returndata.returnpojo.get.RStrangerInfo;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
