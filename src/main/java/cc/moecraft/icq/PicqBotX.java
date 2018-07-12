@@ -81,23 +81,25 @@ public class PicqBotX
                 new FileEnv("logs", "PicqBotX-Log"));
         logger = loggerInstanceManager.getLoggerInstance("PicqBotX", debug);
         logger.timing.init();
+        logInit("日志管理器     ", 0, 6);
 
         userManager = new UserManager(this);
         groupUserManager = new GroupUserManager(this);
         groupManager = new GroupManager(this);
-        logger.log(YELLOW + "缓存管理器     " + GREEN + "初始化完成" + YELLOW + " [" + GREEN + "*" + RED + "*****" + YELLOW + "] ...(" + (System.currentTimeMillis() - startTime) + "ms)"); startTime = System.currentTimeMillis();
+        logInit("缓存管理器     ", 1, 5);
 
         // setDebug(debug);
-        logger.log(YELLOW + "DEBUG设置      " + GREEN + "初始化完成" + YELLOW + " [" + GREEN + "**" + RED + "****" + YELLOW + "] ...(" + (System.currentTimeMillis() - startTime) + "ms)"); startTime = System.currentTimeMillis();
+        logInit("DEBUG设置      ", 2, 4);
 
         eventManager = new EventManager(this);
-        logger.log(YELLOW + "事件管理器     " + GREEN + "初始化完成" + YELLOW + " [" + GREEN + "***" + RED + "***" + YELLOW + "] ...(" + (System.currentTimeMillis() - startTime) + "ms)"); startTime = System.currentTimeMillis();
+        logInit("事件管理器     ", 3, 3);
 
         httpApi = new IcqHttpApi(eventManager, postUrl, postPort);
-        logger.log(YELLOW + "HTTP发送器     " + GREEN + "初始化完成" + YELLOW + " [" + GREEN + "****" + RED + "**" + YELLOW + "] ...(" + (System.currentTimeMillis() - startTime) + "ms)"); startTime = System.currentTimeMillis();
+        logInit("HTTP发送器     ", 4, 2);
 
         httpServer = new HttpServer(socketPort, this);
-        logger.log(YELLOW + "HTTP监听服务器 " + GREEN + "初始化完成" + YELLOW + " [" + GREEN + "*****" + RED + "*" + YELLOW + "] ...(" + (System.currentTimeMillis() - startTime) + "ms)");
+        logInit("HTTP监听服务器 ", 5, 1);
+
 
     private void logInit(String name, int greens, int reds)
     {
@@ -166,7 +168,7 @@ public class PicqBotX
         commandManager = new CommandManager(groupManager, userManager, groupUserManager, prefixes);
         if (registerAllCommands) commandManager.registerAllCommands();
         eventManager.registerListener(new CommandListener(commandManager));
-        logger.log(YELLOW + "指令管理器     " + GREEN + "初始化完成" + YELLOW + " [" + GREEN + "******" + RED + "" + YELLOW + "] ...(" + (System.currentTimeMillis() - startTime) + "ms)");
+        logInit("指令管理器     ", 6, 0);
     }
 
     /**
