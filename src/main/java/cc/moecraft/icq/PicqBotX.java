@@ -208,6 +208,8 @@ public class PicqBotX
         }
         catch (HttpException e)
         {
+            if (e.getMessage().equalsIgnoreCase("connection refused: connect"))
+                throw new InvalidSendingURLException();
             e.printStackTrace();
         }
     }
