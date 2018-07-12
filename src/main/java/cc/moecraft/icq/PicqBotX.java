@@ -4,6 +4,7 @@ import cc.moecraft.icq.command.CommandListener;
 import cc.moecraft.icq.command.CommandManager;
 import cc.moecraft.icq.event.EventManager;
 import cc.moecraft.icq.exceptions.HttpServerStartFailedException;
+import cc.moecraft.icq.exceptions.InvalidSendingURLException;
 import cc.moecraft.icq.exceptions.VersionIncorrectException;
 import cc.moecraft.icq.exceptions.VersionRecommendException;
 import cc.moecraft.icq.sender.IcqHttpApi;
@@ -13,9 +14,11 @@ import cc.moecraft.icq.user.GroupUserManager;
 import cc.moecraft.icq.user.UserManager;
 import cc.moecraft.logger.HyLogger;
 import cc.moecraft.logger.LoggerInstanceManager;
+import cc.moecraft.logger.environments.ColorSupportLevel;
 import cc.moecraft.logger.environments.ConsoleColoredEnv;
 import cc.moecraft.logger.environments.FileEnv;
 import cc.moecraft.logger.format.AnsiColor;
+import com.xiaoleilu.hutool.http.HttpException;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -61,7 +64,7 @@ public class PicqBotX
     private CommandManager commandManager; // 指令管理器
 
     @Getter @Setter
-    private String httpApiVersionDetection = "CQHttp/4.1.*"; // 兼容版本检测
+    private String httpApiVersionDetection = ".*4.2.*"; // 兼容版本检测
 
     @Getter
     private LoggerInstanceManager loggerInstanceManager; // Logger实例管理器
