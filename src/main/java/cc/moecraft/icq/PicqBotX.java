@@ -196,12 +196,19 @@ public class PicqBotX
     {
         if (noVerify) return;
 
-        RVersionInfo versionInfo = httpApi.getVersionInfo().getData();
+        try
+        {
+            RVersionInfo versionInfo = httpApi.getVersionInfo().getData();
 
             if (!versionInfo.getPluginVersion().matches(httpApiVersionDetection))
                 throw new VersionIncorrectException(httpApiVersionDetection, versionInfo.getPluginVersion());
 
-        if (!versionInfo.getCoolqEdition().equalsIgnoreCase("pro"))
-            throw new VersionRecommendException();
+            if (!versionInfo.getCoolqEdition().equalsIgnoreCase("pro"))
+                throw new VersionRecommendException();
+        }
+        catch (HttpException e)
+        {
+            e.printStackTrace();
+        }
     }
 }
