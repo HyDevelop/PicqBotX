@@ -41,6 +41,21 @@ public class GroupUser
      */
     public RGroupMemberInfo refreshInfo()
     {
+        if (id == 80000000L) return info = new RGroupMemberInfo(
+                0L,
+                "CN",
+                "Anonymous",
+                false,
+                group.getId(),
+                System.currentTimeMillis(),
+                1L,
+                "Anonymous",
+                "Anonymous",
+                "member",
+                "male",
+                "Anonymous",
+                0L,
+                false, id);
         return info = bot.getHttpApi().getGroupMemberInfo(group.getId(), id).getData();
     }
 
