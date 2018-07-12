@@ -71,5 +71,12 @@ public class EventGroupMessage extends EventGroupOrDiscussMessage
             getHttpApi().setGroupBan(groupId, senderId, duration);
         }
     }
+
+    @Override
+    public User getSender()
+    {
+        return getBot().getUserManager().getUserFromID(senderId);
+    }
+
     }
 }
