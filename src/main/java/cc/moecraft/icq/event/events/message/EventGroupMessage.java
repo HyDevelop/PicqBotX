@@ -100,5 +100,15 @@ public class EventGroupMessage extends EventGroupOrDiscussMessage
         return getBot().getGroupUserManager().getUserFromID(userId, getGroup());
     }
 
+    /**
+     * 一个用户是不是管理员
+     * @param userId 用户的QQ号
+     * @return 是不是管理员
+     */
+    public boolean isAdmin(long userId)
+    {
+        return getGroupUser(userId).isAdmin();
+    }
+
     }
 }
