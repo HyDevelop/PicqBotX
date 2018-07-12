@@ -42,5 +42,10 @@ public class EventDiscussMessage extends EventGroupOrDiscussMessage
     {
         getHttpApi().setGroupKick(discussId, senderId);
     }
+
+    @Override
+    public User getSender()
+    {
+        return getBot().getUserManager().getUserFromID(senderId);
     }
 }
