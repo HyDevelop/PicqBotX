@@ -125,8 +125,7 @@ public class PicqBotX
      * @throws HttpServerStartFailedException HTTP服务器启动失败
      * @throws VersionIncorrectException 版本错误
      */
-    public void startBot() throws HttpServerStartFailedException, VersionIncorrectException
-    {
+    public void startBot() throws HttpServerStartFailedException, VersionIncorrectException, InvalidSendingURLException {
         try
         {
             try
@@ -190,7 +189,10 @@ public class PicqBotX
      * 验证HTTP插件版本
      * @throws VersionIncorrectException 版本不对
      */
-    public void verifyHttpPluginVersion() throws VersionIncorrectException, VersionRecommendException
+    public void verifyHttpPluginVersion() throws
+            VersionIncorrectException,
+            VersionRecommendException,
+            InvalidSendingURLException
     {
         if (noVerify) return;
 
