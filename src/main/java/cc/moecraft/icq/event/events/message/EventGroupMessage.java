@@ -78,5 +78,11 @@ public class EventGroupMessage extends EventGroupOrDiscussMessage
         return getBot().getUserManager().getUserFromID(senderId);
     }
 
+    @Override
+    public Group getGroup()
+    {
+        return getBot().getGroupManager().getGroupFromID(groupId);
+    }
+
     }
 }
