@@ -43,4 +43,13 @@ public class GroupUser
     {
         return info = bot.getHttpApi().getGroupMemberInfo(group.getId(), id).getData();
     }
+
+    /**
+     * 判断是不是管理员
+     * @return 是不是管理员
+     */
+    public boolean isAdmin()
+    {
+        return !getInfo().getRole().equals("member");
+    }
 }
