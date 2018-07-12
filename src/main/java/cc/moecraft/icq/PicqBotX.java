@@ -74,13 +74,13 @@ public class PicqBotX
 
     public PicqBotX(String postUrl, int postPort, int socketPort, boolean debug)
     {
-        long startTime = System.currentTimeMillis();
-
         this.debug = debug;
 
-        loggerInstanceManager = new LoggerInstanceManager(new ConsoleColoredEnv(), new FileEnv("logs", "PicqBotX-Log"));
+        loggerInstanceManager = new LoggerInstanceManager(
+                new ConsoleColoredEnv(ColorSupportLevel.PASSTHROUGH),
+                new FileEnv("logs", "PicqBotX-Log"));
         logger = loggerInstanceManager.getLoggerInstance("PicqBotX", debug);
-        logger.log(YELLOW + "日志管理器     " + GREEN + "初始化完成" + YELLOW + " [" + GREEN + "" + RED + "******" + YELLOW + "] ...(" + (System.currentTimeMillis() - startTime) + "ms)"); startTime = System.currentTimeMillis();
+        logger.timing.init();
 
         userManager = new UserManager(this);
         groupUserManager = new GroupUserManager(this);
