@@ -100,6 +100,8 @@ public class PicqBotX
         httpServer = new HttpServer(socketPort, this);
         logInit("HTTP监听服务器 ", 5, 1);
 
+        logger.timing.clear();
+    }
 
     private void logInit(String name, int greens, int reds)
     {
