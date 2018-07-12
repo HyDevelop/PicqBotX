@@ -176,11 +176,14 @@ public class PicqBotX
      */
     public void enableCommandManager(boolean registerAllCommands, String ... prefixes) throws InstantiationException, IllegalAccessException
     {
-        long startTime = System.currentTimeMillis();
+        logger.timing.init();
+
         commandManager = new CommandManager(groupManager, userManager, groupUserManager, prefixes);
         if (registerAllCommands) commandManager.registerAllCommands();
         eventManager.registerListener(new CommandListener(commandManager));
         logInit("指令管理器     ", 6, 0);
+
+        logger.timing.clear();
     }
 
     /**
