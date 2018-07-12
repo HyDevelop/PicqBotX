@@ -55,4 +55,13 @@ public class EventGroupMessage extends EventGroupOrDiscussMessage
     {
         return getBot().getHttpApi().sendGroupMsg(groupId, message, raw);
     }
+
+    /**
+     * 禁言这个用户
+     * @param duration 时长(秒)
+     */
+    public void ban(long duration)
+    {
+            getHttpApi().setGroupBan(groupId, senderId, duration);
+    }
 }
