@@ -71,6 +71,12 @@ public class PicqBotX
 
     public PicqBotX(String postUrl, int postPort, int socketPort, boolean debug)
     {
+        this(postUrl, postPort, socketPort, debug,
+                ColorSupportLevel.PASSTHROUGH, "logs", "PicqBotX-Log");
+    }
+
+    public PicqBotX(String postUrl, int postPort, int socketPort, boolean debug, ColorSupportLevel colorSupportLevel, String logPath, String logFileName)
+    {
         this.debug = debug;
 
         loggerInstanceManager = new LoggerInstanceManager(
