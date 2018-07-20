@@ -525,9 +525,9 @@ public class IcqHttpApi
      * 获取群信息
      * @param groupId 群号
      */
-    public ReturnData<RGroup> getGroupInfo(long groupId)
+    public ReturnData<RGroupDetail> getGroupInfo(long groupId)
     {
-        return send(RGroup.class, GET_GROUP_INFO, "group_id", groupId);
+        return send(RGroupDetail.class, GET_GROUP_INFO, "group_id", groupId);
     }
 
     /**
