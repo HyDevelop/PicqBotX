@@ -61,7 +61,7 @@ public class PicqBotX
     private CommandManager commandManager; // 指令管理器
 
     @Getter @Setter
-    private String httpApiVersionDetection = ".*4.2.*"; // 兼容版本检测
+    private String httpApiVersionDetection = ".*4.3.*"; // 兼容版本检测
 
     @Getter
     private LoggerInstanceManager loggerInstanceManager; // Logger实例管理器
