@@ -3,6 +3,8 @@ package cc.moecraft.icq.sender.returndata.returnpojo.get;
 import cc.moecraft.icq.sender.returndata.returnpojo.ReturnPojoBase;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.util.List;
 
@@ -14,6 +16,8 @@ import java.util.List;
  *
  * @author Hykilpikonna
  */
+@EqualsAndHashCode(callSuper = true)
+@Data
 public class RGroupDetail extends ReturnPojoBase
 {
     @SerializedName("admin_count")
@@ -60,6 +64,7 @@ public class RGroupDetail extends ReturnPojoBase
     @Expose
     private Long ownerId;
 
+    @Data
     public static class Admin
     {
         @SerializedName("nickname")
