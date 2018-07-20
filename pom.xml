@@ -6,7 +6,7 @@
 
     <groupId>cc.moecraft</groupId>
     <artifactId>PicqBotX</artifactId>
-    <version>1.2.0.376</version>
+    <version>1.3.0.383</version>
 
     <properties>
         <maven.compiler.target>1.8</maven.compiler.target>
