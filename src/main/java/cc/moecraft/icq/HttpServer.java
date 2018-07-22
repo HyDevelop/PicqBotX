@@ -71,6 +71,7 @@ public class HttpServer
 
         while (started)
         {
+            if (paused) continue;
             try
             {
                 // 关闭上次的Socket, 这样就能直接continue了
