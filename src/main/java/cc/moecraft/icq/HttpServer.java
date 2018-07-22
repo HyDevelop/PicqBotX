@@ -67,7 +67,7 @@ public class HttpServer
         Socket socket = null;
         OutputStream out = null;
 
-        while (true)
+        while (started)
         {
             try
             {
