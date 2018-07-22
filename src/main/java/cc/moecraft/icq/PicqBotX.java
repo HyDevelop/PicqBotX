@@ -128,7 +128,8 @@ public class PicqBotX
      * @throws HttpServerStartFailedException HTTP服务器启动失败
      * @throws VersionIncorrectException 版本错误
      */
-    public void startBot() throws HttpServerStartFailedException, VersionIncorrectException, InvalidSendingURLException {
+    public void startBot() throws HttpServerStartFailedException, VersionIncorrectException, InvalidSendingURLException
+    {
         try
         {
             try
@@ -160,6 +161,16 @@ public class PicqBotX
             logger.error("- 如果是向外, 请检查这个主机有没有网络连接");
             throw e;
         }
+    }
+
+
+    /**
+     * 设置机器人HTTP暂停状态
+     * @param isPaused 是否暂停
+     */
+    public void httpSetPauseState(boolean isPaused)
+    {
+        httpServer.setPaused(isPaused);
     }
 
     /**
