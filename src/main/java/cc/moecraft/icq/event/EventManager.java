@@ -129,6 +129,8 @@ public class EventManager
      */
     public void call(String inputJsonString)
     {
+        if (paused) return; // 判断暂停
+
         JsonObject json = new JsonParser().parse(inputJsonString).getAsJsonObject();
 
         switch (json.get("post_type").getAsString())
