@@ -22,6 +22,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import lombok.Getter;
+import lombok.Setter;
 import org.reflections.Reflections;
 
 import java.lang.reflect.InvocationTargetException;
@@ -47,6 +48,9 @@ public class EventManager
     private HashMap<String, ArrayList<RegisteredListenerMethod>> registeredListenerMethods = new HashMap<>();
     private final PicqBotX bot;
     private Set<Class<? extends Event>> eventClasses;
+
+    @Getter @Setter
+    private boolean paused = false;
 
     public EventManager(PicqBotX bot)
     {
