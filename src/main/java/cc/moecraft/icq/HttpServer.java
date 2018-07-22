@@ -31,6 +31,8 @@ public class HttpServer
     private final PicqBotX bot;
 
     private boolean started = true;
+    private boolean paused = false;
+
     public HttpServer(int port, PicqBotX bot)
     {
         this.bot = bot;
