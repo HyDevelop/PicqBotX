@@ -1,5 +1,6 @@
 package cc.moecraft.icq.event.events.message;
 
+import cc.moecraft.icq.sender.returndata.RawReturnData;
 import cc.moecraft.icq.sender.returndata.ReturnData;
 import cc.moecraft.icq.sender.returndata.returnpojo.send.RMessageReturnData;
 import cc.moecraft.icq.user.Group;
@@ -126,5 +127,18 @@ public class EventGroupMessage extends EventGroupOrDiscussMessage
     public boolean isAdmin()
     {
         return isAdmin(selfId);
+    }
+
+    /**
+     * 撤回消息 (我知道是recall但是酷Q叫他delete那我就封装成delete啦!
+     */
+    public RawReturnData delete()
+    {
+        return getHttpApi().deleteMsg(getMessageId());
+    }
+
+    public RawReturnData recall()
+    {
+        return delete();
     }
 }
