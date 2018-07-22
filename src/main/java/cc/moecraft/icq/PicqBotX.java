@@ -163,6 +163,21 @@ public class PicqBotX
         }
     }
 
+    /**
+     * 暂停机器人HTTP接收
+     */
+    public void httpPause()
+    {
+        httpSetPauseState(true);
+    }
+
+    /**
+     * 继续机器人HTTP接收
+     */
+    public void httpResume()
+    {
+        httpSetPauseState(false);
+    }
 
     /**
      * 设置机器人HTTP暂停状态
