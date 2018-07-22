@@ -173,6 +173,16 @@ public class PicqBotX
         httpServer.setPaused(isPaused);
     }
 
+
+    /**
+     * 设置机器人事件管理器暂停状态
+     * @param isPaused 是否暂停
+     */
+    public void eventsSetPauseState(boolean isPaused)
+    {
+        eventManager.setPaused(isPaused);
+    }
+
     /**
      * 启用指令系统
      * @param prefixes 前缀
