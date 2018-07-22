@@ -173,6 +173,21 @@ public class PicqBotX
         httpServer.setPaused(isPaused);
     }
 
+    /**
+     * 暂停机器人事件
+     */
+    public void eventsPause()
+    {
+        eventsSetPauseState(true);
+    }
+
+    /**
+     * 继续机器人事件
+     */
+    public void eventsResume()
+    {
+        eventsSetPauseState(false);
+    }
 
     /**
      * 设置机器人事件管理器暂停状态
