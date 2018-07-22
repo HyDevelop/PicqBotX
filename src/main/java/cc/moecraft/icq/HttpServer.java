@@ -30,6 +30,7 @@ public class HttpServer
     private final HyLogger logger;
     private final PicqBotX bot;
 
+    private boolean started = true;
     public HttpServer(int port, PicqBotX bot)
     {
         this.bot = bot;
