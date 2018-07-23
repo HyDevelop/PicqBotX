@@ -279,6 +279,17 @@ public abstract class HttpApiBase
     }
 
     /**
+     * 群组踢人
+     * @param groupId 群号
+     * @param qq      QQ
+     * @param rejectFurtherRequest 拒绝这个人的加群请求
+     */
+    public RawReturnData setGroupKick(long groupId, long qq, boolean rejectFurtherRequest)
+    {
+        return sendReturnRaw(SET_GROUP_KICK, "user_id", qq, "group_id", groupId, "reject_and_request", rejectFurtherRequest);
+    }
+
+    /**
      * 群组单人禁言
      * @param groupId  群号
      * @param qq       QQ
