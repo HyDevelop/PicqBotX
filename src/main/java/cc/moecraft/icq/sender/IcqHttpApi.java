@@ -78,6 +78,16 @@ public class IcqHttpApi extends HttpApiBase
     }
 
     /**
+     * 获取用户VIP信息
+     * @param qq QQ号
+     * @return VIP信息
+     */
+    public ReturnData<RVipInfo> getVIPInfo(long qq)
+    {
+        return send(RVipInfo.class, GET_VIP_INFO, "user_id", qq);
+    }
+
+    /**
      * 获取群列表
      */
     public ReturnListData<RGroup> getGroupList()
