@@ -82,9 +82,11 @@ public class PicqBotX
     {
         this.debug = debug;
 
-        loggerInstanceManager = new LoggerInstanceManager(
-                new ConsoleColoredEnv(colorSupportLevel),
-                new FileEnv(logPath, logFileName));
+        loggerInstanceManager = new LoggerInstanceManager(new FileEnv(logPath, logFileName));
+
+        if (colorSupportLevel == null) loggerInstanceManager.addEnvironment(new ConsoleEnv());
+        else loggerInstanceManager.addEnvironment(new ConsoleColoredEnv(colorSupportLevel));
+
         logger = loggerInstanceManager.getLoggerInstance("PicqBotX", debug);
         logger.timing.init();
 
