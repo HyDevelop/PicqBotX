@@ -17,6 +17,7 @@ import cc.moecraft.logger.HyLogger;
 import cc.moecraft.logger.LoggerInstanceManager;
 import cc.moecraft.logger.environments.ColorSupportLevel;
 import cc.moecraft.logger.environments.ConsoleColoredEnv;
+import cc.moecraft.logger.environments.ConsoleEnv;
 import cc.moecraft.logger.environments.FileEnv;
 import com.xiaoleilu.hutool.http.HttpException;
 import lombok.Getter;
@@ -90,7 +91,8 @@ public class PicqBotX
         logger = loggerInstanceManager.getLoggerInstance("PicqBotX", debug);
         logger.timing.init();
 
-        ResourceUtils.logResource(this.getClass(), logger, "splash-precolored", "version", VERSION);
+        if (colorSupportLevel == null) ResourceUtils.logResource(this.getClass(), logger, "splash", "version", VERSION);
+        else ResourceUtils.logResource(this.getClass(), logger, "splash-precolored", "version", VERSION);
 
         logInit("日志管理器     ", 0, 6);
 
