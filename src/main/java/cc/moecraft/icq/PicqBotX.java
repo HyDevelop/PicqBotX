@@ -71,7 +71,7 @@ public class PicqBotX
     @Getter
     private HyLogger logger; // Logger
 
-    public static final String VERSION = "1.3.4.421";
+    public static final String VERSION = "1.3.4.423";
 
     public PicqBotX(String postUrl, int postPort, int socketPort, boolean debug)
     {
