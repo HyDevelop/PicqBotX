@@ -480,6 +480,14 @@ public abstract class HttpApiBase
     }
 
     /**
+     * 重启酷 Q，并清除日志（需勾选快速登录）
+     */
+    public RawReturnData setRestartAndCleanLog()
+    {
+        return sendReturnRaw(SET_RESTART, "clean_log", true);
+    }
+
+    /**
      * 重启 HTTP API 插件
      */
     public RawReturnData setRestartPlugin()
