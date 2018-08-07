@@ -12,6 +12,7 @@ import cc.moecraft.icq.sender.returndata.returnpojo.get.RVersionInfo;
 import cc.moecraft.icq.user.GroupManager;
 import cc.moecraft.icq.user.GroupUserManager;
 import cc.moecraft.icq.user.UserManager;
+import cc.moecraft.icq.utils.ResourceUtils;
 import cc.moecraft.logger.HyLogger;
 import cc.moecraft.logger.LoggerInstanceManager;
 import cc.moecraft.logger.environments.ColorSupportLevel;
@@ -86,6 +87,9 @@ public class PicqBotX
                 new FileEnv(logPath, logFileName));
         logger = loggerInstanceManager.getLoggerInstance("PicqBotX", debug);
         logger.timing.init();
+
+        ResourceUtils.logResource(this.getClass(), logger, "splash-precolored", "version", VERSION);
+
         logInit("日志管理器     ", 0, 6);
 
         userManager = new UserManager(this);
