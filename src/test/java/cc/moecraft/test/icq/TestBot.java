@@ -25,6 +25,9 @@ public class TestBot
         // 创建机器人对象 ( 信息发送URL, 发送端口, 接收端口, 是否DEBUG )
         PicqBotX bot = new PicqBotX("127.0.0.1", 31091, 31092, false);
 
+        // 设置异步
+        bot.setUseAsync(true);
+
         try
         {
             bot.getEventManager()
