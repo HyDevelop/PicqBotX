@@ -71,10 +71,10 @@ public class PicqBotX
     @Getter
     private HyLogger logger; // Logger
 
-    @Getter
+    @Getter @Setter
     private boolean useAsync = false; // 是否异步
 
-    public static final String VERSION = "1.3.4.423";
+    public static final String VERSION = "1.3.4.426";
 
     public PicqBotX(String postUrl, int postPort, int socketPort, boolean debug)
     {
