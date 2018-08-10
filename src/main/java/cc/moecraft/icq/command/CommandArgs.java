@@ -40,6 +40,8 @@ public class CommandArgs
      * @param fullCommand 完整字符串消息
      * @param isGroup 是不是群消息
      * @return CommandArgs指令
+     * @throws NotACommandException 不是指令
+     * @throws CommandNotFoundException 指令执行器未找到
      */
     public static CommandArgs parse(String[] prefixes,
             Map<String, ArrayList<IcqCommand>> registeredCommands, String fullCommand,
