@@ -38,6 +38,7 @@ public abstract class EventRequest extends Event
 
     /**
      * 拒绝申请
+     * @param reason 拒绝理由
      */
     public abstract void reject(String reason);
 }
