@@ -74,6 +74,9 @@ public class PicqBotX
     @Getter @Setter
     private boolean useAsync = false; // 是否异步
 
+    @Getter @Setter
+    private boolean maintenanceMode = false;
+
     public static final String VERSION = "1.4.0.469";
 
     public PicqBotX(String postUrl, int postPort, int socketPort, boolean debug)
