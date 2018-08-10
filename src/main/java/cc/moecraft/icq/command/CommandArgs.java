@@ -64,6 +64,9 @@ public class CommandArgs
         // 分解指令args
         ArrayList<String> args = new ArrayList<>(Arrays.asList(fullCommand.split(" ")));
 
+        // 移除结尾添加的字符
+        args.remove(args.size() - 1);
+
         // 获取指令名
         String command = args.get(0).toLowerCase();
         args.remove(0);
