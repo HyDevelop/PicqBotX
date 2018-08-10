@@ -42,6 +42,7 @@ public class IcqHttpApi extends HttpApiBase
 
     /**
      * 获取登录号信息
+     * @return 登录号信息
      */
     public ReturnData<RLoginInfo> getLoginInfo()
     {
@@ -52,6 +53,7 @@ public class IcqHttpApi extends HttpApiBase
      * 获取陌生人信息
      * @param qq QQ号
      * @param noCache 是否不使用缓存（使用缓存可能更新不及时，但响应更快）
+     * @return 陌生人信息
      */
     public ReturnData<RStrangerInfo> getStrangerInfo(long qq, boolean noCache)
     {
@@ -61,6 +63,7 @@ public class IcqHttpApi extends HttpApiBase
     /**
      * 获取陌生人信息, 默认使用缓存
      * @param qq QQ号
+     * @return 陌生人信息
      */
     public ReturnData<RStrangerInfo> getStrangerInfo(long qq)
     {
@@ -79,6 +82,7 @@ public class IcqHttpApi extends HttpApiBase
 
     /**
      * 获取群列表
+     * @return 群列表
      */
     public ReturnListData<RGroup> getGroupList()
     {
@@ -89,6 +93,7 @@ public class IcqHttpApi extends HttpApiBase
      * 获取群成员信息
      * @param groupId 群号
      * @param qq QQ 号（不可以是登录号）
+     * @return 群成员信息
      */
     public ReturnData<RGroupMemberInfo> getGroupMemberInfo(long groupId, long qq)
     {
@@ -98,6 +103,7 @@ public class IcqHttpApi extends HttpApiBase
     /**
      * 获取群信息
      * @param groupId 群号
+     * @return 群信息
      */
     public ReturnData<RGroupDetail> getGroupInfo(long groupId)
     {
@@ -107,6 +113,7 @@ public class IcqHttpApi extends HttpApiBase
     /**
      * 获取群成员列表
      * @param groupId 群号
+     * @return 群成员列表
      */
     public ReturnListData<RGroupMemberInfo> getGroupMemberList(long groupId)
     {
@@ -114,7 +121,8 @@ public class IcqHttpApi extends HttpApiBase
     }
 
     /**
-     * (实验性) 获取好友列表
+     * 获取好友列表
+     * @return 好友列表
      */
     public ReturnListData<RFriendList> getFriendList()
     {
@@ -123,6 +131,7 @@ public class IcqHttpApi extends HttpApiBase
 
     /**
      * 获取酷 Q 及 HTTP API 插件的版本信息
+     * @return 酷 Q 及 HTTP API 插件的版本信息
      */
     public ReturnData<RVersionInfo> getVersionInfo()
     {
@@ -131,6 +140,7 @@ public class IcqHttpApi extends HttpApiBase
 
     /**
      * 获取插件运行状态
+     * @return 插件运行状态
      */
     public ReturnData<RStatus> getStatus()
     {
