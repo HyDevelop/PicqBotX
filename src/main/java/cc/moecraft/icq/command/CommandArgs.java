@@ -59,7 +59,8 @@ public class CommandArgs
         String command = args.get(0).toLowerCase();
         args.remove(0);
 
-        if (!commandManager.getRegisteredCommands().containsKey(command)) throw new CommandNotFoundException(); // 无法找到指令
+        // 确认指令存在
+        if (!registeredCommands.containsKey(command)) throw new CommandNotFoundException();
 
         ArrayList<IcqCommand> commandToRun = commandManager.getRegisteredCommands().get(command);
 
