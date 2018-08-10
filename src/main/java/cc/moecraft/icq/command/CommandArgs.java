@@ -48,6 +48,9 @@ public class CommandArgs
         // 移除前缀
         fullCommand = fullCommand.substring(prefix.length());
 
+        // 移除前缀和指令第一项之间的空格
+        while (fullCommand.startsWith(" "))
+            fullCommand = fullCommand.substring(1);
 
         ArrayList<String> args = new ArrayList<>(Arrays.asList(fullCommand.split(" "))); // String "!ecHO hi there" -> ArrayList ["!ecHO", "hi", "there"]
 
