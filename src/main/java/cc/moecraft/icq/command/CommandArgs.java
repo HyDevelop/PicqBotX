@@ -45,9 +45,9 @@ public class CommandArgs
         // 判断有没有前缀, 私聊不需要前缀
         if (prefix.equals("") && isGroup) throw new NotACommandException();
 
-        // 例子: !ecHO hi there
+        // 移除前缀
+        fullCommand = fullCommand.substring(prefix.length());
 
-        fullCommand = fullCommand.replace(prefix, ""); // "ecHO hi there"
 
         ArrayList<String> args = new ArrayList<>(Arrays.asList(fullCommand.split(" "))); // String "!ecHO hi there" -> ArrayList ["!ecHO", "hi", "there"]
 
