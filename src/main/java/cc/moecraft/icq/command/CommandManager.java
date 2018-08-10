@@ -84,6 +84,7 @@ public class CommandManager
     /**
      * 注册指令
      * @param command 指令
+     * @param prefix 指令独立前缀
      * @return 是否注册成功
      */
     public boolean registerCommandWithPrefix(IcqCommand command, String prefix)
