@@ -178,6 +178,7 @@ public abstract class HttpApiBase
      * 发送私聊消息
      * @param qq      QQ号
      * @param message 消息
+     * @return 发送消息结果
      */
     public ReturnData<RMessageReturnData> sendPrivateMsg(long qq, String message)
     {
@@ -189,6 +190,7 @@ public abstract class HttpApiBase
      * @param qq      QQ号
      * @param message 消息
      * @param autoEscape 是否纯文本发送
+     * @return 发送消息结果
      */
     public ReturnData<RMessageReturnData> sendPrivateMsg(long qq, String message, boolean autoEscape)
     {
@@ -202,6 +204,7 @@ public abstract class HttpApiBase
      * 发送群聊消息
      * @param groupId 群ID
      * @param message 消息
+     * @return 发送消息结果
      */
     public ReturnData<RMessageReturnData> sendGroupMsg(long groupId, String message)
     {
@@ -213,6 +216,7 @@ public abstract class HttpApiBase
      * @param groupId 群ID
      * @param message 消息
      * @param autoEscape 是否纯文本发送
+     * @return 发送消息结果
      */
     public ReturnData<RMessageReturnData> sendGroupMsg(long groupId, String message, boolean autoEscape)
     {
@@ -226,6 +230,7 @@ public abstract class HttpApiBase
      * 发送讨论组消息
      * @param groupId 讨论组ID
      * @param message 消息
+     * @return 发送消息结果
      */
     public ReturnData<RMessageReturnData> sendDiscussMsg(long groupId, String message)
     {
@@ -237,6 +242,7 @@ public abstract class HttpApiBase
      * @param groupId 讨论组ID
      * @param message 消息
      * @param autoEscape 是否纯文本发送
+     * @return 发送消息结果
      */
     public ReturnData<RMessageReturnData> sendDiscussMsg(long groupId, String message, boolean autoEscape)
     {
@@ -249,6 +255,7 @@ public abstract class HttpApiBase
     /**
      * 撤回消息
      * @param messageId 消息ID
+     * @return 执行结果
      */
     public RawReturnData deleteMsg(long messageId)
     {
@@ -259,6 +266,7 @@ public abstract class HttpApiBase
      * 发送好友赞
      * @param qq    QQ号
      * @param times 赞的次数，每个好友每天最多 10 次
+     * @return 执行结果
      */
     public RawReturnData sendLike(long qq, long times)
     {
@@ -269,6 +277,7 @@ public abstract class HttpApiBase
      * 群组踢人
      * @param groupId 群号
      * @param qq      QQ
+     * @return 执行结果
      */
     public RawReturnData setGroupKick(long groupId, long qq)
     {
@@ -280,6 +289,7 @@ public abstract class HttpApiBase
      * @param groupId 群号
      * @param qq      QQ
      * @param rejectFurtherRequest 拒绝这个人的加群请求
+     * @return 执行结果
      */
     public RawReturnData setGroupKick(long groupId, long qq, boolean rejectFurtherRequest)
     {
@@ -291,6 +301,7 @@ public abstract class HttpApiBase
      * @param groupId  群号
      * @param qq       QQ
      * @param duration 禁言时长，单位秒，0 表示取消禁言
+     * @return 执行结果
      */
 
     public RawReturnData setGroupBan(long groupId, long qq, long duration)
@@ -303,6 +314,7 @@ public abstract class HttpApiBase
      * @param flag     要禁言的匿名用户的 flag（需从群消息上报的数据中获得）
      * @param groupId  群号
      * @param duration 禁言时长，单位秒，无法取消匿名用户禁言
+     * @return 执行结果
      */
     public RawReturnData setGroupAnonymousBan(String flag, long groupId, long duration)
     {
@@ -312,6 +324,7 @@ public abstract class HttpApiBase
     /**
      * 群组匿名用户禁言
      * @param anonymous 要禁言的匿名用户的 Anonymous对象（需从群消息上报的数据中获得）
+     * @return 执行结果
      */
     public RawReturnData setGroupAnonymousBan(EventGroupMessage.Anonymous anonymous, long groupId, long duration)
     {
@@ -322,6 +335,7 @@ public abstract class HttpApiBase
      * 群组全员禁言
      * @param groupId 群号
      * @param enable  是否禁言
+     * @return 执行结果
      */
     public RawReturnData setGroupWholeBan(long groupId, boolean enable)
     {
@@ -333,6 +347,7 @@ public abstract class HttpApiBase
      * @param groupId 群号
      * @param qq      要设置管理员的 QQ 号
      * @param enable  true 为设置，false 为取消
+     * @return 执行结果
      */
     public RawReturnData setGroupAdmin(long groupId, long qq, boolean enable)
     {
@@ -343,6 +358,7 @@ public abstract class HttpApiBase
      * 群组设置匿名
      * @param groupId 群号
      * @param enable  是否允许匿名聊天
+     * @return 执行结果
      */
     public RawReturnData setGroupAnonymous(long groupId, boolean enable)
     {
@@ -354,6 +370,7 @@ public abstract class HttpApiBase
      * @param groupId 群号
      * @param qq      要设置的 QQ 号
      * @param card  群名片内容，不填或空字符串表示删除群名片
+     * @return 执行结果
      */
     public RawReturnData setGroupCard(long groupId, long qq, String card)
     {
@@ -364,6 +381,7 @@ public abstract class HttpApiBase
      * 退出群组
      * @param groupId 群号
      * @param dismiss 是否解散，如果登录号是群主，则仅在此项为 true 时能够解散
+     * @return 执行结果
      */
     public RawReturnData setGroupLeave(long groupId, boolean dismiss)
     {
@@ -375,6 +393,7 @@ public abstract class HttpApiBase
      * @param groupId 群号
      * @param qq 要设置的QQ号
      * @param specialTitle 专属头衔，不填或空字符串表示删除专属头衔
+     * @return 执行结果
      */
     public RawReturnData setGroupSpecialTitle(long groupId, long qq, String specialTitle)
     {
@@ -387,6 +406,7 @@ public abstract class HttpApiBase
      * @param qq 要设置的QQ号
      * @param specialTitle 专属头衔，不填或空字符串表示删除专属头衔
      * @param duration 专属头衔有效期，单位秒，-1 表示永久，不过此项似乎没有效果，可能是只有某些特殊的时间长度有效，有待测试
+     * @return 执行结果
      */
     public RawReturnData setGroupSpecialTitle(long groupId, long qq, String specialTitle, long duration)
     {
@@ -396,6 +416,7 @@ public abstract class HttpApiBase
     /**
      * 退出讨论组
      * @param discussId 讨论组 ID（正常情况下看不到，需要从讨论组消息上报的数据中获得）
+     * @return 执行结果
      */
     public RawReturnData setDiscussLeave(long discussId)
     {
@@ -406,6 +427,7 @@ public abstract class HttpApiBase
      * 处理加好友请求
      * @param flag 加好友请求的 flag（需从上报的数据中获得）
      * @param approve 是否同意请求
+     * @return 执行结果
      */
     public RawReturnData setFriendAndRequest(String flag, boolean approve)
     {
@@ -417,6 +439,7 @@ public abstract class HttpApiBase
      * @param flag 加好友请求的 flag（需从上报的数据中获得）
      * @param approve 是否同意请求
      * @param remark 添加后的好友备注（仅在同意时有效）
+     * @return 执行结果
      */
     public RawReturnData setFriendAndRequest(String flag, boolean approve, String remark)
     {
@@ -429,6 +452,7 @@ public abstract class HttpApiBase
      * @param type add 或 invite，请求类型（需要和上报消息中的 sub_type 字段相符）
      * @param approve 是否同意请求／邀请
      * @param reason 拒绝理由（仅在拒绝时有效）
+     * @return 执行结果
      */
     public RawReturnData setGroupAndRequest(String flag, String type, boolean approve, String reason)
     {
@@ -439,6 +463,7 @@ public abstract class HttpApiBase
      * 同意加群请求／邀请
      * @param flag 加好友请求的 flag（需从上报的数据中获得）
      * @param type add 或 invite，请求类型（需要和上报消息中的 sub_type 字段相符）
+     * @return 执行结果
      */
     public RawReturnData approveGroupRequest(String flag, String type)
     {
@@ -450,6 +475,7 @@ public abstract class HttpApiBase
      * @param flag 加好友请求的 flag（需从上报的数据中获得）
      * @param type add 或 invite，请求类型（需要和上报消息中的 sub_type 字段相符）
      * @param reason 拒绝理由
+     * @return 执行结果
      */
     public RawReturnData rejectGroupRequest(String flag, String type, String reason)
     {
@@ -458,6 +484,7 @@ public abstract class HttpApiBase
 
     /**
      * 重启酷 Q，并以当前登录号自动登录（需勾选快速登录）
+     * @return 执行结果
      */
     public RawReturnData setRestart()
     {
@@ -468,6 +495,7 @@ public abstract class HttpApiBase
      * 重启酷 Q，并以当前登录号自动登录（需勾选快速登录）
      * @param cleanCache 是否清除酷Q当前登录号缓存数据
      * @deprecated 封装了新的setRestartPlugin(cleanLog, cleanCache, cleanEvent);方法
+     * @return 执行结果
      */
     @Deprecated
     public RawReturnData setRestart(boolean cleanCache)
@@ -477,6 +505,7 @@ public abstract class HttpApiBase
 
     /**
      * 重启酷 Q，并清除日志（需勾选快速登录）
+     * @return 执行结果
      */
     public RawReturnData setRestartAndCleanLog()
     {
@@ -485,6 +514,7 @@ public abstract class HttpApiBase
 
     /**
      * 重启 HTTP API 插件
+     * @return 执行结果
      */
     public RawReturnData setRestartPlugin()
     {
@@ -496,6 +526,7 @@ public abstract class HttpApiBase
      * @param cleanLog 是否清除日志
      * @param cleanCache 是否清除用户缓存 cache.db
      * @param cleanEvent 是否清除事件缓存 eventv2.db
+     * @return 执行结果
      */
     public RawReturnData setRestartPlugin(boolean cleanLog, boolean cleanCache, boolean cleanEvent)
     {
@@ -504,6 +535,7 @@ public abstract class HttpApiBase
 
     /**
      * 清空数据文件夹
+     * @return 执行结果
      */
     public RawReturnData cleanDataDir()
     {
@@ -512,6 +544,7 @@ public abstract class HttpApiBase
 
     /**
      * 清空插件日志
+     * @return 执行结果
      */
     public RawReturnData cleanPluginLog()
     {
