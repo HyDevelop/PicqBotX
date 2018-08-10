@@ -467,7 +467,7 @@ public abstract class HttpApiBase
     /**
      * 重启酷 Q，并以当前登录号自动登录（需勾选快速登录）
      * @param cleanCache 是否清除酷Q当前登录号缓存数据
-     * @deprecated 暂时禁用 clean_cache 参数，因为发现这个参数会导致重启后需要重新登录账号
+     * @deprecated 封装了新的setRestartPlugin(cleanLog, cleanCache, cleanEvent);方法
      */
     @Deprecated
     public RawReturnData setRestart(boolean cleanCache)
