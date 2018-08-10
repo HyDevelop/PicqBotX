@@ -131,7 +131,7 @@ public class CommandManager
             boolean eventIsDiscuss = event instanceof EventDiscussMessage;
             boolean eventIsPrivate = event instanceof EventPrivateMessage;
 
-            CommandArgs commandArgs = CommandArgs.parse(this, event.getMessage(), eventIsDiscuss || eventIsGroup);
+            CommandArgs commandArgs = CommandArgs.parse(getPrefixes(), getRegisteredCommands(), event.getMessage(), eventIsDiscuss || eventIsGroup);
             User user = userManager.getUserFromID(event.getSenderId());
 
             Group group =
