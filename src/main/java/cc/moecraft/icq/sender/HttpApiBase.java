@@ -291,7 +291,7 @@ public abstract class HttpApiBase
     /**
      * 群组踢人
      * @param groupId 群号
-     * @param qq      QQ
+     * @param qq QQ
      * @param rejectFurtherRequest 拒绝这个人的加群请求
      * @return 执行结果
      */
@@ -302,8 +302,8 @@ public abstract class HttpApiBase
 
     /**
      * 群组单人禁言
-     * @param groupId  群号
-     * @param qq       QQ
+     * @param groupId 群号
+     * @param qq QQ
      * @param duration 禁言时长，单位秒，0 表示取消禁言
      * @return 执行结果
      */
@@ -315,8 +315,8 @@ public abstract class HttpApiBase
 
     /**
      * 群组匿名用户禁言
-     * @param flag     要禁言的匿名用户的 flag（需从群消息上报的数据中获得）
-     * @param groupId  群号
+     * @param flag 要禁言的匿名用户的 flag（需从群消息上报的数据中获得）
+     * @param groupId 群号
      * @param duration 禁言时长，单位秒，无法取消匿名用户禁言
      * @return 执行结果
      */
@@ -328,6 +328,8 @@ public abstract class HttpApiBase
     /**
      * 群组匿名用户禁言
      * @param anonymous 要禁言的匿名用户的 Anonymous对象（需从群消息上报的数据中获得）
+     * @param groupId 群号
+     * @param duration 禁言时长，单位秒，无法取消匿名用户禁言
      * @return 执行结果
      */
     public RawReturnData setGroupAnonymousBan(EventGroupMessage.Anonymous anonymous, long groupId, long duration)
@@ -338,7 +340,7 @@ public abstract class HttpApiBase
     /**
      * 群组全员禁言
      * @param groupId 群号
-     * @param enable  是否禁言
+     * @param enable 是否禁言
      * @return 执行结果
      */
     public RawReturnData setGroupWholeBan(long groupId, boolean enable)
