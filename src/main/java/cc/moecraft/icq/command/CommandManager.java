@@ -137,6 +137,12 @@ public class CommandManager
             CommandArgs commandArgs = CommandArgs.parse(getPrefixes(), getRegisteredCommands(), event.getMessage(), eventIsDiscuss || eventIsGroup);
             User user = userManager.getUserFromID(event.getSenderId());
 
+            if (event.getBot().isMaintenanceMode())
+            {
+                event.respond("- 机器人正在维护 -");
+                return RunResult.MAINTENANCE;
+            }
+
             Group group =
                     eventIsGroup ? groupManager.getGroupFromID(((EventGroupMessage) event).getGroupId()) :
                     eventIsDiscuss ? groupManager.getGroupFromID(((EventDiscussMessage) event).getDiscussId()) : null;
@@ -191,7 +197,7 @@ public class CommandManager
     public enum RunResult
     {
         NOT_A_COMMAND, COMMAND_NOT_FOUND,
-        SUCCESS
+        SUCCESS, MAINTENANCE
     }
 
     /**
