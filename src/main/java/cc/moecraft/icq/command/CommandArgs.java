@@ -55,8 +55,9 @@ public class CommandArgs
         // 分解指令args
         ArrayList<String> args = new ArrayList<>(Arrays.asList(fullCommand.split(" ")));
 
-        String command = args.get(0).toLowerCase(); // "echo"
-        args.remove(0); // ["hi", "there"]
+        // 获取指令名
+        String command = args.get(0).toLowerCase();
+        args.remove(0);
 
         if (!commandManager.getRegisteredCommands().containsKey(command)) throw new CommandNotFoundException(); // 无法找到指令
 
