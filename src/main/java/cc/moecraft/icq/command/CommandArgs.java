@@ -39,7 +39,8 @@ public class CommandArgs
             Map<String, ArrayList<IcqCommand>> registeredCommands, String fullCommand,
             boolean isGroup) throws NotACommandException, CommandNotFoundException
     {
-        String prefix = getPrefix(commandManager, fullCommand);
+        // 获取前缀
+        String prefix = getPrefix(prefixes, fullCommand);
 
         if (prefix.equals("") && isChannel) throw new NotACommandException(); // 不是指令
 
