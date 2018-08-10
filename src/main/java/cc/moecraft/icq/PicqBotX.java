@@ -260,6 +260,8 @@ public class PicqBotX
     /**
      * 验证HTTP插件版本
      * @throws VersionIncorrectException 版本不对
+     * @throws VersionRecommendException 推荐版本
+     * @throws InvalidSendingURLException 发送URL错误
      */
     public void verifyHttpPluginVersion() throws
             VersionIncorrectException,
