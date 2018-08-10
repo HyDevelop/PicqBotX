@@ -1,11 +1,9 @@
 package cc.moecraft.test.general;
 
 import cc.moecraft.icq.command.CommandArgs;
-import cc.moecraft.icq.command.CommandManager;
 import cc.moecraft.icq.command.exceptions.CommandNotFoundException;
 import cc.moecraft.icq.command.exceptions.NotACommandException;
 import cc.moecraft.icq.command.interfaces.IcqCommand;
-import cc.moecraft.icq.user.GroupManager;
 import cc.moecraft.test.icq.commands.CommandTest;
 
 import java.util.ArrayList;
