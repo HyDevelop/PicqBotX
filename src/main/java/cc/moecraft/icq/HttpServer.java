@@ -84,7 +84,6 @@ public class HttpServer
                 // 读取请求字符
                 InputStream inputStream = socket.getInputStream();
                 DataInputStream reader = new DataInputStream(inputStream);
-                // BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream,"utf-8"));
                 out = socket.getOutputStream();
 
                 String line = reader.readLine();
@@ -227,7 +226,8 @@ public class HttpServer
      * @param out 输出流
      * @param jsonString JSON字符串
      */
-    public OutputStream sendResponseAndClose(OutputStream out, String jsonString) {
+    public void sendResponseAndClose(OutputStream out, String jsonString)
+    {
         String response = "";
         response += "HTTP/1.1 204 OK\n";
         response += "Content-Type: application/json; charset=UTF-8\n";
@@ -245,7 +245,5 @@ public class HttpServer
         {
             logger.debug("消息发送失败: " + e.toString());
         }
-
-        return null;
     }
 }
