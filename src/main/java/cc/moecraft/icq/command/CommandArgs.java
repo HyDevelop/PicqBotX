@@ -93,4 +93,17 @@ public class CommandArgs
 
         return "";
     }
+
+    /**
+     * 移除前面的空格
+     * @param original 源字符串
+     * @return 移除后的字符串
+     */
+    private static String removeStartingSpace(String original)
+    {
+        while (original.startsWith(" "))
+            original = original.substring(1);
+
+        return original;
+    }
 }
