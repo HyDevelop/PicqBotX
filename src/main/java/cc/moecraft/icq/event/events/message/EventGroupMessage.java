@@ -131,6 +131,7 @@ public class EventGroupMessage extends EventGroupOrDiscussMessage
 
     /**
      * 撤回消息 (我知道是recall但是酷Q叫他delete那我就封装成delete啦!
+     * @return 执行结果
      */
     public RawReturnData delete()
     {
