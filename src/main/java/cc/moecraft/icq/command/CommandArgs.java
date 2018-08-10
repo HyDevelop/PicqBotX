@@ -61,12 +61,13 @@ public class CommandArgs
 
     /**
      * 获取指令前缀
+     * @param prefixes 可用前缀
      * @param text 消息
      * @return 是指令的话返回指令前缀, 不是指令的话返回""
      */
-    private static String getPrefix(CommandManager commandManager, String text)
+    private static String getPrefix(String[] prefixes, String text)
     {
-        for (String prefix : commandManager.getPrefixes())
+        for (String prefix : prefixes)
             if (text.startsWith(prefix)) return prefix;
 
         return "";
