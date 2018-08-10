@@ -8,6 +8,7 @@ import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Map;
 
 /**
  * 此类由 Hykilpikonna 在 2018/05/05 创建!
@@ -27,11 +28,16 @@ public class CommandArgs
 
     /**
      * 从字符串消息转换为CommandArgs
+     *
+     * @param prefixes 启用的前缀
+     * @param registeredCommands 已注册的指令
      * @param fullCommand 完整字符串消息
-     * @param isChannel 是不是从频道发出来的
+     * @param isGroup 是不是群消息
      * @return CommandArgs指令
      */
-    public static CommandArgs parse(CommandManager commandManager, String fullCommand, boolean isChannel) throws NotACommandException, CommandNotFoundException
+    public static CommandArgs parse(String[] prefixes,
+            Map<String, ArrayList<IcqCommand>> registeredCommands, String fullCommand,
+            boolean isGroup) throws NotACommandException, CommandNotFoundException
     {
         String prefix = getPrefix(commandManager, fullCommand);
 
