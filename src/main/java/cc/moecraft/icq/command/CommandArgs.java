@@ -45,6 +45,9 @@ public class CommandArgs
             Map<String, ArrayList<IcqCommand>> registeredCommands, String fullCommand,
             boolean isGroup) throws NotACommandException, CommandNotFoundException
     {
+        // 移除前缀前面的空格
+        fullCommand = removeStartingSpace(fullCommand);
+
         // 获取前缀
         String prefix = getPrefix(prefixes, fullCommand);
 
