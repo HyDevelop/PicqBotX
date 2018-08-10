@@ -54,12 +54,9 @@ public class CommandArgs
         // 判断有没有前缀, 私聊不需要前缀
         if (prefix.equals("") && isGroup) throw new NotACommandException();
 
-        // 移除前缀
+        // 移除前缀, 和前缀与指令第一项之间的空格
         fullCommand = fullCommand.substring(prefix.length());
-
-        // 移除前缀和指令第一项之间的空格
-        while (fullCommand.startsWith(" "))
-            fullCommand = fullCommand.substring(1);
+        fullCommand = removeStartingSpace(fullCommand);
 
         // 因为如果最后全是空格的话split会忽略这些空格, 所以要先在结尾添加一个字符
         fullCommand += ";";
