@@ -26,6 +26,12 @@ public class CommandArgs
     private ArrayList<IcqCommand> commandRunners;
     private ArrayList<String> args;
 
+    public static CommandArgs parse(CommandManager commandManager, String fullCommand, boolean isGroup)
+            throws NotACommandException, CommandNotFoundException
+    {
+        return parse(commandManager.getPrefixes(), commandManager.getRegisteredCommands(), fullCommand, isGroup);
+    }
+
     /**
      * 从字符串消息转换为CommandArgs
      *
@@ -65,7 +71,7 @@ public class CommandArgs
         // 获取执行器
         ArrayList<IcqCommand> commandsToRun = registeredCommands.get(command);
 
-        return new CommandArgs(prefix, command, commandToRun, args);
+        return new CommandArgs(prefix, command, commandsToRun, args);
     }
 
     /**
