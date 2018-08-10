@@ -48,6 +48,7 @@ public abstract class EventMessage extends Event
     /**
      * 回复消息
      * @param message 消息
+     * @return 消息发送结果
      */
     public ReturnData<RMessageReturnData> respond(String message)
     {
@@ -58,12 +59,14 @@ public abstract class EventMessage extends Event
      * 回复消息
      * @param message 消息
      * @param raw 是否无加工发送
+     * @return 消息发送结果
      */
     public abstract ReturnData<RMessageReturnData> respond(String message, boolean raw);
 
     /**
      * 回复到私聊
      * @param message 消息
+     * @return 消息发送结果
      */
     public ReturnData<RMessageReturnData> respondPrivateMessage(String message)
     {
@@ -74,6 +77,7 @@ public abstract class EventMessage extends Event
      * 回复到私聊
      * @param message 消息
      * @param raw 是否无加工发送
+     * @return 消息发送结果
      */
     public ReturnData<RMessageReturnData> respondPrivateMessage(String message, boolean raw)
     {
