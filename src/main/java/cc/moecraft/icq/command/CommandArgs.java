@@ -52,7 +52,8 @@ public class CommandArgs
         while (fullCommand.startsWith(" "))
             fullCommand = fullCommand.substring(1);
 
-        ArrayList<String> args = new ArrayList<>(Arrays.asList(fullCommand.split(" "))); // String "!ecHO hi there" -> ArrayList ["!ecHO", "hi", "there"]
+        // 分解指令args
+        ArrayList<String> args = new ArrayList<>(Arrays.asList(fullCommand.split(" ")));
 
         String command = args.get(0).toLowerCase(); // "echo"
         args.remove(0); // ["hi", "there"]
