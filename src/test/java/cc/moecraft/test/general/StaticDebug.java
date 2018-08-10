@@ -30,7 +30,7 @@ public class StaticDebug
         CommandTest command = new CommandTest();
         registeredCommands.put(command.properties().getName().toLowerCase(), new ArrayList<>(Collections.singletonList(command)));
 
-        CommandArgs commandArgs = CommandArgs.parse(prefixes, registeredCommands, "!  test a b  cc d   ", true);
+        CommandArgs commandArgs = CommandArgs.parse(prefixes, registeredCommands, "   !  test a b  cc d   ", true);
         System.out.println(commandArgs);
     }
 }
