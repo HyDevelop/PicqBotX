@@ -42,7 +42,8 @@ public class CommandArgs
         // 获取前缀
         String prefix = getPrefix(prefixes, fullCommand);
 
-        if (prefix.equals("") && isChannel) throw new NotACommandException(); // 不是指令
+        // 判断有没有前缀, 私聊不需要前缀
+        if (prefix.equals("") && isGroup) throw new NotACommandException();
 
         // 例子: !ecHO hi there
 
