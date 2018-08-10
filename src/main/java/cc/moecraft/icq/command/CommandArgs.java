@@ -58,6 +58,9 @@ public class CommandArgs
         while (fullCommand.startsWith(" "))
             fullCommand = fullCommand.substring(1);
 
+        // 因为如果最后全是空格的话split会忽略这些空格, 所以要先在结尾添加一个字符
+        fullCommand += ";";
+
         // 分解指令args
         ArrayList<String> args = new ArrayList<>(Arrays.asList(fullCommand.split(" ")));
 
