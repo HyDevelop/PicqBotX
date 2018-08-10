@@ -23,6 +23,7 @@ public class GroupUserManager
     /**
      * 用ID获取User
      * @param id QQ号
+     * @param group 群对象
      * @return User对象
      */
     public GroupUser getUserFromID(long id, Group group)
