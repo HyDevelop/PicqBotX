@@ -140,6 +140,7 @@ public class PicqBotX
      * 启动机器人
      * @throws HttpServerStartFailedException HTTP服务器启动失败
      * @throws VersionIncorrectException 版本错误
+     * @throws InvalidSendingURLException 发送URL错误
      */
     public void startBot() throws HttpServerStartFailedException, VersionIncorrectException, InvalidSendingURLException
     {
