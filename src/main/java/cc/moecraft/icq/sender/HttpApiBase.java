@@ -131,6 +131,7 @@ public abstract class HttpApiBase
      * @param typeOfT 返回数据类型
      * @param request 请求
      * @param parameters 参数
+     * @param <T> 返回值的类型
      * @return 响应
      */
     public <T extends ReturnPojoBase> ReturnData<T> send(Type typeOfT, String request, Map<String, Object> parameters)
@@ -143,6 +144,7 @@ public abstract class HttpApiBase
      * @param typeOfT 返回数据类型
      * @param request 请求
      * @param parameters 参数
+     * @param <T> 返回值的类型
      * @return 响应
      */
     public <T extends ReturnPojoBase> ReturnData<T> send(Class<T> typeOfT, String request, Object... parameters)
@@ -155,6 +157,7 @@ public abstract class HttpApiBase
      * @param typeOfT 返回数据类型
      * @param request 请求
      * @param parameters 参数
+     * @param <T> 返回值的类型
      * @return 响应
      */
     public <T extends ReturnPojoBase> ReturnListData<T> sendReturnList(Type typeOfT, String request, Map<String, Object> parameters)
@@ -167,6 +170,7 @@ public abstract class HttpApiBase
      * @param typeOfT 返回数据类型
      * @param request 请求
      * @param parameters 参数
+     * @param <T> 返回值的类型
      * @return 响应
      */
     public <T extends ReturnPojoBase> ReturnListData<T> sendReturnList(Class<T> typeOfT, String request, Object... parameters)
