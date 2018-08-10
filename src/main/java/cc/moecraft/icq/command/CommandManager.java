@@ -55,6 +55,8 @@ public class CommandManager
     /**
      * 自动循环commands下的所有包找指令类
      * 然后反射实例注册
+     * @throws IllegalAccessException 反射失败
+     * @throws InstantiationException 反射失败
      */
     public void registerAllCommands() throws IllegalAccessException, InstantiationException
     {
