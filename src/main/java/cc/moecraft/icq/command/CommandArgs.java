@@ -62,7 +62,8 @@ public class CommandArgs
         // 确认指令存在
         if (!registeredCommands.containsKey(command)) throw new CommandNotFoundException();
 
-        ArrayList<IcqCommand> commandToRun = commandManager.getRegisteredCommands().get(command);
+        // 获取执行器
+        ArrayList<IcqCommand> commandsToRun = registeredCommands.get(command);
 
         return new CommandArgs(prefix, command, commandToRun, args);
     }
