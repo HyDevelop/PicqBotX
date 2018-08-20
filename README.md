@@ -52,7 +52,7 @@ Maven 导入:
 Gradle 导入:
 --------
 
-没有添加 JitPack 的 Repo 的话首先添加 Repo,在 pom 里面把这些粘贴进去:
+没有添加 JitPack 的 Repo 的话首先添加 Repo, 在 pom 里面把这些粘贴进去:
 
 ```gradle
 allprojects {
@@ -81,18 +81,18 @@ dependencies {
 配置环境:
 --------
 
-##### 注意: 下面的教程适用于 Windows `酷Q v5.11.13`, Linux 教程以后可能会进行补充<br>还有，HTTP 插件必须是最新版本(当前版本号为 `v4.1.0`,会持续更新)
+##### 注意: 下面的教程适用于 Windows `酷Q v5.11.13`, Linux 教程以后可能会进行补充<br>还有, HTTP 插件必须是最新版本(当前版本号为 `v4.1.0`, 会持续更新)
 
 #### 1. 下载 [酷Q](https://cqp.cc/)... (如果有 酷Q Pro 的话效果更好哦!)
 下载完后解压到你想安装的目录下<br>
-首次启动请运行 `cqa.exe` 或 `cqp.exe`,并登陆机器人的 QQ 号<br>
+首次启动请运行 `cqa.exe` 或 `cqp.exe`, 并登陆机器人的 QQ 号<br>
 然后退出 酷Q (右键悬浮窗点退出)<br>
 
-#### 2. 添加[酷Q HTTP 插件](https://cqp.cc/t/30748):
-把 `.cpk` 文件下载下来，放进 `酷Q安装目录\app` 文件夹里<br>
+#### 2. 添加 [酷Q HTTP 插件](https://cqp.cc/t/30748):
+把 `.cpk` 文件下载下来, 放进 `酷Q安装目录\app` 文件夹里<br>
 启动 酷Q<br>
 右键悬浮窗, 然后点击 `应用 -> 应用管理`<br>
-列表里现在应该有 `[未启用]HTTP API`, 点击它, 点击启用<br>
+列表里现在应该有 `[未启用] HTTP API`, 点击它, 点击启用<br>
 启用的时候会提示需要一些敏感权限, 选择继续<br>
 启用之后在 `酷Q安装目录\app` 文件夹里会出现 `io.github.richardchien.coolqhttpapi` 文件夹<br>
 退出 酷Q<br>
@@ -152,7 +152,7 @@ bot.getEventManager().registerListener(new 监听器());
 
 ```java
 // 启用指令管理器, 启用的时候会自动注册指令
-// 这些字符串是指令前缀, 比如 !help 的前缀就是“!”
+// 这些字符串是指令前缀, 比如 !help 的前缀就是"!"
 bot.enableCommandManager("bot -", "!", "/", "~");
 ```
 
@@ -267,7 +267,7 @@ public class TestListener extends IcqListener
 
     // 判断消息是不是这段文字, 如果是就回复那段文字, 很简单的测试_(:з」∠)_
     if (event.getMessage().equals("你以为这是 yangjinhe/maintain-robot?"))
-        event.respond("其实是我 Hykilpikonna/PicqBotX 哒!");
+        event.respond("其实是我 HyDevelop/PicqBotX 哒!");
     }
 }
 ```
