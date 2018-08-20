@@ -6,8 +6,10 @@ import cc.moecraft.icq.sender.returndata.returnpojo.send.RMessageReturnData;
 import cc.moecraft.icq.user.User;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import lombok.AccessLevel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Setter;
 
 /**
  * 此类由 Hykilpikonna 在 2018/05/24 创建!
@@ -19,6 +21,7 @@ import lombok.EqualsAndHashCode;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
+@Setter(AccessLevel.NONE)
 public abstract class EventMessage extends Event
 {
     @SerializedName("message_type")
