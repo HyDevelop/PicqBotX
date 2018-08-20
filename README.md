@@ -3,11 +3,11 @@
   <br>
   PicqBotX
   <h4 align="center">
-  一个基于酷Q HTTP插件的Java QQ机器人类库
+  一个基于 酷Q HTTP 插件 的 Java QQ 机器人类库
   </h4>
   <h5 align="center">
 <a href="https://circleci.com/gh/HyDevelop/PicqBotX">CircleCI</a>&nbsp;&nbsp;
-<a href="#maven">Maven导入</a>&nbsp;&nbsp;
+<a href="#maven">Maven 导入</a>&nbsp;&nbsp;
 <a href="#environment">环境</a>&nbsp;&nbsp;
 <a href="#development">开发</a>&nbsp;&nbsp;
 <a href="#license">开源条款</a>
@@ -23,7 +23,7 @@
 Maven 导入:
 --------
 
-没有添加JitPack的Repo的话首先添加Repo, 在pom里面把这些粘贴进去:
+没有添加 JitPack 的 Repo 的话首先添加 Repo,在 pom 里面把这些粘贴进去:
 
 ```xml
 <repositories>
@@ -52,7 +52,7 @@ Maven 导入:
 Gradle 导入:
 --------
 
-没有添加JitPack的Repo的话首先添加Repo, 在pom里面把这些粘贴进去:
+没有添加 JitPack 的 Repo 的话首先添加 Repo,在 pom 里面把这些粘贴进去:
 
 ```gradle
 allprojects {
@@ -81,25 +81,25 @@ dependencies {
 配置环境:
 --------
 
-##### 注意: 下面的教程是对于Windows的`酷Q v5.11.13`的, Linux教程以后可能会补充<br>还有HTTP插件必须是最新(当前为 `v4.1.0`, 会持续更新)
+##### 注意: 下面的教程适用于 Windows `酷Q v5.11.13`, Linux 教程以后可能会进行补充<br>还有，HTTP 插件必须是最新版本(当前版本号为 `v4.1.0`,会持续更新)
 
-#### 1. 下载[酷Q](https://cqp.cc/)... (如果有酷QPro的话效果更好哦!)
-下载完之后解压到你想要的安装目录<br>
-首次启动运行 `cqa.exe` 或者 `cqp.exe`, 登陆机器人的QQ号<br>
-然后退出酷Q (右键悬浮窗点退出)<br>
+#### 1. 下载 [酷Q](https://cqp.cc/)... (如果有 酷Q Pro 的话效果更好哦!)
+下载完后解压到你想安装的目录下<br>
+首次启动请运行 `cqa.exe` 或 `cqp.exe`,并登陆机器人的 QQ 号<br>
+然后退出 酷Q (右键悬浮窗点退出)<br>
 
-#### 2. 添加[酷Q HTTP插件](https://cqp.cc/t/30748):
-把 `.cpk` 文件下载下来放进 `酷Q安装目录\app` 文件夹里<br>
-启动酷Q<br>
+#### 2. 添加[酷Q HTTP 插件](https://cqp.cc/t/30748):
+把 `.cpk` 文件下载下来，放进 `酷Q安装目录\app` 文件夹里<br>
+启动 酷Q<br>
 右键悬浮窗, 然后点击 `应用 -> 应用管理`<br>
-列表里现在应该有 `[未启用] HTTP API`, 点击它, 点击启用<br>
+列表里现在应该有 `[未启用]HTTP API`, 点击它, 点击启用<br>
 启用的时候会提示需要一些敏感权限, 选择继续<br>
 启用之后在 `酷Q安装目录\app` 文件夹里会出现 `io.github.richardchien.coolqhttpapi` 文件夹<br>
-退出酷Q<br>
+退出 酷Q<br>
 
-#### 3. 配置酷Q HTTP插件:
-在 `io.github.richardchien.coolqhttpapi` 文件夹里创建一个叫做 `config.cfg` 的文件<br>
-配置文件内写入以下代码<br>
+#### 3. 配置 酷Q HTTP 插件:
+在 `io.github.richardchien.coolqhttpapi` 文件夹里创建一个文件名为 `config.cfg` 的配置文件<br>
+并在其中写入以下代码<br>
 
 ```
 [general]
@@ -110,12 +110,12 @@ enable_backward_compatibility=false
 ```
 
 把发送端口和接收端口改成你的机器人程序里用的端口 (测试机器人的接收为`31091`, 发送`31092`)<br>
-注意: 酷Q配置里的发送端口要和传进Picq的接收端口一样, 然后Picq的发送端口也要和酷Q的接收端口一样!<br>
-( 因为酷Q需要发送到Picq的接收端口去, 而不是发送到对方的发送端口ww )
-如果酷Q要和你的机器人程序分开运行的话, `127.0.0.1`改成你的机器人部署的服务器的地址<br>
+注意: 酷Q 配置里的`发送端口`要和传进 Picq 的`接收端口`一样, 然后 Picq 的`发送端口`也要和 酷Q 的`接收端口`一样!<br>
+( 这是因为 酷Q 需要发送到 Picq 的接收端口去, 而不是发送到对方的发送端口ww )
+如果 酷Q 要和你的机器人程序分开运行的话, 请把`127.0.0.1`改成你的机器人部署的服务器的地址<br>
 保存配置文件<br>
 
-#### 4. 启动酷Q, 配置完成!
+#### 4. 配置完成! 启动 酷Q!
 
 
 <br>
@@ -128,12 +128,12 @@ enable_backward_compatibility=false
 
 #### 启动机器人 (Main类):
 
-main方法里面, 先创建一个机器人对象: <br>
+在 main 方法中, 先创建一个机器人对象: <br>
 注意: 因为所有事件和指令执行的时候都能获取到机器人对象, <br>
-所以不建议把机器人对象弄成static或者全局变量.
+所以不建议把机器人对象设置为 static 或者全局变量.
 
 ```java
-// 创建机器人对象 ( 信息发送URL, 发送端口, 接收端口, 是否DEBUG )
+// 创建机器人对象 ( 信息发送 URL, 发送端口, 接收端口, 是否 DEBUG )
 PicqBotX bot = new PicqBotX("127.0.0.1", 31091, 31092, false);
 ```
 
@@ -152,7 +152,7 @@ bot.getEventManager().registerListener(new 监听器());
 
 ```java
 // 启用指令管理器, 启用的时候会自动注册指令
-// 这些字符串是指令前缀, 比如!help的前缀就是!
+// 这些字符串是指令前缀, 比如 !help 的前缀就是“!”
 bot.enableCommandManager("bot -", "!", "/", "~");
 ```
 
@@ -204,9 +204,9 @@ public class TestBot
 #### 监听事件:
 
 ```java
-public class 类名随意 extends IcqListener // 必须继承IcqListener监听器类
+public class 类名随意 extends IcqListener // 必须继承 IcqListener 监听器类
 {
-    @EventHandler // 这个注解必须加, 用于反射时判断哪些方法是事件方法的, 不用@Override
+    @EventHandler // 这个注解必须加, 用于反射时判断哪些方法是事件方法的, 不用 @Override
     public void 方法名随意(事件类名 event) // 想监听什么事件就写在事件类名这里, 一个方法只能有一个事件参数
     {
     // 处理
@@ -266,8 +266,8 @@ public class TestListener extends IcqListener
     System.out.println("接到消息");
 
     // 判断消息是不是这段文字, 如果是就回复那段文字, 很简单的测试_(:з」∠)_
-    if (event.getMessage().equals("你以为这是yangjinhe/maintain-robot?"))
-        event.respond("其实是我Hykilpikonna/PicqBotX哒!");
+    if (event.getMessage().equals("你以为这是 yangjinhe/maintain-robot?"))
+        event.respond("其实是我 Hykilpikonna/PicqBotX 哒!");
     }
 }
 ```
@@ -288,7 +288,7 @@ public class TestFilter extends IcqListener
         message = message.replace("%prefix%", "!");
         
         // 设置消息, 因为这个事件是在发送之前执行的, 所以这样设置的消息能生效
-    // 设置为null就能拦截了
+    // 设置为 null 就能拦截了
         event.setMessage(message);
     }
 }
@@ -298,9 +298,9 @@ public class TestFilter extends IcqListener
 
 #### 发送信息:
 
-需要一个bot对象, **请不要使用全局变量存bot对象**<br>
-其实监听器里的话直接用 `event.getBot()` 就行了, 不是监听器的话也很少会直接用到bot对象...<br>
-返回数据为 `ReturnData<Pojo数据类>` 形式, 获取数据的话用 `response.getData()` 就行了.<br>
+需要一个 bot 对象, **请不要使用全局变量存 bot 对象**<br>
+其实监听器里的话直接用 `event.getBot()` 就行了, 不是监听器的话也很少会直接用到 bot 对象...<br>
+返回数据为 `ReturnData<Pojo 数据类>` 形式, 获取数据的话用 `response.getData()` 就行了.<br>
 
 ##### 如果已经封装过了的话, 这样发送:
 ```java
@@ -322,9 +322,9 @@ ReturnData<RMessageReturnData> response = event.getBot().getHttpApi().send(IcqHt
     "auto_escape", false); // 这个参数因为不常用就没有封装, 所以要用的话这样发送
 ```
 
-##### 复杂的消息建造 (比如图片什么的) 用MessageBuilder类:
+##### 复杂的消息建造 (比如图片什么的) 用 MessageBuilder 类:
 
-注意: .add(object) 方法对于所有类型的对象都有效, 只要能toString就行
+注意: .add(object) 方法对于所有类型的对象都有效, 只要能 toString 就行
 
 ```java
 new MessageBuilder()
@@ -332,22 +332,22 @@ new MessageBuilder()
     .add(123)
     .add(16.5f)
     .newLine() // 换行
-    .add(new ComponentImage("此处填图片文件路径或者URL")) // 图片组件
-    .add(new ComponentImageBase64("此处填图片Base64码")) // Base64图片组件
-    .add(new ComponentRecord("此处填语音文件路径或者URL")) // 语音组件
+    .add(new ComponentImage("此处填图片文件路径或者 URL")) // 图片组件
+    .add(new ComponentImageBase64("此处填图片 Base64 码")) // Base64 图片组件
+    .add(new ComponentRecord("此处填语音文件路径或者 URL")) // 语音组件
     .toString();
 ```
 
-可用组件 (需要酷Q Pro才能用, 详细介绍看[CQ码](https://d.cqp.me/Pro/CQ%E7%A0%81)):
+可用组件 (需要 酷Q Pro 才能用, 详细介绍请看[CQ码](https://d.cqp.me/Pro/CQ%E7%A0%81)):
 
 | 组件类名                 | 组件介绍 |
 | :------------ | :------------ |
 | ComponentAt | @组件 |
 | ComponentBFace | 原创表情组件 |
-| ComponentEmoji | Emoji表情组件 |
-| ComponentFace | QQ表情组件 |
+| ComponentEmoji | Emoji 表情组件 |
+| ComponentFace | QQ 表情组件 |
 | ComponentImage | 图片组件 |
-| ComponentImageBase64 | Base64编码图片组件 |
+| ComponentImageBase64 | Base64 编码图片组件 |
 | ComponentSFace | 小表情组件 |
 | ComponentShare | 分享链接组件 |
 | ComponentDice | 掷骰子组件 (只能单独发送) |
@@ -392,8 +392,8 @@ public class CommandVersion implements EverywhereCommand // 实现EverywhereComm
 ```
 
 
-#### 如果有Bug的话, 联系我QQ: 565656哦!
-#### 或者加群498386389
+#### 如果发现 Bug 的话, 请联系我 QQ: 565656 哦!
+#### 或者加开发群 498386389
 
 <br>
 
