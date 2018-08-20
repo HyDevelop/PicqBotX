@@ -8,8 +8,10 @@ import cc.moecraft.icq.user.GroupUser;
 import cc.moecraft.icq.user.User;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import lombok.AccessLevel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Setter;
 
 /**
  * 此类由 Hykilpikonna 在 2018/05/24 创建!
@@ -21,6 +23,7 @@ import lombok.EqualsAndHashCode;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
+@Setter(AccessLevel.NONE)
 public class EventGroupMessage extends EventGroupOrDiscussMessage
 {
     @SerializedName("anonymous")
@@ -36,6 +39,7 @@ public class EventGroupMessage extends EventGroupOrDiscussMessage
     public String subType;
 
     @Data
+    @Setter(AccessLevel.NONE)
     public class Anonymous
     {
         @SerializedName("flag")

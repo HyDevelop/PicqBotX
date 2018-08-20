@@ -4,7 +4,9 @@ import cc.moecraft.icq.PicqBotX;
 import cc.moecraft.icq.sender.IcqHttpApi;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.Setter;
 
 /**
  * 此类由 Hykilpikonna 在 2018/05/24 创建!
@@ -15,6 +17,7 @@ import lombok.Data;
  * @author Hykilpikonna
  */
 @Data
+@Setter(AccessLevel.NONE)
 public abstract class Event
 {
     @SerializedName("post_type")
