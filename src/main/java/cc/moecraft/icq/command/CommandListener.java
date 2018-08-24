@@ -7,7 +7,12 @@ import cc.moecraft.icq.event.events.message.EventGroupMessage;
 import cc.moecraft.icq.event.events.message.EventMessage;
 import cc.moecraft.icq.event.events.message.EventPrivateMessage;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * 此类由 Hykilpikonna 在 2018/05/26 创建!
@@ -17,10 +22,13 @@ import lombok.RequiredArgsConstructor;
  *
  * @author Hykilpikonna
  */
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class CommandListener extends IcqListener
 {
-    private CommandManager commandManager;
+    private final CommandManager commandManager;
+
+    @Getter
+    private Map<String, CommandRunnable> runningThreads = new LinkedHashMap<>();
 
     @EventHandler
     public void onPrivateMessage(EventPrivateMessage event)
@@ -57,7 +65,9 @@ public class CommandListener extends IcqListener
         @Override
         public void run()
         {
+            runningThreads.put(thread.getName(), this);
             commandManager.runCommand(event);
+            runningThreads.remove(thread.getName());
         }
 
         public void runAsync()
