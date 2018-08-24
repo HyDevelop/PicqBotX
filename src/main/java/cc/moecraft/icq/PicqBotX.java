@@ -19,7 +19,7 @@ import cc.moecraft.logger.environments.ColorSupportLevel;
 import cc.moecraft.logger.environments.ConsoleColoredEnv;
 import cc.moecraft.logger.environments.ConsoleEnv;
 import cc.moecraft.logger.environments.FileEnv;
-import com.xiaoleilu.hutool.http.HttpException;
+import cn.hutool.http.HttpException;
 import lombok.Getter;
 import lombok.Setter;
 
