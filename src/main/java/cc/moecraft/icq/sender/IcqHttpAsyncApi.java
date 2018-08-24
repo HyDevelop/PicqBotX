@@ -1,10 +1,10 @@
 package cc.moecraft.icq.sender;
 
 import cc.moecraft.icq.event.EventManager;
+import cn.hutool.http.HttpUtil;
+import cn.hutool.json.JSONObject;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
-import com.xiaoleilu.hutool.http.HttpUtil;
-import com.xiaoleilu.hutool.json.JSONObject;
 
 import java.util.Map;
 
