@@ -28,9 +28,9 @@
         </dependency>
 
         <dependency>
-            <groupId>com.xiaoleilu</groupId>
+            <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
-            <version>3.2.1</version>
+            <version>4.1.8</version>
         </dependency>
 
         <dependency>
