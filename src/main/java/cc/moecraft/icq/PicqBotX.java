@@ -7,7 +7,6 @@ import cc.moecraft.icq.exceptions.HttpServerStartFailedException;
 import cc.moecraft.icq.exceptions.InvalidSendingURLException;
 import cc.moecraft.icq.exceptions.VersionIncorrectException;
 import cc.moecraft.icq.exceptions.VersionRecommendException;
-import cc.moecraft.icq.sender.IcqHttpApi;
 import cc.moecraft.icq.sender.returndata.returnpojo.get.RVersionInfo;
 import cc.moecraft.icq.user.GroupManager;
 import cc.moecraft.icq.user.GroupUserManager;
@@ -19,6 +18,7 @@ import cc.moecraft.logger.environments.ColorSupportLevel;
 import cc.moecraft.logger.environments.ConsoleColoredEnv;
 import cc.moecraft.logger.environments.ConsoleEnv;
 import cc.moecraft.logger.environments.FileEnv;
+import cc.moecraft.logger.format.AnsiColor;
 import cn.hutool.http.HttpException;
 import lombok.Getter;
 import lombok.Setter;
@@ -48,7 +48,7 @@ public class PicqBotX
     private EventManager eventManager; // 事件管理器
 
     @Getter
-    private IcqHttpApi httpApi; // HTTP发送器
+    private AccountManager accountManager; // 机器人账号管理器
 
     @Getter
     private UserManager userManager; // 用户对象缓存管理器
@@ -113,8 +113,8 @@ public class PicqBotX
         eventManager = new EventManager(this);
         logInit("事件管理器     ", 3, 3);
 
-        httpApi = new IcqHttpApi(eventManager, postUrl, postPort);
-        logInit("HTTP发送器     ", 4, 2);
+        accountManager = new AccountManager();
+        logInit("账号管理器     ", 4, 2);
 
         httpServer = new HttpServer(socketPort, this);
         logInit("HTTP监听服务器 ", 5, 1);
