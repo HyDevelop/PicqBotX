@@ -1,6 +1,7 @@
 package cc.moecraft.icq.event;
 
 import cc.moecraft.icq.PicqBotX;
+import cc.moecraft.icq.accounts.BotAccount;
 import cc.moecraft.icq.sender.IcqHttpApi;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -42,6 +43,11 @@ public abstract class Event
 
     public IcqHttpApi getHttpApi()
     {
-        return getBot().getHttpApi();
+        return getBotAccount().getHttpApi();
+    }
+
+    public BotAccount getBotAccount()
+    {
+        return getBot().getAccountManager().getIdIndex().get(selfId);
     }
 }
