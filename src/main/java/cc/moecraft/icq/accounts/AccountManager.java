@@ -45,6 +45,27 @@ public class AccountManager
         this.accounts.addAll(new ArrayList<>(Arrays.asList(accounts)));
         refreshCache();
     }
+
+    /**
+     * 获取当前发送频率最小的账号
+     * @param groupId 群号
+     * @return 发送频率最小的账号
+     */
+    public BotAccount getOptimal(long groupId)
+    {
+        BotAccount minQq = null;
+
+        long min = Long.MAX_VALUE;
+        for (Map.Entry<BotAccount, Long> groupAccountEntry : groupAccountIndex.get(groupId).entrySet())
+        {
+            if (groupAccountEntry.getValue() >= min) continue;
+
+            minQq = groupAccountEntry.getKey();
+            min = groupAccountEntry.getValue();
+        }
+        return minQq;
+    }
+
     /**
      * 刷新缓存
      */
