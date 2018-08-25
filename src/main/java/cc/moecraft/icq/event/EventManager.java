@@ -123,6 +123,13 @@ public class EventManager
         });
     }
 
+    public void callError(Event event, Throwable throwable)
+    {
+        if (event instanceof EventLocalException && ((EventLocalException) event).getParentEvent() instanceof EventLocalException)
+            throwable.printStackTrace(); // 如果这个事件是报错事件, 而且这个事件报的错也是报错事件的话, 怎么办呢....
+        else call(new EventLocalException(throwable instanceof InvocationTargetException ? throwable.getCause() : throwable, event));
+    }
+
     /**
      * 执行事件
      * @param inputJsonString ICQ发来的Json字符串
