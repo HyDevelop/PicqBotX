@@ -55,7 +55,7 @@ public class GroupUser
                 "Anonymous",
                 0L,
                 false, id);
-        return info = bot.getHttpApi().getGroupMemberInfo(group.getId(), id).getData();
+        return info = bot.getAccountManager().getNonAccountSpecifiedApi().getGroupMemberInfo(group.getId(), id).getData();
     }
 
     /**

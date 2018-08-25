@@ -39,7 +39,7 @@ public class Group
      */
     public RGroup refreshInfo()
     {
-        ReturnListData<RGroup> groupList = bot.getHttpApi().getGroupList();
+        ReturnListData<RGroup> groupList = bot.getAccountManager().getNonAccountSpecifiedApi().getGroupList();
         for (RGroup group : groupList.getData())
         {
             if (group.getGroupId().equals(id))

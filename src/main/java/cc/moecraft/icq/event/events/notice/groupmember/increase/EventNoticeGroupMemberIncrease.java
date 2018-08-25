@@ -13,6 +13,6 @@ public class EventNoticeGroupMemberIncrease extends EventNoticeGroupMemberChange
 {
     public void kick()
     {
-        getBot().getHttpApi().setGroupKick(getGroupId(), getUserId());
+        getHttpApi().setGroupKick(getGroupId(), getUserId());
     }
 }

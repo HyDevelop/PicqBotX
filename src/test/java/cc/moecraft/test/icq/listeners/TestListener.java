@@ -34,7 +34,7 @@ public class TestListener extends IcqListener
 
         if (event.getMessage().equals("测试给小桂发Hi"))
         {
-            JsonElement response = event.getBot().getHttpApi().send(IcqHttpApi.SEND_PRIVATE_MSG,
+            JsonElement response = event.getHttpApi().send(IcqHttpApi.SEND_PRIVATE_MSG,
                     "user_id", 565656,
                     "message", "hi",
                     "auto_escape", false);
@@ -62,11 +62,11 @@ public class TestListener extends IcqListener
     public void testDataReturn(PicqBotX bot)
     {
         // 测试成功 #1: 普通泛型
-        // ReturnData<RLoginInfo> returnData = bot.getHttpApi().getLoginInfo();
+        // ReturnData<RLoginInfo> returnData = bot.getAccountManager().getNonAccountSpecifiedApi().getLoginInfo();
         // bot.getLogger().log("Return Data = " + returnData);
 
         // 测试 #2: List泛型
-        ReturnListData<RGroup> returnListData = bot.getHttpApi().getGroupList();
+        ReturnListData<RGroup> returnListData = bot.getAccountManager().getNonAccountSpecifiedApi().getGroupList();
         bot.getLogger().log("Return List Data = " + returnListData);
     }
 }
