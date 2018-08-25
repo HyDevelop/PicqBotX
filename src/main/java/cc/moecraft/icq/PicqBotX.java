@@ -160,6 +160,7 @@ public class PicqBotX
         logInit("事件管理器     ", 3, 3);
 
         accountManager = new AccountManager();
+        eventManager.registerListener(new AccountManagerListener(accountManager));
         logInit("账号管理器     ", 4, 2);
 
         httpServer = new HttpServer(socketPort, this);
@@ -327,66 +328,5 @@ public class PicqBotX
     public void eventsSetPauseState(boolean isPaused)
     {
         eventManager.setPaused(isPaused);
-    }
-
-    /**
-     * 启用指令系统
-     * @param prefixes 前缀
-     * @throws InstantiationException 反射失败
-     * @throws IllegalAccessException 反射失败
-     */
-    public void enableCommandManager(String ... prefixes) throws InstantiationException, IllegalAccessException
-    {
-        enableCommandManager(true, prefixes);
-    }
-
-    /**
-     * 启用指令系统
-     * @param registerAllCommands 是否自动注册所有指令
-     * @param prefixes 前缀
-     * @throws InstantiationException 反射失败
-     * @throws IllegalAccessException 反射失败
-     */
-    public void enableCommandManager(boolean registerAllCommands, String ... prefixes) throws InstantiationException, IllegalAccessException
-    {
-        logger.timing.init();
-
-        commandManager = new CommandManager(groupManager, userManager, groupUserManager, prefixes);
-        if (registerAllCommands) commandManager.registerAllCommands();
-        eventManager.registerListener(new CommandListener(commandManager));
-        logInit("指令管理器     ", 6, 0);
-
-        logger.timing.clear();
-    }
-
-    /**
-     * 验证HTTP插件版本
-     * @throws VersionIncorrectException 版本不对
-     * @throws VersionRecommendException 推荐版本
-     * @throws InvalidSendingURLException 发送URL错误
-     */
-    public void verifyHttpPluginVersion() throws
-            VersionIncorrectException,
-            VersionRecommendException,
-            InvalidSendingURLException
-    {
-        if (noVerify) return;
-
-        try
-        {
-            RVersionInfo versionInfo = httpApi.getVersionInfo().getData();
-
-            if (!versionInfo.getPluginVersion().matches(httpApiVersionDetection))
-                throw new VersionIncorrectException(httpApiVersionDetection, versionInfo.getPluginVersion());
-
-            if (!versionInfo.getCoolqEdition().equalsIgnoreCase("pro"))
-                throw new VersionRecommendException();
-        }
-        catch (HttpException e)
-        {
-            if (e.getMessage().toLowerCase().contains("connection refused"))
-                throw new InvalidSendingURLException();
-            e.printStackTrace();
-        }
     }
 }
