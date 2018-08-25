@@ -13,6 +13,7 @@ import cc.moecraft.icq.sender.returndata.returnpojo.send.RMessageReturnData;
 import cc.moecraft.utils.MapBuilder;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
+import lombok.Getter;
 
 import java.lang.reflect.Type;
 import java.util.Map;
@@ -76,13 +77,18 @@ public abstract class HttpApiBase
     final String baseURL;
     final EventManager eventManager;
 
+    @Getter
+    long selfId;
+
     public HttpApiBase(EventManager eventManager, String baseUrl, int port)
     {
         this.eventManager = eventManager;
-        baseUrl = baseUrl.toLowerCase();
-        if (!baseUrl.contains("http://")) baseUrl = "http://" + baseUrl;
 
-        baseURL = baseUrl + ":" + port + "/";
+        baseUrl = baseUrl.toLowerCase();
+
+        if (!baseUrl.contains("http://")) baseUrl = "http://" + baseUrl;
+        this.baseURL = baseUrl + ":" + port + "/";
+        if (this instanceof IcqHttpApi) selfId = ((IcqHttpApi) this).getLoginInfo().getData().getUserId();
     }
 
     /**
@@ -199,6 +205,7 @@ public abstract class HttpApiBase
     public ReturnData<RMessageReturnData> sendPrivateMsg(long qq, String message, boolean autoEscape)
     {
         EventLocalSendPrivateMessage event = new EventLocalSendPrivateMessage(qq, message, autoEscape);
+        event.selfId = selfId;
         eventManager.call(event);
         if (event.isCancelled()) return null;
         return send(RMessageReturnData.class, SEND_PRIVATE_MSG, "user_id", event.getId(), "message", event.getMessage(), "auto_escape", event.isAutoEscape());
@@ -225,6 +232,7 @@ public abstract class HttpApiBase
     public ReturnData<RMessageReturnData> sendGroupMsg(long groupId, String message, boolean autoEscape)
     {
         EventLocalSendGroupMessage event = new EventLocalSendGroupMessage(groupId, message, autoEscape);
+        event.selfId = selfId;
         eventManager.call(event);
         if (event.isCancelled()) return null;
         return send(RMessageReturnData.class, SEND_GROUP_MSG, "group_id", event.getId(), "message", event.getMessage(), "auto_escape", event.isAutoEscape());
@@ -251,6 +259,7 @@ public abstract class HttpApiBase
     public ReturnData<RMessageReturnData> sendDiscussMsg(long groupId, String message, boolean autoEscape)
     {
         EventLocalSendDiscussMessage event = new EventLocalSendDiscussMessage(groupId, message, autoEscape);
+        event.selfId = selfId;
         eventManager.call(event);
         if (event.isCancelled()) return null;
         return send(RMessageReturnData.class, SEND_DISCUSS_MSG, "discuss_id", event.getId(), "message", event.getMessage(), "auto_escape", event.isAutoEscape());

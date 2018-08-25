@@ -26,7 +26,7 @@ public class IcqHttpApi extends HttpApiBase
     public IcqHttpApi(EventManager eventManager, String baseUrl, int port)
     {
         super(eventManager, baseUrl, port);
-        async = new IcqHttpAsyncApi(eventManager, baseUrl, port);
+        async = new IcqHttpAsyncApi(this, eventManager, baseUrl, port);
     }
 
     /**
