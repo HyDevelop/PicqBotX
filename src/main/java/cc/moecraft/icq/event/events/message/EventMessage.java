@@ -82,7 +82,7 @@ public abstract class EventMessage extends Event
      */
     public ReturnData<RMessageReturnData> respondPrivateMessage(String message, boolean raw)
     {
-        return getBot().getHttpApi().sendPrivateMsg(getSenderId(), message, raw);
+        return getHttpApi().sendPrivateMsg(getSenderId(), message, raw);
     }
 
     /**

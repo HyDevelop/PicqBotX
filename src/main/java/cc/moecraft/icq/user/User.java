@@ -39,6 +39,6 @@ public class User
      */
     public RStrangerInfo refreshInfo(boolean noCache)
     {
-        return info = bot.getHttpApi().getStrangerInfo(id, noCache).getData();
+        return info = bot.getAccountManager().getNonAccountSpecifiedApi().getStrangerInfo(id, noCache).getData();
     }
 }

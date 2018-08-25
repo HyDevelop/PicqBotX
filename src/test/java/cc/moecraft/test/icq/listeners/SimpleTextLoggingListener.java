@@ -35,7 +35,7 @@ public class SimpleTextLoggingListener extends IcqListener
 
     public static String getGroupName(PicqBotX bot, long groupId)
     {
-        ReturnListData<RGroup> returnListData = bot.getHttpApi().getGroupList();
+        ReturnListData<RGroup> returnListData = bot.getAccountManager().getNonAccountSpecifiedApi().getGroupList();
         for (RGroup group : returnListData.getData())
         {
             if (group.getGroupId().equals(groupId)) return group.getGroupName();
@@ -45,17 +45,17 @@ public class SimpleTextLoggingListener extends IcqListener
 
     public static String getNickname(EventMessage event)
     {
-        return event.getBot().getHttpApi().getStrangerInfo(event.getSenderId()).getData().getNickname();
+        return event.getHttpApi().getStrangerInfo(event.getSenderId()).getData().getNickname();
     }
 
     public static String getNickname(EventLocalSendMessage event)
     {
-        return event.getBot().getHttpApi().getStrangerInfo(event.getId()).getData().getNickname();
+        return event.getHttpApi().getStrangerInfo(event.getId()).getData().getNickname();
     }
 
     public static String getSelfNickname(EventMessage event)
     {
-        return event.getBot().getHttpApi().getLoginInfo().getData().getNickname();
+        return event.getHttpApi().getLoginInfo().getData().getNickname();
     }
 
     public static String getFixedLengthNickname(String nickname, boolean space, boolean center)

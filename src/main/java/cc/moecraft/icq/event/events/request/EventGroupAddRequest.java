@@ -27,12 +27,12 @@ public class EventGroupAddRequest extends EventRequest
     @Override
     public void accept()
     {
-        getBot().getHttpApi().approveGroupRequest(flag, subType); // TODO: 测试
+        getHttpApi().approveGroupRequest(flag, subType); // TODO: 测试
     }
 
     @Override
     public void reject(String reason)
     {
-        getBot().getHttpApi().rejectGroupRequest(flag, subType, reason);
+        getHttpApi().rejectGroupRequest(flag, subType, reason);
     }
 }

@@ -17,12 +17,12 @@ public class EventFriendRequest extends EventRequest
     @Override
     public void accept()
     {
-        getBot().getHttpApi().setFriendAndRequest(flag, true);
+        getHttpApi().setFriendAndRequest(flag, true);
     }
 
     @Override
     public void reject(String reason)
     {
-        getBot().getHttpApi().setFriendAndRequest(flag, false);
+        getHttpApi().setFriendAndRequest(flag, false);
     }
 }

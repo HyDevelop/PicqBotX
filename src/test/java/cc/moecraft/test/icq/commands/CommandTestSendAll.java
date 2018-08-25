@@ -28,11 +28,11 @@ public class CommandTestSendAll implements EverywhereCommand
             logger.log("测试撤回...");
             RMessageReturnData returnData = event.respond("测试撤回").getData();
             logger.log(returnData.toString());
-            event.getBot().getHttpApi().deleteMsg(returnData.getMessageId());
+            event.getHttpApi().deleteMsg(returnData.getMessageId());
         }
         {
             logger.log("测试赞");
-            event.getBot().getHttpApi().sendLike(sender.getId(), 10);
+            event.getHttpApi().sendLike(sender.getId(), 10);
         }
         return null;
     }
