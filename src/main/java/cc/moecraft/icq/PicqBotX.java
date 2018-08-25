@@ -75,7 +75,10 @@ public class PicqBotX
     private boolean useAsync = false; // 是否异步
 
     @Getter @Setter
-    private boolean maintenanceMode = false;
+    private boolean maintenanceMode = false; // 维护模式
+
+    @Getter @Setter
+    private boolean multiAccountOptimizations = true; // 多账号优化
 
     public static final String VERSION = "1.4.0.475";
 
