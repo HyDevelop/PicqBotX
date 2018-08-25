@@ -4,7 +4,6 @@ import cc.moecraft.icq.event.EventManager;
 import cc.moecraft.icq.sender.IcqHttpApi;
 import lombok.Data;
 import lombok.Getter;
-import lombok.Setter;
 
 /**
  * 此类由 Hykilpikonna 在 2018/08/25 创建!

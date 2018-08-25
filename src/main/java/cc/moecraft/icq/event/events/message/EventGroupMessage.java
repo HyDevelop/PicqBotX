@@ -1,7 +1,6 @@
 package cc.moecraft.icq.event.events.message;
 
 import cc.moecraft.icq.accounts.BotAccount;
-import cc.moecraft.icq.sender.IcqHttpApi;
 import cc.moecraft.icq.sender.returndata.RawReturnData;
 import cc.moecraft.icq.sender.returndata.ReturnData;
 import cc.moecraft.icq.sender.returndata.returnpojo.send.RMessageReturnData;
