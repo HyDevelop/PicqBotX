@@ -25,5 +25,8 @@ public class AccountManager
     private final ArrayList<BotAccount> accounts;
 
     @Getter
+    private Map<Long, Map<BotAccount, Long>> groupAccountIndex; // 群索引, <群号, <加了群的机器人号, 发送消息数量>>
+
+    @Getter
     private Map<Long, BotAccount> idIndex; // 机器人QQ号索引, <QQ号, 机器人号实例>
 }
