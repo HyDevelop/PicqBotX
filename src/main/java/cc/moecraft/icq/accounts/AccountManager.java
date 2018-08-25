@@ -35,6 +35,16 @@ public class AccountManager
         accounts = new ArrayList<>();
         refreshCache();
     }
+
+    /**
+     * 添加账号
+     * @param accounts 账号信息
+     */
+    public void addAccount(BotAccount... accounts)
+    {
+        this.accounts.addAll(new ArrayList<>(Arrays.asList(accounts)));
+        refreshCache();
+    }
     /**
      * 刷新缓存
      */
