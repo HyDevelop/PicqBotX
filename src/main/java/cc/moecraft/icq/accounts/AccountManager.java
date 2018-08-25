@@ -29,4 +29,20 @@ public class AccountManager
 
     @Getter
     private Map<Long, BotAccount> idIndex; // 机器人QQ号索引, <QQ号, 机器人号实例>
+
+    /**
+     * 刷新缓存
+     */
+    public void refreshCache()
+    {
+        this.groupAccountIndex = new HashMap<>();
+        this.idIndex = new HashMap<>();
+
+        for (BotAccount account : accounts) for (RGroup rGroup : account.getHttpApi().getGroupList().getData())
+        {
+            if (!groupAccountIndex.containsKey(rGroup.groupId)) groupAccountIndex.put(rGroup.groupId, new HashMap<>());
+            this.groupAccountIndex.get(rGroup.groupId).put(account, 0L);
+            this.idIndex.put(account.getId(), account);
+        }
+    }
 }
