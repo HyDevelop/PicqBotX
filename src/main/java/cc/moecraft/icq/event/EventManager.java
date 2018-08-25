@@ -166,6 +166,8 @@ public class EventManager
         }
     }
 
+    private final Map<Long, ArrayList<EventGroupMessage>> cachedMessages = new HashMap<>();
+
     /**
      * 执行消息事件
      * @param json JSON输入
@@ -181,7 +183,28 @@ public class EventManager
             }
             case "group":
             {
-                call(new Gson().fromJson(json, EventGroupMessage.class));
+                EventGroupMessage event = new Gson().fromJson(json, EventGroupMessage.class);
+
+                if (bot.isMultiAccountOptimizations())
+                {
+                    if (!cachedMessages.containsKey(event.getGroupId())) cachedMessages.put(event.getGroupId(), new ArrayList<>());
+
+                    ArrayList<EventGroupMessage> cache = cachedMessages.get(event.getGroupId());
+
+                    for (EventGroupMessage oneMessage : cache)
+                    {
+                        if (!oneMessage.getMessage().equals(event.getMessage())) continue;
+                        if (!oneMessage.getSenderId().equals(event.getSenderId())) continue;
+                        if (!oneMessage.getTime().equals(event.getTime())) continue;
+                        return;
+                    }
+                    cache.add(event);
+                    if (cache.size() > 10) cache.remove(0);
+                    //if (cachedMessages.contains(id)) return;
+                    //this.cachedMessages.add(id);
+                }
+
+                call(event);
                 break;
             }
             case "discuss":
