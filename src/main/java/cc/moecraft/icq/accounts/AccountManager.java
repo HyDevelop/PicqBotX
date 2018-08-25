@@ -30,6 +30,11 @@ public class AccountManager
     @Getter
     private Map<Long, BotAccount> idIndex; // 机器人QQ号索引, <QQ号, 机器人号实例>
 
+    public AccountManager()
+    {
+        accounts = new ArrayList<>();
+        refreshCache();
+    }
     /**
      * 刷新缓存
      */
