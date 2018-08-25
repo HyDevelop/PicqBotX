@@ -6,11 +6,9 @@ import cc.moecraft.icq.event.events.message.EventDiscussMessage;
 import cc.moecraft.icq.event.events.message.EventGroupMessage;
 import cc.moecraft.icq.event.events.message.EventMessage;
 import cc.moecraft.icq.event.events.message.EventPrivateMessage;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -28,7 +26,7 @@ public class CommandListener extends IcqListener
     private final CommandManager commandManager;
 
     @Getter
-    private Map<String, CommandRunnable> runningThreads = new LinkedHashMap<>();
+    private Map<String, CommandRunnable> runningAsyncThreads = new LinkedHashMap<>();
 
     @EventHandler
     public void onPrivateMessage(EventPrivateMessage event)
@@ -61,17 +59,26 @@ public class CommandListener extends IcqListener
     {
         private Thread thread;
         private final EventMessage event;
+        private boolean async = false;
 
         @Override
         public void run()
         {
-            runningThreads.put(thread.getName(), this);
-            commandManager.runCommand(event);
-            runningThreads.remove(thread.getName());
+            if (async) runningAsyncThreads.put(thread.getName(), this);
+            try
+            {
+                commandManager.runCommand(event);
+            }
+            catch (Throwable e)
+            {
+                event.getBot().getEventManager().callError(event, e);
+            }
+            if (async) runningAsyncThreads.remove(thread.getName());
         }
 
         public void runAsync()
         {
+            async = true;
             thread = new Thread(this, "Thread-" + System.currentTimeMillis());
             thread.start();
         }
