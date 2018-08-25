@@ -2,6 +2,7 @@ package cc.moecraft.icq.event.events.message;
 
 import cc.moecraft.icq.user.Group;
 import cc.moecraft.icq.user.GroupUser;
+import lombok.ToString;
 
 /**
  * 此类由 Hykilpikonna 在 2018/07/11 创建!
@@ -11,6 +12,7 @@ import cc.moecraft.icq.user.GroupUser;
  *
  * @author Hykilpikonna
  */
+@ToString(callSuper = true)
 public abstract class EventGroupOrDiscussMessage extends EventMessage
 {
     /**

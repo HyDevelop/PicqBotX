@@ -3,10 +3,7 @@ package cc.moecraft.icq.event.events.notice.groupmember;
 import cc.moecraft.icq.event.events.notice.EventNotice;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.Setter;
+import lombok.*;
 
 /**
  * 群员数量更改事件
@@ -16,6 +13,7 @@ import lombok.Setter;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Setter(AccessLevel.NONE)
+@ToString(callSuper = true)
 public class EventNoticeGroupMemberChange extends EventNotice
 {
     @SerializedName("group_id")

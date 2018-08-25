@@ -1,5 +1,7 @@
 package cc.moecraft.icq.event.events.message;
 
+import cc.moecraft.icq.accounts.BotAccount;
+import cc.moecraft.icq.sender.IcqHttpApi;
 import cc.moecraft.icq.sender.returndata.RawReturnData;
 import cc.moecraft.icq.sender.returndata.ReturnData;
 import cc.moecraft.icq.sender.returndata.returnpojo.send.RMessageReturnData;
@@ -8,10 +10,7 @@ import cc.moecraft.icq.user.GroupUser;
 import cc.moecraft.icq.user.User;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.Setter;
+import lombok.*;
 
 /**
  * 此类由 Hykilpikonna 在 2018/05/24 创建!
@@ -24,6 +23,7 @@ import lombok.Setter;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Setter(AccessLevel.NONE)
+@ToString(callSuper = true)
 public class EventGroupMessage extends EventGroupOrDiscussMessage
 {
     @SerializedName("anonymous")

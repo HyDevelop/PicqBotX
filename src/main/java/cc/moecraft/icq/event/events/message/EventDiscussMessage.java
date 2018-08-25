@@ -6,10 +6,7 @@ import cc.moecraft.icq.user.Group;
 import cc.moecraft.icq.user.User;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.Setter;
+import lombok.*;
 
 /**
  * 此类由 Hykilpikonna 在 2018/05/24 创建!
@@ -22,6 +19,7 @@ import lombok.Setter;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Setter(AccessLevel.NONE)
+@ToString(callSuper = true)
 public class EventDiscussMessage extends EventGroupOrDiscussMessage
 {
     @SerializedName("discuss_id")
