@@ -3,8 +3,6 @@ package cc.moecraft.test.icq;
 import cc.moecraft.icq.PicqBotX;
 import cc.moecraft.icq.accounts.BotAccount;
 import cc.moecraft.icq.exceptions.HttpServerStartFailedException;
-import cc.moecraft.icq.exceptions.InvalidSendingURLException;
-import cc.moecraft.icq.exceptions.VersionIncorrectException;
 import cc.moecraft.test.icq.features.annoy.AnnoyingListener;
 import cc.moecraft.test.icq.features.antirecall.AntiRecallListener;
 import cc.moecraft.test.icq.listeners.ExceptionListener;

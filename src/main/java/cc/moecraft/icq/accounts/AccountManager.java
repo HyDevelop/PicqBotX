@@ -1,7 +1,6 @@
 package cc.moecraft.icq.accounts;
 
 import cc.moecraft.icq.event.events.local.EventLocalSendGroupMessage;
-import cc.moecraft.icq.event.events.message.EventGroupMessage;
 import cc.moecraft.icq.sender.IcqHttpApi;
 import cc.moecraft.icq.sender.returndata.returnpojo.get.RGroup;
 import lombok.Getter;
