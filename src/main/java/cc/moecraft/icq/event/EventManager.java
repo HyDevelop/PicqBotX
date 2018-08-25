@@ -1,6 +1,7 @@
 package cc.moecraft.icq.event;
 
 import cc.moecraft.icq.PicqBotX;
+import cc.moecraft.icq.event.events.local.EventLocalException;
 import cc.moecraft.icq.event.events.message.EventDiscussMessage;
 import cc.moecraft.icq.event.events.message.EventGroupMessage;
 import cc.moecraft.icq.event.events.message.EventMessage;
@@ -27,10 +28,7 @@ import org.reflections.Reflections;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Set;
+import java.util.*;
 
 /**
  * 此类由 Hykilpikonna 在 2018/05/24 创建!
@@ -116,9 +114,13 @@ public class EventManager
             {
                 registeredListenerMethod.call(event);
             }
-            catch (InvocationTargetException | IllegalAccessException e)
+            catch (IllegalAccessException e)
             {
                 e.printStackTrace(); // 这些理论上绝对不会出现
+            }
+            catch (Throwable e)
+            {
+                callError(event, e);
             }
         });
     }
