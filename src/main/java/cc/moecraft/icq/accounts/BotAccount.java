@@ -24,11 +24,16 @@ public class BotAccount
     @Getter
     protected long id;
 
+    @Getter
+    private IcqHttpApi httpApi;
+
     public BotAccount(String name, EventManager eventManager, String postUrl, int postPort)
     {
         this.name = name;
         this.postUrl = postUrl;
         this.postPort = postPort;
 
+        this.httpApi = new IcqHttpApi(eventManager, postUrl, postPort);
+        this.id = httpApi.getSelfId();
     }
 }
