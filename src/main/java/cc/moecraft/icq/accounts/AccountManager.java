@@ -21,4 +21,9 @@ import java.util.Map;
  */
 public class AccountManager
 {
+    @Getter
+    private final ArrayList<BotAccount> accounts;
+
+    @Getter
+    private Map<Long, BotAccount> idIndex; // 机器人QQ号索引, <QQ号, 机器人号实例>
 }
