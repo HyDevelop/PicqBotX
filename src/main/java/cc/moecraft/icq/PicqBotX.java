@@ -1,5 +1,8 @@
 package cc.moecraft.icq;
 
+import cc.moecraft.icq.accounts.AccountManager;
+import cc.moecraft.icq.accounts.AccountManagerListener;
+import cc.moecraft.icq.accounts.BotAccount;
 import cc.moecraft.icq.command.CommandListener;
 import cc.moecraft.icq.command.CommandManager;
 import cc.moecraft.icq.event.EventManager;
@@ -82,13 +85,53 @@ public class PicqBotX
 
     public static final String VERSION = "1.4.0.475";
 
+    /**
+     * 构造器
+     * @param postUrl 发送URL (酷Q所在服务器的地址)
+     * @param postPort 发送端口 (需要和酷Q的接收端口一样)
+     * @param socketPort 接收端口 (需要和酷Q的发送端口一样)
+     * @param debug 是否debug
+     */
     public PicqBotX(String postUrl, int postPort, int socketPort, boolean debug)
     {
-        this(postUrl, postPort, socketPort, debug,
-                ColorSupportLevel.PASSTHROUGH, "logs", "PicqBotX-Log");
+        this(postUrl, postPort, socketPort, debug, ColorSupportLevel.PASSTHROUGH, "logs", "PicqBotX-Log");
     }
 
+    /**
+     * 构造器
+     * @param socketPort 接收端口 (需要和酷Q的发送端口一样)
+     * @param debug 是否debug
+     */
+    public PicqBotX(int socketPort, boolean debug)
+    {
+        this(socketPort, debug, ColorSupportLevel.PASSTHROUGH, "logs", "PicqBotX-Log");
+    }
+
+    /**
+     * 构造器
+     * @param postUrl 发送URL (酷Q所在服务器的地址)
+     * @param postPort 发送端口 (需要和酷Q的接收端口一样)
+     * @param socketPort 接收端口 (需要和酷Q的发送端口一样)
+     * @param debug 是否debug
+     * @param colorSupportLevel 日志颜色支持等级
+     * @param logPath 日志文件路径
+     * @param logFileName 日志文件名
+     */
     public PicqBotX(String postUrl, int postPort, int socketPort, boolean debug, ColorSupportLevel colorSupportLevel, String logPath, String logFileName)
+    {
+        this(socketPort, debug, colorSupportLevel, logPath, logFileName);
+        this.accountManager.addAccount(new BotAccount("Main", eventManager, postUrl, postPort));
+    }
+
+    /**
+     * 构造器
+     * @param socketPort 接收端口 (需要和酷Q的发送端口一样)
+     * @param debug 是否debug
+     * @param colorSupportLevel 日志颜色支持等级
+     * @param logPath 日志文件路径
+     * @param logFileName 日志文件名
+     */
+    public PicqBotX(int socketPort, boolean debug, ColorSupportLevel colorSupportLevel, String logPath, String logFileName)
     {
         this.debug = debug;
 
