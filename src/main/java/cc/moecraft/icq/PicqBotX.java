@@ -145,42 +145,95 @@ public class PicqBotX
     /**
      * 启动机器人
      * @throws HttpServerStartFailedException HTTP服务器启动失败
-     * @throws VersionIncorrectException 版本错误
-     * @throws InvalidSendingURLException 发送URL错误
      */
-    public void startBot() throws HttpServerStartFailedException, VersionIncorrectException, InvalidSendingURLException
+    public void startBot() throws HttpServerStartFailedException
     {
-        try
+        if (!verifyHttpPluginVersion())
         {
+            logger.error("验证失败, 请检查上面的错误信息再重试启动服务器.");
+            System.exit(1);
+        }
+
+        logger.log(GREEN + "正在启动...");
+        httpServer.start();
+    }
+
+    /**
+     * 启用指令系统
+     * @param prefixes 前缀
+     * @throws InstantiationException 反射失败
+     * @throws IllegalAccessException 反射失败
+     */
+    public void enableCommandManager(String ... prefixes) throws InstantiationException, IllegalAccessException
+    {
+        enableCommandManager(true, prefixes);
+    }
+
+    /**
+     * 启用指令系统
+     * @param registerAllCommands 是否自动注册所有指令
+     * @param prefixes 前缀
+     * @throws InstantiationException 反射失败
+     * @throws IllegalAccessException 反射失败
+     */
+    public void enableCommandManager(boolean registerAllCommands, String ... prefixes) throws InstantiationException, IllegalAccessException
+    {
+        logger.timing.init();
+
+        commandManager = new CommandManager(groupManager, userManager, groupUserManager, prefixes);
+        if (registerAllCommands) commandManager.registerAllCommands();
+        eventManager.registerListener(new CommandListener(commandManager));
+        logInit("指令管理器     ", 6, 0);
+
+        logger.timing.clear();
+    }
+
+    /**
+     * 验证HTTP插件版本
+     * @return 是否通过验证
+     */
+    public boolean verifyHttpPluginVersion()
+    {
+        if (noVerify) return true;
+
+        for (BotAccount botAccount : accountManager.getAccounts())
+        {
+            String prefix =  "账号 " + botAccount.getName() + ": ";
+
             try
             {
-                verifyHttpPluginVersion();
+                RVersionInfo versionInfo = botAccount.getHttpApi().getVersionInfo().getData();
+
+                if (!versionInfo.getPluginVersion().matches(httpApiVersionDetection))
+                {
+                    logger.error(prefix + "HTTP插件版本不正确, 已停止启动");
+                    logger.error("- 当前版本: " + versionInfo.getPluginVersion());
+                    logger.error("- 兼容的版本: " + httpApiVersionDetection);
+                    return false;
+                }
+
+                if (!versionInfo.getCoolqEdition().equalsIgnoreCase("pro"))
+                    logger.error(prefix + "版本正确, 不过用酷Q Pro的话效果更好哦!");
             }
-            catch (VersionRecommendException e)
+            catch (HttpException e)
             {
-                logger.error("版本正确, 不过用酷Q Pro的话效果更好哦!");
+                if (e.getMessage().toLowerCase().contains("connection refused"))
+                {
+                    logger.error("HTTP发送地址验证失败, 已停止启动");
+                    logger.error("- 请检查酷Q是否已经启动");
+                    logger.error("- 请检查酷Q的接收端口是否和Picq的发送端口一样");
+                    logger.error("- 请检查你的发送IP是不是写错了");
+                    logger.error("- 如果是向外, 请检查这个主机有没有网络连接");
+                }
+                else
+                {
+                    logger.error("验证失败, HTTP发送错误: ");
+                }
+                e.printStackTrace();
+                return false;
             }
-
-            logger.log(GREEN + "检测版本正确, 正在启动...");
-            httpServer.start();
         }
-        catch (VersionIncorrectException e)
-        {
-            logger.error("HTTP插件版本不正确, 已停止启动");
-            logger.error("- 当前版本: " + e.getCurrentVersion());
-            logger.error("- 兼容的版本: " + e.getRequiredVersion());
-
-            throw e;
-        }
-        catch (InvalidSendingURLException e)
-        {
-            logger.error("HTTP发送地址验证失败, 已停止启动");
-            logger.error("- 请检查酷Q是否已经启动");
-            logger.error("- 请检查酷Q的接收端口是否和Picq的发送端口一样");
-            logger.error("- 请检查你的发送IP是不是写错了");
-            logger.error("- 如果是向外, 请检查这个主机有没有网络连接");
-            throw e;
-        }
+        return true;
     }
 
     /**
