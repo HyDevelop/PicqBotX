@@ -18,9 +18,10 @@ import java.util.Map;
  */
 public class IcqHttpAsyncApi extends HttpApiBase
 {
-    public IcqHttpAsyncApi(EventManager eventManager, String baseUrl, int port)
+    public IcqHttpAsyncApi(IcqHttpApi api, EventManager eventManager, String baseUrl, int port)
     {
         super(eventManager, baseUrl, port);
+        super.selfId = api.selfId;
     }
 
     /**
