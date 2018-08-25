@@ -56,9 +56,15 @@ public class EventGroupMessage extends EventGroupOrDiscussMessage
     }
 
     @Override
+    public BotAccount getBotAccount()
+    {
+        return getBot().getAccountManager().getOptimal(groupId);
+    }
+
+    @Override
     public ReturnData<RMessageReturnData> respond(String message, boolean raw)
     {
-        return getBot().getHttpApi().sendGroupMsg(groupId, message, raw);
+        return getHttpApi().sendGroupMsg(groupId, message, raw);
     }
 
     /**
