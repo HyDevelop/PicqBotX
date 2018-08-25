@@ -304,19 +304,19 @@ public class TestFilter extends IcqListener
 
 ##### 如果已经封装过了的话, 这样发送:
 ```java
-ReturnData<RMessageReturnData> response = event.getBot().getHttpApi().封装方法名(参数); // response就是响应数据
+ReturnData<RMessageReturnData> response = event.getHttpApi().封装方法名(参数); // response就是响应数据
 ```
 ##### 例子:
 ```java
-ReturnData<RMessageReturnData> response = event.getBot().getHttpApi().sendPrivateMsg(565656, "hi"); // 给565656发送hi
+ReturnData<RMessageReturnData> response = event.getHttpApi().sendPrivateMsg(565656, "hi"); // 给565656发送hi
 ```
 ##### 如果没有封装过的话, 或者想手动添加参数对的话, 这样发送:
 ```java
-ReturnData<RMessageReturnData> response = event.getBot().getHttpApi().send(请求目标, 参数); // 请求目标在IcqHttpApi里面有常量
+ReturnData<RMessageReturnData> response = event.getHttpApi().send(请求目标, 参数); // 请求目标在IcqHttpApi里面有常量
 ```
 ##### 例子:
 ```java
-ReturnData<RMessageReturnData> response = event.getBot().getHttpApi().send(IcqHttpApi.SEND_PRIVATE_MSG, 
+ReturnData<RMessageReturnData> response = event.getHttpApi().send(IcqHttpApi.SEND_PRIVATE_MSG, 
     "user_id", 565656,
     "message", "hi",
     "auto_escape", false); // 这个参数因为不常用就没有封装, 所以要用的话这样发送
