@@ -81,6 +81,12 @@ public class AccountManager
             this.idIndex.put(account.getId(), account);
         }
     }
+
+    public IcqHttpApi getNonAccountSpecifiedApi()
+    {
+        return accounts.size() < 1 ? null : accounts.get(0).getHttpApi();
+    }
+
     void recordMessage(EventLocalSendGroupMessage event)
     {
         Map<BotAccount, Long> map = groupAccountIndex.get(event.getId());
