@@ -3,10 +3,7 @@ package cc.moecraft.icq.event.events.request;
 import cc.moecraft.icq.event.Event;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.Setter;
+import lombok.*;
 
 /**
  * 请求事件
@@ -16,6 +13,7 @@ import lombok.Setter;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Setter(AccessLevel.NONE)
+@ToString(callSuper = true)
 public abstract class EventRequest extends Event
 {
     @SerializedName("request_type")

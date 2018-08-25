@@ -3,10 +3,7 @@ package cc.moecraft.icq.event.events.notice;
 import cc.moecraft.icq.event.Event;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.Setter;
+import lombok.*;
 
 /**
  * 此类由 Hykilpikonna 在 2018/05/25 创建!
@@ -19,6 +16,7 @@ import lombok.Setter;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Setter(AccessLevel.NONE)
+@ToString(callSuper = true)
 public class EventNotice extends Event
 {
     @SerializedName("notice_type")
