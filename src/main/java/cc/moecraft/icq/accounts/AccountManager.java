@@ -81,4 +81,9 @@ public class AccountManager
             this.idIndex.put(account.getId(), account);
         }
     }
+    void recordMessage(EventLocalSendGroupMessage event)
+    {
+        Map<BotAccount, Long> map = groupAccountIndex.get(event.getId());
+        map.put(event.getBotAccount(), map.get(event.getBotAccount()) + 1);
+    }
 }
