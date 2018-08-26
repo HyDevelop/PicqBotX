@@ -1,5 +1,6 @@
 package cc.moecraft.icq.event.events.notice;
 
+import cc.moecraft.icq.event.ContentComparable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import lombok.*;
@@ -13,7 +14,7 @@ import lombok.*;
 @Data
 @Setter(AccessLevel.NONE)
 @ToString(callSuper = true)
-public class EventNoticeGroupUpload extends EventNotice
+public class EventNoticeGroupUpload extends EventNotice implements ContentComparable<EventNoticeGroupUpload>
 {
     @SerializedName("file")
     @Expose
@@ -42,5 +43,12 @@ public class EventNoticeGroupUpload extends EventNotice
         @SerializedName("size")
         @Expose
         public Long size;
+    }
+
+    @Override
+    public boolean contentEquals(EventNoticeGroupUpload other)
+    {
+        return other.getGroupId().equals(getGroupId()) &&
+                other.getFile().equals(getFile());
     }
 }
