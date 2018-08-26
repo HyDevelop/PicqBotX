@@ -19,6 +19,7 @@ import cc.moecraft.logger.environments.ColorSupportLevel;
 import cc.moecraft.logger.environments.ConsoleColoredEnv;
 import cc.moecraft.logger.environments.ConsoleEnv;
 import cc.moecraft.logger.environments.FileEnv;
+import cc.moecraft.logger.format.AnsiColor;
 import cn.hutool.http.HttpException;
 import lombok.Getter;
 import lombok.Setter;
@@ -277,6 +278,7 @@ public class PicqBotX
                 e.printStackTrace();
                 return false;
             }
+            logger.log(AnsiColor.YELLOW + prefix + AnsiColor.GREEN + "  版本验证完成!");
         }
         return true;
     }
