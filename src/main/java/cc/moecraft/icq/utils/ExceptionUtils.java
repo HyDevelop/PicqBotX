@@ -12,4 +12,22 @@ import java.lang.reflect.Field;
  */
 public class ExceptionUtils
 {
+    public static <T extends Throwable> String getAllVariables(T throwable)
+    {
+        StringBuilder variables = new StringBuilder("@").append(throwable.getClass().getName()).append("[");
+
+        for (Field field : throwable.getClass().getDeclaredFields())
+        {
+            field.setAccessible(true);
+            try
+            {
+                String name = field.getName();
+                String value = field.get(throwable).toString();
+                variables.append(name).append("=").append(value).append(";");
+            }
+            catch (IllegalAccessException ignored) {}
+        }
+
+        return variables.append("]").toString();
+    }
 }
