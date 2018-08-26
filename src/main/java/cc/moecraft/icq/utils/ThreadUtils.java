@@ -10,4 +10,15 @@ package cc.moecraft.icq.utils;
  */
 public class ThreadUtils
 {
+    public static void safeSleep(long ms)
+    {
+        try
+        {
+            Thread.sleep(ms);
+        }
+        catch (InterruptedException e)
+        {
+            throw new RuntimeException(e);
+        }
+    }
 }
