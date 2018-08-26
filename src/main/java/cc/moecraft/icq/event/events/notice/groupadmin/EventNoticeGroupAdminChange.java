@@ -1,5 +1,6 @@
 package cc.moecraft.icq.event.events.notice.groupadmin;
 
+import cc.moecraft.icq.event.ContentComparable;
 import cc.moecraft.icq.event.events.notice.EventNotice;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -14,7 +15,7 @@ import lombok.*;
 @Data
 @Setter(AccessLevel.NONE)
 @ToString(callSuper = true)
-public class EventNoticeGroupAdminChange extends EventNotice
+public class EventNoticeGroupAdminChange extends EventNotice implements ContentComparable<EventNoticeGroupAdminChange>
 {
     @SerializedName("group_id")
     @Expose
@@ -23,4 +24,12 @@ public class EventNoticeGroupAdminChange extends EventNotice
     @SerializedName("sub_type")
     @Expose
     public String subType;
+
+    @Override
+    public boolean contentEquals(EventNoticeGroupAdminChange other)
+    {
+        return other.getGroupId().equals(getGroupId()) &&
+                other.getSubType().equals(getSubType()) &&
+                other.getUserId().equals(getUserId());
+    }
 }
