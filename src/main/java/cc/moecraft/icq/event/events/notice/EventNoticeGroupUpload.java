@@ -1,6 +1,10 @@
 package cc.moecraft.icq.event.events.notice;
 
+import cc.moecraft.icq.accounts.BotAccount;
 import cc.moecraft.icq.event.ContentComparable;
+import cc.moecraft.icq.event.methodsets.GroupEventMethods;
+import cc.moecraft.icq.sender.returndata.ReturnData;
+import cc.moecraft.icq.sender.returndata.returnpojo.send.RMessageReturnData;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import lombok.*;
@@ -50,5 +54,18 @@ public class EventNoticeGroupUpload extends EventNotice implements ContentCompar
     {
         return other.getGroupId().equals(getGroupId()) &&
                 other.getFile().equals(getFile());
+    }
+
+    private GroupEventMethods groupMethods = null;
+    public GroupEventMethods getGroupMethods()
+    {
+        if (groupMethods != null) return groupMethods;
+        return groupMethods = new GroupEventMethods(this, groupId);
+    }
+
+    @Override
+    public BotAccount getBotAccount()
+    {
+        return getGroupMethods().getBotAccount();
     }
 }

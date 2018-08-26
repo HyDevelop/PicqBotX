@@ -1,7 +1,11 @@
 package cc.moecraft.icq.event.events.notice.groupadmin;
 
+import cc.moecraft.icq.accounts.BotAccount;
 import cc.moecraft.icq.event.ContentComparable;
 import cc.moecraft.icq.event.events.notice.EventNotice;
+import cc.moecraft.icq.event.methodsets.GroupEventMethods;
+import cc.moecraft.icq.sender.returndata.ReturnData;
+import cc.moecraft.icq.sender.returndata.returnpojo.send.RMessageReturnData;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import lombok.*;
@@ -31,5 +35,18 @@ public class EventNoticeGroupAdminChange extends EventNotice implements ContentC
         return other.getGroupId().equals(getGroupId()) &&
                 other.getSubType().equals(getSubType()) &&
                 other.getUserId().equals(getUserId());
+    }
+
+    private GroupEventMethods groupMethods = null;
+    public GroupEventMethods getGroupMethods()
+    {
+        if (groupMethods != null) return groupMethods;
+        return groupMethods = new GroupEventMethods(this, groupId);
+    }
+
+    @Override
+    public BotAccount getBotAccount()
+    {
+        return getGroupMethods().getBotAccount();
     }
 }
