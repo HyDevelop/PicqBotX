@@ -2,10 +2,7 @@ package cc.moecraft.icq.event;
 
 import cc.moecraft.icq.PicqBotX;
 import cc.moecraft.icq.event.events.local.EventLocalException;
-import cc.moecraft.icq.event.events.message.EventDiscussMessage;
-import cc.moecraft.icq.event.events.message.EventGroupMessage;
-import cc.moecraft.icq.event.events.message.EventMessage;
-import cc.moecraft.icq.event.events.message.EventPrivateMessage;
+import cc.moecraft.icq.event.events.message.*;
 import cc.moecraft.icq.event.events.notice.EventNoticeFriendAdd;
 import cc.moecraft.icq.event.events.notice.EventNoticeGroupUpload;
 import cc.moecraft.icq.event.events.notice.groupadmin.EventNoticeGroupAdminRemove;
@@ -14,6 +11,7 @@ import cc.moecraft.icq.event.events.notice.groupmember.decrease.EventNoticeGroup
 import cc.moecraft.icq.event.events.notice.groupmember.decrease.EventNoticeGroupMemberKickBot;
 import cc.moecraft.icq.event.events.notice.groupmember.decrease.EventNoticeGroupMemberLeave;
 import cc.moecraft.icq.event.events.notice.groupmember.increase.EventNoticeGroupMemberApprove;
+import cc.moecraft.icq.event.events.notice.groupmember.increase.EventNoticeGroupMemberIncrease;
 import cc.moecraft.icq.event.events.notice.groupmember.increase.EventNoticeGroupMemberInvite;
 import cc.moecraft.icq.event.events.request.EventFriendRequest;
 import cc.moecraft.icq.event.events.request.EventGroupAddRequest;
@@ -40,6 +38,8 @@ import java.util.*;
  */
 public class EventManager
 {
+    private static final Gson gson = new Gson();
+    
     @Getter
     private ArrayList<IcqListener> registeredListeners = new ArrayList<>();
     @Getter
@@ -159,14 +159,38 @@ public class EventManager
                 callRequest(json);
                 break;
             }
-            default:
-            {
-
-            }
         }
     }
 
-    private final Map<Long, ArrayList<EventGroupMessage>> cachedMessages = new HashMap<>();
+    private final Map<Class<? extends Event>, Map<String, ArrayList<ContentComparable<?>>>> cache = new HashMap<>();
+
+    /**
+     * 判断一个事件是不是新的
+     * 是新的代表这个事件在其他账号上有没有判定为是新的过.
+     * @param event 事件
+     * @param identifier 标记 (比如群消息的标记就是群号)
+     * @param <T> 实现了内容比较方法的事件类
+     * @return 是不是新的
+     */
+    private <T extends Event & ContentComparable<T>> boolean isNew(T event, String identifier)
+    {
+        if (!bot.isMultiAccountOptimizations()) return true;
+        Class<? extends Event> eventClass = event.getClass();
+
+        if (!cache.containsKey(eventClass)) cache.put(eventClass, new HashMap<>());
+        Map<String, ArrayList<ContentComparable<?>>> cachedEventMap = cache.get(eventClass);
+
+        if (!cachedEventMap.containsKey(identifier)) cachedEventMap.put(identifier, new ArrayList<>());
+        ArrayList<ContentComparable<?>> cachedEvents = cachedEventMap.get(identifier);
+
+        for (ContentComparable comparable : cachedEvents)
+            if (comparable.contentEquals(event)) return false;
+
+        cachedEvents.add(event);
+
+        if (cachedEvents.size() > 10) cachedEvents.remove(0);
+        return true;
+    }
 
     /**
      * 执行消息事件
@@ -178,38 +202,19 @@ public class EventManager
         {
             case "private":
             {
-                call(new Gson().fromJson(json, EventPrivateMessage.class));
+                call(gson.fromJson(json, EventPrivateMessage.class));
                 break;
             }
             case "group":
             {
-                EventGroupMessage event = new Gson().fromJson(json, EventGroupMessage.class);
-
-                if (bot.isMultiAccountOptimizations())
-                {
-                    if (!cachedMessages.containsKey(event.getGroupId())) cachedMessages.put(event.getGroupId(), new ArrayList<>());
-
-                    ArrayList<EventGroupMessage> cache = cachedMessages.get(event.getGroupId());
-
-                    for (EventGroupMessage oneMessage : cache)
-                    {
-                        if (!oneMessage.getMessage().equals(event.getMessage())) continue;
-                        if (!oneMessage.getSenderId().equals(event.getSenderId())) continue;
-                        if (!oneMessage.getTime().equals(event.getTime())) continue;
-                        return;
-                    }
-                    cache.add(event);
-                    if (cache.size() > 10) cache.remove(0);
-                    //if (cachedMessages.contains(id)) return;
-                    //this.cachedMessages.add(id);
-                }
-
-                call(event);
+                EventGroupMessage event = gson.fromJson(json, EventGroupMessage.class);
+                if (isNew(event, event.getGroupId().toString())) call(event);
                 break;
             }
             case "discuss":
             {
-                call(new Gson().fromJson(json, EventDiscussMessage.class));
+                EventDiscussMessage event = gson.fromJson(json, EventDiscussMessage.class);
+                if (isNew(event, event.getDiscussId().toString())) call(event);
                 break;
             }
         }
@@ -225,7 +230,7 @@ public class EventManager
         {
             case "friend":
             {
-                call(new Gson().fromJson(json, EventFriendRequest.class));
+                call(gson.fromJson(json, EventFriendRequest.class));
                 break;
             }
             case "group":
@@ -234,12 +239,13 @@ public class EventManager
                 {
                     case "add":
                     {
-                        call(new Gson().fromJson(json, EventGroupAddRequest.class));
+                        EventGroupAddRequest event = gson.fromJson(json, EventGroupAddRequest.class);
+                        if (isNew(event, event.getGroupId().toString())) call(event);
                         break;
                     }
                     case "invite":
                     {
-                        call(new Gson().fromJson(json, EventGroupInviteRequest.class));
+                        call(gson.fromJson(json, EventGroupInviteRequest.class));
                         break;
                     }
                 }
@@ -258,12 +264,13 @@ public class EventManager
         {
             case "group_upload":
             {
-                call(new Gson().fromJson(json, EventNoticeGroupUpload.class));
+                EventNoticeGroupUpload event = gson.fromJson(json, EventNoticeGroupUpload.class);
+                if (isNew(event, event.getGroupId().toString())) call(event);
                 break;
             }
             case "friend_add":
             {
-                call(new Gson().fromJson(json, EventNoticeFriendAdd.class));
+                call(gson.fromJson(json, EventNoticeFriendAdd.class));
                 break;
             }
             case "group_admin":
@@ -272,12 +279,14 @@ public class EventManager
                 {
                     case "set":
                     {
-                        call(new Gson().fromJson(json, EventNoticeGroupAdminSet.class));
+                        EventNoticeGroupAdminSet event = gson.fromJson(json, EventNoticeGroupAdminSet.class);
+                        if (isNew(event, event.getGroupId().toString())) call(event);
                         break;
                     }
                     case "unset":
                     {
-                        call(new Gson().fromJson(json, EventNoticeGroupAdminRemove.class));
+                        EventNoticeGroupAdminRemove event = gson.fromJson(json, EventNoticeGroupAdminRemove.class);
+                        if (isNew(event, event.getGroupId().toString())) call(event);
                         break;
                     }
                 }
@@ -289,17 +298,19 @@ public class EventManager
                 {
                     case "leave":
                     {
-                        call(new Gson().fromJson(json, EventNoticeGroupMemberLeave.class));
+                        EventNoticeGroupMemberLeave event = gson.fromJson(json, EventNoticeGroupMemberLeave.class);
+                        if (isNew(event, event.getGroupId().toString())) call(event);
                         break;
                     }
                     case "kick":
                     {
-                        call(new Gson().fromJson(json, EventNoticeGroupMemberKick.class));
+                        EventNoticeGroupMemberKick event = gson.fromJson(json, EventNoticeGroupMemberKick.class);
+                        if (isNew(event, event.getGroupId().toString())) call(event);
                         break;
                     }
                     case "kick_me":
                     {
-                        call(new Gson().fromJson(json, EventNoticeGroupMemberKickBot.class));
+                        call(gson.fromJson(json, EventNoticeGroupMemberKickBot.class));
                         break;
                     }
                 }
@@ -311,12 +322,14 @@ public class EventManager
                 {
                     case "approve":
                     {
-                        call(new Gson().fromJson(json, EventNoticeGroupMemberApprove.class));
+                        EventNoticeGroupMemberApprove event = gson.fromJson(json, EventNoticeGroupMemberApprove.class);
+                        if (isNew(event, event.getGroupId().toString())) call(event);
                         break;
                     }
                     case "invite":
                     {
-                        call(new Gson().fromJson(json, EventNoticeGroupMemberInvite.class));
+                        EventNoticeGroupMemberInvite event = gson.fromJson(json, EventNoticeGroupMemberInvite.class);
+                        if (isNew(event, event.getGroupId().toString())) call(event);
                         break;
                     }
                 }
