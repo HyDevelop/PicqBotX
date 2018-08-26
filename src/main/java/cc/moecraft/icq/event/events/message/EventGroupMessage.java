@@ -1,6 +1,7 @@
 package cc.moecraft.icq.event.events.message;
 
 import cc.moecraft.icq.accounts.BotAccount;
+import cc.moecraft.icq.event.ContentComparable;
 import cc.moecraft.icq.sender.returndata.RawReturnData;
 import cc.moecraft.icq.sender.returndata.ReturnData;
 import cc.moecraft.icq.sender.returndata.returnpojo.send.RMessageReturnData;
@@ -23,7 +24,7 @@ import lombok.*;
 @Data
 @Setter(AccessLevel.NONE)
 @ToString(callSuper = true)
-public class EventGroupMessage extends EventGroupOrDiscussMessage
+public class EventGroupMessage extends EventGroupOrDiscussMessage implements ContentComparable<EventGroupMessage>
 {
     @SerializedName("anonymous")
     @Expose
@@ -64,6 +65,15 @@ public class EventGroupMessage extends EventGroupOrDiscussMessage
     public ReturnData<RMessageReturnData> respond(String message, boolean raw)
     {
         return getHttpApi().sendGroupMsg(groupId, message, raw);
+    }
+
+    @Override
+    public boolean contentEquals(EventGroupMessage other)
+    {
+        return other.getMessage().equals(getMessage()) &&
+                other.getSenderId().equals(getSenderId()) &&
+                other.getTime().equals(getTime()) &&
+                other.getGroupId().equals(getGroupId());
     }
 
     /**
