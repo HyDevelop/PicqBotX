@@ -20,5 +20,6 @@ public class EventLocalHttpFailEvent extends EventLocal
         unknown, requestIsEmpty,
         incorrectVersion, incorrectCharset, incorrectApplicationType,
         incorrectRequestMethod,
+        socketCloseFailed
     }
 }
