@@ -1,5 +1,6 @@
 package cc.moecraft.icq.event.events.message;
 
+import cc.moecraft.icq.event.ContentComparable;
 import cc.moecraft.icq.sender.returndata.ReturnData;
 import cc.moecraft.icq.sender.returndata.returnpojo.send.RMessageReturnData;
 import cc.moecraft.icq.user.Group;
@@ -20,7 +21,7 @@ import lombok.*;
 @Data
 @Setter(AccessLevel.NONE)
 @ToString(callSuper = true)
-public class EventDiscussMessage extends EventGroupOrDiscussMessage
+public class EventDiscussMessage extends EventGroupOrDiscussMessage implements ContentComparable<EventDiscussMessage>
 {
     @SerializedName("discuss_id")
     @Expose
@@ -48,5 +49,14 @@ public class EventDiscussMessage extends EventGroupOrDiscussMessage
     public User getSender()
     {
         return getBot().getUserManager().getUserFromID(senderId);
+    }
+
+    @Override
+    public boolean contentEquals(EventDiscussMessage other)
+    {
+        return other.getMessage().equals(getMessage()) &&
+                other.getSenderId().equals(getSenderId()) &&
+                other.getTime().equals(getTime()) &&
+                other.getDiscussId().equals(getDiscussId());
     }
 }
