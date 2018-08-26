@@ -7,6 +7,7 @@ import cc.moecraft.icq.command.CommandListener;
 import cc.moecraft.icq.command.CommandManager;
 import cc.moecraft.icq.event.EventManager;
 import cc.moecraft.icq.exceptions.HttpServerStartFailedException;
+import cc.moecraft.icq.listeners.HyExpressionListener;
 import cc.moecraft.icq.sender.returndata.returnpojo.get.RVersionInfo;
 import cc.moecraft.icq.user.GroupManager;
 import cc.moecraft.icq.user.GroupUserManager;
@@ -156,6 +157,7 @@ public class PicqBotX
         logInit("DEBUG设置      ", 2, 4);
 
         eventManager = new EventManager(this);
+        eventManager.registerListener(new HyExpressionListener());
         logInit("事件管理器     ", 3, 3);
 
         accountManager = new AccountManager();
