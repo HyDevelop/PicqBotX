@@ -178,17 +178,28 @@ public class HttpServer
                 bot.getEventManager().call(event);
 
                 if (!event.isCancelled()) process(data);
-
-                sendResponseAndClose(out, "[]");
-
-                // 关闭接收
-                socket.close();
             }
-            catch (IOException e)
+            catch (Throwable e)
             {
                 logger.error("请求接收失败: ");
                 e.printStackTrace();
                 bot.getEventManager().call(new EventLocalHttpFailEvent(EventLocalHttpFailEvent.FailType.unknown));
+            }
+            finally
+            {
+                try
+                {
+                    sendResponseAndClose(out, "[]");
+
+                    // 关闭接收
+                    socket.close();
+                }
+                catch (Exception e)
+                {
+                    logger.error("关闭接收失败: ");
+                    e.printStackTrace();
+                    bot.getEventManager().call(new EventLocalHttpFailEvent(EventLocalHttpFailEvent.FailType.socketCloseFailed));
+                }
             }
         }
     }
