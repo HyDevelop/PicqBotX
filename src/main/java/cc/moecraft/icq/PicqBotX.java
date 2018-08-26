@@ -79,6 +79,9 @@ public class PicqBotX
     @Getter @Setter
     private boolean multiAccountOptimizations = true; // 多账号优化
 
+    @Getter @Setter
+    private boolean universalHyExpSupport = false; // 是否全局替换HyExp表达式
+
     public static final String VERSION = "2.4.1.515";
 
     /**
