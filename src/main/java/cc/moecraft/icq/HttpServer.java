@@ -3,6 +3,8 @@ package cc.moecraft.icq;
 import cc.moecraft.icq.event.events.local.EventLocalHttpFailEvent;
 import cc.moecraft.icq.event.events.local.EventLocalHttpReceiveEvent;
 import cc.moecraft.icq.exceptions.HttpServerStartFailedException;
+import cc.moecraft.icq.utils.ExceptionUtils;
+import cc.moecraft.icq.utils.ThreadUtils;
 import cc.moecraft.logger.HyLogger;
 import cc.moecraft.logger.format.AnsiColor;
 import lombok.Data;
@@ -182,6 +184,8 @@ public class HttpServer
             catch (Throwable e)
             {
                 logger.error("请求接收失败: ");
+                logger.error("变量: " + ExceptionUtils.getAllVariables(e));
+                ThreadUtils.safeSleep(2);
                 e.printStackTrace();
                 bot.getEventManager().call(new EventLocalHttpFailEvent(EventLocalHttpFailEvent.FailType.unknown));
             }
