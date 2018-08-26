@@ -1,5 +1,6 @@
 package cc.moecraft.icq.event.events.request;
 
+import cc.moecraft.icq.event.ContentComparable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import lombok.Data;
@@ -14,7 +15,7 @@ import lombok.ToString;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @ToString(callSuper = true)
-public class EventGroupAddRequest extends EventRequest
+public class EventGroupAddRequest extends EventRequest implements ContentComparable<EventGroupAddRequest>
 {
     @SerializedName("group_id")
     @Expose
@@ -34,5 +35,12 @@ public class EventGroupAddRequest extends EventRequest
     public void reject(String reason)
     {
         getHttpApi().rejectGroupRequest(flag, subType, reason);
+    }
+
+    @Override
+    public boolean contentEquals(EventGroupAddRequest other)
+    {
+        return other.getFlag().equals(getFlag()) &&
+                other.getUserId().equals(getUserId());
     }
 }
