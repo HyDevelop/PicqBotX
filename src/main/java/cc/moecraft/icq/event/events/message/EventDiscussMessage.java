@@ -56,7 +56,7 @@ public class EventDiscussMessage extends EventGroupOrDiscussMessage implements C
     {
         return other.getMessage().equals(getMessage()) &&
                 other.getSenderId().equals(getSenderId()) &&
-                other.getTime().equals(getTime()) &&
+                Math.abs(other.getTime() - getTime()) < TimeDetectionRangeInSeconds &&
                 other.getDiscussId().equals(getDiscussId());
     }
 }
