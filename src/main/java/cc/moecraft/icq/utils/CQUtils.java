@@ -18,4 +18,9 @@ public class CQUtils
                 .replace("&#93;", "]")
                 .replace("&#44;", ",");
     }
+
+    public static String removeCqCode(String original)
+    {
+        return original.replaceAll("\\[CQ:.*?]", "");
+    }
 }
