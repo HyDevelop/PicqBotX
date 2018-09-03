@@ -72,7 +72,7 @@ public class EventGroupMessage extends EventGroupOrDiscussMessage implements Con
     {
         return other.getMessage().equals(getMessage()) &&
                 other.getSenderId().equals(getSenderId()) &&
-                other.getTime().equals(getTime()) &&
+                Math.abs(other.getTime() - getTime()) < TimeDetectionRangeInSeconds &&
                 other.getGroupId().equals(getGroupId());
     }
 
