@@ -12,6 +12,9 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import lombok.*;
 
+import static cc.moecraft.icq.event.ComparableConstants.TimeDetectionRangeInSeconds;
+import static cc.moecraft.icq.utils.CQUtils.removeCqCode;
+
 /**
  * 此类由 Hykilpikonna 在 2018/05/24 创建!
  * Created by Hykilpikonna on 2018/05/24!
@@ -70,7 +73,7 @@ public class EventGroupMessage extends EventGroupOrDiscussMessage implements Con
     @Override
     public boolean contentEquals(EventGroupMessage other)
     {
-        return other.getMessage().equals(getMessage()) &&
+        return removeCqCode(other.getMessage()).equals(removeCqCode(getMessage())) &&
                 other.getSenderId().equals(getSenderId()) &&
                 Math.abs(other.getTime() - getTime()) < TimeDetectionRangeInSeconds &&
                 other.getGroupId().equals(getGroupId());
