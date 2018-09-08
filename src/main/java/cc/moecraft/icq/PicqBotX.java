@@ -85,7 +85,7 @@ public class PicqBotX
     @Getter @Setter
     private boolean multiAccountOptimizations = true; // 多账号优化
 
-    public static final String VERSION = "2.4.2.547";
+    public static final String VERSION = "2.4.3.552";
 
     /**
      * 构造器
