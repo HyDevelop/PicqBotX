@@ -333,4 +333,23 @@ public class PicqBotX
     {
         eventManager.setPaused(isPaused);
     }
+
+    /**
+     * 设置是否替换HyExp表达式
+     * @param value 是否替换
+     */
+    public void setUniversalHyExpSupport(boolean value)
+    {
+        hyExpressionResolver = value ? new HyExpressionResolver() : null;
+    }
+
+    /**
+     * 设置是否替换HyExp表达式
+     * @param value 是否替换
+     * @param safeMode 是否安全模式 (推荐是)
+     */
+    public void setUniversalHyExpSupport(boolean value, boolean safeMode)
+    {
+        hyExpressionResolver = value ? new HyExpressionResolver(safeMode) : null;
+    }
 }
