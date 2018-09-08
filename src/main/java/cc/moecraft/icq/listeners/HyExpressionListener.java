@@ -18,7 +18,7 @@ public class HyExpressionListener extends IcqListener
     @EventHandler
     public void onMessageSendEvent(EventLocalSendMessage event)
     {
-        if (event.getBot().isUniversalHyExpSupport())
-            event.setMessage(HyExpressionResolver.resolve(event.getMessage()));
+        if (event.getBot().getHyExpressionResolver() != null)
+            event.setMessage(event.getBot().getHyExpressionResolver().resolve(event.getMessage()));
     }
 }
