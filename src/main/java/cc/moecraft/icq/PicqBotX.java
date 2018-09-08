@@ -20,6 +20,7 @@ import cc.moecraft.logger.environments.ConsoleColoredEnv;
 import cc.moecraft.logger.environments.ConsoleEnv;
 import cc.moecraft.logger.environments.FileEnv;
 import cc.moecraft.logger.format.AnsiColor;
+import cc.moecraft.utils.HyExpressionResolver;
 import cn.hutool.http.HttpException;
 import lombok.Getter;
 import lombok.Setter;
@@ -72,6 +73,9 @@ public class PicqBotX
     @Getter
     private HyLogger logger; // Logger
 
+    @Getter
+    private HyExpressionResolver hyExpressionResolver; // 全局替换HyExp表达式
+
     @Getter @Setter
     private boolean useAsync = false; // 是否异步
 
@@ -80,9 +84,6 @@ public class PicqBotX
 
     @Getter @Setter
     private boolean multiAccountOptimizations = true; // 多账号优化
-
-    @Getter @Setter
-    private boolean universalHyExpSupport = false; // 是否全局替换HyExp表达式
 
     public static final String VERSION = "2.4.2.547";
 
