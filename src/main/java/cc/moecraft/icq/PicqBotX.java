@@ -12,7 +12,6 @@ import cc.moecraft.icq.sender.returndata.returnpojo.get.RVersionInfo;
 import cc.moecraft.icq.user.GroupManager;
 import cc.moecraft.icq.user.GroupUserManager;
 import cc.moecraft.icq.user.UserManager;
-import cc.moecraft.icq.utils.ResourceUtils;
 import cc.moecraft.logger.HyLogger;
 import cc.moecraft.logger.LoggerInstanceManager;
 import cc.moecraft.logger.environments.ColorSupportLevel;
@@ -21,11 +20,14 @@ import cc.moecraft.logger.environments.ConsoleEnv;
 import cc.moecraft.logger.environments.FileEnv;
 import cc.moecraft.logger.format.AnsiColor;
 import cc.moecraft.utils.HyExpressionResolver;
+import cc.moecraft.utils.ThreadUtils;
+import cc.moecraft.utils.cli.ResourceUtils;
 import cn.hutool.http.HttpException;
 import lombok.Getter;
 import lombok.Setter;
 
 import static cc.moecraft.logger.format.AnsiColor.*;
+import static cc.moecraft.logger.format.AnsiFormat.replaceAllFormatWithANSI;
 
 /**
  * 此类由 Hykilpikonna 在 2018/05/24 创建!
@@ -173,7 +175,17 @@ public class PicqBotX
     public PicqBotX(String postUrl, int postPort, int socketPort, boolean debug, ColorSupportLevel colorSupportLevel, String logPath, String logFileName)
     {
         this(socketPort, debug, colorSupportLevel, logPath, logFileName);
-        this.accountManager.addAccount(new BotAccount("Main", eventManager, postUrl, postPort));
+        try
+        {
+            this.accountManager.addAccount(new BotAccount("Main", eventManager, postUrl, postPort));
+        }
+        catch (HttpException e)
+        {
+            logger.error("HTTP发送错误: " + e.getLocalizedMessage());
+            logger.error("- 检查一下是不是忘记开酷Q了, 或者写错地址了");
+            ThreadUtils.safeSleep(5);
+            throw new RuntimeException(e);
+        }
     }
 
     /**
