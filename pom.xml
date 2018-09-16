@@ -24,7 +24,7 @@
         <dependency>
             <groupId>com.github.hydevelop</groupId>
             <artifactId>HyCommonUtils</artifactId>
-            <version>1.3.2.104</version>
+            <version>1.3.4.124</version>
         </dependency>
 
         <dependency>
@@ -34,7 +34,7 @@
         </dependency>
 
         <dependency>
-            <groupId>com.github.HyDevelop</groupId>
+            <groupId>com.github.hydevelop</groupId>
             <artifactId>HyLogger</artifactId>
             <version>2.5.28</version>
         </dependency>
