@@ -196,8 +196,8 @@ public class PicqBotX
         logger = loggerInstanceManager.getLoggerInstance("PicqBotX", debug);
         logger.timing.init();
 
-        if (colorSupportLevel == null) ResourceUtils.logResource(this.getClass(), logger, "splash", "version", VERSION);
-        else ResourceUtils.logResource(this.getClass(), logger, "splash-precolored", "version", VERSION);
+        if (colorSupportLevel == null) logResource(logger, "splash", "version", VERSION);
+        else logResource(logger, "splash-precolored", "version", VERSION);
 
         logInit("日志管理器     ", 0, 6);
 
