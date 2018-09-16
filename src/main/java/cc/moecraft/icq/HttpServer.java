@@ -3,10 +3,10 @@ package cc.moecraft.icq;
 import cc.moecraft.icq.event.events.local.EventLocalHttpFailEvent;
 import cc.moecraft.icq.event.events.local.EventLocalHttpReceiveEvent;
 import cc.moecraft.icq.exceptions.HttpServerStartFailedException;
-import cc.moecraft.icq.utils.ExceptionUtils;
-import cc.moecraft.icq.utils.ThreadUtils;
 import cc.moecraft.logger.HyLogger;
 import cc.moecraft.logger.format.AnsiColor;
+import cc.moecraft.utils.ExceptionUtils;
+import cc.moecraft.utils.ThreadUtils;
 import lombok.Data;
 
 import java.io.DataInputStream;
