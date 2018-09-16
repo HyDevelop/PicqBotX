@@ -403,4 +403,10 @@ public class PicqBotX
     {
         hyExpressionResolver = value ? new HyExpressionResolver(safeMode) : null;
     }
+
+    private void logResource(HyLogger logger, String name, Object... variablesAndReplacements)
+    {
+        ResourceUtils.printResource(getClass().getClassLoader(), s -> logger.log(replaceAllFormatWithANSI(s)),
+                name, variablesAndReplacements);
+    }
 }
