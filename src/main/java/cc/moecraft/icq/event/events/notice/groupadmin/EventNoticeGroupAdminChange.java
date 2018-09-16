@@ -4,8 +4,6 @@ import cc.moecraft.icq.accounts.BotAccount;
 import cc.moecraft.icq.event.ContentComparable;
 import cc.moecraft.icq.event.events.notice.EventNotice;
 import cc.moecraft.icq.event.methodsets.GroupEventMethods;
-import cc.moecraft.icq.sender.returndata.ReturnData;
-import cc.moecraft.icq.sender.returndata.returnpojo.send.RMessageReturnData;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import lombok.*;
