@@ -37,54 +37,105 @@ import static cc.moecraft.logger.format.AnsiColor.*;
  */
 public class PicqBotX
 {
+    /**
+     * HTTP监听服务器
+     */
     @Getter
-    private HttpServer httpServer; // HTTP监听服务器
+    private HttpServer httpServer;
 
+    /**
+     * 是否输出Debug消息
+     */
     @Getter
-    private boolean debug; // 是否输出DEBUG消息
+    private boolean debug;
 
+    /**
+     * 是否跳过酷Q版本验证 (不推荐)
+     */
     @Getter @Setter
-    private boolean noVerify = false; // 这个为true是跳过版本验证, 需要手动设置
+    private boolean noVerify = false;
 
+    /**
+     * 事件管理器
+     */
     @Getter
-    private EventManager eventManager; // 事件管理器
+    private EventManager eventManager;
 
+    /**
+     * 机器人账号管理器
+     */
     @Getter
-    private AccountManager accountManager; // 机器人账号管理器
+    private AccountManager accountManager;
 
+    /**
+     * 用户对象缓存管理器
+     */
     @Getter
-    private UserManager userManager; // 用户对象缓存管理器
+    private UserManager userManager;
 
+    /**
+     * 群对象缓存管理器
+     */
     @Getter
-    private GroupManager groupManager; // 群对象缓存管理器
+    private GroupManager groupManager;
 
+    /**
+     * 群用户对象缓存管理器
+     */
     @Getter
-    private GroupUserManager groupUserManager; // 群用户对象缓存管理器
+    private GroupUserManager groupUserManager;
 
+    /**
+     * 指令管理器
+     */
     @Getter
-    private CommandManager commandManager; // 指令管理器
+    private CommandManager commandManager;
 
+    /**
+     * 兼容版本检测Regex
+     */
     @Getter @Setter
-    private String httpApiVersionDetection = ".*4.4.*"; // 兼容版本检测
+    private String httpApiVersionDetection = ".*4.4.*";
 
+    /**
+     * Logger实例管理器
+     */
     @Getter
-    private LoggerInstanceManager loggerInstanceManager; // Logger实例管理器
+    private LoggerInstanceManager loggerInstanceManager;
 
+    /**
+     * Logger
+     */
     @Getter
-    private HyLogger logger; // Logger
+    private HyLogger logger;
 
+    /**
+     * 全局替换HyExp表达式 (如果是null就不替换)
+     */
     @Getter
-    private HyExpressionResolver hyExpressionResolver; // 全局替换HyExp表达式
+    private HyExpressionResolver hyExpressionResolver = null;
 
+    /**
+     * 是否启用异步
+     */
     @Getter @Setter
-    private boolean useAsync = false; // 是否异步
+    private boolean useAsync = false;
 
+    /**
+     * 是否启用维护模式
+     */
     @Getter @Setter
-    private boolean maintenanceMode = false; // 维护模式
+    private boolean maintenanceMode = false;
 
+    /**
+     * 是否开启多账号优化
+     */
     @Getter @Setter
     private boolean multiAccountOptimizations = true; // 多账号优化
 
+    /**
+     * 当前版本
+     */
     public static final String VERSION = "2.4.3.552";
 
     /**
