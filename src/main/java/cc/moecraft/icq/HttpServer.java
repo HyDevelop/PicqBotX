@@ -55,6 +55,7 @@ public class HttpServer
      * 启动HTTP服务器
      * @throws HttpServerStartFailedException 启动失败
      */
+    @SuppressWarnings("deprecation")
     public void start() throws HttpServerStartFailedException
     {
         ServerSocket serverSocket;
@@ -213,6 +214,7 @@ public class HttpServer
      * @param reader 读取器
      * @return 所有行的列表
      */
+    @SuppressWarnings("deprecation")
     public static ArrayList<String> readOtherInfo(DataInputStream reader)
     {
         ArrayList<String> result = new ArrayList<>();
