@@ -2,7 +2,10 @@ package cc.moecraft.icq.event;
 
 import cc.moecraft.icq.PicqBotX;
 import cc.moecraft.icq.event.events.local.EventLocalException;
-import cc.moecraft.icq.event.events.message.*;
+import cc.moecraft.icq.event.events.message.EventDiscussMessage;
+import cc.moecraft.icq.event.events.message.EventGroupMessage;
+import cc.moecraft.icq.event.events.message.EventMessage;
+import cc.moecraft.icq.event.events.message.EventPrivateMessage;
 import cc.moecraft.icq.event.events.notice.EventNoticeFriendAdd;
 import cc.moecraft.icq.event.events.notice.EventNoticeGroupUpload;
 import cc.moecraft.icq.event.events.notice.groupadmin.EventNoticeGroupAdminRemove;
@@ -11,7 +14,6 @@ import cc.moecraft.icq.event.events.notice.groupmember.decrease.EventNoticeGroup
 import cc.moecraft.icq.event.events.notice.groupmember.decrease.EventNoticeGroupMemberKickBot;
 import cc.moecraft.icq.event.events.notice.groupmember.decrease.EventNoticeGroupMemberLeave;
 import cc.moecraft.icq.event.events.notice.groupmember.increase.EventNoticeGroupMemberApprove;
-import cc.moecraft.icq.event.events.notice.groupmember.increase.EventNoticeGroupMemberIncrease;
 import cc.moecraft.icq.event.events.notice.groupmember.increase.EventNoticeGroupMemberInvite;
 import cc.moecraft.icq.event.events.request.EventFriendRequest;
 import cc.moecraft.icq.event.events.request.EventGroupAddRequest;
@@ -172,6 +174,7 @@ public class EventManager
      * @param <T> 实现了内容比较方法的事件类
      * @return 是不是新的
      */
+    @SuppressWarnings("unchecked")
     private <T extends Event & ContentComparable<T>> boolean isNew(T event, String identifier)
     {
         if (!bot.isMultiAccountOptimizations()) return true;
