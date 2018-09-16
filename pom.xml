@@ -24,7 +24,7 @@
         <dependency>
             <groupId>com.github.hydevelop</groupId>
             <artifactId>HyCommonUtils</artifactId>
-            <version>1.3.4.124</version>
+            <version>1.3.5.130</version>
         </dependency>
 
         <dependency>
