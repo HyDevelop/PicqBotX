@@ -10,6 +10,7 @@
 <a href="#maven">Maven 导入</a>&nbsp;&nbsp;
 <a href="#environment">环境</a>&nbsp;&nbsp;
 <a href="#development">开发</a>&nbsp;&nbsp;
+<a href="#qa">常见问题</a>&nbsp;&nbsp;
 <a href="#license">开源条款</a>
 </h5>
   <br>
@@ -400,6 +401,14 @@ public class CommandVersion implements EverywhereCommand // 实现EverywhereComm
 }
 ```
 
+<a name="qa"></a>
+常见问题:
+
+#### Q: 为什么刚加的群不能回复消息?
+
+因为用户信息在账号管理器里缓存了啦...
+不会自动刷新的...
+监听加群的事件然后 ```event.getBot().getAccountManager().refreshCache();``` 就行啦w
 
 #### 如果发现 Bug 的话, 请联系我 QQ: 565656 哦!
 #### 或者加开发群 498386389
