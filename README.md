@@ -403,6 +403,7 @@ public class CommandVersion implements EverywhereCommand // 实现EverywhereComm
 
 <a name="qa"></a>
 常见问题:
+--------
 
 #### Q: 为什么刚加的群不能回复消息?
 
