@@ -1,5 +1,10 @@
 package cc.moecraft.icq;
 
+import static cc.moecraft.logger.format.AnsiColor.GREEN;
+import static cc.moecraft.logger.format.AnsiColor.RED;
+import static cc.moecraft.logger.format.AnsiColor.YELLOW;
+import static cc.moecraft.logger.format.AnsiFormat.replaceAllFormatWithANSI;
+
 import cc.moecraft.icq.accounts.AccountManager;
 import cc.moecraft.icq.accounts.AccountManagerListener;
 import cc.moecraft.icq.accounts.BotAccount;
@@ -25,9 +30,6 @@ import cc.moecraft.utils.cli.ResourceUtils;
 import cn.hutool.http.HttpException;
 import lombok.Getter;
 import lombok.Setter;
-
-import static cc.moecraft.logger.format.AnsiColor.*;
-import static cc.moecraft.logger.format.AnsiFormat.replaceAllFormatWithANSI;
 
 /**
  * 此类由 Hykilpikonna 在 2018/05/24 创建!
@@ -97,7 +99,7 @@ public class PicqBotX
      * 兼容版本检测Regex
      */
     @Getter @Setter
-    private String httpApiVersionDetection = ".*4.4.*";
+    private String httpApiVersionDetection = ".*4.5.*";
 
     /**
      * Logger实例管理器
@@ -202,14 +204,20 @@ public class PicqBotX
 
         loggerInstanceManager = new LoggerInstanceManager(new FileEnv(logPath, logFileName));
 
-        if (colorSupportLevel == null) loggerInstanceManager.addEnvironment(new ConsoleEnv());
-        else loggerInstanceManager.addEnvironment(new ConsoleColoredEnv(colorSupportLevel));
+        if (colorSupportLevel == null) {
+			loggerInstanceManager.addEnvironment(new ConsoleEnv());
+		} else {
+			loggerInstanceManager.addEnvironment(new ConsoleColoredEnv(colorSupportLevel));
+		}
 
         logger = loggerInstanceManager.getLoggerInstance("PicqBotX", debug);
         logger.timing.init();
 
-        if (colorSupportLevel == null) logResource(logger, "splash", "version", VERSION);
-        else logResource(logger, "splash-precolored", "version", VERSION);
+        if (colorSupportLevel == null) {
+			logResource(logger, "splash", "version", VERSION);
+		} else {
+			logResource(logger, "splash-precolored", "version", VERSION);
+		}
 
         logInit("日志管理器     ", 0, 6);
 
@@ -240,8 +248,12 @@ public class PicqBotX
         StringBuilder greenStars = new StringBuilder();
         StringBuilder redStars = new StringBuilder();
 
-        for (int i = 0; i < greens; i++) greenStars.append("*");
-        for (int i = 0; i < reds; i++) redStars.append("*");
+        for (int i = 0; i < greens; i++) {
+			greenStars.append("*");
+		}
+        for (int i = 0; i < reds; i++) {
+			redStars.append("*");
+		}
 
         logger.log(String.format("%s%s%s初始化完成%s [%s%s%s%s%s] ...(%s ms)",
                 YELLOW, name, GREEN,
@@ -291,7 +303,9 @@ public class PicqBotX
         logger.timing.init();
 
         commandManager = new CommandManager(groupManager, userManager, groupUserManager, prefixes);
-        if (registerAllCommands) commandManager.registerAllCommands();
+        if (registerAllCommands) {
+			commandManager.registerAllCommands();
+		}
         eventManager.registerListener(new CommandListener(commandManager));
         logInit("指令管理器     ", 6, 0);
 
@@ -304,7 +318,9 @@ public class PicqBotX
      */
     public boolean verifyHttpPluginVersion()
     {
-        if (noVerify) return true;
+        if (noVerify) {
+			return true;
+		}
 
         for (BotAccount botAccount : accountManager.getAccounts())
         {
@@ -322,8 +338,9 @@ public class PicqBotX
                     return false;
                 }
 
-                if (!versionInfo.getCoolqEdition().equalsIgnoreCase("pro"))
-                    logger.error(prefix + "版本正确, 不过用酷Q Pro的话效果更好哦!");
+                if (!versionInfo.getCoolqEdition().equalsIgnoreCase("pro")) {
+					logger.error(prefix + "版本正确, 不过用酷Q Pro的话效果更好哦!");
+				}
             }
             catch (HttpException e)
             {

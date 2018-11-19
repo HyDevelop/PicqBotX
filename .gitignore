@@ -5,3 +5,6 @@
 
 target/
 *.log
+/*.classpath
+/*.project
+/.settings/*.prefs
