@@ -99,7 +99,7 @@ public class PicqBotX
      * 兼容版本检测Regex
      */
     @Getter @Setter
-    private String httpApiVersionDetection = ".*4.5.*";
+    private String httpApiVersionDetection = ".*4.*.*";
 
     /**
      * Logger实例管理器
