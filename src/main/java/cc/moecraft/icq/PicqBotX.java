@@ -146,37 +146,37 @@ public class PicqBotX
      * 构造器
      * @param postUrl 发送URL (酷Q所在服务器的地址)
      * @param postPort 发送端口 (需要和酷Q的接收端口一样)
-     * @param socketPort 接收端口 (需要和酷Q的发送端口一样)
+     * @param receivePort 接收端口 (需要和酷Q的发送端口一样)
      * @param debug 是否debug
      */
-    public PicqBotX(String postUrl, int postPort, int socketPort, boolean debug)
+    public PicqBotX(String postUrl, int postPort, int receivePort, boolean debug)
     {
-        this(postUrl, postPort, socketPort, debug, ColorSupportLevel.PASSTHROUGH, "logs", "PicqBotX-Log");
+        this(postUrl, postPort, receivePort, debug, ColorSupportLevel.PASSTHROUGH, "logs", "PicqBotX-Log");
     }
 
     /**
      * 构造器
-     * @param socketPort 接收端口 (需要和酷Q的发送端口一样)
+     * @param receivePort 接收端口 (需要和酷Q的发送端口一样)
      * @param debug 是否debug
      */
-    public PicqBotX(int socketPort, boolean debug)
+    public PicqBotX(int receivePort, boolean debug)
     {
-        this(socketPort, debug, ColorSupportLevel.PASSTHROUGH, "logs", "PicqBotX-Log");
+        this(receivePort, debug, ColorSupportLevel.PASSTHROUGH, "logs", "PicqBotX-Log");
     }
 
     /**
      * 构造器
      * @param postUrl 发送URL (酷Q所在服务器的地址)
      * @param postPort 发送端口 (需要和酷Q的接收端口一样)
-     * @param socketPort 接收端口 (需要和酷Q的发送端口一样)
+     * @param receivePort 接收端口 (需要和酷Q的发送端口一样)
      * @param debug 是否debug
      * @param colorSupportLevel 日志颜色支持等级
      * @param logPath 日志文件路径
      * @param logFileName 日志文件名
      */
-    public PicqBotX(String postUrl, int postPort, int socketPort, boolean debug, ColorSupportLevel colorSupportLevel, String logPath, String logFileName)
+    public PicqBotX(String postUrl, int postPort, int receivePort, boolean debug, ColorSupportLevel colorSupportLevel, String logPath, String logFileName)
     {
-        this(socketPort, debug, colorSupportLevel, logPath, logFileName);
+        this(receivePort, debug, colorSupportLevel, logPath, logFileName);
         try
         {
             this.accountManager.addAccount(new BotAccount("Main", eventManager, postUrl, postPort));
@@ -192,13 +192,13 @@ public class PicqBotX
 
     /**
      * 构造器
-     * @param socketPort 接收端口 (需要和酷Q的发送端口一样)
+     * @param receivePort 接收端口 (需要和酷Q的发送端口一样)
      * @param debug 是否debug
      * @param colorSupportLevel 日志颜色支持等级
      * @param logPath 日志文件路径
      * @param logFileName 日志文件名
      */
-    public PicqBotX(int socketPort, boolean debug, ColorSupportLevel colorSupportLevel, String logPath, String logFileName)
+    public PicqBotX(int receivePort, boolean debug, ColorSupportLevel colorSupportLevel, String logPath, String logFileName)
     {
         this.debug = debug;
 
@@ -237,7 +237,7 @@ public class PicqBotX
         eventManager.registerListener(new AccountManagerListener(accountManager));
         logInit("账号管理器     ", 4, 2);
 
-        httpServer = new HttpServer(socketPort, this);
+        httpServer = new HttpServer(receivePort, this);
         logInit("HTTP监听服务器 ", 5, 1);
 
         logger.timing.clear();
