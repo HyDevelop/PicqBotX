@@ -286,9 +286,9 @@ public class PicqBotX
      * @throws InstantiationException 反射失败
      * @throws IllegalAccessException 反射失败
      */
-    public void enableCommandManager(String ... prefixes) throws InstantiationException, IllegalAccessException
+    public void enableCommandManager(String packagePath,String ... prefixes) throws InstantiationException, IllegalAccessException
     {
-        enableCommandManager(true, prefixes);
+        enableCommandManager(true, packagePath,prefixes);
     }
 
     /**
@@ -298,13 +298,13 @@ public class PicqBotX
      * @throws InstantiationException 反射失败
      * @throws IllegalAccessException 反射失败
      */
-    public void enableCommandManager(boolean registerAllCommands, String ... prefixes) throws InstantiationException, IllegalAccessException
+    public void enableCommandManager(boolean registerAllCommands,String packagePath, String ... prefixes) throws InstantiationException, IllegalAccessException
     {
         logger.timing.init();
 
         commandManager = new CommandManager(groupManager, userManager, groupUserManager, prefixes);
         if (registerAllCommands) {
-			commandManager.registerAllCommands();
+			commandManager.registerAllCommands(packagePath);
 		}
         eventManager.registerListener(new CommandListener(commandManager));
         logInit("指令管理器     ", 6, 0);
