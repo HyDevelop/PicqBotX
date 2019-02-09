@@ -6,7 +6,6 @@
   一个基于 酷Q HTTP 插件 的 Java QQ 机器人类库
   </h4>
   <h5 align="center">
-<a href="https://circleci.com/gh/HyDevelop/PicqBotX">CircleCI</a>&nbsp;&nbsp;
 <a href="#maven">Maven 导入</a>&nbsp;&nbsp;
 <a href="#environment">环境</a>&nbsp;&nbsp;
 <a href="#development">开发</a>&nbsp;&nbsp;
