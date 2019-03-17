@@ -411,7 +411,8 @@ public class CommandVersion implements EverywhereCommand // 实现EverywhereComm
 监听加群的事件然后<br>
 ```event.getBot().getAccountManager().refreshCache();``` 就行啦w
 
-#### 如果发现 Bug 的话, 请联系我 QQ: 871674895 哦!
+#### 如果发现 Bug 的话, 请开一个 [issue](https://github.com/HyDevelop/PicqBotX/issues) 说明问题
+#### 或者联系我 QQ: 871674895 哦!
 #### 或者加开发群 498386389
 
 <br>
