@@ -411,6 +411,27 @@ public class CommandVersion implements EverywhereCommand // 实现EverywhereComm
 监听加群的事件然后<br>
 ```event.getBot().getAccountManager().refreshCache();``` 就行啦w
 
+<br>
+
+#### Q: 如何在事件外获取`IcqHttpApi`对象用来发消息?
+
+因为有多账号管理,<br>
+每个账号都有单独的`IcqHttpApi`对象...<br>
+如果要用一个不指定账号的API对象的话,<br>
+`bot.getAccountManager().getNonAccountSpecifiedApi()`<br>
+有多个账号的话不推荐用这个.<br>
+
+如果要用所有账号的话,<br>
+`bot.getAccountManager().getAccounts()` 获取个列表,<br>
+然后循环过去就好啦w<br>
+
+如果要用一个指定账号的话,<br>
+还是像上面那样循环过去,<br>
+然后每个账号判断`getId()`好啦w<br>
+
+<br>
+<br>
+
 #### 如果发现 Bug 的话, 请开一个 [issue](https://github.com/HyDevelop/PicqBotX/issues) 说明问题
 #### 或者联系我 QQ: 871674895 哦!
 #### 或者加开发群 498386389
