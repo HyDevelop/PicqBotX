@@ -17,4 +17,9 @@ public class PicqConstants
     public static final String EVENT_KEY_POST_TYPE_MESSAGE = "message";
     public static final String EVENT_KEY_POST_TYPE_NOTICE = "notice";
     public static final String EVENT_KEY_POST_TYPE_REQUEST = "request";
+
+    public static final String EVENT_KEY_MESSAGE_TYPE = "message_type";
+    public static final String EVENT_KEY_MESSAGE_TYPE_PRIVATE = "private";
+    public static final String EVENT_KEY_MESSAGE_TYPE_GROUP = "group";
+    public static final String EVENT_KEY_MESSAGE_TYPE_DISCUSS = "discuss";
 }
