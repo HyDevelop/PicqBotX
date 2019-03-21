@@ -26,6 +26,8 @@ import cn.hutool.http.HttpException;
 import lombok.Getter;
 import lombok.Setter;
 
+import static cc.moecraft.icq.PicqConstants.HTTP_API_VERSION_DETECTION;
+import static cc.moecraft.icq.PicqConstants.VERSION;
 import static cc.moecraft.logger.format.AnsiColor.*;
 import static cc.moecraft.logger.format.AnsiFormat.replaceAllFormatWithANSI;
 
@@ -44,18 +46,6 @@ public class PicqBotX
      */
     @Getter
     private HttpServer httpServer;
-
-    /**
-     * 是否输出Debug消息
-     */
-    @Getter
-    private boolean debug;
-
-    /**
-     * 是否跳过酷Q版本验证 (不推荐)
-     */
-    @Getter @Setter
-    private boolean noVerify = false;
 
     /**
      * 事件管理器
@@ -94,12 +84,6 @@ public class PicqBotX
     private CommandManager commandManager;
 
     /**
-     * 兼容版本检测Regex
-     */
-    @Getter @Setter
-    private String httpApiVersionDetection = ".*4.4.*";
-
-    /**
      * Logger实例管理器
      */
     @Getter
@@ -118,12 +102,6 @@ public class PicqBotX
     private HyExpressionResolver hyExpressionResolver = null;
 
     /**
-     * 是否启用异步
-     */
-    @Getter @Setter
-    private boolean useAsync = false;
-
-    /**
      * 是否启用维护模式
      */
     @Getter @Setter
@@ -136,30 +114,19 @@ public class PicqBotX
     private boolean multiAccountOptimizations = true; // 多账号优化
 
     /**
-     * 当前版本
+     * Picq配置 | Picq configuration
      */
-    public static final String VERSION = "2.4.5.566";
+    @Getter
+    private final PicqConfig config;
 
     /**
      * 构造器
-     * @param postUrl 发送URL (酷Q所在服务器的地址)
-     * @param postPort 发送端口 (需要和酷Q的接收端口一样)
-     * @param socketPort 接收端口 (需要和酷Q的发送端口一样)
-     * @param debug 是否debug
+     *
+     * @param config Picq配置
      */
-    public PicqBotX(String postUrl, int postPort, int socketPort, boolean debug)
+    public PicqBotX(PicqConfig config)
     {
-        this(postUrl, postPort, socketPort, debug, ColorSupportLevel.PASSTHROUGH, "logs", "PicqBotX-Log");
-    }
-
-    /**
-     * 构造器
-     * @param socketPort 接收端口 (需要和酷Q的发送端口一样)
-     * @param debug 是否debug
-     */
-    public PicqBotX(int socketPort, boolean debug)
-    {
-        this(socketPort, debug, ColorSupportLevel.PASSTHROUGH, "logs", "PicqBotX-Log");
+        this.config = config;
     }
 
     /**
@@ -172,7 +139,7 @@ public class PicqBotX
      * @param logPath 日志文件路径
      * @param logFileName 日志文件名
      */
-    public PicqBotX(String postUrl, int postPort, int socketPort, boolean debug, ColorSupportLevel colorSupportLevel, String logPath, String logFileName)
+    public PicqBotX(, , int socketPort, boolean debug, ColorSupportLevel colorSupportLevel, , )
     {
         this(socketPort, debug, colorSupportLevel, logPath, logFileName);
         try
@@ -196,20 +163,24 @@ public class PicqBotX
      * @param logPath 日志文件路径
      * @param logFileName 日志文件名
      */
-    public PicqBotX(int socketPort, boolean debug, ColorSupportLevel colorSupportLevel, String logPath, String logFileName)
+    public PicqBotX(, boolean debug, String logPath, String logFileName)
     {
         this.debug = debug;
 
-        loggerInstanceManager = new LoggerInstanceManager(new FileEnv(logPath, logFileName));
 
-        if (colorSupportLevel == null) loggerInstanceManager.addEnvironment(new ConsoleEnv());
-        else loggerInstanceManager.addEnvironment(new ConsoleColoredEnv(colorSupportLevel));
+    }
 
-        logger = loggerInstanceManager.getLoggerInstance("PicqBotX", debug);
+    private void init()
+    {
+        loggerInstanceManager = new LoggerInstanceManager(new FileEnv(config.getLogPath(), config.getLogFileName()));
+
+        if (config.getColorSupportLevel() == null) loggerInstanceManager.addEnvironment(new ConsoleEnv());
+        else loggerInstanceManager.addEnvironment(new ConsoleColoredEnv(config.getColorSupportLevel()));
+
+        logger = loggerInstanceManager.getLoggerInstance("PicqBotX", config.isDebug());
         logger.timing.init();
 
-        if (colorSupportLevel == null) logResource(logger, "splash", "version", VERSION);
-        else logResource(logger, "splash-precolored", "version", VERSION);
+        logResource(logger, config.getColorSupportLevel() == null ? "splash" : "splash-precolored", "version", VERSION);
 
         logInit("日志管理器     ", 0, 6);
 
@@ -229,7 +200,7 @@ public class PicqBotX
         eventManager.registerListener(new AccountManagerListener(accountManager));
         logInit("账号管理器     ", 4, 2);
 
-        httpServer = new HttpServer(socketPort, this);
+        httpServer = new HttpServer(config.getSocketPort(), this);
         logInit("HTTP监听服务器 ", 5, 1);
 
         logger.timing.clear();
@@ -304,7 +275,7 @@ public class PicqBotX
      */
     public boolean verifyHttpPluginVersion()
     {
-        if (noVerify) return true;
+        if (config.isNoVerify()) return true;
 
         for (BotAccount botAccount : accountManager.getAccounts())
         {
@@ -314,11 +285,11 @@ public class PicqBotX
             {
                 RVersionInfo versionInfo = botAccount.getHttpApi().getVersionInfo().getData();
 
-                if (!versionInfo.getPluginVersion().matches(httpApiVersionDetection))
+                if (!versionInfo.getPluginVersion().matches(HTTP_API_VERSION_DETECTION))
                 {
                     logger.error(prefix + "HTTP插件版本不正确, 已停止启动");
                     logger.error("- 当前版本: " + versionInfo.getPluginVersion());
-                    logger.error("- 兼容的版本: " + httpApiVersionDetection);
+                    logger.error("- 兼容的版本: " + HTTP_API_VERSION_DETECTION);
                     return false;
                 }
 
@@ -403,7 +374,7 @@ public class PicqBotX
      */
     public void setUniversalHyExpSupport(boolean value)
     {
-        hyExpressionResolver = value ? new HyExpressionResolver() : null;
+        setUniversalHyExpSupport(value, true);
     }
 
     /**
