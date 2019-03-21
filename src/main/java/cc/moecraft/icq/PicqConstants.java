@@ -15,6 +15,14 @@ import com.google.gson.Gson;
  */
 public class PicqConstants
 {
+    // 版本常量 | Version constant
+
+    /** 当前版本 */
+    public static final String VERSION = "2.4.5.566";
+
+    /** 兼容版本检测Regex */
+    public static final String HTTP_API_VERSION_DETECTION = ".*4.8.*";
+
 
     // 可变常量 | Variable constant
 
