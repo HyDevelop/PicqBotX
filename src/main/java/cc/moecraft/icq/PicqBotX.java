@@ -344,31 +344,6 @@ public class PicqBotX
     }
 
     /**
-     * 暂停机器人事件
-     */
-    public void eventsPause()
-    {
-        eventsSetPauseState(true);
-    }
-
-    /**
-     * 继续机器人事件
-     */
-    public void eventsResume()
-    {
-        eventsSetPauseState(false);
-    }
-
-    /**
-     * 设置机器人事件管理器暂停状态
-     * @param isPaused 是否暂停
-     */
-    public void eventsSetPauseState(boolean isPaused)
-    {
-        eventManager.setPaused(isPaused);
-    }
-
-    /**
      * 设置是否替换HyExp表达式
      * @param value 是否替换
      */
