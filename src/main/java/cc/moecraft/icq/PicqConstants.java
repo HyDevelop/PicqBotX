@@ -1,5 +1,7 @@
 package cc.moecraft.icq;
 
+import com.google.gson.Gson;
+
 /**
  * The class {@code PicqConstants} is a class with static and final
  * constant fields. They can be changed with reflection.
@@ -13,6 +15,13 @@ package cc.moecraft.icq;
  */
 public class PicqConstants
 {
+
+    // 可变常量 | Variable constant
+
+    public static Gson gsonRead = new Gson();
+    public static Gson gsonWrite = new Gson();
+
+
     // 事件字段名 | Event key names
 
     public static final String EVENT_KEY_SUBTYPE = "sub_type";
