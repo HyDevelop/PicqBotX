@@ -13,4 +13,8 @@ package cc.moecraft.icq;
  */
 public class PicqConstants
 {
+    public static final String EVENT_KEY_POST_TYPE = "post_type";
+    public static final String EVENT_KEY_POST_TYPE_MESSAGE = "message";
+    public static final String EVENT_KEY_POST_TYPE_NOTICE = "notice";
+    public static final String EVENT_KEY_POST_TYPE_REQUEST = "request";
 }
