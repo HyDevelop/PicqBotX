@@ -182,22 +182,22 @@ public class EventManager
 
         switch (postType)
         {
-            case EVENT_KEY_POST_TYPE_MESSAGE:
+            case EVENT_KEY_POST_TYPE_MESSAGE: // 消息事件
             {
                 callMessage(json);
                 break;
             }
-            case EVENT_KEY_POST_TYPE_NOTICE:
+            case EVENT_KEY_POST_TYPE_NOTICE: // 通知事件
             {
                 callNotice(json);
                 break;
             }
-            case EVENT_KEY_POST_TYPE_REQUEST:
+            case EVENT_KEY_POST_TYPE_REQUEST: // 请求事件
             {
                 callRequest(json);
                 break;
             }
-            default:
+            default: // 未识别
             {
                 bot.getLogger().error("Unrecognized Key (未识别的字段): {}={}", EVENT_KEY_POST_TYPE, postType);
                 break;
@@ -207,24 +207,29 @@ public class EventManager
 
     /**
      * 执行消息事件
+     * 
      * @param json JSON输入
      */
     public void callMessage(JsonObject json)
     {
-        switch (json.get("message_type").getAsString())
+        // 获取消息类型
+        String messageType = json.get(EVENT_KEY_MESSAGE_TYPE).getAsString();
+        switch (messageType)
         {
-            case "private":
+            case EVENT_KEY_MESSAGE_TYPE_PRIVATE: // 私聊消息
             {
                 call(gson.fromJson(json, EventPrivateMessage.class));
                 break;
             }
-            case "group":
+            case EVENT_KEY_MESSAGE_TYPE_GROUP: // 群消息
             {
                 EventGroupMessage event = gson.fromJson(json, EventGroupMessage.class);
+
+                // 判断事件是不是新的
                 if (isNew(event, event.getGroupId().toString())) call(event);
                 break;
             }
-            case "discuss":
+            case EVENT_KEY_MESSAGE_TYPE_DISCUSS: // 讨论组消息
             {
                 EventDiscussMessage event = gson.fromJson(json, EventDiscussMessage.class);
                 if (isNew(event, event.getDiscussId().toString())) call(event);
