@@ -17,6 +17,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 
+import static cc.moecraft.icq.PicqConstants.HTTP_API_VERSION_DETECTION;
+
 /**
  * 此类由 Hykilpikonna 在 2018/05/24 创建!
  * Created by Hykilpikonna on 2018/05/24!
@@ -48,7 +50,7 @@ public class HttpServer
      */
     private void process(String data)
     {
-        bot.getEventManager().call(data);
+        bot.getEventManager().getEventParser().call(data);
     }
 
     /**
@@ -142,10 +144,10 @@ public class HttpServer
                     bot.getEventManager().call(new EventLocalHttpFailEvent(EventLocalHttpFailEvent.FailType.incorrectCharset));
                     continue;
                 }
-                if (userAgent.equals("UNINITIALIZED") || !userAgent.matches(bot.getHttpApiVersionDetection()))
+                if (userAgent.equals("UNINITIALIZED") || !userAgent.matches(HTTP_API_VERSION_DETECTION))
                 {
                     // 版本不正确
-                    logger.error("HTTP API请求版本不正确, 设置的兼容版本为: " + bot.getHttpApiVersionDetection());
+                    logger.error("HTTP API请求版本不正确, 设置的兼容版本为: " + HTTP_API_VERSION_DETECTION);
                     logger.error("当前版本为: " + userAgent);
                     logger.error("推荐更新这个类库或者HTTP API的版本");
                     logger.error("如果要无视版本检查, 请在启动前加上 \"机器人对象.setHttpApiVersionDetection(\"*\");\"");
@@ -166,7 +168,7 @@ public class HttpServer
                 }
 
                 // 输出Debug消息
-                if (bot.isDebug())
+                if (bot.getConfig().isDebug())
                 {
                     logger.debug("收到新请求: " + line);
                     //logger.debug("- 请求方法: " + method);
