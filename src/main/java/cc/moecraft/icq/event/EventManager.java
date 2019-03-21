@@ -30,6 +30,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.*;
 
+import static cc.moecraft.icq.PicqConstants.*;
+
 /**
  * 此类由 Hykilpikonna 在 2018/05/24 创建!
  * Created by Hykilpikonna on 2018/05/24!
@@ -44,6 +46,7 @@ public class EventManager
     
     @Getter
     private ArrayList<IcqListener> registeredListeners = new ArrayList<>();
+
     @Getter
     private HashMap<String, ArrayList<RegisteredListenerMethod>> registeredListenerMethods = new HashMap<>();
     private final PicqBotX bot;
@@ -134,36 +137,6 @@ public class EventManager
         else call(new EventLocalException(throwable instanceof InvocationTargetException ? throwable.getCause() : throwable, event));
     }
 
-    /**
-     * 执行事件
-     * @param inputJsonString ICQ发来的Json字符串
-     */
-    public void call(String inputJsonString)
-    {
-        if (paused) return; // 判断暂停
-
-        JsonObject json = new JsonParser().parse(inputJsonString).getAsJsonObject();
-
-        switch (json.get("post_type").getAsString())
-        {
-            case "message":
-            {
-                callMessage(json);
-                break;
-            }
-            case "notice": // 这里写成这样就只支持4.0了
-            {
-                callNotice(json);
-                break;
-            }
-            case "request":
-            {
-                callRequest(json);
-                break;
-            }
-        }
-    }
-
     private final Map<Class<? extends Event>, Map<String, ArrayList<ContentComparable<?>>>> cache = new HashMap<>();
 
     /**
@@ -193,6 +166,43 @@ public class EventManager
 
         if (cachedEvents.size() > 10) cachedEvents.remove(0);
         return true;
+    }
+
+    /**
+     * 执行事件
+     *
+     * @param inputJsonString ICQ发来的Json字符串
+     */
+    public void call(String inputJsonString)
+    {
+        if (paused) return; // 判断暂停
+
+        JsonObject json = new JsonParser().parse(inputJsonString).getAsJsonObject();
+        String postType = json.get(EVENT_KEY_POST_TYPE).getAsString();
+
+        switch (postType)
+        {
+            case EVENT_KEY_POST_TYPE_MESSAGE:
+            {
+                callMessage(json);
+                break;
+            }
+            case EVENT_KEY_POST_TYPE_NOTICE:
+            {
+                callNotice(json);
+                break;
+            }
+            case EVENT_KEY_POST_TYPE_REQUEST:
+            {
+                callRequest(json);
+                break;
+            }
+            default:
+            {
+                bot.getLogger().error("Unrecognized Key (未识别的字段): {}={}", EVENT_KEY_POST_TYPE, postType);
+                break;
+            }
+        }
     }
 
     /**
