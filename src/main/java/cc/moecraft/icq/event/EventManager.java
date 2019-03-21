@@ -277,35 +277,42 @@ public class EventManager
 
     /**
      * 执行Notice事件
-     * 
+     *
      * @param json JSON输入
      */
     public void callNotice(JsonObject json)
     {
-        switch (json.get("notice_type").getAsString())
+        String noticeType = json.get(EVENT_KEY_NOTICE_TYPE).getAsString();
+        switch (noticeType)
         {
-            case "group_upload":
+            // 传群文件
+            case EVENT_KEY_NOTICE_TYPE_GROUP_UPLOAD:
             {
                 EventNoticeGroupUpload event = gson.fromJson(json, EventNoticeGroupUpload.class);
                 if (isNew(event, event.getGroupId().toString())) call(event);
                 break;
             }
-            case "friend_add":
+            // 加好友
+            case EVENT_KEY_NOTICE_TYPE_FRIEND_ADD:
             {
                 call(gson.fromJson(json, EventNoticeFriendAdd.class));
                 break;
             }
-            case "group_admin":
+            // 群管理
+            case EVENT_KEY_NOTICE_TYPE_GROUP_ADMIN:
             {
-                switch (json.get("sub_type").getAsString())
+                String subtype = json.get(EVENT_KEY_SUBTYPE).getAsString();
+                switch (subtype)
                 {
-                    case "set":
+                    // 设置管理
+                    case EVENT_KEY_NOTICE_TYPE_GROUP_ADMIN_SET:
                     {
                         EventNoticeGroupAdminSet event = gson.fromJson(json, EventNoticeGroupAdminSet.class);
                         if (isNew(event, event.getGroupId().toString())) call(event);
                         break;
                     }
-                    case "unset":
+                    // 取消管理
+                    case EVENT_KEY_NOTICE_TYPE_GROUP_ADMIN_UNSET:
                     {
                         EventNoticeGroupAdminRemove event = gson.fromJson(json, EventNoticeGroupAdminRemove.class);
                         if (isNew(event, event.getGroupId().toString())) call(event);
@@ -314,23 +321,28 @@ public class EventManager
                 }
                 break;
             }
-            case "group_decrease":
+            // 群成员减少
+            case EVENT_KEY_NOTICE_TYPE_GROUP_DECREASE:
             {
-                switch (json.get("sub_type").getAsString())
+                String subtype = json.get(EVENT_KEY_SUBTYPE).getAsString();
+                switch (subtype)
                 {
-                    case "leave":
+                    // 退群
+                    case EVENT_KEY_NOTICE_TYPE_GROUP_DECREASE_LEAVE:
                     {
                         EventNoticeGroupMemberLeave event = gson.fromJson(json, EventNoticeGroupMemberLeave.class);
                         if (isNew(event, event.getGroupId().toString())) call(event);
                         break;
                     }
-                    case "kick":
+                    // 踢出
+                    case EVENT_KEY_NOTICE_TYPE_GROUP_DECREASE_KICK:
                     {
                         EventNoticeGroupMemberKick event = gson.fromJson(json, EventNoticeGroupMemberKick.class);
                         if (isNew(event, event.getGroupId().toString())) call(event);
                         break;
                     }
-                    case "kick_me":
+                    // 自己被踢出
+                    case EVENT_KEY_NOTICE_TYPE_GROUP_DECREASE_KICK_ME:
                     {
                         call(gson.fromJson(json, EventNoticeGroupMemberKickBot.class));
                         break;
@@ -338,17 +350,21 @@ public class EventManager
                 }
                 break;
             }
-            case "group_increase":
+            // 群成员增加
+            case EVENT_KEY_NOTICE_TYPE_GROUP_INCREASE:
             {
-                switch (json.get("sub_type").getAsString())
+                String subtype = json.get(EVENT_KEY_SUBTYPE).getAsString();
+                switch (subtype)
                 {
-                    case "approve":
+                    // 同意
+                    case EVENT_KEY_NOTICE_TYPE_GROUP_INCREASE_APPROVE:
                     {
                         EventNoticeGroupMemberApprove event = gson.fromJson(json, EventNoticeGroupMemberApprove.class);
                         if (isNew(event, event.getGroupId().toString())) call(event);
                         break;
                     }
-                    case "invite":
+                    // 邀请
+                    case EVENT_KEY_NOTICE_TYPE_GROUP_INCREASE_INVITE:
                     {
                         EventNoticeGroupMemberInvite event = gson.fromJson(json, EventNoticeGroupMemberInvite.class);
                         if (isNew(event, event.getGroupId().toString())) call(event);

@@ -33,4 +33,18 @@ public class PicqConstants
     public static final String EVENT_KEY_REQUEST_TYPE_GROUP_ADD = "add";
     public static final String EVENT_KEY_REQUEST_TYPE_GROUP_INVITE = "invite";
 
+    public static final String EVENT_KEY_NOTICE_TYPE = "notice_type";
+    public static final String EVENT_KEY_NOTICE_TYPE_GROUP_UPLOAD = "group_upload";
+    public static final String EVENT_KEY_NOTICE_TYPE_FRIEND_ADD = "friend_add";
+    public static final String EVENT_KEY_NOTICE_TYPE_GROUP_ADMIN = "group_admin";
+    public static final String EVENT_KEY_NOTICE_TYPE_GROUP_ADMIN_SET = "set";
+    public static final String EVENT_KEY_NOTICE_TYPE_GROUP_ADMIN_UNSET = "unset";
+    public static final String EVENT_KEY_NOTICE_TYPE_GROUP_DECREASE = "group_decrease";
+    public static final String EVENT_KEY_NOTICE_TYPE_GROUP_DECREASE_LEAVE = "leave";
+    public static final String EVENT_KEY_NOTICE_TYPE_GROUP_DECREASE_KICK = "kick";
+    public static final String EVENT_KEY_NOTICE_TYPE_GROUP_DECREASE_KICK_ME = "kick_me";
+    public static final String EVENT_KEY_NOTICE_TYPE_GROUP_INCREASE = "group_increase";
+    public static final String EVENT_KEY_NOTICE_TYPE_GROUP_INCREASE_APPROVE = "approve";
+    public static final String EVENT_KEY_NOTICE_TYPE_GROUP_INCREASE_INVITE = "invite";
+
 }
