@@ -13,6 +13,10 @@ package cc.moecraft.icq;
  */
 public class PicqConstants
 {
+    // 事件字段名 | Event key names
+
+    public static final String EVENT_KEY_SUBTYPE = "sub_type";
+
     public static final String EVENT_KEY_POST_TYPE = "post_type";
     public static final String EVENT_KEY_POST_TYPE_MESSAGE = "message";
     public static final String EVENT_KEY_POST_TYPE_NOTICE = "notice";
@@ -22,4 +26,11 @@ public class PicqConstants
     public static final String EVENT_KEY_MESSAGE_TYPE_PRIVATE = "private";
     public static final String EVENT_KEY_MESSAGE_TYPE_GROUP = "group";
     public static final String EVENT_KEY_MESSAGE_TYPE_DISCUSS = "discuss";
+
+    public static final String EVENT_KEY_REQUEST_TYPE = "request_type";
+    public static final String EVENT_KEY_REQUEST_TYPE_FRIEND = "friend";
+    public static final String EVENT_KEY_REQUEST_TYPE_GROUP = "group";
+    public static final String EVENT_KEY_REQUEST_TYPE_GROUP_ADD = "add";
+    public static final String EVENT_KEY_REQUEST_TYPE_GROUP_INVITE = "invite";
+
 }

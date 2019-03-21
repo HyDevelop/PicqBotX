@@ -207,7 +207,7 @@ public class EventManager
 
     /**
      * 执行消息事件
-     * 
+     *
      * @param json JSON输入
      */
     public void callMessage(JsonObject json)
@@ -240,28 +240,31 @@ public class EventManager
 
     /**
      * 执行请求事件
+     *
      * @param json JSON输入
      */
     public void callRequest(JsonObject json)
     {
-        switch (json.get("request_type").getAsString())
+        String requestType = json.get(EVENT_KEY_REQUEST_TYPE).getAsString();
+        switch (requestType)
         {
-            case "friend":
+            case EVENT_KEY_REQUEST_TYPE_FRIEND: // 好友请求
             {
                 call(gson.fromJson(json, EventFriendRequest.class));
                 break;
             }
-            case "group":
+            case EVENT_KEY_REQUEST_TYPE_GROUP: // 群请求
             {
-                switch (json.get("sub_type").getAsString())
+                String subtype = json.get(EVENT_KEY_SUBTYPE).getAsString();
+                switch (subtype)
                 {
-                    case "add":
+                    case EVENT_KEY_REQUEST_TYPE_GROUP_ADD: // 加群
                     {
                         EventGroupAddRequest event = gson.fromJson(json, EventGroupAddRequest.class);
                         if (isNew(event, event.getGroupId().toString())) call(event);
                         break;
                     }
-                    case "invite":
+                    case EVENT_KEY_REQUEST_TYPE_GROUP_INVITE: // 邀请入群
                     {
                         call(gson.fromJson(json, EventGroupInviteRequest.class));
                         break;
@@ -274,6 +277,7 @@ public class EventManager
 
     /**
      * 执行Notice事件
+     * 
      * @param json JSON输入
      */
     public void callNotice(JsonObject json)
