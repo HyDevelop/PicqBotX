@@ -35,7 +35,6 @@ public class HttpServer
     private final PicqBotX bot;
 
     private boolean started = true;
-    private boolean paused = false;
 
     public HttpServer(int port, PicqBotX bot)
     {
@@ -76,7 +75,7 @@ public class HttpServer
 
         while (started)
         {
-            if (paused) continue;
+            if (bot.getConfig().isHttpPaused()) continue;
             try
             {
                 // 关闭上次的Socket, 这样就能直接continue了
