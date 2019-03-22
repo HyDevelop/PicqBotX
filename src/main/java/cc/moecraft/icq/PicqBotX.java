@@ -147,14 +147,15 @@ public class PicqBotX
     /**
      * 添加机器人账号
      *
+     * @param name 名字
      * @param postUrl 发送URL (Eg. 127.0.0.1)
      * @param postPort 发送端口 (Eg. 31091)
      */
-    public void addAccount(String postUrl, int postPort)
+    public void addAccount(String name, String postUrl, int postPort)
     {
         try
         {
-            this.accountManager.addAccount(new BotAccount("Main", eventManager, postUrl, postPort));
+            this.accountManager.addAccount(new BotAccount(name, eventManager, postUrl, postPort));
         }
         catch (HttpException e)
         {
