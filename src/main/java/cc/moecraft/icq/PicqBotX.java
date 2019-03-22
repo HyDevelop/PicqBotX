@@ -6,7 +6,7 @@ import cc.moecraft.icq.accounts.BotAccount;
 import cc.moecraft.icq.command.CommandListener;
 import cc.moecraft.icq.command.CommandManager;
 import cc.moecraft.icq.event.EventManager;
-import cc.moecraft.icq.exceptions.HttpServerStartFailedException;
+import cc.moecraft.icq.exceptions.VerifyFailedException;
 import cc.moecraft.icq.listeners.HyExpressionListener;
 import cc.moecraft.icq.sender.returndata.returnpojo.get.RVersionInfo;
 import cc.moecraft.icq.user.GroupManager;
@@ -28,7 +28,7 @@ import lombok.Setter;
 import static cc.moecraft.icq.PicqConstants.HTTP_API_VERSION_DETECTION;
 import static cc.moecraft.icq.PicqConstants.VERSION;
 import static cc.moecraft.icq.utils.MiscUtils.logInitDone;
-import static cc.moecraft.logger.format.AnsiColor.*;
+import static cc.moecraft.logger.format.AnsiColor.GREEN;
 import static cc.moecraft.logger.format.AnsiFormat.replaceAllFormatWithANSI;
 
 /**
@@ -188,14 +188,13 @@ public class PicqBotX
 
     /**
      * 启动机器人
-     * @throws HttpServerStartFailedException HTTP服务器启动失败
      */
-    public void startBot() throws HttpServerStartFailedException
+    public void startBot()
     {
         if (!verifyHttpPluginVersion())
         {
             logger.error("验证失败, 请检查上面的错误信息再重试启动服务器.");
-            System.exit(1);
+            throw new VerifyFailedException();
         }
 
         logger.log(GREEN + "正在启动...");
@@ -227,7 +226,7 @@ public class PicqBotX
         commandManager = new CommandManager(groupManager, userManager, groupUserManager, prefixes);
         if (registerAllCommands) commandManager.registerAllCommands();
         eventManager.registerListener(new CommandListener(commandManager));
-        logInit("指令管理器     ", 6, 0);
+        logInitDone(logger, "指令管理器     ", 6, 0);
 
         logger.timing.clear();
     }
