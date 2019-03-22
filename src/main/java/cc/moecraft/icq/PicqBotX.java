@@ -184,10 +184,8 @@ public class PicqBotX
     /**
      * 启用指令系统
      * @param prefixes 前缀
-     * @throws InstantiationException 反射失败
-     * @throws IllegalAccessException 反射失败
      */
-    public void enableCommandManager(String ... prefixes) throws InstantiationException, IllegalAccessException
+    public void enableCommandManager(String ... prefixes)
     {
         enableCommandManager(true, prefixes);
     }
@@ -196,10 +194,8 @@ public class PicqBotX
      * 启用指令系统
      * @param registerAllCommands 是否自动注册所有指令
      * @param prefixes 前缀
-     * @throws InstantiationException 反射失败
-     * @throws IllegalAccessException 反射失败
      */
-    public void enableCommandManager(boolean registerAllCommands, String ... prefixes) throws InstantiationException, IllegalAccessException
+    public void enableCommandManager(boolean registerAllCommands, String ... prefixes)
     {
         logger.timing.init();
 

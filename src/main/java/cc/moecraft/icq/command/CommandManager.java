@@ -55,10 +55,8 @@ public class CommandManager
     /**
      * 自动循环commands下的所有包找指令类
      * 然后反射实例注册
-     * @throws IllegalAccessException 反射失败
-     * @throws InstantiationException 反射失败
      */
-    public void registerAllCommands() throws IllegalAccessException, InstantiationException
+    public void registerAllCommands()
     {
         // 不填包名就是全局扫描
         Reflections reflections = new Reflections();
@@ -68,7 +66,20 @@ public class CommandManager
 
         // 循环注册
         for (Class<? extends IcqCommand> command : commands)
-            if (!command.isInterface() && !Modifier.isAbstract(command.getModifiers())) registerCommand(command.newInstance());
+        {
+            if (!command.isInterface() && !Modifier.isAbstract(command.getModifiers()))
+            {
+                try
+                {
+                    registerCommand(command.newInstance());
+                }
+                catch (InstantiationException | IllegalAccessException e)
+                {
+                    // 忽略出错的指令
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 
     /**
@@ -137,7 +148,7 @@ public class CommandManager
             CommandArgs commandArgs = CommandArgs.parse(getPrefixes(), getRegisteredCommands(), event.getMessage(), eventIsDiscuss || eventIsGroup);
             User user = userManager.getUserFromID(event.getSenderId());
 
-            if (event.getBot().isMaintenanceMode())
+            if (event.getBot().getConfig().isMaintenanceMode())
             {
                 event.respond("- 机器人正在维护 -");
                 return RunResult.MAINTENANCE;
