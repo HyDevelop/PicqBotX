@@ -1,6 +1,5 @@
 package cc.moecraft.test.icq.commands;
 
-import cc.moecraft.icq.PicqBotX;
 import cc.moecraft.icq.command.CommandProperties;
 import cc.moecraft.icq.command.interfaces.EverywhereCommand;
 import cc.moecraft.icq.event.events.message.EventMessage;
@@ -10,6 +9,8 @@ import cc.moecraft.icq.sender.returndata.returnpojo.get.RVersionInfo;
 import cc.moecraft.icq.user.User;
 
 import java.util.ArrayList;
+
+import static cc.moecraft.icq.PicqConstants.VERSION;
 
 /**
  * 此类由 Hykilpikonna 在 2018/05/26 创建!
@@ -42,9 +43,9 @@ public class CommandVersion implements EverywhereCommand // 继承EverywhereComm
 
         // 这里因为这个指令是用来查版本的, 所以直接返回字符串了
         return new MessageBuilder()
-                .add("TestBot - PicqBotX v").add(PicqBotX.VERSION).newLine()
+                .add("TestBot - PicqBotX v").add(VERSION).newLine()
                 .add("- 酷Q ").add(versionInfo.getCoolqEdition()).add(" HTTP插件: ")
-                    .add(versionInfo.getPluginVersion()).add(" b").add(versionInfo.getPluginBuildNumber()).newLine()
+                .add(versionInfo.getPluginVersion()).add(" b").add(versionInfo.getPluginBuildNumber()).newLine()
                 .add("- 运行状态: Good: ").add(status.getGood()).add(", ").add(status.getPluginsGood())
                 .toString();
     }

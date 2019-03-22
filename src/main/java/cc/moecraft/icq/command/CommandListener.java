@@ -50,7 +50,7 @@ public class CommandListener extends IcqListener
     {
         CommandRunnable runnable = new CommandRunnable(event);
 
-        if (event.getBot().isUseAsync()) runnable.runAsync();
+        if (event.getBot().getConfig().isUseAsync()) runnable.runAsync();
         else runnable.run();
     }
 
