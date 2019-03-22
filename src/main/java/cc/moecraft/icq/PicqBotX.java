@@ -23,7 +23,7 @@ import cc.moecraft.utils.ThreadUtils;
 import cc.moecraft.utils.cli.ResourceUtils;
 import cn.hutool.http.HttpException;
 import lombok.Getter;
-import lombok.Setter;
+import lombok.RequiredArgsConstructor;
 
 import static cc.moecraft.icq.PicqConstants.HTTP_API_VERSION_DETECTION;
 import static cc.moecraft.icq.PicqConstants.VERSION;
@@ -39,94 +39,73 @@ import static cc.moecraft.logger.format.AnsiFormat.replaceAllFormatWithANSI;
  *
  * @author Hykilpikonna
  */
+@Getter
+@RequiredArgsConstructor
 public class PicqBotX
 {
     /**
      * HTTP监听服务器
      */
-    @Getter
     private HttpServer httpServer;
 
     /**
      * 事件管理器
      */
-    @Getter
     private EventManager eventManager;
 
     /**
      * 机器人账号管理器
      */
-    @Getter
     private AccountManager accountManager;
 
     /**
      * 用户对象缓存管理器
      */
-    @Getter
     private UserManager userManager;
 
     /**
      * 群对象缓存管理器
      */
-    @Getter
     private GroupManager groupManager;
 
     /**
      * 群用户对象缓存管理器
      */
-    @Getter
     private GroupUserManager groupUserManager;
 
     /**
      * 指令管理器
      */
-    @Getter
     private CommandManager commandManager;
 
     /**
      * Logger实例管理器
      */
-    @Getter
     private LoggerInstanceManager loggerInstanceManager;
 
     /**
      * Logger
      */
-    @Getter
     private HyLogger logger;
 
     /**
      * 全局替换HyExp表达式 (如果是null就不替换)
      */
-    @Getter
     private HyExpressionResolver hyExpressionResolver = null;
-
-    /**
-     * 是否启用维护模式
-     */
-    @Getter @Setter
-    private boolean maintenanceMode = false;
-
-    /**
-     * 是否开启多账号优化
-     */
-    @Getter @Setter
-    private boolean multiAccountOptimizations = true; // 多账号优化
 
     /**
      * Picq配置 | Picq configuration
      */
-    @Getter
     private final PicqConfig config;
 
     /**
      * 构造器
      *
-     * @param config Picq配置
+     * @param socketPort 接收端口
      */
-    public PicqBotX(PicqConfig config)
+    public PicqBotX(int socketPort)
     {
-        this.config = config;
+        this(new PicqConfig(socketPort));
     }
 
     private void init()
