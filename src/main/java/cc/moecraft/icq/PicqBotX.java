@@ -260,7 +260,7 @@ public class PicqBotX
             }
             catch (HttpException e)
             {
-                if (e.getMessage().toLowerCase().contains("connection refused"))
+                if (e.getMessage().toLowerCase().contains("connection"))
                 {
                     logger.error("HTTP发送地址验证失败, 已停止启动");
                     logger.error("- 请检查酷Q是否已经启动");
