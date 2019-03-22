@@ -14,16 +14,14 @@ import lombok.Getter;
  * @author Hykilpikonna
  */
 @Data
+@Getter
 public class BotAccount
 {
     private final String name;
     private final String postUrl;
     private final int postPort;
 
-    @Getter
-    protected long id;
-
-    @Getter
+    private long id;
     private IcqHttpApi httpApi;
 
     public BotAccount(String name, EventManager eventManager, String postUrl, int postPort)
