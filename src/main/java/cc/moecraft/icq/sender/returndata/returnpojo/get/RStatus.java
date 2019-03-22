@@ -3,8 +3,10 @@ package cc.moecraft.icq.sender.returndata.returnpojo.get;
 import cc.moecraft.icq.sender.returndata.returnpojo.ReturnPojoBase;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import lombok.AccessLevel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Setter;
 
 /**
  * 获取插件运行状态
@@ -13,6 +15,7 @@ import lombok.EqualsAndHashCode;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
+@Setter(AccessLevel.NONE)
 public class RStatus extends ReturnPojoBase
 {
     @SerializedName("app_enabled")
@@ -37,5 +40,90 @@ public class RStatus extends ReturnPojoBase
 
     @SerializedName("plugins_good")
     @Expose
-    public Boolean pluginsGood;
+    public PluginsGood pluginsGood;
+
+    @Data
+    @Setter(AccessLevel.NONE)
+    public class PluginsGood
+    {
+        @SerializedName("async_actions")
+        @Expose
+        public Boolean asyncActions;
+
+        @SerializedName("backward_compatibility")
+        @Expose
+        public Boolean backwardCompatibility;
+
+        @SerializedName("default_config_generator")
+        @Expose
+        public Boolean defaultConfigGenerator;
+
+        @SerializedName("event_data_patcher")
+        @Expose
+        public Boolean eventDataPatcher;
+
+        @SerializedName("event_filter")
+        @Expose
+        public Boolean eventFilter;
+
+        @SerializedName("experimental_actions")
+        @Expose
+        public Boolean experimentalActions;
+
+        @SerializedName("extension_loader")
+        @Expose
+        public Boolean extensionLoader;
+
+        @SerializedName("heartbeat_generator")
+        @Expose
+        public Boolean heartbeatGenerator;
+
+        @SerializedName("http")
+        @Expose
+        public Boolean http;
+
+        @SerializedName("ini_config_loader")
+        @Expose
+        public Boolean iniConfigLoader;
+
+        @SerializedName("json_config_loader")
+        @Expose
+        public Boolean jsonConfigLoader;
+
+        @SerializedName("loggers")
+        @Expose
+        public Boolean loggers;
+
+        @SerializedName("message_enhancer")
+        @Expose
+        public Boolean messageEnhancer;
+
+        @SerializedName("post_message_formatter")
+        @Expose
+        public Boolean postMessageFormatter;
+
+        @SerializedName("rate_limited_actions")
+        @Expose
+        public Boolean rateLimitedActions;
+
+        @SerializedName("restarter")
+        @Expose
+        public Boolean restarter;
+
+        @SerializedName("updater")
+        @Expose
+        public Boolean updater;
+
+        @SerializedName("websocket")
+        @Expose
+        public Boolean websocket;
+
+        @SerializedName("websocket_reverse")
+        @Expose
+        public Boolean websocketReverse;
+
+        @SerializedName("worker_pool_resizer")
+        @Expose
+        public Boolean workerPoolResizer;
+    }
 }
