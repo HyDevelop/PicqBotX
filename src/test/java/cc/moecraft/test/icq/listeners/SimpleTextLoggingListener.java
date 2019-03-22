@@ -15,7 +15,6 @@ import cc.moecraft.icq.sender.returndata.returnpojo.get.RGroup;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.apache.commons.lang3.StringUtils;
 
 import static cc.moecraft.logger.format.AnsiColor.*;
 
@@ -96,7 +95,6 @@ public class SimpleTextLoggingListener extends IcqListener
     @EventHandler
     public void onPMEvent(EventPrivateMessage event)
     {
-        if (StringUtils.countMatches(event.getMessage(), "\n") > 10) return;
         event.getBot().getLogger().log(String.format("%s[%sPM%s] [%s%s%s]%s %s%s >> %s%s", WHITE, YELLOW, WHITE, YELLOW,
                 getFixedLengthNickname(getSelfNickname(event), true, true), WHITE, CYAN.getBright(),
                 getFixedLengthNickname(getNickname(event), true, false), RED, RESET,
@@ -106,7 +104,6 @@ public class SimpleTextLoggingListener extends IcqListener
     @EventHandler
     public void onGMEvent(EventGroupMessage event)
     {
-        if (StringUtils.countMatches(event.getMessage(), "\n") > 10) return;
         event.getBot().getLogger().log(String.format("%s[%sGM%s] [%s%s%s]%s %s%s >> %s%s", WHITE, RED, WHITE, RED,
                 getFixedLengthNickname(getGroupName(event.getBot(), event.getGroupId()), true, true), WHITE, CYAN.getBright(),
                 getFixedLengthNickname(getNickname(event), true, false), RED, RESET,
@@ -116,7 +113,6 @@ public class SimpleTextLoggingListener extends IcqListener
     @EventHandler
     public void onDMEvent(EventDiscussMessage event)
     {
-        if (StringUtils.countMatches(event.getMessage(), "\n") > 10) return;
         event.getBot().getLogger().log(String.format("%s[%sDM%s] [%s%s%s]%s %s%s >> %s%s", WHITE, WHITE, WHITE, WHITE,
                 getFixedLengthNickname(String.valueOf(event.getDiscussId()), true, true), WHITE, CYAN.getBright(),
                 getFixedLengthNickname(getNickname(event), true, false), RED, RESET,
@@ -126,7 +122,6 @@ public class SimpleTextLoggingListener extends IcqListener
     @EventHandler
     public void onSendPMEvent(EventLocalSendPrivateMessage event)
     {
-        if (StringUtils.countMatches(event.getMessage(), "\n") > 10) return;
         event.getBot().getLogger().log(String.format("%s[%sSO%s] [%s%s%s]%s %s%s >> %s%s", WHITE, GREEN, WHITE, GREEN,
                 getFixedLengthNickname("这个机器人 ", true, true), WHITE, CYAN.getBright(),
                 getFixedLengthNickname(getNickname(event), true, false), RED, RESET,
@@ -136,7 +131,6 @@ public class SimpleTextLoggingListener extends IcqListener
     @EventHandler
     public void onSendEvent(EventLocalSendGroupMessage event)
     {
-        if (StringUtils.countMatches(event.getMessage(), "\n") > 10) return;
         event.getBot().getLogger().log(String.format("%s[%sSO%s] [%s%s%s]%s %s%s >> %s%s", WHITE, GREEN, WHITE, GREEN,
                 getFixedLengthNickname("这个机器人 ", true, true), WHITE, CYAN.getBright(),
                 getFixedLengthNickname(getGroupName(event.getBot(), event.getId()), true, false), RED, RESET,
