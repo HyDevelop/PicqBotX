@@ -74,4 +74,11 @@ public class PicqConfig
      */
     private boolean eventPaused = false;
 
+    // HTTP服务器配置 | Http server config fields
+
+    /**
+     * 是否暂停HTTP接收
+     */
+    private boolean httpPaused = false;
+
 }
