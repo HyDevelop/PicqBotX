@@ -137,7 +137,7 @@ public class PicqBotX
         logInitDone(logger, "缓存管理器     ", 1, 5);
 
         // setDebug(debug);
-        logInitDone(logger, "DEBUG设置      ", 2, 4);
+        logInitDone(logger, "DEBUG设置     ", 2, 4);
 
         eventManager = new EventManager(this);
         eventManager.registerListener(new HyExpressionListener());
