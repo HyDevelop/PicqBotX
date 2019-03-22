@@ -1,6 +1,7 @@
 package cc.moecraft.test.general;
+
 import cc.moecraft.utils.StringCodecUtils;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 /**
  * 此类由 Hykilpikonna 在 2018/06/15 创建!
