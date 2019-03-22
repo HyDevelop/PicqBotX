@@ -26,7 +26,7 @@ public class PicqConfig
     /**
      * 是否输出Debug消息
      */
-    private boolean debug;
+    private boolean debug = true; //TODO: change this to false
 
     /**
      * 是否跳过酷Q版本验证 (不推荐)
