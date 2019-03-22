@@ -14,7 +14,6 @@ import cc.moecraft.icq.user.GroupUserManager;
 import cc.moecraft.icq.user.UserManager;
 import cc.moecraft.logger.HyLogger;
 import cc.moecraft.logger.LoggerInstanceManager;
-import cc.moecraft.logger.environments.ColorSupportLevel;
 import cc.moecraft.logger.environments.ConsoleColoredEnv;
 import cc.moecraft.logger.environments.ConsoleEnv;
 import cc.moecraft.logger.environments.FileEnv;
@@ -28,6 +27,7 @@ import lombok.Setter;
 
 import static cc.moecraft.icq.PicqConstants.HTTP_API_VERSION_DETECTION;
 import static cc.moecraft.icq.PicqConstants.VERSION;
+import static cc.moecraft.icq.utils.MiscUtils.logInitDone;
 import static cc.moecraft.logger.format.AnsiColor.*;
 import static cc.moecraft.logger.format.AnsiFormat.replaceAllFormatWithANSI;
 
@@ -129,47 +129,6 @@ public class PicqBotX
         this.config = config;
     }
 
-    /**
-     * 构造器
-     * @param postUrl 发送URL (酷Q所在服务器的地址)
-     * @param postPort 发送端口 (需要和酷Q的接收端口一样)
-     * @param socketPort 接收端口 (需要和酷Q的发送端口一样)
-     * @param debug 是否debug
-     * @param colorSupportLevel 日志颜色支持等级
-     * @param logPath 日志文件路径
-     * @param logFileName 日志文件名
-     */
-    public PicqBotX(, , int socketPort, boolean debug, ColorSupportLevel colorSupportLevel, , )
-    {
-        this(socketPort, debug, colorSupportLevel, logPath, logFileName);
-        try
-        {
-            this.accountManager.addAccount(new BotAccount("Main", eventManager, postUrl, postPort));
-        }
-        catch (HttpException e)
-        {
-            logger.error("HTTP发送错误: " + e.getLocalizedMessage());
-            logger.error("- 检查一下是不是忘记开酷Q了, 或者写错地址了");
-            ThreadUtils.safeSleep(5);
-            throw new RuntimeException(e);
-        }
-    }
-
-    /**
-     * 构造器
-     * @param socketPort 接收端口 (需要和酷Q的发送端口一样)
-     * @param debug 是否debug
-     * @param colorSupportLevel 日志颜色支持等级
-     * @param logPath 日志文件路径
-     * @param logFileName 日志文件名
-     */
-    public PicqBotX(, boolean debug, String logPath, String logFileName)
-    {
-        this.debug = debug;
-
-
-    }
-
     private void init()
     {
         loggerInstanceManager = new LoggerInstanceManager(new FileEnv(config.getLogPath(), config.getLogFileName()));
@@ -182,45 +141,49 @@ public class PicqBotX
 
         logResource(logger, config.getColorSupportLevel() == null ? "splash" : "splash-precolored", "version", VERSION);
 
-        logInit("日志管理器     ", 0, 6);
+        logInitDone(logger, "日志管理器     ", 0, 6);
 
         userManager = new UserManager(this);
         groupUserManager = new GroupUserManager(this);
         groupManager = new GroupManager(this);
-        logInit("缓存管理器     ", 1, 5);
+        logInitDone(logger, "缓存管理器     ", 1, 5);
 
         // setDebug(debug);
-        logInit("DEBUG设置      ", 2, 4);
+        logInitDone(logger, "DEBUG设置      ", 2, 4);
 
         eventManager = new EventManager(this);
         eventManager.registerListener(new HyExpressionListener());
-        logInit("事件管理器     ", 3, 3);
+        logInitDone(logger, "事件管理器     ", 3, 3);
 
         accountManager = new AccountManager();
         eventManager.registerListener(new AccountManagerListener(accountManager));
-        logInit("账号管理器     ", 4, 2);
+        logInitDone(logger, "账号管理器     ", 4, 2);
 
         httpServer = new HttpServer(config.getSocketPort(), this);
-        logInit("HTTP监听服务器 ", 5, 1);
+        logInitDone(logger, "HTTP监听服务器 ", 5, 1);
 
         logger.timing.clear();
     }
 
-    private void logInit(String name, int greens, int reds)
+    /**
+     * 添加机器人账号
+     *
+     * @param postUrl 发送URL (Eg. 127.0.0.1)
+     * @param postPort 发送端口 (Eg. 31091)
+     */
+    public void addAccount(String postUrl, int postPort)
     {
-        StringBuilder greenStars = new StringBuilder();
-        StringBuilder redStars = new StringBuilder();
-
-        for (int i = 0; i < greens; i++) greenStars.append("*");
-        for (int i = 0; i < reds; i++) redStars.append("*");
-
-        logger.log(String.format("%s%s%s初始化完成%s [%s%s%s%s%s] ...(%s ms)",
-                YELLOW, name, GREEN,
-                YELLOW,
-                GREEN, greenStars.toString(), RED, redStars.toString(), YELLOW,
-                Math.round(logger.timing.getMilliseconds() * 100d) / 100d));
-
-        logger.timing.reset();
+        try
+        {
+            this.accountManager.addAccount(new BotAccount("Main", eventManager, postUrl, postPort));
+        }
+        catch (HttpException e)
+        {
+            logger.error("HTTP发送错误: " + e.getLocalizedMessage());
+            logger.error("- 检查一下是不是忘记开酷Q了, 或者写错地址了");
+            ThreadUtils.safeSleep(5);
+            throw new RuntimeException(e);
+        }
     }
 
     /**
