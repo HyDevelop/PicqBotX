@@ -1,10 +1,7 @@
 package cc.moecraft.icq;
 
 import cc.moecraft.logger.environments.ColorSupportLevel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 import static cc.moecraft.logger.environments.ColorSupportLevel.FORCED;
 
@@ -41,6 +38,16 @@ public class PicqConfig
      * 是否启用异步
      */
     private boolean useAsync = false;
+
+    /**
+     * 是否启用维护模式
+     */
+    private boolean maintenanceMode = false;
+
+    /**
+     * 是否开启多账号优化
+     */
+    private boolean multiAccountOptimizations = true;
 
 
     // 一次配置项 | Unchangeable config fields
