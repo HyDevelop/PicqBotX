@@ -281,31 +281,6 @@ public class PicqBotX
     }
 
     /**
-     * 暂停机器人HTTP接收
-     */
-    public void httpPause()
-    {
-        httpSetPauseState(true);
-    }
-
-    /**
-     * 继续机器人HTTP接收
-     */
-    public void httpResume()
-    {
-        httpSetPauseState(false);
-    }
-
-    /**
-     * 设置机器人HTTP暂停状态
-     * @param isPaused 是否暂停
-     */
-    public void httpSetPauseState(boolean isPaused)
-    {
-        httpServer.setPaused(isPaused);
-    }
-
-    /**
      * 设置是否替换HyExp表达式
      * @param value 是否替换
      */
