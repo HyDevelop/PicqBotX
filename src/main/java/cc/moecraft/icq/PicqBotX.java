@@ -23,7 +23,6 @@ import cc.moecraft.utils.ThreadUtils;
 import cc.moecraft.utils.cli.ResourceUtils;
 import cn.hutool.http.HttpException;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 
 import static cc.moecraft.icq.PicqConstants.HTTP_API_VERSION_DETECTION;
 import static cc.moecraft.icq.PicqConstants.VERSION;
@@ -40,7 +39,6 @@ import static cc.moecraft.logger.format.AnsiFormat.replaceAllFormatWithANSI;
  * @author Hykilpikonna
  */
 @Getter
-@RequiredArgsConstructor
 public class PicqBotX
 {
     /**
@@ -97,6 +95,17 @@ public class PicqBotX
      * Picq配置 | Picq configuration
      */
     private final PicqConfig config;
+
+    /**
+     * 构造器
+     *
+     * @param config Picq配置
+     */
+    public PicqBotX(PicqConfig config)
+    {
+        this.config = config;
+        init();
+    }
 
     /**
      * 构造器
