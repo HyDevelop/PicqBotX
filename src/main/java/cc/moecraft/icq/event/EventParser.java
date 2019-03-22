@@ -46,6 +46,7 @@ public class EventParser
     /**
      * 判断一个事件是不是新的
      * 是新的代表这个事件在其他账号上有没有判定为是新的过.
+     * 
      * @param event 事件
      * @param identifier 标记 (比如群消息的标记就是群号)
      * @param <T> 实现了内容比较方法的事件类
@@ -54,7 +55,7 @@ public class EventParser
     @SuppressWarnings("unchecked")
     private <T extends Event & ContentComparable<T>> boolean isNew(T event, String identifier)
     {
-        if (!manager.getBot().isMultiAccountOptimizations()) return true;
+        if (!manager.getBot().getConfig().isMultiAccountOptimizations()) return true;
         Class<? extends Event> eventClass = event.getClass();
 
         if (!cache.containsKey(eventClass)) cache.put(eventClass, new HashMap<>());
