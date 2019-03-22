@@ -15,7 +15,7 @@ import lombok.EqualsAndHashCode;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data @AllArgsConstructor
-public class HttpServerStartFailedException extends Exception
+public class HttpServerStartFailedException extends RuntimeException
 {
     private HyLogger logger;
     private Exception subException;
