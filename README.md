@@ -40,7 +40,7 @@ Maven 导入:
 <dependency>
     <groupId>com.github.hydevelop</groupId>
     <artifactId>PicqBotX</artifactId>
-    <version>2.4.5.566</version>
+    <version>3.0.0.611</version>
 </dependency>
 ```
 
@@ -67,13 +67,13 @@ allprojects {
 
 ```gradle
 dependencies {
-    implementation 'com.github.hydevelop:PicqBotX:2.4.5.566'
+    implementation 'com.github.hydevelop:PicqBotX:3.0.0.611'
 }
 ```
 
 <!-- 每次更新都要手动改这些版本号好烦的_(:з」∠)_... -->
 
-#### [其他导入(SBT / Leiningen)](https://jitpack.io/#hydevelop/PicqBotX/2.4.5.566)
+#### [其他导入(SBT / Leiningen)](https://jitpack.io/#hydevelop/PicqBotX/3.0.0.611)
 
 <br>
 
@@ -395,7 +395,7 @@ public class CommandVersion implements EverywhereCommand // 实现EverywhereComm
     {
         // 处理, 返回值会自动回复回去
         // 这里因为这个指令是用来查版本的, 所以直接返回字符串了
-        return "TestBot - PicqBotX v2.4.5.566";
+        return "TestBot - PicqBotX v3.0.0.611";
     }
 }
 ```
