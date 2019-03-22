@@ -46,10 +46,10 @@ public class EventManager
 
     /**
      * 注册一个事件监听器
+     *
      * @param listener 监听器
-     * @return 这个实例
      */
-    public EventManager registerListener(IcqListener listener)
+    public void registerListener(IcqListener listener)
     {
         registeredListeners.add(listener);
 
@@ -73,8 +73,16 @@ public class EventManager
                 else registeredListenerMethods.put(mapKey, new ArrayList<>(Collections.singletonList(new RegisteredListenerMethod(method, listener))));
             }
         }
+    }
 
-        return this;
+    /**
+     * 注册很多个事件监听器
+     *
+     * @param listeners 很多个监听器
+     */
+    public void registerListeners(IcqListener... listeners)
+    {
+        for (IcqListener listener : listeners) registerListener(listener);
     }
 
     /**
