@@ -113,4 +113,10 @@ public class HttpApiTest
     {
         api.sendPrivateMsg(TEST_RECEIVE_QQ, "Unit test - testPM()");
     }
+
+    @Test
+    public void testPMAutoEscape()
+    {
+        api.sendPrivateMsg(TEST_RECEIVE_QQ, "Unit test - testPMAutoEscape()", true);
+    }
 }
