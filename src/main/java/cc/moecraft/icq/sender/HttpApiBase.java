@@ -553,24 +553,24 @@ public abstract class HttpApiBase
     }
 
     /**
-     * 重启 HTTP API 插件
-     * @param cleanLog 是否清除日志
-     * @param cleanCache 是否清除用户缓存 cache.db
-     * @param cleanEvent 是否清除事件缓存 eventv2.db
-     * @return 执行结果
-     */
-    public RawReturnData setRestartPlugin(boolean cleanLog, boolean cleanCache, boolean cleanEvent)
-    {
-        return sendReturnRaw(SET_RESTART_PLUGIN, "clean_log", cleanLog, "clean_cache", cleanCache, "clean_event", cleanEvent);
-    }
-
-    /**
      * 清空数据文件夹
+     *
      * @return 执行结果
      */
     public RawReturnData cleanDataDir()
     {
         return sendReturnRaw(CLEAN_DATA_DIR);
+    }
+
+    /**
+     * 清空数据文件夹
+     *
+     * @param dataDir 要清理的目录名, 支持 image, record, show, bface
+     * @return 执行结果
+     */
+    public RawReturnData cleanDataDir(String dataDir)
+    {
+        return sendReturnRaw(CLEAN_DATA_DIR, "data_dir", dataDir);
     }
 
     /**
