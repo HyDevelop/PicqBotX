@@ -4,7 +4,7 @@ import cc.moecraft.icq.event.EventManager;
 import cc.moecraft.icq.event.events.local.EventLocalSendDiscussMessage;
 import cc.moecraft.icq.event.events.local.EventLocalSendGroupMessage;
 import cc.moecraft.icq.event.events.local.EventLocalSendPrivateMessage;
-import cc.moecraft.icq.event.events.message.EventGroupMessage;
+import cc.moecraft.icq.event.events.message.EventGroupMessage.Anonymous;
 import cc.moecraft.icq.sender.returndata.RawReturnData;
 import cc.moecraft.icq.sender.returndata.ReturnData;
 import cc.moecraft.icq.sender.returndata.ReturnListData;
@@ -351,7 +351,7 @@ public abstract class HttpApiBase
      * @param duration 禁言时长，单位秒，无法取消匿名用户禁言
      * @return 执行结果
      */
-    public RawReturnData setGroupAnonymousBan(EventGroupMessage.Anonymous anonymous, long groupId, long duration)
+    public RawReturnData setGroupAnonymousBan(Anonymous anonymous, long groupId, long duration)
     {
         return sendReturnRaw(SET_GROUP_ANONYMOUS_BAN, "anonymous", anonymous, "group_id", groupId, "duration", duration);
     }
@@ -404,8 +404,20 @@ public abstract class HttpApiBase
 
     /**
      * 退出群组
+     *
      * @param groupId 群号
-     * @param dismiss 是否解散，如果登录号是群主，则仅在此项为 true 时能够解散
+     * @return 执行结果
+     */
+    public RawReturnData setGroupLeave(long groupId)
+    {
+        return setGroupLeave(groupId, false);
+    }
+
+    /**
+     * 退出群组
+     *
+     * @param groupId 群号
+     * @param dismiss 是否解散, 如果登录号是群主, 则仅在此项为 true 时能够解散
      * @return 执行结果
      */
     public RawReturnData setGroupLeave(long groupId, boolean dismiss)
@@ -472,10 +484,11 @@ public abstract class HttpApiBase
     }
 
     /**
-     * 处理加群请求／邀请
+     * 处理加群请求/邀请
+     *
      * @param flag 加好友请求的 flag（需从上报的数据中获得）
      * @param type add 或 invite，请求类型（需要和上报消息中的 sub_type 字段相符）
-     * @param approve 是否同意请求／邀请
+     * @param approve 是否同意请求/邀请
      * @param reason 拒绝理由（仅在拒绝时有效）
      * @return 执行结果
      */
