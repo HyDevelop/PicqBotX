@@ -131,4 +131,7 @@ public class HttpApiTest
     {
         api.sendGroupMsg(TEST_RECEIVE_GR, "Unit test - testGMAutoEscape()", true);
     }
+
+    // TODO: Test DM
+
 }
