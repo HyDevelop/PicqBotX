@@ -107,4 +107,10 @@ public class HttpApiTest
     {
         logger.debug(api.getVersionInfo().toString());
     }
+
+    @Test
+    public void testPM()
+    {
+        api.sendPrivateMsg(TEST_RECEIVE_QQ, "Unit test - testPM()");
+    }
 }
