@@ -119,4 +119,10 @@ public class HttpApiTest
     {
         api.sendPrivateMsg(TEST_RECEIVE_QQ, "Unit test - testPMAutoEscape()", true);
     }
+
+    @Test
+    public void testGM()
+    {
+        api.sendGroupMsg(TEST_RECEIVE_GR, "Unit test - testGM()");
+    }
 }
