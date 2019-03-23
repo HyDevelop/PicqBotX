@@ -146,4 +146,10 @@ public class HttpApiTest
     {
         api.sendLike(TEST_RECEIVE_QQ, 2);
     }
+
+    @Test
+    public void testSetGroupKick()
+    {
+        // 没有人可以踢哇 (╯‵□′)╯︵┻━┻
+    }
 }
