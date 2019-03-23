@@ -17,9 +17,9 @@ public class EventLocalHttpFailEvent extends EventLocal
 
     public enum Reason
     {
-        unknown, requestIsEmpty,
-        incorrectVersion, incorrectCharset, incorrectApplicationType,
-        incorrectRequestMethod,
-        socketCloseFailed
+        UNKNOWN, REQUEST_IS_EMPTY,
+        INCORRECT_VERSION, INCORRECT_CHARSET, INCORRECT_APPLICATION_TYPE,
+        INCORRECT_REQUEST_METHOD,
+        SOCKET_CLOSE_FAILED
     }
 }
