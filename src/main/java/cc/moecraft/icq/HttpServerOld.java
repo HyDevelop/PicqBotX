@@ -28,7 +28,7 @@ import static cc.moecraft.icq.PicqConstants.HTTP_API_VERSION_DETECTION;
  * @author Hykilpikonna
  */
 @Data
-public class HttpServer
+public class HttpServerOld
 {
     private final int port;
 
@@ -38,7 +38,7 @@ public class HttpServer
 
     private boolean started = true;
 
-    public HttpServer(int port, PicqBotX bot)
+    public HttpServerOld(int port, PicqBotX bot)
     {
         this.bot = bot;
         this.port = port;
@@ -146,8 +146,6 @@ public class HttpServer
                 // 读取请求信息
                 String[] info = line.split(" ");
                 String method = info[0];
-                String requestUrl = info[1];
-                String httpVersion = info[2];
 
                 if (!method.equalsIgnoreCase("post"))
                 {
