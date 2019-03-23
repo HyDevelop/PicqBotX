@@ -66,10 +66,19 @@ public abstract class HttpApiBase
     public static final String GET_FRIEND_LIST = "_get_friend_list";
     public static final String GET_GROUP_INFO = "_get_group_info";
     public static final String GET_VIP_INFO = "_get_vip_info";
+    public static final String GET_RECORD = "get_record";
+    public static final String GET_IMAGE = "get_image";
+
+    // 条件判断区
+    public static final String CAN_SEND_IMAGE = "can_send_image";
+    public static final String CAN_SEND_RECORD = "can_send_record";
 
     // ICQ(酷Q, 以及HTTP插件)获取区
     public static final String GET_VERSION_INFO = "get_version_info";
     public static final String GET_STATUS = "get_status";
+    public static final String GET_COOKIES = "get_cookies";
+    public static final String GET_CSRF_TOKEN = "get_csrf_token";
+    public static final String GET_CREDENTIALS = "get_credentials";
 
     @Deprecated
     public static final String SEND_MSG = "send_msg";  // 这个不需要, 因为最后也要指定类型
