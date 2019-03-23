@@ -53,4 +53,10 @@ public class HttpApiTest
         new Thread(bot::startBot).start();
         ThreadUtil.safeSleep(2000);
     }
+
+    @Test
+    public void testGetStatus()
+    {
+        logger.debug(api.getStatus().toString());
+    }
 }
