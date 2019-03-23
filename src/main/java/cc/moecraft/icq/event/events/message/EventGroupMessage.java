@@ -41,23 +41,6 @@ public class EventGroupMessage extends EventGroupOrDiscussMessage implements Con
     @Expose
     public String subType;
 
-    @Data
-    @Setter(AccessLevel.NONE)
-    public class Anonymous
-    {
-        @SerializedName("flag")
-        @Expose
-        public String flag;
-
-        @SerializedName("id")
-        @Expose
-        public Long id;
-
-        @SerializedName("name")
-        @Expose
-        public String name;
-    }
-
     @Override
     public BotAccount getBotAccount()
     {
@@ -81,6 +64,7 @@ public class EventGroupMessage extends EventGroupOrDiscussMessage implements Con
 
     /**
      * 禁言这个用户
+     *
      * @param duration 时长(秒)
      */
     public void ban(long duration)
@@ -115,6 +99,7 @@ public class EventGroupMessage extends EventGroupOrDiscussMessage implements Con
 
     /**
      * 获取发送者是不是匿名状态
+     *
      * @return 是不是匿名
      */
     public boolean isSenderAnonymous()
@@ -124,6 +109,7 @@ public class EventGroupMessage extends EventGroupOrDiscussMessage implements Con
 
     /**
      * 获取一个用户为GroupUser对象
+     *
      * @param userId 用户的QQ号
      * @return GroupUser对象
      */
@@ -134,6 +120,7 @@ public class EventGroupMessage extends EventGroupOrDiscussMessage implements Con
 
     /**
      * 一个用户是不是管理员
+     *
      * @param userId 用户的QQ号
      * @return 是不是管理员
      */
@@ -144,6 +131,7 @@ public class EventGroupMessage extends EventGroupOrDiscussMessage implements Con
 
     /**
      * 自己是不是管理员
+     *
      * @return 是不是管理员
      */
     public boolean isAdmin()
@@ -153,6 +141,7 @@ public class EventGroupMessage extends EventGroupOrDiscussMessage implements Con
 
     /**
      * 撤回消息 (我知道是recall但是酷Q叫他delete那我就封装成delete啦!
+     *
      * @return 执行结果
      */
     public RawReturnData delete()
@@ -163,5 +152,22 @@ public class EventGroupMessage extends EventGroupOrDiscussMessage implements Con
     public RawReturnData recall()
     {
         return delete();
+    }
+
+    @Data
+    @Setter(AccessLevel.NONE)
+    public class Anonymous
+    {
+        @SerializedName("flag")
+        @Expose
+        public String flag;
+
+        @SerializedName("id")
+        @Expose
+        public Long id;
+
+        @SerializedName("name")
+        @Expose
+        public String name;
     }
 }

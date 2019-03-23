@@ -14,7 +14,9 @@ import lombok.EqualsAndHashCode;
 public class EventLocalSendMessage extends EventLocal
 {
     public long id;
+
     public String message;
+
     public boolean autoEscape = false;
 
     public EventLocalSendMessage(long id, String message)
@@ -24,6 +26,8 @@ public class EventLocalSendMessage extends EventLocal
 
     public EventLocalSendMessage(long id, String message, boolean autoEscape)
     {
-        setId(id); setMessage(message); setAutoEscape(autoEscape);
+        setId(id);
+        setMessage(message);
+        setAutoEscape(autoEscape);
     }
 }

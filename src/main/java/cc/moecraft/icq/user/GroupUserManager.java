@@ -18,17 +18,22 @@ import java.util.Map;
 public class GroupUserManager
 {
     private final PicqBotX bot;
+
     public Map<Long, GroupUser> userCache = new HashMap<>();
 
     /**
      * 用ID获取User
+     *
      * @param id QQ号
      * @param group 群对象
      * @return User对象
      */
     public GroupUser getUserFromID(long id, Group group)
     {
-        if (userCache.containsKey(id)) return userCache.get(id);
+        if (userCache.containsKey(id))
+        {
+            return userCache.get(id);
+        }
         userCache.put(id, new GroupUser(bot, id, group));
         return getUserFromID(id, group);
     }

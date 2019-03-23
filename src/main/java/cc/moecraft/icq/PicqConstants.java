@@ -26,42 +26,65 @@ public class PicqConstants
 
     // 可变常量 | Variable constant
 
-    public static Gson gsonRead = new Gson();
-    public static Gson gsonWrite = new Gson();
+    public static final String EVENT_KEY_SUBTYPE = "sub_type";
+
+    public static final String EVENT_KEY_POST_TYPE = "post_type";
 
 
     // 事件字段名 | Event key names
 
-    public static final String EVENT_KEY_SUBTYPE = "sub_type";
-
-    public static final String EVENT_KEY_POST_TYPE = "post_type";
     public static final String EVENT_KEY_POST_TYPE_MESSAGE = "message";
+
     public static final String EVENT_KEY_POST_TYPE_NOTICE = "notice";
+
     public static final String EVENT_KEY_POST_TYPE_REQUEST = "request";
 
     public static final String EVENT_KEY_MESSAGE_TYPE = "message_type";
+
     public static final String EVENT_KEY_MESSAGE_TYPE_PRIVATE = "private";
+
     public static final String EVENT_KEY_MESSAGE_TYPE_GROUP = "group";
+
     public static final String EVENT_KEY_MESSAGE_TYPE_DISCUSS = "discuss";
 
     public static final String EVENT_KEY_REQUEST_TYPE = "request_type";
+
     public static final String EVENT_KEY_REQUEST_TYPE_FRIEND = "friend";
+
     public static final String EVENT_KEY_REQUEST_TYPE_GROUP = "group";
+
     public static final String EVENT_KEY_REQUEST_TYPE_GROUP_ADD = "add";
+
     public static final String EVENT_KEY_REQUEST_TYPE_GROUP_INVITE = "invite";
 
     public static final String EVENT_KEY_NOTICE_TYPE = "notice_type";
+
     public static final String EVENT_KEY_NOTICE_TYPE_GROUP_UPLOAD = "group_upload";
+
     public static final String EVENT_KEY_NOTICE_TYPE_FRIEND_ADD = "friend_add";
+
     public static final String EVENT_KEY_NOTICE_TYPE_GROUP_ADMIN = "group_admin";
+
     public static final String EVENT_KEY_NOTICE_TYPE_GROUP_ADMIN_SET = "set";
+
     public static final String EVENT_KEY_NOTICE_TYPE_GROUP_ADMIN_UNSET = "unset";
+
     public static final String EVENT_KEY_NOTICE_TYPE_GROUP_DECREASE = "group_decrease";
+
     public static final String EVENT_KEY_NOTICE_TYPE_GROUP_DECREASE_LEAVE = "leave";
+
     public static final String EVENT_KEY_NOTICE_TYPE_GROUP_DECREASE_KICK = "kick";
+
     public static final String EVENT_KEY_NOTICE_TYPE_GROUP_DECREASE_KICK_ME = "kick_me";
+
     public static final String EVENT_KEY_NOTICE_TYPE_GROUP_INCREASE = "group_increase";
+
     public static final String EVENT_KEY_NOTICE_TYPE_GROUP_INCREASE_APPROVE = "approve";
+
     public static final String EVENT_KEY_NOTICE_TYPE_GROUP_INCREASE_INVITE = "invite";
+
+    public static Gson gsonRead = new Gson();
+
+    public static Gson gsonWrite = new Gson();
 
 }

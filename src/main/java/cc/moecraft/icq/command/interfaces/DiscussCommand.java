@@ -15,6 +15,7 @@ public interface DiscussCommand extends IcqCommand
 {
     /**
      * 执行指令
+     *
      * @param event 事件
      * @param sender 发送者的用户
      * @param discuss 讨论组
@@ -22,5 +23,5 @@ public interface DiscussCommand extends IcqCommand
      * @param args 指令参数 ( 不包含指令名 )
      * @return 发送回去的消息 ( 当然也可以手动发送然后返回空 )
      */
-    public String discussMessage(EventDiscussMessage event, GroupUser sender, Group discuss, String command, ArrayList<String> args);
+    String discussMessage(EventDiscussMessage event, GroupUser sender, Group discuss, String command, ArrayList<String> args);
 }

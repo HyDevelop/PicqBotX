@@ -12,5 +12,5 @@ import cc.moecraft.icq.command.CommandProperties;
  */
 public interface IcqCommand
 {
-    public CommandProperties properties();
+    CommandProperties properties();
 }

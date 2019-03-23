@@ -27,6 +27,8 @@ public class EventNoticeGroupAdminChange extends EventNotice implements ContentC
     @Expose
     public String subType;
 
+    private GroupEventMethods groupMethods = null;
+
     @Override
     public boolean contentEquals(EventNoticeGroupAdminChange other)
     {
@@ -35,10 +37,12 @@ public class EventNoticeGroupAdminChange extends EventNotice implements ContentC
                 other.getUserId().equals(getUserId());
     }
 
-    private GroupEventMethods groupMethods = null;
     public GroupEventMethods getGroupMethods()
     {
-        if (groupMethods != null) return groupMethods;
+        if (groupMethods != null)
+        {
+            return groupMethods;
+        }
         return groupMethods = new GroupEventMethods(this, groupId);
     }
 

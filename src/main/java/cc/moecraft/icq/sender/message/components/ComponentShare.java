@@ -15,12 +15,16 @@ import lombok.AllArgsConstructor;
 public class ComponentShare extends MessageComponent
 {
     public String url;
+
     public String title;
+
     public String content;
+
     public String image;
 
     @Override
-    public String toString() {
+    public String toString()
+    {
         return String.format("[CQ:share,url=%s,title=%s,content=%s,image=%s]", url, title, content, image);
     }
 }

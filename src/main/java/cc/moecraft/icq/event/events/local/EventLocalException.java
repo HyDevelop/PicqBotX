@@ -17,5 +17,6 @@ import lombok.EqualsAndHashCode;
 public class EventLocalException extends EventLocal
 {
     private final Throwable exception;
+
     private final Event parentEvent;
 }

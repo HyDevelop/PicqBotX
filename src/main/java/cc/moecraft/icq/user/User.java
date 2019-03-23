@@ -16,24 +16,30 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class User
 {
-    private final PicqBotX bot;
     @Getter
     public final long id;
+
+    private final PicqBotX bot;
 
     private RStrangerInfo info;
 
     /**
      * 获取数据
+     *
      * @return 数据 (不一定是最新)
      */
     public RStrangerInfo getInfo()
     {
-        if (info != null) return info;
+        if (info != null)
+        {
+            return info;
+        }
         return refreshInfo(false);
     }
 
     /**
      * 更新数据
+     *
      * @param noCache 是否不用缓存
      * @return 更新的数据
      */

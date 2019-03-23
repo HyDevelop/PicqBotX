@@ -14,10 +14,12 @@ import lombok.EqualsAndHashCode;
  * @author Hykilpikonna
  */
 @EqualsAndHashCode(callSuper = true)
-@Data @AllArgsConstructor
+@Data
+@AllArgsConstructor
 public class HttpServerStartFailedException extends RuntimeException
 {
     private HyLogger logger;
+
     private Exception subException;
 
     @Override

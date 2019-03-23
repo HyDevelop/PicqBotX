@@ -17,6 +17,7 @@ public abstract class EventGroupOrDiscussMessage extends EventMessage
 {
     /**
      * 获取群用户对象
+     *
      * @return 发送消息的群用户
      */
     public GroupUser getGroupSender()
@@ -26,6 +27,7 @@ public abstract class EventGroupOrDiscussMessage extends EventMessage
 
     /**
      * 获取群对象
+     *
      * @return 群对象
      */
     public abstract Group getGroup();

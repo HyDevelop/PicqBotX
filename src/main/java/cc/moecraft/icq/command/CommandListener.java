@@ -50,21 +50,32 @@ public class CommandListener extends IcqListener
     {
         CommandRunnable runnable = new CommandRunnable(event);
 
-        if (event.getBot().getConfig().isUseAsync()) runnable.runAsync();
-        else runnable.run();
+        if (event.getBot().getConfig().isUseAsync())
+        {
+            runnable.runAsync();
+        }
+        else
+        {
+            runnable.run();
+        }
     }
 
     @RequiredArgsConstructor
     private class CommandRunnable implements Runnable
     {
-        private Thread thread;
         private final EventMessage event;
+
+        private Thread thread;
+
         private boolean async = false;
 
         @Override
         public void run()
         {
-            if (async) runningAsyncThreads.put(thread.getName(), this);
+            if (async)
+            {
+                runningAsyncThreads.put(thread.getName(), this);
+            }
             try
             {
                 commandManager.runCommand(event);
@@ -73,7 +84,10 @@ public class CommandListener extends IcqListener
             {
                 event.getBot().getEventManager().callError(event, e);
             }
-            if (async) runningAsyncThreads.remove(thread.getName());
+            if (async)
+            {
+                runningAsyncThreads.remove(thread.getName());
+            }
         }
 
         public void runAsync()

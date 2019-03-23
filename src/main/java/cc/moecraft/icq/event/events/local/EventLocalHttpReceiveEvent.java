@@ -17,9 +17,14 @@ import java.util.ArrayList;
 public class EventLocalHttpReceiveEvent extends EventLocal
 {
     public String[] info;
+
     public ArrayList<String> otherInfo;
+
     public String contentType;
+
     public String charset;
+
     public String userAgent;
+
     public String data;
 }

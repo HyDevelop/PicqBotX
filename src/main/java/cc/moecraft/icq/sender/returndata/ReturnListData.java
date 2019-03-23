@@ -17,6 +17,8 @@ import java.util.List;
 public class ReturnListData<T extends ReturnPojoBase>
 {
     public List<T> data;
+
     public Long returnCode;
+
     public ReturnStatus status;
 }

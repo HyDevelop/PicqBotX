@@ -17,10 +17,12 @@ import java.util.Arrays;
 public class CommandProperties
 {
     public String name;
+
     public ArrayList<String> alias;
 
     /**
      * 指令属性构造器
+     *
      * @param name 指令名
      * @param alias 其他指令名
      */
@@ -32,6 +34,7 @@ public class CommandProperties
 
     /**
      * 指令属性构造器封装
+     *
      * @param name 指令名
      */
     public CommandProperties(String name)
@@ -41,10 +44,11 @@ public class CommandProperties
 
     /**
      * 指令属性构造器封装
+     *
      * @param name 指令名
      * @param alias 其他指令名
      */
-    public CommandProperties(String name, String ... alias)
+    public CommandProperties(String name, String... alias)
     {
         this(name, new ArrayList<>(Arrays.asList(alias)));
     }

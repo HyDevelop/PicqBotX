@@ -37,6 +37,7 @@ public class AccountManager
 
     /**
      * 添加账号
+     *
      * @param accounts 账号信息
      */
     public void addAccount(BotAccount... accounts)
@@ -47,6 +48,7 @@ public class AccountManager
 
     /**
      * 获取当前发送频率最小的账号
+     *
      * @param groupId 群号
      * @return 发送频率最小的账号
      */
@@ -57,7 +59,10 @@ public class AccountManager
         long min = Long.MAX_VALUE;
         for (Map.Entry<BotAccount, Long> groupAccountEntry : groupAccountIndex.get(groupId).entrySet())
         {
-            if (groupAccountEntry.getValue() >= min) continue;
+            if (groupAccountEntry.getValue() >= min)
+            {
+                continue;
+            }
 
             minQq = groupAccountEntry.getKey();
             min = groupAccountEntry.getValue();
@@ -73,11 +78,17 @@ public class AccountManager
         this.groupAccountIndex = new HashMap<>();
         this.idIndex = new HashMap<>();
 
-        for (BotAccount account : accounts) for (RGroup rGroup : account.getHttpApi().getGroupList().getData())
+        for (BotAccount account : accounts)
         {
-            if (!groupAccountIndex.containsKey(rGroup.groupId)) groupAccountIndex.put(rGroup.groupId, new HashMap<>());
-            this.groupAccountIndex.get(rGroup.groupId).put(account, 0L);
-            this.idIndex.put(account.getId(), account);
+            for (RGroup rGroup : account.getHttpApi().getGroupList().getData())
+            {
+                if (!groupAccountIndex.containsKey(rGroup.groupId))
+                {
+                    groupAccountIndex.put(rGroup.groupId, new HashMap<>());
+                }
+                this.groupAccountIndex.get(rGroup.groupId).put(account, 0L);
+                this.idIndex.put(account.getId(), account);
+            }
         }
     }
 

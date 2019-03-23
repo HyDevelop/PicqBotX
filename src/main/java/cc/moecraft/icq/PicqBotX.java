@@ -42,6 +42,11 @@ import static cc.moecraft.logger.format.AnsiFormat.replaceAllFormatWithANSI;
 public class PicqBotX
 {
     /**
+     * Picq配置 | Picq configuration
+     */
+    private final PicqConfig config;
+
+    /**
      * HTTP监听服务器
      */
     private HttpServer httpServer;
@@ -92,11 +97,6 @@ public class PicqBotX
     private HyExpressionResolver hyExpressionResolver = null;
 
     /**
-     * Picq配置 | Picq configuration
-     */
-    private final PicqConfig config;
-
-    /**
      * 构造器
      *
      * @param config Picq配置
@@ -121,8 +121,14 @@ public class PicqBotX
     {
         loggerInstanceManager = new LoggerInstanceManager(new FileEnv(config.getLogPath(), config.getLogFileName()));
 
-        if (config.getColorSupportLevel() == null) loggerInstanceManager.addEnvironment(new ConsoleEnv());
-        else loggerInstanceManager.addEnvironment(new ConsoleColoredEnv(config.getColorSupportLevel()));
+        if (config.getColorSupportLevel() == null)
+        {
+            loggerInstanceManager.addEnvironment(new ConsoleEnv());
+        }
+        else
+        {
+            loggerInstanceManager.addEnvironment(new ConsoleColoredEnv(config.getColorSupportLevel()));
+        }
 
         logger = loggerInstanceManager.getLoggerInstance("PicqBotX", config.isDebug());
         logger.timing.init();
@@ -192,24 +198,29 @@ public class PicqBotX
 
     /**
      * 启用指令系统
+     *
      * @param prefixes 前缀
      */
-    public void enableCommandManager(String ... prefixes)
+    public void enableCommandManager(String... prefixes)
     {
         enableCommandManager(true, prefixes);
     }
 
     /**
      * 启用指令系统
+     *
      * @param registerAllCommands 是否自动注册所有指令
      * @param prefixes 前缀
      */
-    public void enableCommandManager(boolean registerAllCommands, String ... prefixes)
+    public void enableCommandManager(boolean registerAllCommands, String... prefixes)
     {
         logger.timing.init();
 
         commandManager = new CommandManager(groupManager, userManager, groupUserManager, prefixes);
-        if (registerAllCommands) commandManager.registerAllCommands();
+        if (registerAllCommands)
+        {
+            commandManager.registerAllCommands();
+        }
         eventManager.registerListener(new CommandListener(commandManager));
         logInitDone(logger, "指令管理器     ", 6, 0);
 
@@ -218,15 +229,19 @@ public class PicqBotX
 
     /**
      * 验证HTTP插件版本
+     *
      * @return 是否通过验证
      */
     public boolean verifyHttpPluginVersion()
     {
-        if (config.isNoVerify()) return true;
+        if (config.isNoVerify())
+        {
+            return true;
+        }
 
         for (BotAccount botAccount : accountManager.getAccounts())
         {
-            String prefix =  "账号 " + botAccount.getName() + ": ";
+            String prefix = "账号 " + botAccount.getName() + ": ";
 
             try
             {
@@ -241,7 +256,9 @@ public class PicqBotX
                 }
 
                 if (!versionInfo.getCoolqEdition().equalsIgnoreCase("pro"))
+                {
                     logger.error(prefix + "版本正确, 不过用酷Q Pro的话效果更好哦!");
+                }
             }
             catch (HttpException e)
             {
@@ -267,6 +284,7 @@ public class PicqBotX
 
     /**
      * 设置是否替换HyExp表达式
+     *
      * @param value 是否替换
      */
     public void setUniversalHyExpSupport(boolean value)
@@ -276,6 +294,7 @@ public class PicqBotX
 
     /**
      * 设置是否替换HyExp表达式
+     *
      * @param value 是否替换
      * @param safeMode 是否安全模式 (推荐是)
      */

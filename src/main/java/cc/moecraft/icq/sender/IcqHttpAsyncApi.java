@@ -26,6 +26,7 @@ public class IcqHttpAsyncApi extends HttpApiBase
 
     /**
      * 发送请求
+     *
      * @param request 请求
      * @param parameters 参数
      * @return 响应

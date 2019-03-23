@@ -18,10 +18,13 @@ import lombok.Getter;
 public class BotAccount
 {
     private final String name;
+
     private final String postUrl;
+
     private final int postPort;
 
     private long id;
+
     private IcqHttpApi httpApi;
 
     public BotAccount(String name, EventManager eventManager, String postUrl, int postPort)

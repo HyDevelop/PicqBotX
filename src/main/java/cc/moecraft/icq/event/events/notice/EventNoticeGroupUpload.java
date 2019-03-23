@@ -26,6 +26,30 @@ public class EventNoticeGroupUpload extends EventNotice implements ContentCompar
     @Expose
     public Long groupId;
 
+    private GroupEventMethods groupMethods = null;
+
+    @Override
+    public boolean contentEquals(EventNoticeGroupUpload other)
+    {
+        return other.getGroupId().equals(getGroupId()) &&
+                other.getFile().equals(getFile());
+    }
+
+    public GroupEventMethods getGroupMethods()
+    {
+        if (groupMethods != null)
+        {
+            return groupMethods;
+        }
+        return groupMethods = new GroupEventMethods(this, groupId);
+    }
+
+    @Override
+    public BotAccount getBotAccount()
+    {
+        return getGroupMethods().getBotAccount();
+    }
+
     @Data
     @Setter(AccessLevel.NONE)
     public class File
@@ -45,25 +69,5 @@ public class EventNoticeGroupUpload extends EventNotice implements ContentCompar
         @SerializedName("size")
         @Expose
         public Long size;
-    }
-
-    @Override
-    public boolean contentEquals(EventNoticeGroupUpload other)
-    {
-        return other.getGroupId().equals(getGroupId()) &&
-                other.getFile().equals(getFile());
-    }
-
-    private GroupEventMethods groupMethods = null;
-    public GroupEventMethods getGroupMethods()
-    {
-        if (groupMethods != null) return groupMethods;
-        return groupMethods = new GroupEventMethods(this, groupId);
-    }
-
-    @Override
-    public BotAccount getBotAccount()
-    {
-        return getGroupMethods().getBotAccount();
     }
 }

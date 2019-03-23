@@ -17,6 +17,7 @@ public class EventUtils
 {
     /**
      * 获取用户对象
+     *
      * @param event 事件
      * @param id 用户id
      * @return 用户对象
@@ -28,6 +29,7 @@ public class EventUtils
 
     /**
      * 获取用户对象
+     *
      * @param event 事件
      * @param groupId 用户id
      * @return 用户对象
@@ -39,6 +41,7 @@ public class EventUtils
 
     /**
      * 获取群用户对象
+     *
      * @param event 事件
      * @param groupId 群id
      * @param id 用户id
