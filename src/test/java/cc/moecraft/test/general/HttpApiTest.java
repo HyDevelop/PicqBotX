@@ -26,4 +26,6 @@ public class HttpApiTest
 {
     private static final long TEST_RECEIVE_QQ = 233186409; // 用来测试的QQ, 必须不是机器人QQ, 而且要在群里x
     private static final long TEST_RECEIVE_GR = 491046707; // 用来测试的群
+
+    private static PicqBotX bot;
 }
