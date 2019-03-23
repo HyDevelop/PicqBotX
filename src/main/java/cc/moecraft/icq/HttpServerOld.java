@@ -139,7 +139,7 @@ public class HttpServerOld
                 String line = reader.readLine();
                 if (line == null || line.isEmpty())
                 {
-                    bot.getEventManager().call(new EventLocalHttpFailEvent(EventLocalHttpFailEvent.FailType.requestIsEmpty));
+                    bot.getEventManager().call(new EventLocalHttpFailEvent(EventLocalHttpFailEvent.Reason.requestIsEmpty));
                     continue;
                 }
 
@@ -149,7 +149,7 @@ public class HttpServerOld
 
                 if (!method.equalsIgnoreCase("post"))
                 {
-                    bot.getEventManager().call(new EventLocalHttpFailEvent(EventLocalHttpFailEvent.FailType.incorrectRequestMethod));
+                    bot.getEventManager().call(new EventLocalHttpFailEvent(EventLocalHttpFailEvent.Reason.incorrectRequestMethod));
                     continue;
                 }
 
@@ -191,12 +191,12 @@ public class HttpServerOld
                 // 验证信息
                 if (contentType.equals("UNINITIALIZED") || !contentType.equals("application/json"))
                 {
-                    bot.getEventManager().call(new EventLocalHttpFailEvent(EventLocalHttpFailEvent.FailType.incorrectApplicationType));
+                    bot.getEventManager().call(new EventLocalHttpFailEvent(EventLocalHttpFailEvent.Reason.incorrectApplicationType));
                     continue;
                 }
                 if (charset.equals("UNINITIALIZED") || !charset.equals("charset=UTF-8"))
                 {
-                    bot.getEventManager().call(new EventLocalHttpFailEvent(EventLocalHttpFailEvent.FailType.incorrectCharset));
+                    bot.getEventManager().call(new EventLocalHttpFailEvent(EventLocalHttpFailEvent.Reason.incorrectCharset));
                     continue;
                 }
                 if (userAgent.equals("UNINITIALIZED") || !userAgent.matches(HTTP_API_VERSION_DETECTION))
@@ -206,7 +206,7 @@ public class HttpServerOld
                     logger.error("当前版本为: " + userAgent);
                     logger.error("推荐更新这个类库或者HTTP API的版本");
                     logger.error("如果要无视版本检查, 请在启动前加上 \"机器人对象.setHttpApiVersionDetection(\"*\");\"");
-                    bot.getEventManager().call(new EventLocalHttpFailEvent(EventLocalHttpFailEvent.FailType.incorrectVersion));
+                    bot.getEventManager().call(new EventLocalHttpFailEvent(EventLocalHttpFailEvent.Reason.incorrectVersion));
                     continue;
                 }
 
@@ -251,7 +251,7 @@ public class HttpServerOld
                 logger.error("变量: " + ExceptionUtils.getAllVariables(e));
                 ThreadUtils.safeSleep(2);
                 e.printStackTrace();
-                bot.getEventManager().call(new EventLocalHttpFailEvent(EventLocalHttpFailEvent.FailType.unknown));
+                bot.getEventManager().call(new EventLocalHttpFailEvent(EventLocalHttpFailEvent.Reason.unknown));
             }
             finally
             {
@@ -266,7 +266,7 @@ public class HttpServerOld
                 {
                     logger.error("关闭接收失败: ");
                     e.printStackTrace();
-                    bot.getEventManager().call(new EventLocalHttpFailEvent(EventLocalHttpFailEvent.FailType.socketCloseFailed));
+                    bot.getEventManager().call(new EventLocalHttpFailEvent(EventLocalHttpFailEvent.Reason.socketCloseFailed));
                 }
             }
         }
