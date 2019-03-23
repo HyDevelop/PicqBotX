@@ -134,4 +134,10 @@ public class HttpApiTest
 
     // TODO: Test DM
 
+    @Test
+    public void testDeleteMsg()
+    {
+        long toDelete = api.sendGroupMsg(TEST_RECEIVE_GR, "Unit test - testDeleteMsg()").getData().getMessageId();
+        api.deleteMsg(toDelete);
+    }
 }
