@@ -177,6 +177,17 @@ public class IcqHttpApi extends HttpApiBase
     {
         return send(RCsrfToken.class, GET_CSRF_TOKEN);
     }
+
+    /**
+     * 抢走酷Q的曲奇饼并获取CSRF Token
+     *
+     * @return QQ相关接口凭证
+     */
+    public ReturnData<RCredentials> getCredentials()
+    {
+        return send(RCredentials.class, GET_CREDENTIALS);
+    }
+
     /**
      * 获取插件运行状态
      * @return 插件运行状态
