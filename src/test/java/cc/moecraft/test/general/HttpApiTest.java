@@ -140,4 +140,10 @@ public class HttpApiTest
         long toDelete = api.sendGroupMsg(TEST_RECEIVE_GR, "Unit test - testDeleteMsg()").getData().getMessageId();
         api.deleteMsg(toDelete);
     }
+
+    @Test
+    public void testSendLike()
+    {
+        api.sendLike(TEST_RECEIVE_QQ, 2);
+    }
 }
