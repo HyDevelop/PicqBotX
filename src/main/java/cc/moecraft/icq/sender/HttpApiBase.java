@@ -508,7 +508,29 @@ public abstract class HttpApiBase
     }
 
     /**
-     * 重启酷 Q，并以当前登录号自动登录（需勾选快速登录）
+     * 重启 HTTP API 插件
+     *
+     * @return 执行结果
+     */
+    public RawReturnData setRestartPlugin()
+    {
+        return sendReturnRaw(SET_RESTART_PLUGIN);
+    }
+
+    /**
+     * 重启 HTTP API 插件
+     *
+     * @param delay 要延迟的毫秒数, 如果默认情况下无法重启, 可以尝试设置延迟为 2000 左右
+     * @return 执行结果
+     */
+    public RawReturnData setRestartPlugin(int delay)
+    {
+        return sendReturnRaw(SET_RESTART_PLUGIN, "delay", delay);
+    }
+
+    /**
+     * 重启酷Q, 并以当前登录号自动登陆 (需要勾选快速登录)
+     *
      * @return 执行结果
      */
     public RawReturnData setRestart()
@@ -517,33 +539,17 @@ public abstract class HttpApiBase
     }
 
     /**
-     * 重启酷 Q，并以当前登录号自动登录（需勾选快速登录）
-     * @param cleanCache 是否清除酷Q当前登录号缓存数据
-     * @deprecated 封装了新的setRestartPlugin(cleanLog, cleanCache, cleanEvent);方法
+     * 重启酷Q, 并以当前登录号自动登陆 (需要勾选快速登录)
+     *
+     * @param cleanLog 是否在重启时清空酷Q的日志数据库 (logv1.db)
+     * @param cleanCache 是否在重启时清空酷Q的缓存数据库 (cache.db)
+     * @param cleanEvent 是否在重启时清空酷Q的事件数据库 (eventv2.db)
      * @return 执行结果
      */
-    @Deprecated
-    public RawReturnData setRestart(boolean cleanCache)
+    public RawReturnData setRestart(boolean cleanLog, boolean cleanCache, boolean cleanEvent)
     {
-        return sendReturnRaw(SET_RESTART, "clean_cache", cleanCache);
-    }
-
-    /**
-     * 重启酷 Q，并清除日志（需勾选快速登录）
-     * @return 执行结果
-     */
-    public RawReturnData setRestartAndCleanLog()
-    {
-        return sendReturnRaw(SET_RESTART, "clean_log", true);
-    }
-
-    /**
-     * 重启 HTTP API 插件
-     * @return 执行结果
-     */
-    public RawReturnData setRestartPlugin()
-    {
-        return sendReturnRaw(SET_RESTART_PLUGIN);
+        return sendReturnRaw(SET_RESTART, "clean_log", cleanLog,
+                "clean_cache", cleanCache, "clean_event", cleanEvent);
     }
 
     /**
