@@ -77,4 +77,10 @@ public class HttpApiTest
     {
         logger.debug(api.getGroupList().toString());
     }
+
+    @Test
+    public void testGetGroupMemberInfo()
+    {
+        logger.debug(api.getGroupMemberInfo(TEST_RECEIVE_GR, TEST_RECEIVE_QQ).toString());
+    }
 }
