@@ -138,6 +138,7 @@ public class HttpApiTest
     public void testDeleteMsg()
     {
         long toDelete = api.sendGroupMsg(TEST_RECEIVE_GR, "Unit test - testDeleteMsg()").getData().getMessageId();
+        ThreadUtil.safeSleep(2000);
         api.deleteMsg(toDelete);
     }
 
