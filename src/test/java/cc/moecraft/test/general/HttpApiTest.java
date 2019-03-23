@@ -59,4 +59,10 @@ public class HttpApiTest
     {
         logger.debug(api.getStatus().toString());
     }
+
+    @Test
+    public void testGetStrangerInfo()
+    {
+        logger.debug(api.getStrangerInfo(TEST_RECEIVE_QQ).toString());
+    }
 }
