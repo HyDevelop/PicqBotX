@@ -172,4 +172,11 @@ public class HttpApiTest
         api.setGroupAdmin(TEST_RECEIVE_GR, TEST_RECEIVE_QQ, true);
         api.setGroupAdmin(TEST_RECEIVE_GR, TEST_RECEIVE_QQ, false);
     }
+
+    @Test
+    public void testSetGroupAnonymous()
+    {
+        api.setGroupAnonymous(TEST_RECEIVE_GR, false);
+        api.setGroupAnonymous(TEST_RECEIVE_GR, true);
+    }
 }
