@@ -101,4 +101,10 @@ public class HttpApiTest
     {
         logger.debug(api.getFriendList().toString());
     }
+
+    @Test
+    public void testGetVersionInfo()
+    {
+        logger.debug(api.getVersionInfo().toString());
+    }
 }
