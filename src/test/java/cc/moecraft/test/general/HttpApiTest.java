@@ -179,4 +179,10 @@ public class HttpApiTest
         api.setGroupAnonymous(TEST_RECEIVE_GR, false);
         api.setGroupAnonymous(TEST_RECEIVE_GR, true);
     }
+
+    @Test
+    public void testSetGroupCard()
+    {
+        api.setGroupCard(TEST_RECEIVE_GR, TEST_RECEIVE_QQ, "UT-GC");
+    }
 }
