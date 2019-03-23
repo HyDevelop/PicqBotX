@@ -7,7 +7,8 @@ package cc.moecraft.icq.event.events.local;
  */
 public class EventLocalSendDiscussMessage extends EventLocalSendMessage
 {
-    public EventLocalSendDiscussMessage(long id, String message, boolean auto_escape) {
+    public EventLocalSendDiscussMessage(long id, String message, boolean auto_escape)
+    {
         super(id, message, auto_escape);
     }
 }

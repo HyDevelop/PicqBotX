@@ -11,7 +11,9 @@ import lombok.*;
  * @author Hykilpikonna
  */
 @EqualsAndHashCode(callSuper = true)
-@Data @AllArgsConstructor @NoArgsConstructor
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Setter(AccessLevel.NONE)
 public class RGroupMemberInfo extends ReturnPojoBase
 {

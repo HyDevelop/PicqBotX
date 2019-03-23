@@ -3,7 +3,6 @@ package cc.moecraft.icq.utils;
 import cc.moecraft.logger.HyLogger;
 
 import static cc.moecraft.logger.format.AnsiColor.*;
-import static cc.moecraft.logger.format.AnsiColor.YELLOW;
 
 /**
  * The class {@code MiscUtils} is an utilities class for random things.
@@ -30,8 +29,14 @@ public class MiscUtils
         StringBuilder greenStars = new StringBuilder();
         StringBuilder redStars = new StringBuilder();
 
-        for (int i = 0; i < greens; i++) greenStars.append("*");
-        for (int i = 0; i < reds; i++) redStars.append("*");
+        for (int i = 0; i < greens; i++)
+        {
+            greenStars.append("*");
+        }
+        for (int i = 0; i < reds; i++)
+        {
+            redStars.append("*");
+        }
 
         logger.log(String.format("%s%s%s初始化完成%s [%s%s%s%s%s] ...(%s ms)",
                 YELLOW, name, GREEN, YELLOW,

@@ -19,6 +19,7 @@ public class MessageBuilder
 
     /**
      * 添加一个子消息
+     *
      * @param object Component
      * @return 这个实例
      */
@@ -30,6 +31,7 @@ public class MessageBuilder
 
     /**
      * 换行
+     *
      * @return 这个实例
      */
     public MessageBuilder newLine()

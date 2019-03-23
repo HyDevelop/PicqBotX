@@ -25,13 +25,15 @@ import java.util.Set;
 @Getter
 public class EventManager
 {
+    private final PicqBotX bot;
+
+    private final EventParser eventParser;
+
     private ArrayList<IcqListener> registeredListeners = new ArrayList<>();
 
     private HashMap<String, ArrayList<RegisteredListenerMethod>> registeredListenerMethods = new HashMap<>();
-    private final PicqBotX bot;
-    private Set<Class<? extends Event>> eventClasses;
 
-    private final EventParser eventParser;
+    private Set<Class<? extends Event>> eventClasses;
 
     public EventManager(PicqBotX bot)
     {
@@ -55,22 +57,39 @@ public class EventManager
 
         for (Method method : listener.getClass().getMethods())
         {
-            if (method.getParameterCount() != 1) continue;
+            if (method.getParameterCount() != 1)
+            {
+                continue;
+            }
 
             Class<?> event = method.getParameterTypes()[0];
 
-            if (!Event.class.isAssignableFrom(event)) continue;
-            if (!method.isAnnotationPresent(EventHandler.class)) continue;
+            if (!Event.class.isAssignableFrom(event))
+            {
+                continue;
+            }
+            if (!method.isAnnotationPresent(EventHandler.class))
+            {
+                continue;
+            }
 
             for (Class<? extends Event> eventClass : eventClasses) // 向下注册所有子类
             {
-                if (!event.isAssignableFrom(eventClass)) continue;
+                if (!event.isAssignableFrom(eventClass))
+                {
+                    continue;
+                }
 
                 String mapKey = eventClass.getName();
 
                 if (registeredListenerMethods.containsKey(mapKey))
+                {
                     registeredListenerMethods.get(mapKey).add(new RegisteredListenerMethod(method, listener));
-                else registeredListenerMethods.put(mapKey, new ArrayList<>(Collections.singletonList(new RegisteredListenerMethod(method, listener))));
+                }
+                else
+                {
+                    registeredListenerMethods.put(mapKey, new ArrayList<>(Collections.singletonList(new RegisteredListenerMethod(method, listener))));
+                }
             }
         }
     }
@@ -82,11 +101,15 @@ public class EventManager
      */
     public void registerListeners(IcqListener... listeners)
     {
-        for (IcqListener listener : listeners) registerListener(listener);
+        for (IcqListener listener : listeners)
+        {
+            registerListener(listener);
+        }
     }
 
     /**
      * 执行事件
+     *
      * @param event 事件对象
      */
     public void call(Event event)
@@ -94,11 +117,16 @@ public class EventManager
         event.setBot(bot);
 
         if (event instanceof EventMessage)
+        {
             ((EventMessage) event).message = CQUtils.decodeMessage(((EventMessage) event).getMessage());
+        }
 
         String mapKey = event.getClass().getName();
 
-        if (!registeredListenerMethods.containsKey(mapKey)) return;
+        if (!registeredListenerMethods.containsKey(mapKey))
+        {
+            return;
+        }
 
         registeredListenerMethods.get(mapKey).forEach(registeredListenerMethod ->
         {
@@ -120,7 +148,12 @@ public class EventManager
     public void callError(Event event, Throwable throwable)
     {
         if (event instanceof EventLocalException && ((EventLocalException) event).getParentEvent() instanceof EventLocalException)
+        {
             throwable.printStackTrace(); // 如果这个事件是报错事件, 而且这个事件报的错也是报错事件的话, 怎么办呢....
-        else call(new EventLocalException(throwable instanceof InvocationTargetException ? throwable.getCause() : throwable, event));
+        }
+        else
+        {
+            call(new EventLocalException(throwable instanceof InvocationTargetException ? throwable.getCause() : throwable, event));
+        }
     }
 }

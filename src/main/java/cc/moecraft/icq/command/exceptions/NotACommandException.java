@@ -8,4 +8,4 @@ package cc.moecraft.icq.command.exceptions;
  *
  * @author Hykilpikonna
  */
-public class NotACommandException extends Exception { }
+public class NotACommandException extends Exception {}

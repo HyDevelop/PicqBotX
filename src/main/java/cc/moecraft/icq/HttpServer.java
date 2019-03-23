@@ -31,7 +31,9 @@ import static cc.moecraft.icq.PicqConstants.HTTP_API_VERSION_DETECTION;
 public class HttpServer
 {
     private final int port;
+
     private final HyLogger logger;
+
     private final PicqBotX bot;
 
     private boolean started = true;
@@ -44,7 +46,41 @@ public class HttpServer
     }
 
     /**
+     * 读取所有行
+     *
+     * @param reader 读取器
+     * @return 所有行的列表
+     */
+    @SuppressWarnings("deprecation")
+    public static ArrayList<String> readOtherInfo(DataInputStream reader)
+    {
+        ArrayList<String> result = new ArrayList<>();
+
+        while (true)
+        {
+            try
+            {
+                String line = reader.readLine();
+                if (line.isEmpty())
+                {
+                    break;
+                }
+
+                result.add(line);
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+                break;
+            }
+        }
+
+        return result;
+    }
+
+    /**
      * 处理请求
+     *
      * @param data JSON
      */
     private void process(String data)
@@ -54,6 +90,7 @@ public class HttpServer
 
     /**
      * 启动HTTP服务器
+     *
      * @throws HttpServerStartFailedException 启动失败
      */
     @SuppressWarnings("deprecation")
@@ -75,12 +112,21 @@ public class HttpServer
 
         while (started)
         {
-            if (bot.getConfig().isHttpPaused()) continue;
+            if (bot.getConfig().isHttpPaused())
+            {
+                continue;
+            }
             try
             {
                 // 关闭上次的Socket, 这样就能直接continue了
-                if (out != null) out.close();
-                if (socket != null && !socket.isClosed()) socket.close();
+                if (out != null)
+                {
+                    out.close();
+                }
+                if (socket != null && !socket.isClosed())
+                {
+                    socket.close();
+                }
 
                 // 获取新的请求
                 socket = serverSocket.accept();
@@ -121,15 +167,27 @@ public class HttpServer
                     if (oneInfo.contains("Content-Type: "))
                     {
                         oneInfo = oneInfo.replace("Content-Type: ", "");
-                        if (!oneInfo.contains("application/json")) continue;
-                        if (!oneInfo.contains("charset=UTF-8")) continue;
+                        if (!oneInfo.contains("application/json"))
+                        {
+                            continue;
+                        }
+                        if (!oneInfo.contains("charset=UTF-8"))
+                        {
+                            continue;
+                        }
 
                         String[] split = oneInfo.split("; ");
                         contentType = split[0];
                         charset = split[1];
                     }
-                    else if (oneInfo.contains("User-Agent: ")) userAgent = oneInfo.replace("User-Agent: ", "");
-                    else if (oneInfo.contains("Content-Length: ")) contentLength = Integer.parseInt(oneInfo.replace("Content-Length: ", ""));
+                    else if (oneInfo.contains("User-Agent: "))
+                    {
+                        userAgent = oneInfo.replace("User-Agent: ", "");
+                    }
+                    else if (oneInfo.contains("Content-Length: "))
+                    {
+                        contentLength = Integer.parseInt(oneInfo.replace("Content-Length: ", ""));
+                    }
                 }
 
                 // 验证信息
@@ -162,7 +220,10 @@ public class HttpServer
                 if (contentLength != 0)
                 {
                     buffer = new byte[contentLength];
-                    while(size < contentLength) buffer[size++] = (byte) reader.read();
+                    while (size < contentLength)
+                    {
+                        buffer[size++] = (byte) reader.read();
+                    }
                     data = new String(buffer, 0, size);
                 }
 
@@ -181,7 +242,10 @@ public class HttpServer
 
                 bot.getEventManager().call(event);
 
-                if (!event.isCancelled()) process(data);
+                if (!event.isCancelled())
+                {
+                    process(data);
+                }
             }
             catch (Throwable e)
             {
@@ -211,36 +275,8 @@ public class HttpServer
     }
 
     /**
-     * 读取所有行
-     * @param reader 读取器
-     * @return 所有行的列表
-     */
-    @SuppressWarnings("deprecation")
-    public static ArrayList<String> readOtherInfo(DataInputStream reader)
-    {
-        ArrayList<String> result = new ArrayList<>();
-
-        while (true)
-        {
-            try
-            {
-                String line = reader.readLine();
-                if (line.isEmpty()) break;
-
-                result.add(line);
-            }
-            catch (IOException e)
-            {
-                e.printStackTrace();
-                break;
-            }
-        }
-
-        return result;
-    }
-
-    /**
      * 回复JSON
+     *
      * @param out 输出流
      * @param jsonString JSON字符串
      */

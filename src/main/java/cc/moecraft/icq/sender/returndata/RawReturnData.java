@@ -35,6 +35,7 @@ public class RawReturnData
 
     /**
      * 处理数据
+     *
      * @param typeOfT Data的POJO数据类型 例子: RLoginInfo.class
      * @param <T> 数据类型
      * @return 处理后的数据
@@ -52,6 +53,7 @@ public class RawReturnData
 
     /**
      * 处理数据为列表格式
+     *
      * @param typeOfT Data的POJO数据类型 例子: RGroupList.class
      * @param <T> 数据类型
      * @return 处理后的数据

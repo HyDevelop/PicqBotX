@@ -19,10 +19,12 @@ import lombok.AllArgsConstructor;
 public class GroupEventMethods
 {
     private Event event;
+
     private long groupId;
 
     /**
      * 回复消息
+     *
      * @param message 消息
      * @return 消息发送结果
      */

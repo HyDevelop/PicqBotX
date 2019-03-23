@@ -13,9 +13,11 @@ import lombok.EqualsAndHashCode;
  * @author Hykilpikonna
  */
 @EqualsAndHashCode(callSuper = true)
-@Data @AllArgsConstructor
+@Data
+@AllArgsConstructor
 public class VersionIncorrectException extends Exception
 {
     public String requiredVersion;
+
     public String currentVersion;
 }

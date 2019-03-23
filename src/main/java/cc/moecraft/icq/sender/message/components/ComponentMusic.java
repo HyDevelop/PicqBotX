@@ -15,10 +15,12 @@ import lombok.AllArgsConstructor;
 public class ComponentMusic extends MessageComponent
 {
     public int musicId;
+
     public MusicSourceType type;
 
     @Override
-    public String toString() {
+    public String toString()
+    {
         return "[CQ:music,type=" + type.toString() + ",id=" + musicId + "]";
     }
 
@@ -30,7 +32,8 @@ public class ComponentMusic extends MessageComponent
         public String type;
 
         @Override
-        public String toString() {
+        public String toString()
+        {
             return type;
         }
     }

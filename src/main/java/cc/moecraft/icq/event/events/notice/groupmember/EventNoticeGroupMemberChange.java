@@ -31,6 +31,8 @@ public class EventNoticeGroupMemberChange extends EventNotice implements Content
     @Expose
     public String subType;
 
+    private GroupEventMethods groupMethods = null;
+
     @Override
     public boolean contentEquals(EventNoticeGroupMemberChange other)
     {
@@ -39,10 +41,12 @@ public class EventNoticeGroupMemberChange extends EventNotice implements Content
                 other.getSubType().equals(getSubType());
     }
 
-    private GroupEventMethods groupMethods = null;
     public GroupEventMethods getGroupMethods()
     {
-        if (groupMethods != null) return groupMethods;
+        if (groupMethods != null)
+        {
+            return groupMethods;
+        }
         return groupMethods = new GroupEventMethods(this, groupId);
     }
 

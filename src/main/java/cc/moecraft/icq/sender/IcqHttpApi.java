@@ -145,6 +145,7 @@ public class IcqHttpApi extends HttpApiBase
 
     /**
      * 获取好友列表
+     *
      * @return 好友列表
      */
     public ReturnListData<RFriendList> getFriendList()
@@ -174,6 +175,7 @@ public class IcqHttpApi extends HttpApiBase
 
     /**
      * 获取酷 Q 及 HTTP API 插件的版本信息
+     *
      * @return 酷 Q 及 HTTP API 插件的版本信息
      */
     public ReturnData<RVersionInfo> getVersionInfo()
@@ -213,6 +215,7 @@ public class IcqHttpApi extends HttpApiBase
 
     /**
      * 获取插件运行状态
+     *
      * @return 插件运行状态
      */
     public ReturnData<RStatus> getStatus()

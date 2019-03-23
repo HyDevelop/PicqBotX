@@ -31,8 +31,11 @@ public abstract class HttpApiBase
 {
     // 发送区
     public static final String SEND_PRIVATE_MSG = "send_private_msg";
+
     public static final String SEND_GROUP_MSG = "send_group_msg";
+
     public static final String SEND_DISCUSS_MSG = "send_discuss_msg";
+
     public static final String SEND_LIKE = "send_like";
 
     // 撤回消息单独一类哈哈哈哈
@@ -40,51 +43,80 @@ public abstract class HttpApiBase
 
     // 应用设置区
     public static final String SET_GROUP_KICK = "set_group_kick";
+
     public static final String SET_GROUP_BAN = "set_group_ban";
+
     public static final String SET_GROUP_ANONYMOUS_BAN = "set_group_anonymous_ban";
+
     public static final String SET_GROUP_WHOLE_BAN = "set_group_whole_ban";
+
     public static final String SET_GROUP_ADMIN = "set_group_admin";
+
     public static final String SET_GROUP_ANONYMOUS = "set_group_anonymous";
+
     public static final String SET_GROUP_CARD = "set_group_card";
+
     public static final String SET_GROUP_LEAVE = "set_group_leave";
+
     public static final String SET_GROUP_SPECIAL_TITLE = "set_group_special_title";
+
     public static final String SET_DISCUSS_LEAVE = "set_discuss_leave";
+
     public static final String SET_FRIEND_ADD_REQUEST = "set_friend_add_request";
+
     public static final String SET_GROUP_ADD_REQUEST = "set_group_add_request";
 
     // ICQ(酷Q, 以及HTTP插件)设置区
     public static final String SET_RESTART = "set_restart";
+
     public static final String SET_RESTART_PLUGIN = "set_restart_plugin";
+
     public static final String CLEAN_DATA_DIR = "clean_data_dir";
+
     public static final String CLEAN_PLUGIN_LOG = "clean_plugin_log";
 
     // 应用内获取区
     public static final String GET_LOGIN_INFO = "get_login_info";
+
     public static final String GET_STRANGER_INFO = "get_stranger_info";
+
     public static final String GET_GROUP_LIST = "get_group_list";
+
     public static final String GET_GROUP_MEMBER_INFO = "get_group_member_info";
+
     public static final String GET_GROUP_MEMBER_LIST = "get_group_member_list";
+
     public static final String GET_FRIEND_LIST = "_get_friend_list";
+
     public static final String GET_GROUP_INFO = "_get_group_info";
+
     public static final String GET_VIP_INFO = "_get_vip_info";
+
     public static final String GET_RECORD = "get_record";
+
     public static final String GET_IMAGE = "get_image";
 
     // 条件判断区
     public static final String CAN_SEND_IMAGE = "can_send_image";
+
     public static final String CAN_SEND_RECORD = "can_send_record";
 
     // ICQ(酷Q, 以及HTTP插件)获取区
     public static final String GET_VERSION_INFO = "get_version_info";
+
     public static final String GET_STATUS = "get_status";
+
     public static final String GET_COOKIES = "get_cookies";
+
     public static final String GET_CSRF_TOKEN = "get_csrf_token";
+
     public static final String GET_CREDENTIALS = "get_credentials";
 
     @Deprecated
     public static final String SEND_MSG = "send_msg";  // 这个不需要, 因为最后也要指定类型
 
     final String baseURL;
+
     final EventManager eventManager;
 
     @Getter
@@ -96,13 +128,20 @@ public abstract class HttpApiBase
 
         baseUrl = baseUrl.toLowerCase();
 
-        if (!baseUrl.contains("http://")) baseUrl = "http://" + baseUrl;
+        if (!baseUrl.contains("http://"))
+        {
+            baseUrl = "http://" + baseUrl;
+        }
         this.baseURL = baseUrl + ":" + port + "/";
-        if (this instanceof IcqHttpApi) selfId = ((IcqHttpApi) this).getLoginInfo().getData().getUserId();
+        if (this instanceof IcqHttpApi)
+        {
+            selfId = ((IcqHttpApi) this).getLoginInfo().getData().getUserId();
+        }
     }
 
     /**
      * 发送请求
+     *
      * @param request 请求
      * @param parameters 参数
      * @return 响应
@@ -111,6 +150,7 @@ public abstract class HttpApiBase
 
     /**
      * 发送请求 封装x1
+     *
      * @param request 请求
      * @param parameters 参数
      * @return 响应
@@ -122,6 +162,7 @@ public abstract class HttpApiBase
 
     /**
      * 发送请求 封装
+     *
      * @param request 请求
      * @param parameters 参数
      * @return 响应
@@ -133,6 +174,7 @@ public abstract class HttpApiBase
 
     /**
      * 发送请求 封装
+     *
      * @param request 请求
      * @param parameters 参数
      * @return 响应
@@ -144,6 +186,7 @@ public abstract class HttpApiBase
 
     /**
      * 发送请求 封装
+     *
      * @param typeOfT 返回数据类型
      * @param request 请求
      * @param parameters 参数
@@ -157,6 +200,7 @@ public abstract class HttpApiBase
 
     /**
      * 发送请求 封装
+     *
      * @param typeOfT 返回数据类型
      * @param request 请求
      * @param parameters 参数
@@ -170,6 +214,7 @@ public abstract class HttpApiBase
 
     /**
      * 发送请求 封装
+     *
      * @param typeOfT 返回数据类型
      * @param request 请求
      * @param parameters 参数
@@ -183,6 +228,7 @@ public abstract class HttpApiBase
 
     /**
      * 发送请求 封装
+     *
      * @param typeOfT 返回数据类型
      * @param request 请求
      * @param parameters 参数
@@ -196,7 +242,8 @@ public abstract class HttpApiBase
 
     /**
      * 发送私聊消息
-     * @param qq      QQ号
+     *
+     * @param qq QQ号
      * @param message 消息
      * @return 发送消息结果
      */
@@ -207,7 +254,8 @@ public abstract class HttpApiBase
 
     /**
      * 发送私聊消息
-     * @param qq      QQ号
+     *
+     * @param qq QQ号
      * @param message 消息
      * @param autoEscape 是否纯文本发送
      * @return 发送消息结果
@@ -217,12 +265,16 @@ public abstract class HttpApiBase
         EventLocalSendPrivateMessage event = new EventLocalSendPrivateMessage(qq, message, autoEscape);
         event.selfId = selfId;
         eventManager.call(event);
-        if (event.isCancelled()) return null;
+        if (event.isCancelled())
+        {
+            return null;
+        }
         return send(RMessageReturnData.class, SEND_PRIVATE_MSG, "user_id", event.getId(), "message", event.getMessage(), "auto_escape", event.isAutoEscape());
     }
 
     /**
      * 发送群聊消息
+     *
      * @param groupId 群ID
      * @param message 消息
      * @return 发送消息结果
@@ -234,6 +286,7 @@ public abstract class HttpApiBase
 
     /**
      * 发送群聊消息
+     *
      * @param groupId 群ID
      * @param message 消息
      * @param autoEscape 是否纯文本发送
@@ -244,12 +297,16 @@ public abstract class HttpApiBase
         EventLocalSendGroupMessage event = new EventLocalSendGroupMessage(groupId, message, autoEscape);
         event.selfId = selfId;
         eventManager.call(event);
-        if (event.isCancelled()) return null;
+        if (event.isCancelled())
+        {
+            return null;
+        }
         return send(RMessageReturnData.class, SEND_GROUP_MSG, "group_id", event.getId(), "message", event.getMessage(), "auto_escape", event.isAutoEscape());
     }
 
     /**
      * 发送讨论组消息
+     *
      * @param groupId 讨论组ID
      * @param message 消息
      * @return 发送消息结果
@@ -261,6 +318,7 @@ public abstract class HttpApiBase
 
     /**
      * 发送讨论组消息
+     *
      * @param groupId 讨论组ID
      * @param message 消息
      * @param autoEscape 是否纯文本发送
@@ -271,12 +329,16 @@ public abstract class HttpApiBase
         EventLocalSendDiscussMessage event = new EventLocalSendDiscussMessage(groupId, message, autoEscape);
         event.selfId = selfId;
         eventManager.call(event);
-        if (event.isCancelled()) return null;
+        if (event.isCancelled())
+        {
+            return null;
+        }
         return send(RMessageReturnData.class, SEND_DISCUSS_MSG, "discuss_id", event.getId(), "message", event.getMessage(), "auto_escape", event.isAutoEscape());
     }
 
     /**
      * 撤回消息
+     *
      * @param messageId 消息ID
      * @return 执行结果
      */
@@ -287,7 +349,8 @@ public abstract class HttpApiBase
 
     /**
      * 发送好友赞
-     * @param qq    QQ号
+     *
+     * @param qq QQ号
      * @param times 赞的次数，每个好友每天最多 10 次
      * @return 执行结果
      */
@@ -298,8 +361,9 @@ public abstract class HttpApiBase
 
     /**
      * 群组踢人
+     *
      * @param groupId 群号
-     * @param qq      QQ
+     * @param qq QQ
      * @return 执行结果
      */
     public RawReturnData setGroupKick(long groupId, long qq)
@@ -309,6 +373,7 @@ public abstract class HttpApiBase
 
     /**
      * 群组踢人
+     *
      * @param groupId 群号
      * @param qq QQ
      * @param rejectFurtherRequest 拒绝这个人的加群请求
@@ -321,6 +386,7 @@ public abstract class HttpApiBase
 
     /**
      * 群组单人禁言
+     *
      * @param groupId 群号
      * @param qq QQ
      * @param duration 禁言时长，单位秒，0 表示取消禁言
@@ -334,6 +400,7 @@ public abstract class HttpApiBase
 
     /**
      * 群组匿名用户禁言
+     *
      * @param flag 要禁言的匿名用户的 flag（需从群消息上报的数据中获得）
      * @param groupId 群号
      * @param duration 禁言时长，单位秒，无法取消匿名用户禁言
@@ -346,6 +413,7 @@ public abstract class HttpApiBase
 
     /**
      * 群组匿名用户禁言
+     *
      * @param anonymous 要禁言的匿名用户的 Anonymous对象（需从群消息上报的数据中获得）
      * @param groupId 群号
      * @param duration 禁言时长，单位秒，无法取消匿名用户禁言
@@ -358,6 +426,7 @@ public abstract class HttpApiBase
 
     /**
      * 群组全员禁言
+     *
      * @param groupId 群号
      * @param enable 是否禁言
      * @return 执行结果
@@ -369,9 +438,10 @@ public abstract class HttpApiBase
 
     /**
      * 群组设置管理员
+     *
      * @param groupId 群号
-     * @param qq      要设置管理员的 QQ 号
-     * @param enable  true 为设置，false 为取消
+     * @param qq 要设置管理员的 QQ 号
+     * @param enable true 为设置，false 为取消
      * @return 执行结果
      */
     public RawReturnData setGroupAdmin(long groupId, long qq, boolean enable)
@@ -381,8 +451,9 @@ public abstract class HttpApiBase
 
     /**
      * 群组设置匿名
+     *
      * @param groupId 群号
-     * @param enable  是否允许匿名聊天
+     * @param enable 是否允许匿名聊天
      * @return 执行结果
      */
     public RawReturnData setGroupAnonymous(long groupId, boolean enable)
@@ -392,9 +463,10 @@ public abstract class HttpApiBase
 
     /**
      * 设置群名片（群备注）
+     *
      * @param groupId 群号
-     * @param qq      要设置的 QQ 号
-     * @param card  群名片内容，不填或空字符串表示删除群名片
+     * @param qq 要设置的 QQ 号
+     * @param card 群名片内容，不填或空字符串表示删除群名片
      * @return 执行结果
      */
     public RawReturnData setGroupCard(long groupId, long qq, String card)
@@ -427,6 +499,7 @@ public abstract class HttpApiBase
 
     /**
      * 设置群组专属头衔
+     *
      * @param groupId 群号
      * @param qq 要设置的QQ号
      * @param specialTitle 专属头衔，不填或空字符串表示删除专属头衔
@@ -439,6 +512,7 @@ public abstract class HttpApiBase
 
     /**
      * 设置群组专属头衔
+     *
      * @param groupId 群号
      * @param qq 要设置的QQ号
      * @param specialTitle 专属头衔，不填或空字符串表示删除专属头衔
@@ -452,6 +526,7 @@ public abstract class HttpApiBase
 
     /**
      * 退出讨论组
+     *
      * @param discussId 讨论组 ID（正常情况下看不到，需要从讨论组消息上报的数据中获得）
      * @return 执行结果
      */
@@ -462,6 +537,7 @@ public abstract class HttpApiBase
 
     /**
      * 处理加好友请求
+     *
      * @param flag 加好友请求的 flag（需从上报的数据中获得）
      * @param approve 是否同意请求
      * @return 执行结果
@@ -473,6 +549,7 @@ public abstract class HttpApiBase
 
     /**
      * 处理加好友请求
+     *
      * @param flag 加好友请求的 flag（需从上报的数据中获得）
      * @param approve 是否同意请求
      * @param remark 添加后的好友备注（仅在同意时有效）
@@ -499,6 +576,7 @@ public abstract class HttpApiBase
 
     /**
      * 同意加群请求／邀请
+     *
      * @param flag 加好友请求的 flag（需从上报的数据中获得）
      * @param type add 或 invite，请求类型（需要和上报消息中的 sub_type 字段相符）
      * @return 执行结果
@@ -510,6 +588,7 @@ public abstract class HttpApiBase
 
     /**
      * 拒绝加群请求／邀请
+     *
      * @param flag 加好友请求的 flag（需从上报的数据中获得）
      * @param type add 或 invite，请求类型（需要和上报消息中的 sub_type 字段相符）
      * @param reason 拒绝理由
@@ -588,6 +667,7 @@ public abstract class HttpApiBase
 
     /**
      * 清空插件日志
+     *
      * @return 执行结果
      */
     public RawReturnData cleanPluginLog()

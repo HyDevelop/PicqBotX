@@ -18,16 +18,21 @@ import java.util.Map;
 public class UserManager
 {
     private final PicqBotX bot;
+
     public Map<Long, User> userCache = new HashMap<>();
 
     /**
      * 用ID获取User
+     *
      * @param id QQ号
      * @return User对象
      */
     public User getUserFromID(long id)
     {
-        if (userCache.containsKey(id)) return userCache.get(id);
+        if (userCache.containsKey(id))
+        {
+            return userCache.get(id);
+        }
         userCache.put(id, new User(bot, id));
         return getUserFromID(id);
     }

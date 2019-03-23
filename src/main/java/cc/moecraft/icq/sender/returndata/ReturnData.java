@@ -15,6 +15,8 @@ import lombok.Data;
 public class ReturnData<T extends ReturnPojoBase>
 {
     public T data;
+
     public Long returnCode;
+
     public ReturnStatus status;
 }

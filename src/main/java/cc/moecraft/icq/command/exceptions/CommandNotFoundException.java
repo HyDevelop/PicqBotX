@@ -8,4 +8,4 @@ package cc.moecraft.icq.command.exceptions;
  *
  * @author Hykilpikonna
  */
-public class CommandNotFoundException extends Exception { }
+public class CommandNotFoundException extends Exception {}

@@ -16,50 +16,61 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class GroupUser
 {
-    private final PicqBotX bot;
     @Getter
     public final long id;
+
     @Getter
     public final Group group;
+
+    private final PicqBotX bot;
 
     private RGroupMemberInfo info;
 
     /**
      * 获取数据
+     *
      * @return 数据 (不一定是最新)
      */
     public RGroupMemberInfo getInfo()
     {
-        if (info != null) return info;
+        if (info != null)
+        {
+            return info;
+        }
         return refreshInfo();
     }
 
     /**
      * 更新数据
+     *
      * @return 更新的数据
      */
     public RGroupMemberInfo refreshInfo()
     {
-        if (id == 80000000L) return info = new RGroupMemberInfo(
-                0L,
-                "CN",
-                "Anonymous",
-                false,
-                group.getId(),
-                System.currentTimeMillis(),
-                1L,
-                "Anonymous",
-                "Anonymous",
-                "member",
-                "male",
-                "Anonymous",
-                0L,
-                false, id);
+        if (id == 80000000L)
+        {
+            return info = new RGroupMemberInfo(
+                    0L,
+                    "CN",
+                    "Anonymous",
+                    false,
+                    group.getId(),
+                    System.currentTimeMillis(),
+                    1L,
+                    "Anonymous",
+                    "Anonymous",
+                    "member",
+                    "male",
+                    "Anonymous",
+                    0L,
+                    false, id);
+        }
         return info = bot.getAccountManager().getNonAccountSpecifiedApi().getGroupMemberInfo(group.getId(), id).getData();
     }
 
     /**
      * 判断是不是管理员
+     *
      * @return 是不是管理员
      */
     public boolean isAdmin()

@@ -25,20 +25,23 @@ import java.util.*;
  */
 public class CommandManager
 {
-    @Getter
-    private Map<String, ArrayList<IcqCommand>> registeredCommands = new HashMap<>();    // 已注册的指令, String 是指令名, IcqCommand 是指令对象
-
-    @Setter @Getter
-    private ConflictOperation conflictOperation;
-
     private final GroupManager groupManager;
+
     private final UserManager userManager;
+
     private final GroupUserManager groupUserManager;
 
     @Getter
     private final String[] prefixes;
 
-    public CommandManager(GroupManager groupManager, UserManager userManager, GroupUserManager groupUserManager, ConflictOperation conflictOperation, String ... prefixes)
+    @Getter
+    private Map<String, ArrayList<IcqCommand>> registeredCommands = new HashMap<>();    // 已注册的指令, String 是指令名, IcqCommand 是指令对象
+
+    @Setter
+    @Getter
+    private ConflictOperation conflictOperation;
+
+    public CommandManager(GroupManager groupManager, UserManager userManager, GroupUserManager groupUserManager, ConflictOperation conflictOperation, String... prefixes)
     {
         this.groupUserManager = groupUserManager;
         this.groupManager = groupManager;
@@ -47,9 +50,9 @@ public class CommandManager
         this.prefixes = prefixes;
     }
 
-    public CommandManager(GroupManager groupManager, UserManager userManager, GroupUserManager groupUserManager, String ... prefixes)
+    public CommandManager(GroupManager groupManager, UserManager userManager, GroupUserManager groupUserManager, String... prefixes)
     {
-        this (groupManager, userManager, groupUserManager, ConflictOperation.ENABLE_ALL, prefixes);
+        this(groupManager, userManager, groupUserManager, ConflictOperation.ENABLE_ALL, prefixes);
     }
 
     /**
@@ -84,6 +87,7 @@ public class CommandManager
 
     /**
      * 注册指令
+     *
      * @param command 指令
      * @return 是否注册成功
      */
@@ -94,6 +98,7 @@ public class CommandManager
 
     /**
      * 注册指令
+     *
      * @param command 指令
      * @param prefix 指令独立前缀
      * @return 是否注册成功
@@ -104,14 +109,20 @@ public class CommandManager
         {
             String baseKey = prefix + command.properties().getName().toLowerCase();
 
-            if (!registeredCommands.containsKey(baseKey)) registeredCommands.put(baseKey, new ArrayList<>());
+            if (!registeredCommands.containsKey(baseKey))
+            {
+                registeredCommands.put(baseKey, new ArrayList<>());
+            }
             registeredCommands.get(baseKey).add(command);
 
             command.properties().getAlias().forEach(alias ->
             {
                 String key = prefix + alias.toLowerCase();
 
-                if (!registeredCommands.containsKey(key)) registeredCommands.put(key, new ArrayList<>());
+                if (!registeredCommands.containsKey(key))
+                {
+                    registeredCommands.put(key, new ArrayList<>());
+                }
                 registeredCommands.get(key).add(command);
             });
         }
@@ -130,9 +141,9 @@ public class CommandManager
 
     /**
      * 自动找到注册过的指令对象运行
-     *
+     * <p>
      * 例子:
-     *  !ecHO hi there
+     * !ecHO hi there
      *
      * @param event 事件
      * @return 执行结果
@@ -156,7 +167,7 @@ public class CommandManager
 
             Group group =
                     eventIsGroup ? groupManager.getGroupFromID(((EventGroupMessage) event).getGroupId()) :
-                    eventIsDiscuss ? groupManager.getGroupFromID(((EventDiscussMessage) event).getDiscussId()) : null;
+                            eventIsDiscuss ? groupManager.getGroupFromID(((EventDiscussMessage) event).getDiscussId()) : null;
 
             ArrayList<IcqCommand> commandRunners = commandArgs.getCommandRunners();
 
@@ -167,30 +178,38 @@ public class CommandManager
                 boolean runnerIsPrivate = commandRunner instanceof PrivateCommand;
 
                 if (eventIsGroup && runnerIsGroup)
+                {
                     event.respond(((GroupCommand) commandRunner).groupMessage(
                             (EventGroupMessage) event,
                             groupUserManager.getUserFromID(user.id, group), group,
                             commandArgs.getCommandName(),
                             commandArgs.getArgs()));
+                }
 
                 if (eventIsDiscuss && runnerIsDiscuss)
+                {
                     event.respond(((DiscussCommand) commandRunner).discussMessage(
                             (EventDiscussMessage) event,
                             groupUserManager.getUserFromID(user.id, group), group,
                             commandArgs.getCommandName(),
                             commandArgs.getArgs()));
+                }
 
                 if (eventIsPrivate && runnerIsPrivate)
+                {
                     event.respond(((PrivateCommand) commandRunner).privateMessage(
                             (EventPrivateMessage) event, user,
                             commandArgs.getCommandName(),
                             commandArgs.getArgs()));
+                }
 
                 if (commandRunner instanceof EverywhereCommand)
+                {
                     event.respond(((EverywhereCommand) commandRunner).run(
                             event, user,
                             commandArgs.getCommandName(),
                             commandArgs.getArgs()));
+                }
             });
 
             return RunResult.SUCCESS;
@@ -205,27 +224,29 @@ public class CommandManager
         }
     }
 
-    public enum RunResult
-    {
-        NOT_A_COMMAND, COMMAND_NOT_FOUND,
-        SUCCESS, MAINTENANCE
-    }
-
     /**
      * 获取指令列表
+     *
      * @return 指令列表
      */
     public ArrayList<IcqCommand> getCommandList()
     {
         ArrayList<IcqCommand> result = new ArrayList<>();
 
-        registeredCommands.forEach((k, v) -> v.forEach(command -> { if (!result.contains(command)) result.add(command); }));
+        registeredCommands.forEach((k, v) -> v.forEach(command ->
+        {
+            if (!result.contains(command))
+            {
+                result.add(command);
+            }
+        }));
 
         return result;
     }
 
     /**
      * 获取指令名列表
+     *
      * @return 指令名列表
      */
     public ArrayList<String> getCommandNameList()
@@ -234,9 +255,18 @@ public class CommandManager
 
         getCommandList().forEach(command ->
         {
-            if (!result.contains(command.properties().getName())) result.add(command.properties().getName());
+            if (!result.contains(command.properties().getName()))
+            {
+                result.add(command.properties().getName());
+            }
         });
 
         return result;
+    }
+
+    public enum RunResult
+    {
+        NOT_A_COMMAND, COMMAND_NOT_FOUND,
+        SUCCESS, MAINTENANCE
     }
 }

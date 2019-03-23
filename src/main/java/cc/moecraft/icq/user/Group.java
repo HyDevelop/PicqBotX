@@ -17,24 +17,30 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class Group
 {
-    private final PicqBotX bot;
     @Getter
     public final long id;
+
+    private final PicqBotX bot;
 
     public RGroup info;
 
     /**
      * 获取数据
+     *
      * @return 数据 (不一定是最新)
      */
     public RGroup getInfo()
     {
-        if (info != null) return info;
+        if (info != null)
+        {
+            return info;
+        }
         return refreshInfo();
     }
 
     /**
      * 更新数据
+     *
      * @return 更新的数据
      */
     public RGroup refreshInfo()

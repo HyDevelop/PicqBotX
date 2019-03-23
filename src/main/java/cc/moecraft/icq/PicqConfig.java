@@ -1,7 +1,9 @@
 package cc.moecraft.icq;
 
 import cc.moecraft.logger.environments.ColorSupportLevel;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
 import static cc.moecraft.logger.environments.ColorSupportLevel.FORCED;
 
@@ -24,6 +26,11 @@ public class PicqConfig
     // 主要配置项 | Main config fields
 
     /**
+     * 接收端口
+     */
+    private final int socketPort;
+
+    /**
      * 是否输出Debug消息
      */
     private boolean debug = true; //TODO: change this to false
@@ -43,19 +50,14 @@ public class PicqConfig
      */
     private boolean maintenanceMode = false;
 
-    /**
-     * 是否开启多账号优化
-     */
-    private boolean multiAccountOptimizations = true;
-
 
     // 一次配置项 | Unchangeable config fields
     // 这里的配置init之后就不能变了w
 
     /**
-     * 接收端口
+     * 是否开启多账号优化
      */
-    private final int socketPort;
+    private boolean multiAccountOptimizations = true;
 
     /**
      * Logger颜色支持级别
