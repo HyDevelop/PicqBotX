@@ -119,40 +119,43 @@ public class PicqBotX
         this(new PicqConfig(socketPort));
     }
 
+    /**
+     * 初始化
+     */
     private void init()
     {
-        loggerInstanceManager = new LoggerInstanceManager(new FileEnv(config.getLogPath(), config.getLogFileName()));
+        // 日志管理器
+        loggerInstanceManager = new LoggerInstanceManager();
+        loggerInstanceManager.addEnvironment(new FileEnv(config.getLogPath(), config.getLogFileName()));
+        loggerInstanceManager.addEnvironment(config.getColorSupportLevel() == null
+                ? new ConsoleEnv() : new ConsoleColoredEnv(config.getColorSupportLevel()));
 
-        if (config.getColorSupportLevel() == null)
-        {
-            loggerInstanceManager.addEnvironment(new ConsoleEnv());
-        }
-        else
-        {
-            loggerInstanceManager.addEnvironment(new ConsoleColoredEnv(config.getColorSupportLevel()));
-        }
-
+        // 日志对象
         logger = loggerInstanceManager.getLoggerInstance("PicqBotX", config.isDebug());
         logger.timing.init();
         logResource(logger, config.getColorSupportLevel() == null ? "splash" : "splash-precolored", "version", VERSION);
         logInitDone(logger, "日志管理器     ", 0, 6);
 
+        // 用户和群缓存管理器
         userManager = new UserManager(this);
         groupUserManager = new GroupUserManager(this);
         groupManager = new GroupManager(this);
         logInitDone(logger, "缓存管理器     ", 1, 5);
 
-        // setDebug(debug);
+        // Debug设置没啦w
         logInitDone(logger, "DEBUG设置     ", 2, 4);
 
+        // 事件管理器
         eventManager = new EventManager(this);
         eventManager.registerListener(new HyExpressionListener());
         logInitDone(logger, "事件管理器     ", 3, 3);
 
+        // 账号管理器
         accountManager = new AccountManager();
         eventManager.registerListener(new AccountManagerListener(accountManager));
         logInitDone(logger, "账号管理器     ", 4, 2);
 
+        // HTTP监听服务器
         httpServer = new HttpServer(config.getSocketPort(), this);
         logInitDone(logger, "HTTP监听服务器 ", 5, 1);
 
