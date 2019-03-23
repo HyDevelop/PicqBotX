@@ -20,15 +20,14 @@ import cc.moecraft.logger.environments.FileEnv;
 import cc.moecraft.logger.format.AnsiColor;
 import cc.moecraft.utils.HyExpressionResolver;
 import cc.moecraft.utils.ThreadUtils;
-import cc.moecraft.utils.cli.ResourceUtils;
 import cn.hutool.http.HttpException;
 import lombok.Getter;
 
 import static cc.moecraft.icq.PicqConstants.HTTP_API_VERSION_DETECTION;
 import static cc.moecraft.icq.PicqConstants.VERSION;
 import static cc.moecraft.icq.utils.MiscUtils.logInitDone;
+import static cc.moecraft.icq.utils.MiscUtils.logResource;
 import static cc.moecraft.logger.format.AnsiColor.GREEN;
-import static cc.moecraft.logger.format.AnsiFormat.replaceAllFormatWithANSI;
 
 /**
  * The class {@code PicqBotX} is the main controller class of all the
@@ -135,9 +134,7 @@ public class PicqBotX
 
         logger = loggerInstanceManager.getLoggerInstance("PicqBotX", config.isDebug());
         logger.timing.init();
-
         logResource(logger, config.getColorSupportLevel() == null ? "splash" : "splash-precolored", "version", VERSION);
-
         logInitDone(logger, "日志管理器     ", 0, 6);
 
         userManager = new UserManager(this);
@@ -304,11 +301,5 @@ public class PicqBotX
     public void setUniversalHyExpSupport(boolean value, boolean safeMode)
     {
         hyExpressionResolver = value ? new HyExpressionResolver(safeMode) : null;
-    }
-
-    private void logResource(HyLogger logger, String name, Object... variablesAndReplacements)
-    {
-        ResourceUtils.printResource(getClass().getClassLoader(), s -> logger.log(replaceAllFormatWithANSI(s)),
-                name, variablesAndReplacements);
     }
 }
