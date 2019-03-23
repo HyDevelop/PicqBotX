@@ -159,6 +159,15 @@ public class IcqHttpApi extends HttpApiBase
     }
 
     /**
+     * 抢走酷Q的曲奇饼w
+     *
+     * @return Cookies
+     */
+    public ReturnData<RCookies> getCookies()
+    {
+        return send(RCookies.class, GET_COOKIES);
+    }
+    /**
      * 获取插件运行状态
      * @return 插件运行状态
      */
