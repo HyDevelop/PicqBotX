@@ -3,6 +3,7 @@ package cc.moecraft.icq.receiver;
 import cc.moecraft.icq.PicqBotX;
 import cc.moecraft.icq.exceptions.HttpServerException;
 import cc.moecraft.logger.HyLogger;
+import lombok.Getter;
 
 /**
  * The class {@code HttpServerInterface} is a http server to receive and
@@ -31,6 +32,20 @@ public abstract class HttpServer
      * 日志对象
      */
     protected final HyLogger logger;
+
+    /**
+     * 构造一个Http服务器
+     *
+     * @param port 端口
+     * @param bot 机器人
+     */
+    protected HttpServer(int port, PicqBotX bot)
+    {
+        this.port = port;
+        this.bot = bot;
+
+        logger = bot.getLogger();
+    }
 
     /**
      * 在当前线程启动HTTP服务器
