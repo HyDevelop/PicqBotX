@@ -2,7 +2,7 @@ package cc.moecraft.icq;
 
 import cc.moecraft.icq.event.events.local.EventLocalHttpFailEvent;
 import cc.moecraft.icq.event.events.local.EventLocalHttpReceiveEvent;
-import cc.moecraft.icq.exceptions.HttpServerStartFailedException;
+import cc.moecraft.icq.exceptions.HttpServerException;
 import cc.moecraft.logger.HyLogger;
 import cc.moecraft.logger.format.AnsiColor;
 import cc.moecraft.utils.ExceptionUtils;
@@ -91,10 +91,10 @@ public class HttpServerOld
     /**
      * 启动HTTP服务器
      *
-     * @throws HttpServerStartFailedException 启动失败
+     * @throws HttpServerException 启动失败
      */
     @SuppressWarnings("deprecation")
-    public void start() throws HttpServerStartFailedException
+    public void start() throws HttpServerException
     {
         ServerSocket serverSocket;
         try
@@ -104,7 +104,7 @@ public class HttpServerOld
         }
         catch (IOException e)
         {
-            throw new HttpServerStartFailedException(logger, e);
+            throw new HttpServerException(logger, e);
         }
 
         Socket socket = null;
