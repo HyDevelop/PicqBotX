@@ -1,6 +1,8 @@
 package cc.moecraft.icq.receiver;
 
+import cc.moecraft.icq.PicqBotX;
 import cc.moecraft.icq.exceptions.HttpServerException;
+import cc.moecraft.logger.HyLogger;
 
 /**
  * The class {@code HttpServerInterface} is a http server to receive and
@@ -15,7 +17,20 @@ import cc.moecraft.icq.exceptions.HttpServerException;
  */
 public abstract class HttpServer
 {
+    /**
+     * 端口号 (0~65535)
+     */
+    private final int port;
 
+    /**
+     * 机器人对象
+     */
+    private final PicqBotX bot;
+
+    /**
+     * 日志对象
+     */
+    protected final HyLogger logger;
 
     /**
      * 在当前线程启动HTTP服务器
