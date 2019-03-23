@@ -185,4 +185,7 @@ public class HttpApiTest
     {
         api.setGroupCard(TEST_RECEIVE_GR, TEST_RECEIVE_QQ, "UT-GC");
     }
+
+    // TODO: setGroupLeave
+
 }
