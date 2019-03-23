@@ -167,6 +167,16 @@ public class IcqHttpApi extends HttpApiBase
     {
         return send(RCookies.class, GET_COOKIES);
     }
+
+    /**
+     * 获取CSRF Token
+     *
+     * @return CSRF Token
+     */
+    public ReturnData<RCsrfToken> getCsrfToken()
+    {
+        return send(RCsrfToken.class, GET_CSRF_TOKEN);
+    }
     /**
      * 获取插件运行状态
      * @return 插件运行状态
