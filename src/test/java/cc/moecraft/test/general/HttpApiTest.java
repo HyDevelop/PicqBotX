@@ -125,4 +125,10 @@ public class HttpApiTest
     {
         api.sendGroupMsg(TEST_RECEIVE_GR, "Unit test - testGM()");
     }
+
+    @Test
+    public void testGMAutoEscape()
+    {
+        api.sendGroupMsg(TEST_RECEIVE_GR, "Unit test - testGMAutoEscape()", true);
+    }
 }
