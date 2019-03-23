@@ -71,4 +71,10 @@ public class HttpApiTest
     {
         logger.debug(api.getVIPInfo(TEST_RECEIVE_QQ).toString());
     }
+
+    @Test
+    public void testGetGroupList()
+    {
+        logger.debug(api.getGroupList().toString());
+    }
 }
