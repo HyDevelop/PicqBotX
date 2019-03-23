@@ -188,4 +188,9 @@ public class HttpApiTest
 
     // TODO: setGroupLeave
 
+    @Test
+    public void testSetGroupSpecialTitle()
+    {
+        api.setGroupSpecialTitle(TEST_RECEIVE_GR, TEST_RECEIVE_QQ, "UT-GC", 200);
+    }
 }
