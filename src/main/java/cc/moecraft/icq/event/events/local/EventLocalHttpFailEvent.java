@@ -13,9 +13,9 @@ import lombok.EqualsAndHashCode;
 @AllArgsConstructor
 public class EventLocalHttpFailEvent extends EventLocal
 {
-    public FailType fail; // 怎样失败的
+    public Reason fail; // 怎样失败的
 
-    public enum FailType
+    public enum Reason
     {
         unknown, requestIsEmpty,
         incorrectVersion, incorrectCharset, incorrectApplicationType,
