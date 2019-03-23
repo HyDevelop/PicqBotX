@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
 /**
  * 此类由 Hykilpikonna 在 2018/08/25 创建!
@@ -18,17 +19,27 @@ import java.util.Map;
  *
  * @author Hykilpikonna
  */
+@Getter
 public class AccountManager
 {
-    @Getter
+    /**
+     * 机器人账号 (酷Q地址) 列表
+     */
     private final ArrayList<BotAccount> accounts;
 
-    @Getter
-    private Map<Long, Map<BotAccount, Long>> groupAccountIndex; // 群索引, <群号, <加了群的机器人号, 发送消息数量>>
+    /**
+     * 群索引, [群号, [加了群的机器人号, 发送消息数量]]
+     */
+    private Map<Long, Map<BotAccount, Long>> groupAccountIndex;
 
-    @Getter
-    private Map<Long, BotAccount> idIndex; // 机器人QQ号索引, <QQ号, 机器人号实例>
+    /**
+     * 机器人QQ号索引, [QQ号, 机器人号实例]
+     */
+    private Map<Long, BotAccount> idIndex;
 
+    /**
+     * 构造器: 初始化账号列表
+     */
     public AccountManager()
     {
         accounts = new ArrayList<>();
@@ -54,20 +65,21 @@ public class AccountManager
      */
     public BotAccount getOptimal(long groupId)
     {
-        BotAccount minQq = null;
+        BotAccount minAccount = null;
 
-        long min = Long.MAX_VALUE;
-        for (Map.Entry<BotAccount, Long> groupAccountEntry : groupAccountIndex.get(groupId).entrySet())
+        long minMessages = Long.MAX_VALUE;
+        for (Entry<BotAccount, Long> entry : groupAccountIndex.get(groupId).entrySet())
         {
-            if (groupAccountEntry.getValue() >= min)
+            if (entry.getValue() >= minMessages)
             {
                 continue;
             }
 
-            minQq = groupAccountEntry.getKey();
-            min = groupAccountEntry.getValue();
+            minAccount = entry.getKey();
+            minMessages = entry.getValue();
         }
-        return minQq;
+
+        return minAccount;
     }
 
     /**
@@ -75,29 +87,45 @@ public class AccountManager
      */
     public void refreshCache()
     {
-        this.groupAccountIndex = new HashMap<>();
-        this.idIndex = new HashMap<>();
+        // Initialize indexes
+        groupAccountIndex = new HashMap<>();
+        idIndex = new HashMap<>();
 
+        // Loop through all of the accounts.
         for (BotAccount account : accounts)
         {
-            for (RGroup rGroup : account.getHttpApi().getGroupList().getData())
+            // Loop through all of the groups for each account.
+            for (RGroup group : account.getHttpApi().getGroupList().getData())
             {
-                if (!groupAccountIndex.containsKey(rGroup.groupId))
+                // Register the group to the index.
+                if (!groupAccountIndex.containsKey(group.groupId))
                 {
-                    groupAccountIndex.put(rGroup.groupId, new HashMap<>());
+                    groupAccountIndex.put(group.groupId, new HashMap<>());
                 }
-                this.groupAccountIndex.get(rGroup.groupId).put(account, 0L);
-                this.idIndex.put(account.getId(), account);
+
+                // Set the group message count to 0 and add to ID index.
+                groupAccountIndex.get(group.groupId).put(account, 0L);
+                idIndex.put(account.getId(), account);
             }
         }
     }
 
+    /**
+     * 获取未指定账号的API. (推荐只有一个账号的时候用)
+     *
+     * @return 第一个API.
+     */
     public IcqHttpApi getNonAccountSpecifiedApi()
     {
         return accounts.size() < 1 ? null : accounts.get(0).getHttpApi();
     }
 
-    void recordMessage(EventLocalSendGroupMessage event)
+    /**
+     * 记录消息
+     *
+     * @param event 事件
+     */
+    protected void recordMessage(EventLocalSendGroupMessage event)
     {
         Map<BotAccount, Long> map = groupAccountIndex.get(event.getId());
         map.put(event.getBotAccount(), map.get(event.getBotAccount()) + 1);
