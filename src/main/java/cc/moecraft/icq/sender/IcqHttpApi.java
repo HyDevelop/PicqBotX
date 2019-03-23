@@ -140,6 +140,16 @@ public class IcqHttpApi extends HttpApiBase
     }
 
     /**
+     * 检查是否可以发送语音
+     *
+     * @return 是否可以发送语音
+     */
+    public boolean canSendRecord()
+    {
+        return send(RBoolean.class, CAN_SEND_RECORD).getData().getYes();
+    }
+
+    /**
      * 获取酷 Q 及 HTTP API 插件的版本信息
      * @return 酷 Q 及 HTTP API 插件的版本信息
      */
