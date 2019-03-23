@@ -89,4 +89,10 @@ public class HttpApiTest
     {
         logger.debug(api.getGroupInfo(TEST_RECEIVE_GR).toString());
     }
+
+    @Test
+    public void testGetGroupMemberList()
+    {
+        logger.debug(api.getGroupMemberList(TEST_RECEIVE_GR).toString());
+    }
 }
