@@ -65,4 +65,10 @@ public class HttpApiTest
     {
         logger.debug(api.getStrangerInfo(TEST_RECEIVE_QQ).toString());
     }
+
+    @Test
+    public void testGetVIPInfo()
+    {
+        logger.debug(api.getVIPInfo(TEST_RECEIVE_QQ).toString());
+    }
 }
