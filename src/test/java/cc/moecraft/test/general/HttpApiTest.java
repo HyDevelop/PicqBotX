@@ -193,4 +193,16 @@ public class HttpApiTest
     {
         api.setGroupSpecialTitle(TEST_RECEIVE_GR, TEST_RECEIVE_QQ, "UT-GC", 200);
     }
+
+    // Manual test: setFriendAndRequest, setGroupAndRequest, approveGroupRequest, setRestart
+
+    @Test
+    public void testCleanDataDir()
+    {
+        api.cleanDataDir();
+    }
+
+    // Manual test: cleanPluginLog
+    // 不能清Log哇 (╯‵□′)╯︵┻━┻
+
 }
