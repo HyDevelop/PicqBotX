@@ -158,4 +158,11 @@ public class HttpApiTest
     {
         api.setGroupBan(TEST_RECEIVE_GR, TEST_RECEIVE_QQ, 1);
     }
+
+    @Test
+    public void testGroupWholeBan()
+    {
+        api.setGroupWholeBan(TEST_RECEIVE_GR, true);
+        api.setGroupWholeBan(TEST_RECEIVE_GR, false);
+    }
 }
