@@ -1,8 +1,10 @@
 package cc.moecraft.icq.utils;
 
 import cc.moecraft.logger.HyLogger;
+import cc.moecraft.utils.cli.ResourceUtils;
 
 import static cc.moecraft.logger.format.AnsiColor.*;
+import static cc.moecraft.logger.format.AnsiFormat.replaceAllFormatWithANSI;
 
 /**
  * The class {@code MiscUtils} is an utilities class for random things.
@@ -44,5 +46,18 @@ public class MiscUtils
                 Math.round(logger.timing.getMilliseconds() * 100d) / 100d));
 
         logger.timing.reset();
+    }
+
+    /**
+     * 日志一个资源
+     *
+     * @param logger Logger
+     * @param name 资源名
+     * @param vars 变量
+     */
+    public static void logResource(HyLogger logger, String name, Object... vars)
+    {
+        ResourceUtils.printResource(MiscUtils.class.getClassLoader(),
+                s -> logger.log(replaceAllFormatWithANSI(s)), name, vars);
     }
 }
