@@ -130,6 +130,16 @@ public class IcqHttpApi extends HttpApiBase
     }
 
     /**
+     * 检查是否可以发送图片
+     *
+     * @return 是否可以发送图片
+     */
+    public boolean canSendImage()
+    {
+        return send(RBoolean.class, CAN_SEND_IMAGE).getData().getYes();
+    }
+
+    /**
      * 获取酷 Q 及 HTTP API 插件的版本信息
      * @return 酷 Q 及 HTTP API 插件的版本信息
      */
