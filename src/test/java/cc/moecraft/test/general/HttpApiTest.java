@@ -152,4 +152,10 @@ public class HttpApiTest
     {
         // 没有人可以踢哇 (╯‵□′)╯︵┻━┻
     }
+
+    @Test
+    public void testGroupBan()
+    {
+        api.setGroupBan(TEST_RECEIVE_GR, TEST_RECEIVE_QQ, 1);
+    }
 }
