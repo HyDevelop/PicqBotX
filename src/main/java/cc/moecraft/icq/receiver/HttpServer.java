@@ -16,6 +16,7 @@ import lombok.Getter;
  * @author Vanilla (https://github.com/VergeDX)
  * @since 2019-03-23 12:55
  */
+@Getter
 public abstract class HttpServer
 {
     /**
