@@ -31,12 +31,15 @@ import static cc.moecraft.logger.format.AnsiColor.GREEN;
 import static cc.moecraft.logger.format.AnsiFormat.replaceAllFormatWithANSI;
 
 /**
- * 此类由 Hykilpikonna 在 2018/05/24 创建!
- * Created by Hykilpikonna on 2018/05/24!
- * Github: https://github.com/hykilpikonna
- * QQ: admin@moecraft.cc -OR- 871674895
+ * The class {@code PicqBotX} is the main controller class of all the
+ * components of the CoolQ bot program.
+ * <p>
+ * Class created by the HyDEV Team on 2019-03-23!
  *
- * @author Hykilpikonna
+ * @author HyDEV Team (https://github.com/HyDevelop)
+ * @author Hykilpikonna (https://github.com/hykilpikonna)
+ * @author Vanilla (https://github.com/VergeDX)
+ * @since 2019-03-23 12:46
  */
 @Getter
 public class PicqBotX
