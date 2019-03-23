@@ -28,6 +28,9 @@ public class HttpApiTest
     private static final long TEST_RECEIVE_GR = 491046707; // 用来测试的群
 
     private static PicqBotX bot;
+    private static IcqHttpApi api;
+    private static HyLogger logger;
+
     @BeforeClass
     public static void init()
     {
