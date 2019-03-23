@@ -31,6 +31,7 @@ public class IcqHttpApi extends HttpApiBase
 
     /**
      * 发送请求
+     *
      * @param request 请求
      * @param parameters 参数
      * @return 响应
@@ -42,6 +43,7 @@ public class IcqHttpApi extends HttpApiBase
 
     /**
      * 获取登录号信息
+     *
      * @return 登录号信息
      */
     public ReturnData<RLoginInfo> getLoginInfo()
@@ -51,6 +53,7 @@ public class IcqHttpApi extends HttpApiBase
 
     /**
      * 获取陌生人信息
+     *
      * @param qq QQ号
      * @param noCache 是否不使用缓存（使用缓存可能更新不及时，但响应更快）
      * @return 陌生人信息
@@ -61,7 +64,8 @@ public class IcqHttpApi extends HttpApiBase
     }
 
     /**
-     * 获取陌生人信息, 默认使用缓存
+     * 获取陌生人信息, 默认不使用缓存
+     *
      * @param qq QQ号
      * @return 陌生人信息
      */
@@ -72,6 +76,7 @@ public class IcqHttpApi extends HttpApiBase
 
     /**
      * 获取用户VIP信息
+     *
      * @param qq QQ号
      * @return VIP信息
      */
@@ -82,6 +87,7 @@ public class IcqHttpApi extends HttpApiBase
 
     /**
      * 获取群列表
+     *
      * @return 群列表
      */
     public ReturnListData<RGroup> getGroupList()
@@ -117,6 +123,7 @@ public class IcqHttpApi extends HttpApiBase
 
     /**
      * 获取群信息
+     *
      * @param groupId 群号
      * @return 群信息
      */
@@ -127,6 +134,7 @@ public class IcqHttpApi extends HttpApiBase
 
     /**
      * 获取群成员列表
+     *
      * @param groupId 群号
      * @return 群成员列表
      */
