@@ -165,4 +165,11 @@ public class HttpApiTest
         api.setGroupWholeBan(TEST_RECEIVE_GR, true);
         api.setGroupWholeBan(TEST_RECEIVE_GR, false);
     }
+
+    @Test
+    public void testSetGroupAdmin()
+    {
+        api.setGroupAdmin(TEST_RECEIVE_GR, TEST_RECEIVE_QQ, true);
+        api.setGroupAdmin(TEST_RECEIVE_GR, TEST_RECEIVE_QQ, false);
+    }
 }
