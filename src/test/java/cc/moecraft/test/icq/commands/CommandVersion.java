@@ -11,6 +11,7 @@ import cc.moecraft.icq.user.User;
 import java.util.ArrayList;
 
 import static cc.moecraft.icq.PicqConstants.VERSION;
+import static cc.moecraft.utils.StringUtils.capitalizeFirstLetterOfEachWord;
 
 /**
  * 此类由 Hykilpikonna 在 2018/05/26 创建!
@@ -44,10 +45,10 @@ public class CommandVersion implements EverywhereCommand // 继承EverywhereComm
         // 返回版本信息
         return new MessageBuilder()
                 .add("PicqBotX v").add(VERSION).newLine()
-                .add("- 酷Q: ").add(versionInfo.getCoolqEdition()).newLine()
-                .add("- Http 插件: ").add(versionInfo.getPluginVersion())
+                .add("- 酷Q版本: ").add(capitalizeFirstLetterOfEachWord(versionInfo.getCoolqEdition())).newLine()
+                .add("- 插件版本: ").add(versionInfo.getPluginVersion())
                 .add(" Build ").add(versionInfo.getPluginBuildNumber()).newLine()
-                .add("- 运行状态: Good: ").add(status.getGood())
+                .add("- 运行状态: ").add(status.getGood() ? "Good" : "Bad")
                 .toString();
     }
 }
