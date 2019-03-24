@@ -145,7 +145,7 @@ public class EventParser
      *
      * @param json JSON输入
      */
-    public void callMessage(JsonObject json)
+    private void callMessage(JsonObject json)
     {
         // 获取消息类型
         String messageType = json.get(EVENT_KEY_MESSAGE_TYPE).getAsString();
@@ -189,7 +189,7 @@ public class EventParser
      *
      * @param json JSON输入
      */
-    public void callRequest(JsonObject json)
+    private void callRequest(JsonObject json)
     {
         String requestType = json.get(EVENT_KEY_REQUEST_TYPE).getAsString();
         switch (requestType)
@@ -239,7 +239,7 @@ public class EventParser
      *
      * @param json JSON输入
      */
-    public void callNotice(JsonObject json)
+    private void callNotice(JsonObject json)
     {
         String noticeType = json.get(EVENT_KEY_NOTICE_TYPE).getAsString();
         switch (noticeType)
