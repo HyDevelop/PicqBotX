@@ -50,52 +50,46 @@ public class EventManager
     private HashMap<String, ArrayList<RegisteredListenerMethod>> registeredMethods = new HashMap<>();
 
     /**
-     * 事件的类
+     * 所有可以注册的事件的类
+     * 版本 v3.0.0.611 后, 反射注册类改为手动注册类
+     * 因为这样可以减少 ≈600ms 的启动延迟
      */
-    private static final Set<Class<? extends Event>> eventClasses;
+    private static final Set<Class<? extends Event>> eventClasses = new HashSet<>(asList(
+            EventLocal.class,
+            EventLocalException.class,
+            EventLocalHttpFail.class,
+            EventLocalHttpReceive.class,
+            EventLocalSendDiscussMessage.class,
+            EventLocalSendGroupMessage.class,
+            EventLocalSendPrivateMessage.class,
+            EventLocalSendMessage.class,
 
-    static
-    {
-        // 版本 v3.0.0.611 后, 反射注册类改为手动注册类
-        // 因为这样可以 -600ms 的启动延迟
-        eventClasses = new HashSet<>();
-        eventClasses.addAll(asList(
-                EventLocal.class,
-                EventLocalException.class,
-                EventLocalHttpFail.class,
-                EventLocalHttpReceive.class,
-                EventLocalSendDiscussMessage.class,
-                EventLocalSendGroupMessage.class,
-                EventLocalSendPrivateMessage.class,
-                EventLocalSendMessage.class,
+            EventDiscussMessage.class,
+            EventGroupMessage.class,
+            EventGroupOrDiscussMessage.class,
+            EventPrivateMessage.class,
+            EventMessage.class,
 
-                EventDiscussMessage.class,
-                EventGroupMessage.class,
-                EventGroupOrDiscussMessage.class,
-                EventPrivateMessage.class,
-                EventMessage.class,
+            EventNoticeGroupAdminChange.class,
+            EventNoticeGroupAdminRemove.class,
+            EventNoticeGroupAdminSet.class,
+            EventNoticeGroupMemberDecrease.class,
+            EventNoticeGroupMemberLeave.class,
+            EventNoticeGroupMemberKick.class,
+            EventNoticeGroupMemberKickBot.class,
+            EventNoticeGroupMemberApprove.class,
+            EventNoticeGroupMemberInvite.class,
+            EventNoticeGroupMemberIncrease.class,
+            EventNoticeGroupMemberChange.class,
+            EventNoticeFriendAdd.class,
+            EventNoticeGroupUpload.class,
+            EventNotice.class,
 
-                EventNoticeGroupAdminChange.class,
-                EventNoticeGroupAdminRemove.class,
-                EventNoticeGroupAdminSet.class,
-                EventNoticeGroupMemberDecrease.class,
-                EventNoticeGroupMemberLeave.class,
-                EventNoticeGroupMemberKick.class,
-                EventNoticeGroupMemberKickBot.class,
-                EventNoticeGroupMemberApprove.class,
-                EventNoticeGroupMemberInvite.class,
-                EventNoticeGroupMemberIncrease.class,
-                EventNoticeGroupMemberChange.class,
-                EventNoticeFriendAdd.class,
-                EventNoticeGroupUpload.class,
-                EventNotice.class,
-
-                EventFriendRequest.class,
-                EventGroupAddRequest.class,
-                EventGroupInviteRequest.class,
-                EventRequest.class
-        ));
-    }
+            EventFriendRequest.class,
+            EventGroupAddRequest.class,
+            EventGroupInviteRequest.class,
+            EventRequest.class
+    ));
 
     public EventManager(PicqBotX bot)
     {
