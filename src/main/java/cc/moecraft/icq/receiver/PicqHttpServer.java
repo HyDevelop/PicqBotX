@@ -104,6 +104,9 @@ public class PicqHttpServer
             // 输出Debug
             printDebug(exchange, data);
 
+            // 调用事件
+            bot.getEventManager().getEventParser().call(data);
+
             // 回复成功
             respondAndClose(exchange, 204, "");
         }
