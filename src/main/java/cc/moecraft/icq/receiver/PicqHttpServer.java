@@ -186,4 +186,18 @@ public class PicqHttpServer
         out.write(bytes);
         out.close();
     }
+
+    /**
+     * 输出Debug消息
+     *
+     * @param exchange 请求
+     * @param data 数据
+     */
+    private void printDebug(HttpExchange exchange, String data)
+    {
+        if (!bot.getConfig().isDebug()) return;
+
+        logger.debug("收到新请求: {}", exchange.getRequestHeaders().getFirst("user-agent"));
+        logger.debug("- 数据: {}", data);
+    }
 }
