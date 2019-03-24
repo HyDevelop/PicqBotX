@@ -22,12 +22,6 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>26.0-jre</version>
-        </dependency>
-
-        <dependency>
             <groupId>com.github.hydevelop</groupId>
             <artifactId>HyLogger</artifactId>
             <version>3.5.220</version>
