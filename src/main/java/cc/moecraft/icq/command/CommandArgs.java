@@ -8,7 +8,8 @@ import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Map;
+
+import static cc.moecraft.icq.utils.StringUtils.removeStartingSpace;
 
 /**
  * 此类由 Hykilpikonna 在 2018/05/05 创建!
@@ -26,46 +27,37 @@ public class CommandArgs
 
     private String commandName;
 
-    private ArrayList<IcqCommand> commandRunners;
+    private IcqCommand commandRunners;
 
     private ArrayList<String> args;
-
-    public static CommandArgs parse(CommandManager commandManager, String fullCommand, boolean isGroup)
-            throws NotACommandException, CommandNotFoundException
-    {
-        return parse(commandManager.getPrefixes(), commandManager.getRegisteredCommands(), fullCommand, isGroup);
-    }
 
     /**
      * 从字符串消息转换为CommandArgs
      *
-     * @param prefixes 启用的前缀
-     * @param registeredCommands 已注册的指令
+     * @param manager 指令管理器
      * @param fullCommand 完整字符串消息
-     * @param isGroup 是不是群消息
-     * @return CommandArgs指令
+     * @param isGM 是不是群消息
+     * @return CommandArgs 指令参数
      * @throws NotACommandException 不是指令
      * @throws CommandNotFoundException 指令执行器未找到
      */
-    public static CommandArgs parse(String[] prefixes,
-                                    Map<String, ArrayList<IcqCommand>> registeredCommands, String fullCommand,
-                                    boolean isGroup) throws NotACommandException, CommandNotFoundException
+    public static CommandArgs parse(CommandManager manager, String fullCommand, boolean isGM)
+            throws NotACommandException, CommandNotFoundException
     {
         // 移除前缀前面的空格
         fullCommand = removeStartingSpace(fullCommand);
 
         // 获取前缀
-        String prefix = getPrefix(prefixes, fullCommand);
+        String prefix = getPrefix(manager.getPrefixes(), fullCommand);
 
         // 判断有没有前缀, 私聊不需要前缀
-        if (prefix.equals("") && isGroup)
+        if (prefix.equals("") && isGM)
         {
             throw new NotACommandException();
         }
 
         // 移除前缀, 和前缀与指令第一项之间的空格
-        fullCommand = fullCommand.substring(prefix.length());
-        fullCommand = removeStartingSpace(fullCommand);
+        fullCommand = removeStartingSpace(fullCommand.substring(prefix.length()));
 
         // 因为如果最后全是空格的话split会忽略这些空格, 所以要先在结尾添加一个字符
         fullCommand += " ;";
@@ -81,15 +73,13 @@ public class CommandArgs
         args.remove(0);
 
         // 确认指令存在
-        if (!registeredCommands.containsKey(command))
+        if (!manager.getCommands().containsKey(command))
         {
             throw new CommandNotFoundException();
         }
 
-        // 获取执行器
-        ArrayList<IcqCommand> commandsToRun = registeredCommands.get(command);
-
-        return new CommandArgs(prefix, command, commandsToRun, args);
+        // 获取执行器, 返回
+        return new CommandArgs(prefix, command, manager.getCommands().get(command), args);
     }
 
     /**
@@ -110,21 +100,5 @@ public class CommandArgs
         }
 
         return "";
-    }
-
-    /**
-     * 移除前面的空格
-     *
-     * @param original 源字符串
-     * @return 移除后的字符串
-     */
-    private static String removeStartingSpace(String original)
-    {
-        while (original.startsWith(" "))
-        {
-            original = original.substring(1);
-        }
-
-        return original;
     }
 }
