@@ -1,7 +1,6 @@
 package cc.moecraft.icq;
 
 import cc.moecraft.logger.environments.ColorSupportLevel;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.Accessors;
@@ -23,10 +22,9 @@ import static cc.moecraft.logger.environments.ColorSupportLevel.FORCED;
  * @author Vanilla (https://github.com/VergeDX)
  * @since 2019-03-21 18:40
  */
-@AllArgsConstructor
-@RequiredArgsConstructor
 @Data
 @Accessors(chain = true)
+@RequiredArgsConstructor
 public class PicqConfig
 {
     /** 接收端口 */
