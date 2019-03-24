@@ -23,13 +23,13 @@
 Maven 导入:
 --------
 
-没有添加 JitPack 的 Repo 的话首先添加 Repo,在 pom 里面把这些粘贴进去:
+没有添加 JitPack 的 Repo 的话首先添加 Repo, 在 pom 里面把这些粘贴进去:
 
 ```xml
 <repositories>
     <repository>
-    <id>jitpack.io</id>
-    <url>https://jitpack.io</url>
+        <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
     </repository>
 </repositories>
 ```
@@ -44,7 +44,7 @@ Maven 导入:
 </dependency>
 ```
 
-然后ReImport之后就导入好了!
+然后 Reimport 之后就导入好了!
 
 <br>
 
@@ -81,7 +81,7 @@ dependencies {
 配置环境:
 --------
 
-##### 注意: 下面的教程适用于 Windows `酷Q v5.11.13`, Linux 教程以后可能会进行补充<br>还有, HTTP 插件必须是版本`v4.4.0`, 暂时不会更新
+##### 注意: 下面的教程适用于 Windows `酷Q v5.13.2`, Linux 教程以后可能会进行补充<br>还有, HTTP 插件支持的版本是`v4.8.0`, `2019/03/25`刚更新
 
 #### 1. 下载 [酷Q](https://cqp.cc/)... (如果有 酷Q Pro 的话效果更好哦!)
 下载完后解压到你想安装的目录下<br>
