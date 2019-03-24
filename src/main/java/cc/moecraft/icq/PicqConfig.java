@@ -20,7 +20,7 @@ import static cc.moecraft.logger.environments.ColorSupportLevel.FORCED;
  * @since 2019-03-21 18:40
  */
 @Data
-@Builder
+@Builder(toBuilder = true)
 @AllArgsConstructor
 @RequiredArgsConstructor
 public class PicqConfig
