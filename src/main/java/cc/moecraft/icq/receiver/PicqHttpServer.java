@@ -122,6 +122,12 @@ public class PicqHttpServer
         String contentType = headers.getFirst("content-type");
         String userAgent = headers.getFirst("user-agent");
 
+        // 必须是 UTF-8
+        if (!contentType.toLowerCase().contains("charset=utf-8"))
+        {
+            return failed(Reason.INCORRECT_CHARSET, exchange);
+        }
+
         return true;
     }
 
