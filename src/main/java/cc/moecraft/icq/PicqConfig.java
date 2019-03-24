@@ -54,6 +54,9 @@ public class PicqConfig
     /** 是否暂停HTTP接收 */
     private boolean httpPaused = false;
 
+    /** X-Signature SHA1 验证秘钥 (设置为空就是不用秘钥w) */
+    private String secret = "";
+
     // 一次配置项 | Unchangeable config fields
     // 这里的配置init之后就不能变了w
 
