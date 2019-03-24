@@ -29,4 +29,18 @@ import static cc.moecraft.icq.PicqConstants.HTTP_API_VERSION_DETECTION;
 @Getter
 public class PicqHttpServer
 {
+    /**
+     * 端口号 (0~65535)
+     */
+    private final int port;
+
+    /**
+     * 机器人对象
+     */
+    private final PicqBotX bot;
+
+    /**
+     * 日志对象
+     */
+    protected final HyLogger logger;
 }
