@@ -1,18 +1,34 @@
 package cc.moecraft.icq.event;
 
 import cc.moecraft.icq.PicqBotX;
-import cc.moecraft.icq.event.events.local.EventLocalException;
-import cc.moecraft.icq.event.events.message.EventMessage;
+import cc.moecraft.icq.event.events.local.*;
+import cc.moecraft.icq.event.events.message.*;
+import cc.moecraft.icq.event.events.notice.EventNotice;
+import cc.moecraft.icq.event.events.notice.EventNoticeFriendAdd;
+import cc.moecraft.icq.event.events.notice.EventNoticeGroupUpload;
+import cc.moecraft.icq.event.events.notice.groupadmin.EventNoticeGroupAdminChange;
+import cc.moecraft.icq.event.events.notice.groupadmin.EventNoticeGroupAdminRemove;
+import cc.moecraft.icq.event.events.notice.groupadmin.EventNoticeGroupAdminSet;
+import cc.moecraft.icq.event.events.notice.groupmember.EventNoticeGroupMemberChange;
+import cc.moecraft.icq.event.events.notice.groupmember.decrease.EventNoticeGroupMemberDecrease;
+import cc.moecraft.icq.event.events.notice.groupmember.decrease.EventNoticeGroupMemberKick;
+import cc.moecraft.icq.event.events.notice.groupmember.decrease.EventNoticeGroupMemberKickBot;
+import cc.moecraft.icq.event.events.notice.groupmember.decrease.EventNoticeGroupMemberLeave;
+import cc.moecraft.icq.event.events.notice.groupmember.increase.EventNoticeGroupMemberApprove;
+import cc.moecraft.icq.event.events.notice.groupmember.increase.EventNoticeGroupMemberIncrease;
+import cc.moecraft.icq.event.events.notice.groupmember.increase.EventNoticeGroupMemberInvite;
+import cc.moecraft.icq.event.events.request.EventFriendRequest;
+import cc.moecraft.icq.event.events.request.EventGroupAddRequest;
+import cc.moecraft.icq.event.events.request.EventGroupInviteRequest;
+import cc.moecraft.icq.event.events.request.EventRequest;
 import cc.moecraft.icq.utils.CQUtils;
 import lombok.Getter;
-import org.reflections.Reflections;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Set;
+import java.util.*;
+
+import static java.util.Arrays.asList;
 
 /**
  * 此类由 Hykilpikonna 在 2018/05/24 创建!
@@ -33,17 +49,58 @@ public class EventManager
 
     private HashMap<String, ArrayList<RegisteredListenerMethod>> registeredListenerMethods = new HashMap<>();
 
-    private Set<Class<? extends Event>> eventClasses;
+    /**
+     * 事件的类
+     */
+    private static final Set<Class<? extends Event>> eventClasses;
+
+    static
+    {
+        // 版本 v3.0.0.611 后, 反射注册类改为手动注册类
+        // 因为这样可以 -600ms 的启动延迟
+        eventClasses = new HashSet<>();
+        eventClasses.addAll(asList(
+                EventLocal.class,
+                EventLocalException.class,
+                EventLocalHttpFail.class,
+                EventLocalHttpReceive.class,
+                EventLocalSendDiscussMessage.class,
+                EventLocalSendGroupMessage.class,
+                EventLocalSendPrivateMessage.class,
+                EventLocalSendMessage.class,
+
+                EventDiscussMessage.class,
+                EventGroupMessage.class,
+                EventGroupOrDiscussMessage.class,
+                EventPrivateMessage.class,
+                EventMessage.class,
+
+                EventNoticeGroupAdminChange.class,
+                EventNoticeGroupAdminRemove.class,
+                EventNoticeGroupAdminSet.class,
+                EventNoticeGroupMemberDecrease.class,
+                EventNoticeGroupMemberLeave.class,
+                EventNoticeGroupMemberKick.class,
+                EventNoticeGroupMemberKickBot.class,
+                EventNoticeGroupMemberApprove.class,
+                EventNoticeGroupMemberInvite.class,
+                EventNoticeGroupMemberIncrease.class,
+                EventNoticeGroupMemberChange.class,
+                EventNoticeFriendAdd.class,
+                EventNoticeGroupUpload.class,
+                EventNotice.class,
+
+                EventFriendRequest.class,
+                EventGroupAddRequest.class,
+                EventGroupInviteRequest.class,
+                EventRequest.class
+        ));
+    }
 
     public EventManager(PicqBotX bot)
     {
         this.bot = bot;
         this.eventParser = new EventParser(this);
-
-        // 为了性能, 暂时不支持自己添加事件
-        // 如果不加包名, 平均耗时4000ms, 加上包名, 平均耗时300ms
-        Reflections reflections = new Reflections("cc.moecraft.icq.event");
-        eventClasses = reflections.getSubTypesOf(Event.class);
     }
 
     /**
