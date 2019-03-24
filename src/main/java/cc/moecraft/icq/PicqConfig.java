@@ -35,21 +35,25 @@ public class PicqConfig
     /**
      * 是否输出Debug消息
      */
+    @Builder.Default
     private boolean debug = true; //TODO: change this to false
 
     /**
      * 是否跳过酷Q版本验证 (不推荐)
      */
+    @Builder.Default
     private boolean noVerify = false;
 
     /**
      * 是否启用异步
      */
+    @Builder.Default
     private boolean useAsync = false;
 
     /**
      * 是否启用维护模式
      */
+    @Builder.Default
     private boolean maintenanceMode = false;
 
 
@@ -59,21 +63,25 @@ public class PicqConfig
     /**
      * 是否开启多账号优化
      */
+    @Builder.Default
     private boolean multiAccountOptimizations = true;
 
     /**
      * Logger颜色支持级别
      */
+    @Builder.Default
     private ColorSupportLevel colorSupportLevel = FORCED;
 
     /**
      * Logger日志路径
      */
+    @Builder.Default
     private String logPath = "logs";
 
     /**
      * Logger日志文件名
      */
+    @Builder.Default
     private String logFileName = "PicqBotX-Log";
 
 
@@ -82,6 +90,7 @@ public class PicqConfig
     /**
      * 是否暂停事件
      */
+    @Builder.Default
     private boolean eventPaused = false;
 
     // HTTP服务器配置 | Http server config fields
@@ -89,6 +98,7 @@ public class PicqConfig
     /**
      * 是否暂停HTTP接收
      */
+    @Builder.Default
     private boolean httpPaused = false;
 
 }
