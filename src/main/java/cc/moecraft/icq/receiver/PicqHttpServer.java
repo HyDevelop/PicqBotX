@@ -94,7 +94,7 @@ public class PicqHttpServer
 
             System.out.println("Hi");
 
-            respondAndClose(exchange);
+            respondAndClose(exchange, 204, "");
         }
     }
 
