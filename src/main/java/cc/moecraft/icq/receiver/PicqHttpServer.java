@@ -101,6 +101,18 @@ public class PicqHttpServer
             out.write(response);
             out.close();
         }
+    }
+
+    /**
+     * 验证一个请求
+     *
+     * @param exchange 请求
+     * @return 是否为 CoolQ Http 请求
+     */
+    private boolean validate(HttpExchange exchange)
+    {
+        return true;
+    }
 
     /**
      * 报告失败
