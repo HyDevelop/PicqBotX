@@ -1,7 +1,6 @@
 package cc.moecraft.icq;
 
 import cc.moecraft.logger.environments.ColorSupportLevel;
-import lombok.Builder;
 import lombok.Data;
 
 import static cc.moecraft.logger.environments.ColorSupportLevel.FORCED;
@@ -22,7 +21,6 @@ import static cc.moecraft.logger.environments.ColorSupportLevel.FORCED;
  * @since 2019-03-21 18:40
  */
 @Data
-@Builder(toBuilder = true)
 public class PicqConfig
 {
     /** 接收端口 */
@@ -109,7 +107,7 @@ public class PicqConfig
         this.multiAccountOptimizations = true;
         this.eventPaused = false;
         this.httpPaused = false;
-        
+
         this.colorSupportLevel = FORCED;
         this.logPath = "logs";
         this.logFileName = "PicqBotX-Log";
