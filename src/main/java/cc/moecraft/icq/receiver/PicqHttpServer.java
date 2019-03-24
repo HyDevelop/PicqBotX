@@ -104,4 +104,17 @@ public class PicqHttpServer
         logger.debug("Http Failed: {}: {}", reason, exchange);
         return false;
     }
+
+    /**
+     * 报告版本错误
+     *
+     * @param currentVersion 当前版本
+     */
+    private void reportIncorrectVersion(String currentVersion)
+    {
+        logger.error("HTTP API请求版本不正确, 设置的兼容版本为: " + HTTP_API_VERSION_DETECTION);
+        logger.error("当前版本为: " + currentVersion);
+        logger.error("推荐更新这个类库或者HTTP API的版本");
+        logger.error("如果要无视版本检查, 请修改 HTTP_API_VERSION_DETECTION");
+    }
 }
