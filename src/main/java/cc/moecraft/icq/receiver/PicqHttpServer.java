@@ -117,6 +117,11 @@ public class PicqHttpServer
             return failed(Reason.INCORRECT_REQUEST_METHOD, exchange);
         }
 
+        // 获取头
+        Headers headers = exchange.getRequestHeaders();
+        String contentType = headers.getFirst("content-type");
+        String userAgent = headers.getFirst("user-agent");
+
         return true;
     }
 
