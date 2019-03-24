@@ -169,15 +169,17 @@ public class PicqHttpServer
      * 回复输出
      *
      * @param exchange 请求
+     * @param code HTTP返回码 (204 = CoolQ 处理成功)
+     * @param response 回复
      */
-    private void respondAndClose(HttpExchange exchange) throws IOException
+    private void respondAndClose(HttpExchange exchange, int code, String response) throws IOException
     {
-        byte[] response = "".getBytes();
+        byte[] bytes = response.getBytes();
 
         exchange.sendResponseHeaders(204, response.length);
 
         OutputStream out = exchange.getResponseBody();
-        out.write(response);
+        out.write(bytes);
         out.close();
     }
 }
