@@ -44,7 +44,7 @@ public class HttpApiTest
         bot.getEventManager().registerListeners(new TestListener(), new ExceptionListener());
 
         // 启用指令管理器, Unit test
-        bot.enableCommandManager(false, "ut -");
+        bot.enableCommandManager("ut -");
 
         api = bot.getAccountManager().getNonAccountSpecifiedApi();
         logger = bot.getLogger();
