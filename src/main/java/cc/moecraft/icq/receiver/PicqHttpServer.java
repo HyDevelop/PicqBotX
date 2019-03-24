@@ -69,7 +69,7 @@ public class PicqHttpServer
             HttpServer server = HttpServer.create(new InetSocketAddress(port), 0);
 
             // 添加监听器
-            server.createContext("/", httpExchange -> new PicqHttpHandler());
+            server.createContext("/", new PicqHttpHandler());
 
             // 启动
             server.start();
