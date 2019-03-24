@@ -17,4 +17,22 @@ import java.util.Formatter;
  */
 public class SHA1Utils
 {
+
+    /**
+     * 把Bytes转换为Hex字符串
+     *
+     * @param bytes Bytes
+     * @return Hex字符串
+     */
+    private static String toHexString(byte[] bytes)
+    {
+        Formatter formatter = new Formatter();
+
+        for (byte b : bytes)
+        {
+            formatter.format("%02x", b);
+        }
+
+        return formatter.toString();
+    }
 }
