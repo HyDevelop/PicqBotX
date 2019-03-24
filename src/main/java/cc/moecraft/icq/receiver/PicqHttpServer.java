@@ -90,14 +90,14 @@ public class PicqHttpServer
         @Override
         public void handle(HttpExchange exchange) throws IOException
         {
+            // 验证
             if (!validate(exchange))
             {
                 respondAndClose(exchange, 200, "Oh hi there! How are you?");
                 return;
             }
 
-            System.out.println("Hi");
-
+            // 回复成功
             respondAndClose(exchange, 204, "");
         }
     }
