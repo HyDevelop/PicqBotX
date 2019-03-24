@@ -43,4 +43,18 @@ public class PicqHttpServer
      * 日志对象
      */
     protected final HyLogger logger;
+
+    /**
+     * 构造一个Http服务器
+     *
+     * @param port 端口
+     * @param bot 机器人
+     */
+    public PicqHttpServer(int port, PicqBotX bot)
+    {
+        this.port = port;
+        this.bot = bot;
+
+        logger = bot.getLogger();
+    }
 }
