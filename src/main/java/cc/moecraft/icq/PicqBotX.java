@@ -201,34 +201,19 @@ public class PicqBotX
     }
 
     /**
-     * 启用指令系统
+     * 初始化指令管理器
      *
      * @param prefixes 前缀
      */
     public void enableCommandManager(String... prefixes)
     {
-        enableCommandManager(true, prefixes);
-    }
-
-    /**
-     * 启用指令系统
-     *
-     * @param registerAllCommands 是否自动注册所有指令
-     * @param prefixes 前缀
-     */
-    public void enableCommandManager(boolean registerAllCommands, String... prefixes)
-    {
         logger.timing.init();
 
-        commandManager = new CommandManager(groupManager, userManager, groupUserManager, prefixes);
-        if (registerAllCommands)
-        {
-            commandManager.registerAllCommands();
-        }
+        commandManager = new CommandManager(prefixes);
         eventManager.registerListener(new CommandListener(commandManager));
         logInitDone(logger, "指令管理器     ", 6, 0);
 
-        logger.timing.clear();
+        logger.timing.clear();  
     }
 
     /**
