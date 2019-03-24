@@ -57,4 +57,16 @@ public class PicqHttpServer
 
         logger = bot.getLogger();
     }
+
+    /**
+     * Http 监听器
+     */
+    private class PicqHttpHandler extends HttpHandler
+    {
+        @Override
+        public void handle(HttpExchange exchange) throws IOException
+        {
+            System.out.println("Hi");
+        }
+    }
 }
