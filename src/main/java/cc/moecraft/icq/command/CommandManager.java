@@ -181,7 +181,7 @@ public class CommandManager
                 {
                     event.respond(((GroupCommand) commandRunner).groupMessage(
                             (EventGroupMessage) event,
-                            groupUserManager.getUserFromID(user.id, group), group,
+                            groupUserManager.getUserFromID(user.getId(), group), group,
                             commandArgs.getCommandName(),
                             commandArgs.getArgs()));
                 }
@@ -190,7 +190,7 @@ public class CommandManager
                 {
                     event.respond(((DiscussCommand) commandRunner).discussMessage(
                             (EventDiscussMessage) event,
-                            groupUserManager.getUserFromID(user.id, group), group,
+                            groupUserManager.getUserFromID(user.getId(), group), group,
                             commandArgs.getCommandName(),
                             commandArgs.getArgs()));
                 }
