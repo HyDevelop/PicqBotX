@@ -1,6 +1,5 @@
 package cc.moecraft.test.icq.features.antirecall;
 
-import cc.moecraft.icq.command.CommandArgs;
 import cc.moecraft.icq.command.exceptions.CommandNotFoundException;
 import cc.moecraft.icq.command.exceptions.NotACommandException;
 import cc.moecraft.icq.event.EventHandler;
@@ -9,6 +8,8 @@ import cc.moecraft.icq.event.events.message.EventGroupMessage;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import static cc.moecraft.icq.command.CommandArgsParser.parse;
 
 /**
  * 此类由 Hykilpikonna 在 2018/06/13 创建!
@@ -27,8 +28,8 @@ public class AntiRecallListener extends IcqListener
     {
         try
         {
-            CommandArgs.parse(event.getBot().getCommandManager(), event.getMessage(), true);
-            return; // 如果是指令, 就忽略
+            parse(event.getBot().getCommandManager(), event.getMessage(), true);
+            // 如果是指令, 就忽略
         }
         catch (NotACommandException | CommandNotFoundException ignored)
         {
