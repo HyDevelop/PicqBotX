@@ -41,12 +41,13 @@ public class CommandVersion implements EverywhereCommand // 继承EverywhereComm
         RVersionInfo versionInfo = event.getHttpApi().getVersionInfo().getData();
         RStatus status = event.getHttpApi().getStatus().getData();
 
-        // 这里因为这个指令是用来查版本的, 所以直接返回字符串了
+        // 返回版本信息
         return new MessageBuilder()
-                .add("TestBot - PicqBotX v").add(VERSION).newLine()
-                .add("- 酷Q ").add(versionInfo.getCoolqEdition()).add(" HTTP插件: ")
-                .add(versionInfo.getPluginVersion()).add(" b").add(versionInfo.getPluginBuildNumber()).newLine()
-                .add("- 运行状态: Good: ").add(status.getGood()).add(", ").add(status.getPluginsGood())
+                .add("PicqBotX v").add(VERSION).newLine()
+                .add("- 酷Q: ").add(versionInfo.getCoolqEdition()).newLine()
+                .add("- Http 插件: ").add(versionInfo.getPluginVersion())
+                .add(" Build ").add(versionInfo.getPluginBuildNumber()).newLine()
+                .add("- 运行状态: Good: ").add(status.getGood())
                 .toString();
     }
 }
