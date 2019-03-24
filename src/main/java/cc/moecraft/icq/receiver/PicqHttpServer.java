@@ -176,7 +176,7 @@ public class PicqHttpServer
     {
         byte[] bytes = response.getBytes();
 
-        exchange.sendResponseHeaders(204, response.length);
+        exchange.sendResponseHeaders(code, bytes.length == 0 ? -1 : bytes.length);
 
         OutputStream out = exchange.getResponseBody();
         out.write(bytes);
