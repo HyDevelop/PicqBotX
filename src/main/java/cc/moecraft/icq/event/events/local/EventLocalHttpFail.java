@@ -11,7 +11,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @AllArgsConstructor
-public class EventLocalHttpFailEvent extends EventLocal
+public class EventLocalHttpFail extends EventLocal
 {
     public Reason fail; // 怎样失败的
 

@@ -14,7 +14,7 @@ import java.util.ArrayList;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class EventLocalHttpReceiveEvent extends EventLocal
+public class EventLocalHttpReceive extends EventLocal
 {
     public String[] info;
 
