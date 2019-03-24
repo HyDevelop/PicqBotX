@@ -92,5 +92,16 @@ public class PicqHttpServer
         {
             System.out.println("Hi");
         }
+
+    /**
+     * 报告失败
+     *
+     * @param reason 失败原因
+     */
+    private boolean failed(Reason reason, HttpExchange exchange)
+    {
+        getBot().getEventManager().call(new EventLocalHttpFail(reason));
+        logger.debug("Http Failed: {}: {}", reason, exchange);
+        return false;
     }
 }
