@@ -51,7 +51,7 @@ public class TestBot
         bot.enableCommandManager("bot -", "!", "/", "~", "！", "我以令咒命之，", "我以令咒命之, ", "test -");
 
         // Debug输出所有已注册的指令
-        bot.getLogger().debug(bot.getCommandManager().getRegisteredCommands().toString());
+        bot.getLogger().debug(bot.getCommandManager().getCommands().toString());
 
         // 启动机器人
         bot.startBot();

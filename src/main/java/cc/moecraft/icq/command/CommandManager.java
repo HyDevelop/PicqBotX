@@ -31,20 +31,12 @@ public class CommandManager
 {
     private final String[] prefixes;
 
-    /** 已注册的指令, String 是指令名, IcqCommand 是指令对象 */
-    private Map<String, ArrayList<IcqCommand>> registeredCommands = new HashMap<>();
-
-    private ConflictOperation conflictOperation;
-
-    public CommandManager(ConflictOperation conflictOperation, String... prefixes)
-    {
-        this.conflictOperation = conflictOperation;
-        this.prefixes = prefixes;
-    }
+    /** 已注册的指令, [指令名, 指令对象] */
+    private Map<String, IcqCommand> commands = new HashMap<>();
 
     public CommandManager(String... prefixes)
     {
-        this(ConflictOperation.ENABLE_ALL, prefixes);
+        this.prefixes = prefixes;
     }
 
     /**
@@ -81,54 +73,11 @@ public class CommandManager
      * 注册指令
      *
      * @param command 指令
-     * @return 是否注册成功
      */
-    public boolean registerCommand(IcqCommand command)
+    public void registerCommand(IcqCommand command)
     {
-        return registerCommandWithPrefix(command, "");
-    }
-
-    /**
-     * 注册指令
-     *
-     * @param command 指令
-     * @param prefix 指令独立前缀
-     * @return 是否注册成功
-     */
-    public boolean registerCommandWithPrefix(IcqCommand command, String prefix)
-    {
-        if (conflictOperation == ConflictOperation.ENABLE_ALL)
-        {
-            String baseKey = prefix + command.properties().getName().toLowerCase();
-
-            if (!registeredCommands.containsKey(baseKey))
-            {
-                registeredCommands.put(baseKey, new ArrayList<>());
-            }
-            registeredCommands.get(baseKey).add(command);
-
-            command.properties().getAlias().forEach(alias ->
-            {
-                String key = prefix + alias.toLowerCase();
-
-                if (!registeredCommands.containsKey(key))
-                {
-                    registeredCommands.put(key, new ArrayList<>());
-                }
-                registeredCommands.get(key).add(command);
-            });
-        }
-        else
-        {
-            registeredCommands.put(prefix + command.properties().getName().toLowerCase(), new ArrayList<>(Collections.singletonList(command)));
-            command.properties().getAlias().forEach(alias -> registeredCommands.put(prefix + alias.toLowerCase(), new ArrayList<>(Collections.singletonList(command))));
-        }
-        return true;
-    }
-
-    public boolean registerCommandWithAndWithoutPrefix(IcqCommand command, String prefix)
-    {
-        return registerCommandWithPrefix(command, prefix) && registerCommand(command);
+        commands.put(command.properties().getName().toLowerCase(), command);
+        command.properties().getAlias().forEach(alias -> commands.put(alias.toLowerCase(), command));
     }
 
     /**
@@ -153,7 +102,7 @@ public class CommandManager
 
         try
         {
-            args = parse(getPrefixes(), getRegisteredCommands(), event.getMessage(), isDM || isGM);
+            args = parse(getPrefixes(), getCommands(), event.getMessage(), isDM || isGM);
         }
         catch (NotACommandException e)
         {
@@ -218,7 +167,7 @@ public class CommandManager
     {
         ArrayList<IcqCommand> result = new ArrayList<>();
 
-        registeredCommands.forEach((k, v) -> v.forEach(command ->
+        commands.forEach((k, v) -> v.forEach(command ->
         {
             if (!result.contains(command))
             {
