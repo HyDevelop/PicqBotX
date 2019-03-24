@@ -10,8 +10,11 @@ import static cc.moecraft.logger.environments.ColorSupportLevel.FORCED;
 
 /**
  * The class {@code PicqConfig} stores the configuration for
- * {@code PicqBotX} in an object oriented way. Construct an object with
- * the toBuilder() method: {@code new PicqConfig().toBuilder().build();}
+ * {@code PicqBotX} in an object oriented way.
+ * <p>
+ * Construct an object with the toBuilder() method:
+ * {@code new PicqConfig().toBuilder().build();}
+ * ( https://www.baeldung.com/lombok-builder-default-value )
  * <p>
  * Class created by the HyDEV Team on 2019-03-21!
  *
