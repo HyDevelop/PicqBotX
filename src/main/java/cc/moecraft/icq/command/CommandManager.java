@@ -19,16 +19,20 @@ import java.util.Map;
 import static cc.moecraft.icq.command.CommandArgsParser.parse;
 
 /**
- * 此类由 Hykilpikonna 在 2018/05/26 创建!
- * Created by Hykilpikonna on 2018/05/26!
- * Github: https://github.com/hykilpikonna
- * QQ: admin@moecraft.cc -OR- 871674895
+ * The class {@code CommandManager} is a manager for command registration
+ * and execution.
+ * <p>
+ * Class created by the HyDEV Team on 2019-03-24!
  *
- * @author Hykilpikonna
+ * @author HyDEV Team (https://github.com/HyDevelop)
+ * @author Hykilpikonna (https://github.com/hykilpikonna)
+ * @author Vanilla (https://github.com/VergeDX)
+ * @since 2019-03-24 14:01
  */
 @Getter
 public class CommandManager
 {
+    /** 指令前缀 */
     private final String[] prefixes;
 
     /** 已注册的指令, [指令名, 指令对象] */
