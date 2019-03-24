@@ -92,7 +92,7 @@ public class PicqHttpServer
         public void handle(HttpExchange exchange) throws IOException
         {
             // 验证
-            if (!validate(exchange))
+            if (!validateHeader(exchange))
             {
                 respondAndClose(exchange, 200, "Oh hi there! How are you?");
                 return;
@@ -118,7 +118,7 @@ public class PicqHttpServer
      * @param exchange 请求
      * @return 是否为 CoolQ Http 请求
      */
-    private boolean validate(HttpExchange exchange)
+    private boolean validateHeader(HttpExchange exchange)
     {
         // 必须是 POST
         if (!exchange.getRequestMethod().toLowerCase().equals("post"))
