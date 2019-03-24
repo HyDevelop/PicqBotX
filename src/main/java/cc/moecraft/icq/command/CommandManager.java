@@ -128,7 +128,7 @@ public class CommandManager
                 isDM ? bot.getGroupManager().getGroupFromID(((EventDiscussMessage) event).getDiscussId()) : null;
 
         // 调用指令执行方法
-        for (IcqCommand runner : args.getCommandRunners())
+        for (IcqCommand runner : args.getCommandRunner())
         {
             if (isGM && runner instanceof GroupCommand)
             {
