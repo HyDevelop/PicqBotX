@@ -11,10 +11,10 @@ import cc.moecraft.icq.event.events.message.EventPrivateMessage;
 import cc.moecraft.icq.user.Group;
 import cc.moecraft.icq.user.User;
 import lombok.Getter;
-import org.reflections.Reflections;
 
-import java.lang.reflect.Modifier;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import static cc.moecraft.icq.command.CommandArgsParser.parse;
 
@@ -34,38 +34,26 @@ public class CommandManager
     /** 已注册的指令, [指令名, 指令对象] */
     private Map<String, IcqCommand> commands = new HashMap<>();
 
+    /**
+     * 构造一个指令管理器
+     *
+     * @param prefixes 前缀
+     */
     public CommandManager(String... prefixes)
     {
         this.prefixes = prefixes;
     }
 
     /**
-     * 自动循环commands下的所有包找指令类
-     * 然后反射实例注册
+     * 注册多个指令
+     *
+     * @param commands 多个指令
      */
-    public void registerAllCommands()
+    public void registerCommands(IcqCommand ... commands)
     {
-        // 不填包名就是全局扫描
-        Reflections reflections = new Reflections();
-
-        // 获取包下的所有继承Command的类
-        Set<Class<? extends IcqCommand>> commands = reflections.getSubTypesOf(IcqCommand.class);
-
-        // 循环注册
-        for (Class<? extends IcqCommand> command : commands)
+        for (IcqCommand command : commands)
         {
-            if (!command.isInterface() && !Modifier.isAbstract(command.getModifiers()))
-            {
-                try
-                {
-                    registerCommand(command.newInstance());
-                }
-                catch (InstantiationException | IllegalAccessException e)
-                {
-                    // 忽略出错的指令
-                    e.printStackTrace();
-                }
-            }
+            registerCommand(command);
         }
     }
 
@@ -87,9 +75,8 @@ public class CommandManager
      * !ecHO hi there
      *
      * @param event 事件
-     * @return 执行结果
      */
-    public RunResult runCommand(EventMessage event)
+    public void runCommand(EventMessage event)
     {
         PicqBotX bot = event.getBot();
 
@@ -104,20 +91,16 @@ public class CommandManager
         {
             args = parse(this, event.getMessage(), isDM || isGM);
         }
-        catch (NotACommandException e)
+        catch (NotACommandException | CommandNotFoundException e)
         {
-            return RunResult.NOT_A_COMMAND;
-        }
-        catch (CommandNotFoundException e)
-        {
-            return RunResult.COMMAND_NOT_FOUND;
+            return;
         }
 
         // 判断维护
         if (bot.getConfig().isMaintenanceMode())
         {
             event.respond(bot.getConfig().getMaintenanceResponse());
-            return RunResult.MAINTENANCE;
+            return;
         }
 
         // 获取发送者
@@ -151,9 +134,6 @@ public class CommandManager
             event.respond(((PrivateCommand) runner).privateMessage((EventPrivateMessage) event, user,
                     args.getCommandName(), args.getArgs()));
         }
-
-        // 成功
-        return RunResult.SUCCESS;
     }
 
     /**
@@ -178,11 +158,5 @@ public class CommandManager
         ArrayList<String> result = new ArrayList<>();
         getCommandList().forEach(command -> result.add(command.properties().getName()));
         return result;
-    }
-
-    public enum RunResult
-    {
-        NOT_A_COMMAND, COMMAND_NOT_FOUND,
-        SUCCESS, MAINTENANCE
     }
 }
