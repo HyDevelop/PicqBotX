@@ -278,7 +278,7 @@ public class PicqBotX
                 {
                     logger.error("验证失败, HTTP发送错误: ");
                 }
-                e.printStackTrace();
+                logger.error(e);
                 return false;
             }
             logger.log(AnsiColor.YELLOW + prefix + AnsiColor.GREEN + "  版本验证完成!");
