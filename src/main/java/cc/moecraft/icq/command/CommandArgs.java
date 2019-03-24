@@ -22,7 +22,7 @@ public class CommandArgs
 
     private String commandName;
 
-    private IcqCommand commandRunners;
+    private IcqCommand commandRunner;
 
     private ArrayList<String> args;
 }
