@@ -8,12 +8,15 @@ import cc.moecraft.icq.event.events.message.EventDiscussMessage;
 import cc.moecraft.icq.event.events.message.EventGroupMessage;
 import cc.moecraft.icq.event.events.message.EventMessage;
 import cc.moecraft.icq.event.events.message.EventPrivateMessage;
-import cc.moecraft.icq.user.*;
+import cc.moecraft.icq.user.Group;
+import cc.moecraft.icq.user.User;
 import lombok.Getter;
 import org.reflections.Reflections;
 
 import java.lang.reflect.Modifier;
 import java.util.*;
+
+import static cc.moecraft.icq.command.CommandArgs.parse;
 
 /**
  * 此类由 Hykilpikonna 在 2018/05/26 创建!
@@ -26,30 +29,22 @@ import java.util.*;
 @Getter
 public class CommandManager
 {
-    private final GroupManager groupManager;
-
-    private final UserManager userManager;
-
-    private final GroupUserManager groupUserManager;
-
     private final String[] prefixes;
 
-    private Map<String, ArrayList<IcqCommand>> registeredCommands = new HashMap<>();    // 已注册的指令, String 是指令名, IcqCommand 是指令对象
+    /** 已注册的指令, String 是指令名, IcqCommand 是指令对象 */
+    private Map<String, ArrayList<IcqCommand>> registeredCommands = new HashMap<>();
 
     private ConflictOperation conflictOperation;
 
-    public CommandManager(PicqBotX bot, ConflictOperation conflictOperation, String... prefixes)
+    public CommandManager(ConflictOperation conflictOperation, String... prefixes)
     {
-        this.groupUserManager = bot.getGroupUserManager();
-        this.groupManager = bot.getGroupManager();
-        this.userManager = bot.getUserManager();
         this.conflictOperation = conflictOperation;
         this.prefixes = prefixes;
     }
 
-    public CommandManager(PicqBotX bot, String... prefixes)
+    public CommandManager(String... prefixes)
     {
-        this(bot, ConflictOperation.ENABLE_ALL, prefixes);
+        this(ConflictOperation.ENABLE_ALL, prefixes);
     }
 
     /**
@@ -147,57 +142,18 @@ public class CommandManager
      */
     public RunResult runCommand(EventMessage event)
     {
+        PicqBotX bot = event.getBot();
+
+        final boolean isGM = event instanceof EventGroupMessage;
+        final boolean isDM = event instanceof EventDiscussMessage;
+        final boolean isPM = event instanceof EventPrivateMessage;
+
+        // 获取Args
+        CommandArgs args;
+
         try
         {
-            final boolean eventIsGroup = event instanceof EventGroupMessage;
-            final boolean eventIsDiscuss = event instanceof EventDiscussMessage;
-            final boolean eventIsPrivate = event instanceof EventPrivateMessage;
-
-            CommandArgs commandArgs = CommandArgs.parse(getPrefixes(), getRegisteredCommands(), event.getMessage(), eventIsDiscuss || eventIsGroup);
-            User user = userManager.getUserFromID(event.getSenderId());
-
-            if (event.getBot().getConfig().isMaintenanceMode())
-            {
-                event.respond("- 机器人正在维护 -");
-                return RunResult.MAINTENANCE;
-            }
-
-            Group group =
-                    eventIsGroup ? groupManager.getGroupFromID(((EventGroupMessage) event).getGroupId()) :
-                            eventIsDiscuss ? groupManager.getGroupFromID(((EventDiscussMessage) event).getDiscussId()) : null;
-
-            ArrayList<IcqCommand> commandRunners = commandArgs.getCommandRunners();
-
-            for (IcqCommand runner : commandRunners)
-            {
-                if (eventIsGroup && runner instanceof GroupCommand)
-                {
-                    event.respond(((GroupCommand) runner).groupMessage((EventGroupMessage) event,
-                            groupUserManager.getUserFromID(user.getId(), group), group,
-                            commandArgs.getCommandName(), commandArgs.getArgs()));
-                }
-
-                if (eventIsDiscuss && runner instanceof DiscussCommand)
-                {
-                    event.respond(((DiscussCommand) runner).discussMessage((EventDiscussMessage) event,
-                            groupUserManager.getUserFromID(user.getId(), group), group,
-                            commandArgs.getCommandName(), commandArgs.getArgs()));
-                }
-
-                if (eventIsPrivate && runner instanceof PrivateCommand)
-                {
-                    event.respond(((PrivateCommand) runner).privateMessage((EventPrivateMessage) event, user,
-                            commandArgs.getCommandName(), commandArgs.getArgs()));
-                }
-
-                if (runner instanceof EverywhereCommand)
-                {
-                    event.respond(((EverywhereCommand) runner).run(event, user,
-                            commandArgs.getCommandName(), commandArgs.getArgs()));
-                }
-            }
-
-            return RunResult.SUCCESS;
+            args = parse(getPrefixes(), getRegisteredCommands(), event.getMessage(), isDM || isGM);
         }
         catch (NotACommandException e)
         {
@@ -207,6 +163,50 @@ public class CommandManager
         {
             return RunResult.COMMAND_NOT_FOUND;
         }
+
+        // 判断维护
+        if (bot.getConfig().isMaintenanceMode())
+        {
+            event.respond(bot.getConfig().getMaintenanceResponse());
+            return RunResult.MAINTENANCE;
+        }
+
+        // 获取发送者
+        User user = bot.getUserManager().getUserFromID(event.getSenderId());
+
+        // 获取群
+        Group group = isGM ? bot.getGroupManager().getGroupFromID(((EventGroupMessage) event).getGroupId()) :
+                isDM ? bot.getGroupManager().getGroupFromID(((EventDiscussMessage) event).getDiscussId()) : null;
+
+        // 调用指令执行方法
+        for (IcqCommand runner : args.getCommandRunners())
+        {
+            if (isGM && runner instanceof GroupCommand)
+            {
+                event.respond(((GroupCommand) runner).groupMessage((EventGroupMessage) event,
+                        bot.getGroupUserManager().getUserFromID(user.getId(), group), group,
+                        args.getCommandName(), args.getArgs()));
+            }
+            if (isDM && runner instanceof DiscussCommand)
+            {
+                event.respond(((DiscussCommand) runner).discussMessage((EventDiscussMessage) event,
+                        bot.getGroupUserManager().getUserFromID(user.getId(), group), group,
+                        args.getCommandName(), args.getArgs()));
+            }
+            if (isPM && runner instanceof PrivateCommand)
+            {
+                event.respond(((PrivateCommand) runner).privateMessage((EventPrivateMessage) event, user,
+                        args.getCommandName(), args.getArgs()));
+            }
+            if (runner instanceof EverywhereCommand)
+            {
+                event.respond(((EverywhereCommand) runner).run(event, user,
+                        args.getCommandName(), args.getArgs()));
+            }
+        }
+
+        // 成功
+        return RunResult.SUCCESS;
     }
 
     /**
