@@ -1,8 +1,18 @@
 package cc.moecraft.test.icq;
 
 import cc.moecraft.icq.PicqBotX;
+import cc.moecraft.icq.command.interfaces.IcqCommand;
+import cc.moecraft.icq.event.IcqListener;
+import cc.moecraft.test.icq.commands.*;
 import cc.moecraft.test.icq.features.annoy.AnnoyingListener;
+import cc.moecraft.test.icq.features.annoy.CommandAnnoy;
 import cc.moecraft.test.icq.features.antirecall.AntiRecallListener;
+import cc.moecraft.test.icq.features.antirecall.CommandAntiRecall;
+import cc.moecraft.test.icq.features.antirecall.CommandAntiRecallOut;
+import cc.moecraft.test.icq.features.codec.CommandDecode;
+import cc.moecraft.test.icq.features.codec.CommandEncode;
+import cc.moecraft.test.icq.features.say.CommandSay;
+import cc.moecraft.test.icq.features.say.CommandSayRaw;
 import cc.moecraft.test.icq.listeners.ExceptionListener;
 import cc.moecraft.test.icq.listeners.RequestListener;
 import cc.moecraft.test.icq.listeners.SimpleTextLoggingListener;
@@ -20,6 +30,36 @@ import cc.moecraft.test.icq.listeners.TestListener;
  */
 public class TestBot
 {
+    /**
+     * 要注册的指令
+     */
+    private static IcqCommand[] commands = new IcqCommand[]{
+            new CommandBanSelf(),
+            new CommandCls(),
+            new CommandKickSelf(),
+            new CommandRecallThis(),
+            new CommandTest(),
+            new CommandVersion(),
+            new CommandAnnoy(),
+            new CommandAntiRecall(),
+            new CommandAntiRecallOut(),
+            new CommandEncode(),
+            new CommandDecode(),
+            new CommandSay(),
+            new CommandSayRaw()
+    };
+
+    /**
+     * 要注册的监听器
+     */
+    private static IcqListener[] listeners = new IcqListener[]{
+            new TestListener(),
+            new RequestListener(),
+            new AntiRecallListener(),
+            new AnnoyingListener(),
+            new ExceptionListener()
+    };
+
     public static void main(String[] args)
     {
         // 创建机器人对象 ( 接收端口 )
@@ -34,21 +74,20 @@ public class TestBot
         // 设置异步
         bot.getConfig().setUseAsync(true);
 
-        // 注册事件
-        bot.getEventManager().registerListeners(
-                new TestListener(),
-                new RequestListener(),
-                new AntiRecallListener(),
-                new AnnoyingListener(),
-                new ExceptionListener()); // 可以注册多个监听器
+        // 注册事件监听器, 可以注册多个监听器
+        bot.getEventManager().registerListeners(listeners);
 
         // 在没有Debug的时候加上这个消息日志监听器
         if (!bot.getConfig().isDebug())
             bot.getEventManager().registerListener(new SimpleTextLoggingListener());
 
-        // 启用指令管理器, 启用的时候会自动注册指令
+        // 启用指令管理器
         // 这些字符串是指令前缀, 比如指令"!help"的前缀就是"!"
         bot.enableCommandManager("bot -", "!", "/", "~", "！", "我以令咒命之，", "我以令咒命之, ", "test -");
+
+        // 注册指令
+        // 从 v3.0.1.730 之后不会自动注册指令了, 因为效率太低 (≈4000ms), 而且在其他框架上有Bug
+        bot.getCommandManager().registerCommands(commands);
 
         // Debug输出所有已注册的指令
         bot.getLogger().debug(bot.getCommandManager().getCommands().toString());
