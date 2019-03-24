@@ -44,6 +44,9 @@ public class PicqConfig
     /** 是否启用维护模式 */
     private boolean maintenanceMode = false;
 
+    /** 维护模式回复 (设为空就不会回复了) */
+    private String maintenanceResponse = "- 机器人正在维护 -";
+
     /** 是否开启多账号优化 */
     private boolean multiAccountOptimizations = true;
 
