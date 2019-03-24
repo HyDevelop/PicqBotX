@@ -16,6 +16,7 @@ import java.io.OutputStream;
 import java.net.InetSocketAddress;
 
 import static cc.moecraft.icq.PicqConstants.HTTP_API_VERSION_DETECTION;
+import static cc.moecraft.icq.utils.NetUtils.read;
 
 /**
  * The class {@code PicqHttpServer} is a http server to receive and
@@ -96,6 +97,9 @@ public class PicqHttpServer
                 respondAndClose(exchange, 200, "Oh hi there! How are you?");
                 return;
             }
+
+            // 获取请求数据
+            String data = read(exchange.getRequestBody());
 
             // 回复成功
             respondAndClose(exchange, 204, "");
