@@ -134,6 +134,14 @@ public class PicqHttpServer
             return failed(Reason.INCORRECT_APPLICATION_TYPE, exchange);
         }
 
+        // 判断版本
+        if (!userAgent.matches(HTTP_API_VERSION_DETECTION))
+        {
+            reportIncorrectVersion(userAgent);
+            return failed(Reason.INCORRECT_VERSION, exchange);
+        }
+
+        // TODO: validate SHA
         return true;
     }
 
