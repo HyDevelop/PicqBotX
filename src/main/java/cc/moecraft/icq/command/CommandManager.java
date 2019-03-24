@@ -16,7 +16,7 @@ import org.reflections.Reflections;
 import java.lang.reflect.Modifier;
 import java.util.*;
 
-import static cc.moecraft.icq.command.CommandArgs.parse;
+import static cc.moecraft.icq.command.CommandArgsParser.parse;
 
 /**
  * 此类由 Hykilpikonna 在 2018/05/26 创建!
@@ -102,7 +102,7 @@ public class CommandManager
 
         try
         {
-            args = parse(getPrefixes(), getCommands(), event.getMessage(), isDM || isGM);
+            args = parse(this, event.getMessage(), isDM || isGM);
         }
         catch (NotACommandException e)
         {
@@ -128,30 +128,28 @@ public class CommandManager
                 isDM ? bot.getGroupManager().getGroupFromID(((EventDiscussMessage) event).getDiscussId()) : null;
 
         // 调用指令执行方法
-        for (IcqCommand runner : args.getCommandRunner())
+        IcqCommand runner = args.getCommandRunner();
+
+        if (runner instanceof EverywhereCommand)
         {
-            if (isGM && runner instanceof GroupCommand)
-            {
-                event.respond(((GroupCommand) runner).groupMessage((EventGroupMessage) event,
-                        bot.getGroupUserManager().getUserFromID(user.getId(), group), group,
-                        args.getCommandName(), args.getArgs()));
-            }
-            if (isDM && runner instanceof DiscussCommand)
-            {
-                event.respond(((DiscussCommand) runner).discussMessage((EventDiscussMessage) event,
-                        bot.getGroupUserManager().getUserFromID(user.getId(), group), group,
-                        args.getCommandName(), args.getArgs()));
-            }
-            if (isPM && runner instanceof PrivateCommand)
-            {
-                event.respond(((PrivateCommand) runner).privateMessage((EventPrivateMessage) event, user,
-                        args.getCommandName(), args.getArgs()));
-            }
-            if (runner instanceof EverywhereCommand)
-            {
-                event.respond(((EverywhereCommand) runner).run(event, user,
-                        args.getCommandName(), args.getArgs()));
-            }
+            event.respond(((EverywhereCommand) runner).run(event, user, args.getCommandName(), args.getArgs()));
+        }
+        else if (isGM && runner instanceof GroupCommand)
+        {
+            event.respond(((GroupCommand) runner).groupMessage((EventGroupMessage) event,
+                    bot.getGroupUserManager().getUserFromID(user.getId(), group), group,
+                    args.getCommandName(), args.getArgs()));
+        }
+        else if (isDM && runner instanceof DiscussCommand)
+        {
+            event.respond(((DiscussCommand) runner).discussMessage((EventDiscussMessage) event,
+                    bot.getGroupUserManager().getUserFromID(user.getId(), group), group,
+                    args.getCommandName(), args.getArgs()));
+        }
+        else if (isPM && runner instanceof PrivateCommand)
+        {
+            event.respond(((PrivateCommand) runner).privateMessage((EventPrivateMessage) event, user,
+                    args.getCommandName(), args.getArgs()));
         }
 
         // 成功
@@ -166,15 +164,7 @@ public class CommandManager
     public ArrayList<IcqCommand> getCommandList()
     {
         ArrayList<IcqCommand> result = new ArrayList<>();
-
-        commands.forEach((k, v) -> v.forEach(command ->
-        {
-            if (!result.contains(command))
-            {
-                result.add(command);
-            }
-        }));
-
+        commands.forEach((k, v) -> result.add(v));
         return result;
     }
 
@@ -186,15 +176,7 @@ public class CommandManager
     public ArrayList<String> getCommandNameList()
     {
         ArrayList<String> result = new ArrayList<>();
-
-        getCommandList().forEach(command ->
-        {
-            if (!result.contains(command.properties().getName()))
-            {
-                result.add(command.properties().getName());
-            }
-        });
-
+        getCommandList().forEach(command -> result.add(command.properties().getName()));
         return result;
     }
 
