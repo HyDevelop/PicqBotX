@@ -17,6 +17,36 @@ import java.util.Formatter;
  */
 public class SHA1Utils
 {
+    /**
+     * 生成 HAMC SHA1
+     *
+     * @param data 数据
+     * @param key 秘钥
+     * @return HASH
+     */
+    public static String generateHAMCSHA1(String data, String key)
+    {
+        try
+        {
+            // Get an hmac_sha1 key from the raw key bytes
+            byte[] keyBytes = key.getBytes();
+            SecretKeySpec signingKey = new SecretKeySpec(keyBytes, "HmacSHA1");
+
+            // Get an hmac_sha1 Mac instance and initialize with the signing key
+            Mac mac = Mac.getInstance("HmacSHA1");
+            mac.init(signingKey);
+
+            // Compute the hmac on input data bytes
+            byte[] rawHmac = mac.doFinal(data.getBytes());
+
+            //  Covert array of Hex bytes to a String
+            return toHexString(rawHmac);
+        }
+        catch (Exception e)
+        {
+            throw new RuntimeException(e);
+        }
+    }
 
     /**
      * 把Bytes转换为Hex字符串
