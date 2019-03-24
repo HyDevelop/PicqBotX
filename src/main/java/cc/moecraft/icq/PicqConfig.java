@@ -2,6 +2,7 @@ package cc.moecraft.icq;
 
 import cc.moecraft.logger.environments.ColorSupportLevel;
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 import static cc.moecraft.logger.environments.ColorSupportLevel.FORCED;
 
@@ -21,6 +22,7 @@ import static cc.moecraft.logger.environments.ColorSupportLevel.FORCED;
  * @since 2019-03-21 18:40
  */
 @Data
+@Accessors(chain = true)
 public class PicqConfig
 {
     /** 接收端口 */
