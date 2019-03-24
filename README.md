@@ -84,36 +84,36 @@ dependencies {
 ##### 注意: 下面的教程适用于 Windows `酷Q v5.13.2`, Linux 教程以后可能会进行补充<br>还有, HTTP 插件支持的版本是`v4.8.0`, `2019/03/25`刚更新
 
 #### 1. 下载 [酷Q](https://cqp.cc/)... (如果有 酷Q Pro 的话效果更好哦!)
-下载完后解压到你想安装的目录下<br>
-首次启动请运行 `cqa.exe` 或 `cqp.exe`, 并登陆机器人的 QQ 号<br>
-然后退出 酷Q (右键悬浮窗点退出)<br>
 
-#### 2. 添加 [酷Q HTTP 插件](https://cqp.cc/t/30748):
-把 `.cpk` 文件下载下来, 放进 `酷Q安装目录\app` 文件夹里<br>
-启动 酷Q<br>
-右键悬浮窗, 然后点击 `应用 -> 应用管理`<br>
-列表里现在应该有 `[未启用] HTTP API`, 点击它, 点击启用<br>
-启用的时候会提示需要一些敏感权限, 选择继续<br>
-启用之后在 `酷Q安装目录\app` 文件夹里会出现 `io.github.richardchien.coolqhttpapi` 文件夹<br>
-退出 酷Q<br>
+* 下载完后解压到你想安装的目录下
+* 首次启动请运行 `cqa.exe` 或 `cqp.exe`, 并登陆机器人的 QQ 号
+* 然后退出 酷Q (右键悬浮窗点退出)
+
+#### 2. 添加 [酷Q HTTP 插件](https://github.com/richardchien/coolq-http-api/releases):
+
+* 把 `.cpk` 文件下载下来, 放进 `酷Q安装目录\app` 文件夹里
+* 启动 酷Q
+* 右键悬浮窗, 然后点击 `应用 -> 应用管理`
+* 列表里现在应该有 `[未启用] HTTP API`, 点击它, 点击启用
+* 启用的时候会提示需要一些敏感权限, 选择继续
+* 启用之后在 `酷Q安装目录\app` 文件夹里会出现 `io.github.richardchien.coolqhttpapi` 文件夹
+* 退出 酷Q<br>
 
 #### 3. 配置 酷Q HTTP 插件:
-在 `io.github.richardchien.coolqhttpapi` 文件夹里创建一个文件名为 `config.cfg` 的配置文件<br>
-并在其中写入以下代码<br>
+
+* 在 `io.github.richardchien.coolqhttpapi` 文件夹里创建一个文件名为 `config.cfg` 的配置文件
+* 并在其中写入以下配置代码
 
 ```
 [general]
 host=0.0.0.0
-port=接收端口
-post_url=http://127.0.0.1:发送端口
-enable_backward_compatibility=false
+port=酷Q端口
+post_url=http://127.0.0.1:Picq端口
 ```
 
-把发送端口和接收端口改成你的机器人程序里用的端口 (测试机器人的接收为`31091`, 发送`31092`)<br>
-注意: 酷Q 配置里的`发送端口`要和传进 Picq 的`接收端口`一样, 然后 Picq 的`发送端口`也要和 酷Q 的`接收端口`一样!<br>
-( 这是因为 酷Q 需要发送到 Picq 的接收端口去, 而不是发送到对方的发送端口ww )<br>
-如果 酷Q 要和你的机器人程序分开运行的话, 请把`127.0.0.1`改成你的机器人部署的服务器的地址<br>
-保存配置文件<br>
+* 把`酷Q端口`和`Picq端口`改成你的机器人程序里用的端口 (测试机器人的`酷Q端口`是`31091`, `Picq端口`是`31092`)
+* 如果 酷Q 要和你的机器人程序分开运行的话, 请把`127.0.0.1`改成你的机器人部署的服务器的地址
+* 保存配置文件
 
 #### 4. 配置完成! 启动 酷Q!
 
