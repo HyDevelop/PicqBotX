@@ -59,6 +59,28 @@ public class PicqHttpServer
     }
 
     /**
+     * 启动 Http 服务器
+     */
+    public void start()
+    {
+        try
+        {
+            // 使用 Java SE 6 内置的 HttpServer
+            HttpServer server = HttpServer.create(new InetSocketAddress(port), 0);
+
+            // 添加监听器
+            server.createContext("/", httpExchange -> new PicqHttpHandler());
+
+            // 启动
+            server.start();
+        }
+        catch (IOException e)
+        {
+            throw new HttpServerException(logger, e);
+        }
+    }
+
+    /**
      * Http 监听器
      */
     private class PicqHttpHandler extends HttpHandler
