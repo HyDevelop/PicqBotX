@@ -171,4 +171,20 @@ public class PicqHttpServer
         logger.error("推荐更新这个类库或者HTTP API的版本");
         logger.error("如果要无视版本检查, 请修改 HTTP_API_VERSION_DETECTION");
     }
+
+    /**
+     * 回复输出
+     *
+     * @param exchange 请求
+     */
+    private void respondAndClose(HttpExchange exchange) throws IOException
+    {
+        byte[] response = "".getBytes();
+
+        exchange.sendResponseHeaders(204, response.length);
+
+        OutputStream out = exchange.getResponseBody();
+        out.write(response);
+        out.close();
+    }
 }
