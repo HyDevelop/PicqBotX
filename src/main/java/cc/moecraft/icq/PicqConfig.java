@@ -2,6 +2,7 @@ package cc.moecraft.icq;
 
 import cc.moecraft.logger.environments.ColorSupportLevel;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
@@ -19,6 +20,7 @@ import static cc.moecraft.logger.environments.ColorSupportLevel.FORCED;
  * @since 2019-03-21 18:40
  */
 @Data
+@Builder
 @AllArgsConstructor
 @RequiredArgsConstructor
 public class PicqConfig
