@@ -5,12 +5,14 @@ import cc.moecraft.icq.event.events.local.EventLocalHttpFail;
 import cc.moecraft.icq.event.events.local.EventLocalHttpFail.Reason;
 import cc.moecraft.icq.exceptions.HttpServerException;
 import cc.moecraft.logger.HyLogger;
+import com.sun.net.httpserver.Headers;
+import com.sun.net.httpserver.HttpExchange;
+import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
 import lombok.Getter;
 
-import javax.xml.ws.spi.http.HttpExchange;
-import javax.xml.ws.spi.http.HttpHandler;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.net.InetSocketAddress;
 
 import static cc.moecraft.icq.PicqConstants.HTTP_API_VERSION_DETECTION;
@@ -83,7 +85,7 @@ public class PicqHttpServer
     /**
      * Http 监听器
      */
-    private class PicqHttpHandler extends HttpHandler
+    private class PicqHttpHandler implements HttpHandler
     {
         @Override
         public void handle(HttpExchange exchange) throws IOException
