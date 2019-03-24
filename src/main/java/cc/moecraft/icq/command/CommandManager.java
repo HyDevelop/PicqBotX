@@ -1,5 +1,6 @@
 package cc.moecraft.icq.command;
 
+import cc.moecraft.icq.PicqBotX;
 import cc.moecraft.icq.command.exceptions.CommandNotFoundException;
 import cc.moecraft.icq.command.exceptions.NotACommandException;
 import cc.moecraft.icq.command.interfaces.*;
@@ -9,7 +10,6 @@ import cc.moecraft.icq.event.events.message.EventMessage;
 import cc.moecraft.icq.event.events.message.EventPrivateMessage;
 import cc.moecraft.icq.user.*;
 import lombok.Getter;
-import lombok.Setter;
 import org.reflections.Reflections;
 
 import java.lang.reflect.Modifier;
@@ -23,6 +23,7 @@ import java.util.*;
  *
  * @author Hykilpikonna
  */
+@Getter
 public class CommandManager
 {
     private final GroupManager groupManager;
@@ -31,28 +32,24 @@ public class CommandManager
 
     private final GroupUserManager groupUserManager;
 
-    @Getter
     private final String[] prefixes;
 
-    @Getter
     private Map<String, ArrayList<IcqCommand>> registeredCommands = new HashMap<>();    // 已注册的指令, String 是指令名, IcqCommand 是指令对象
 
-    @Setter
-    @Getter
     private ConflictOperation conflictOperation;
 
-    public CommandManager(GroupManager groupManager, UserManager userManager, GroupUserManager groupUserManager, ConflictOperation conflictOperation, String... prefixes)
+    public CommandManager(PicqBotX bot, ConflictOperation conflictOperation, String... prefixes)
     {
-        this.groupUserManager = groupUserManager;
-        this.groupManager = groupManager;
-        this.userManager = userManager;
+        this.groupUserManager = bot.getGroupUserManager();
+        this.groupManager = bot.getGroupManager();
+        this.userManager = bot.getUserManager();
         this.conflictOperation = conflictOperation;
         this.prefixes = prefixes;
     }
 
-    public CommandManager(GroupManager groupManager, UserManager userManager, GroupUserManager groupUserManager, String... prefixes)
+    public CommandManager(PicqBotX bot, String... prefixes)
     {
-        this(groupManager, userManager, groupUserManager, ConflictOperation.ENABLE_ALL, prefixes);
+        this(bot, ConflictOperation.ENABLE_ALL, prefixes);
     }
 
     /**
@@ -152,9 +149,9 @@ public class CommandManager
     {
         try
         {
-            boolean eventIsGroup = event instanceof EventGroupMessage;
-            boolean eventIsDiscuss = event instanceof EventDiscussMessage;
-            boolean eventIsPrivate = event instanceof EventPrivateMessage;
+            final boolean eventIsGroup = event instanceof EventGroupMessage;
+            final boolean eventIsDiscuss = event instanceof EventDiscussMessage;
+            final boolean eventIsPrivate = event instanceof EventPrivateMessage;
 
             CommandArgs commandArgs = CommandArgs.parse(getPrefixes(), getRegisteredCommands(), event.getMessage(), eventIsDiscuss || eventIsGroup);
             User user = userManager.getUserFromID(event.getSenderId());
@@ -171,46 +168,34 @@ public class CommandManager
 
             ArrayList<IcqCommand> commandRunners = commandArgs.getCommandRunners();
 
-            commandRunners.forEach(commandRunner ->
+            for (IcqCommand runner : commandRunners)
             {
-                boolean runnerIsGroup = commandRunner instanceof GroupCommand;
-                boolean runnerIsDiscuss = commandRunner instanceof DiscussCommand;
-                boolean runnerIsPrivate = commandRunner instanceof PrivateCommand;
-
-                if (eventIsGroup && runnerIsGroup)
+                if (eventIsGroup && runner instanceof GroupCommand)
                 {
-                    event.respond(((GroupCommand) commandRunner).groupMessage(
-                            (EventGroupMessage) event,
+                    event.respond(((GroupCommand) runner).groupMessage((EventGroupMessage) event,
                             groupUserManager.getUserFromID(user.getId(), group), group,
-                            commandArgs.getCommandName(),
-                            commandArgs.getArgs()));
+                            commandArgs.getCommandName(), commandArgs.getArgs()));
                 }
 
-                if (eventIsDiscuss && runnerIsDiscuss)
+                if (eventIsDiscuss && runner instanceof DiscussCommand)
                 {
-                    event.respond(((DiscussCommand) commandRunner).discussMessage(
-                            (EventDiscussMessage) event,
+                    event.respond(((DiscussCommand) runner).discussMessage((EventDiscussMessage) event,
                             groupUserManager.getUserFromID(user.getId(), group), group,
-                            commandArgs.getCommandName(),
-                            commandArgs.getArgs()));
+                            commandArgs.getCommandName(), commandArgs.getArgs()));
                 }
 
-                if (eventIsPrivate && runnerIsPrivate)
+                if (eventIsPrivate && runner instanceof PrivateCommand)
                 {
-                    event.respond(((PrivateCommand) commandRunner).privateMessage(
-                            (EventPrivateMessage) event, user,
-                            commandArgs.getCommandName(),
-                            commandArgs.getArgs()));
+                    event.respond(((PrivateCommand) runner).privateMessage((EventPrivateMessage) event, user,
+                            commandArgs.getCommandName(), commandArgs.getArgs()));
                 }
 
-                if (commandRunner instanceof EverywhereCommand)
+                if (runner instanceof EverywhereCommand)
                 {
-                    event.respond(((EverywhereCommand) commandRunner).run(
-                            event, user,
-                            commandArgs.getCommandName(),
-                            commandArgs.getArgs()));
+                    event.respond(((EverywhereCommand) runner).run(event, user,
+                            commandArgs.getCommandName(), commandArgs.getArgs()));
                 }
-            });
+            }
 
             return RunResult.SUCCESS;
         }
