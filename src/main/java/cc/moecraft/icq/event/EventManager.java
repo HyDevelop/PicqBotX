@@ -47,7 +47,7 @@ public class EventManager
 
     private ArrayList<IcqListener> registeredListeners = new ArrayList<>();
 
-    private HashMap<String, ArrayList<RegisteredListenerMethod>> registeredListenerMethods = new HashMap<>();
+    private HashMap<String, ArrayList<RegisteredListenerMethod>> registeredMethods = new HashMap<>();
 
     /**
      * 事件的类
@@ -139,13 +139,13 @@ public class EventManager
 
                 String mapKey = eventClass.getName();
 
-                if (registeredListenerMethods.containsKey(mapKey))
+                if (registeredMethods.containsKey(mapKey))
                 {
-                    registeredListenerMethods.get(mapKey).add(new RegisteredListenerMethod(method, listener));
+                    registeredMethods.get(mapKey).add(new RegisteredListenerMethod(method, listener));
                 }
                 else
                 {
-                    registeredListenerMethods.put(mapKey, new ArrayList<>(Collections.singletonList(new RegisteredListenerMethod(method, listener))));
+                    registeredMethods.put(mapKey, new ArrayList<>(Collections.singletonList(new RegisteredListenerMethod(method, listener))));
                 }
             }
         }
@@ -180,12 +180,12 @@ public class EventManager
 
         String mapKey = event.getClass().getName();
 
-        if (!registeredListenerMethods.containsKey(mapKey))
+        if (!registeredMethods.containsKey(mapKey))
         {
             return;
         }
 
-        registeredListenerMethods.get(mapKey).forEach(registeredListenerMethod ->
+        registeredMethods.get(mapKey).forEach(registeredListenerMethod ->
         {
             try
             {
