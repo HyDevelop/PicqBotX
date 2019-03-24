@@ -33,7 +33,7 @@ public class PicqConfig
     private final int socketPort;
 
     /** 是否输出Debug消息 */
-    private boolean debug = true; //TODO: change this to false
+    private boolean debug = false;
 
     /** 是否跳过酷Q版本验证 (不推荐) */
     private boolean noVerify = false;
