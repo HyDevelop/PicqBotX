@@ -128,6 +128,12 @@ public class PicqHttpServer
             return failed(Reason.INCORRECT_CHARSET, exchange);
         }
 
+        // 必须是 JSON
+        if (!contentType.contains("application/json"))
+        {
+            return failed(Reason.INCORRECT_APPLICATION_TYPE, exchange);
+        }
+
         return true;
     }
 
