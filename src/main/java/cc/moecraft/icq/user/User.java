@@ -13,13 +13,13 @@ import lombok.RequiredArgsConstructor;
  *
  * @author Hykilpikonna
  */
+@Getter
 @RequiredArgsConstructor
 public class User
 {
-    @Getter
-    public final long id;
-
     private final PicqBotX bot;
+
+    private final long id;
 
     private RStrangerInfo info;
 
