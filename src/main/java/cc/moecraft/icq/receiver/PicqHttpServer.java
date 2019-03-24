@@ -111,6 +111,12 @@ public class PicqHttpServer
      */
     private boolean validate(HttpExchange exchange)
     {
+        // 必须是 POST
+        if (!exchange.getRequestMethod().toLowerCase().equals("post"))
+        {
+            return failed(Reason.INCORRECT_REQUEST_METHOD, exchange);
+        }
+
         return true;
     }
 
