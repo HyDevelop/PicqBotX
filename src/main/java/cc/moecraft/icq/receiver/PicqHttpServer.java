@@ -91,6 +91,15 @@ public class PicqHttpServer
         public void handle(HttpExchange exchange) throws IOException
         {
             System.out.println("Hi");
+
+            byte response[]="Hello, World!".getBytes("UTF-8");
+
+            exchange.getResponseHeaders().add("Content-Type", "text/plain; charset=UTF-8");
+            exchange.sendResponseHeaders(200, response.length);
+
+            OutputStream out=exchange.getResponseBody();
+            out.write(response);
+            out.close();
         }
 
     /**
