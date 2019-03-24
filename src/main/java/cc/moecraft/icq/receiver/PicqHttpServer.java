@@ -90,6 +90,8 @@ public class PicqHttpServer
         @Override
         public void handle(HttpExchange exchange) throws IOException
         {
+            if (!validate(exchange)) return;
+
             System.out.println("Hi");
 
             byte response[]="Hello, World!".getBytes("UTF-8");
