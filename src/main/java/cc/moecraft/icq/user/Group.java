@@ -14,15 +14,15 @@ import lombok.RequiredArgsConstructor;
  *
  * @author Hykilpikonna
  */
+@Getter
 @RequiredArgsConstructor
 public class Group
 {
-    @Getter
-    public final long id;
-
     private final PicqBotX bot;
 
-    public RGroup info;
+    private final long id;
+
+    private RGroup info;
 
     /**
      * 获取数据
