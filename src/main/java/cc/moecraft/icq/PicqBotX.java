@@ -213,7 +213,7 @@ public class PicqBotX
         eventManager.registerListener(new CommandListener(commandManager));
         logInitDone(logger, "指令管理器     ", 6, 0);
 
-        logger.timing.clear();  
+        logger.timing.clear();
     }
 
     /**
