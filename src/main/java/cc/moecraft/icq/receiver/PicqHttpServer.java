@@ -101,6 +101,9 @@ public class PicqHttpServer
             // 获取请求数据
             String data = read(exchange.getRequestBody());
 
+            // 输出Debug
+            printDebug(exchange, data);
+
             // 回复成功
             respondAndClose(exchange, 204, "");
         }
