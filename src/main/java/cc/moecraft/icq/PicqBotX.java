@@ -8,6 +8,7 @@ import cc.moecraft.icq.command.CommandManager;
 import cc.moecraft.icq.event.EventManager;
 import cc.moecraft.icq.exceptions.VerifyFailedException;
 import cc.moecraft.icq.listeners.HyExpressionListener;
+import cc.moecraft.icq.receiver.PicqHttpServer;
 import cc.moecraft.icq.sender.returndata.returnpojo.get.RVersionInfo;
 import cc.moecraft.icq.user.GroupManager;
 import cc.moecraft.icq.user.GroupUserManager;
@@ -51,7 +52,7 @@ public class PicqBotX
     /**
      * HTTP监听服务器
      */
-    private HttpServer httpServer;
+    private PicqHttpServer httpServer;
 
     /**
      * 事件管理器
@@ -156,7 +157,7 @@ public class PicqBotX
         logInitDone(logger, "账号管理器     ", 4, 2);
 
         // HTTP监听服务器
-        httpServer = new HttpServer(config.getSocketPort(), this);
+        httpServer = new PicqHttpServer(config.getSocketPort(), this);
         logInitDone(logger, "HTTP监听服务器 ", 5, 1);
 
         logger.timing.clear();
