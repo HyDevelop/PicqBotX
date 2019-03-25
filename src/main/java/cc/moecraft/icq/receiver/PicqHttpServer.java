@@ -93,6 +93,13 @@ public class PicqHttpServer
         @Override
         public void handle(HttpExchange exchange) throws IOException
         {
+            // 是否暂停
+            if (bot.getConfig().isHttpPaused())
+            {
+                respondAndClose(exchange, 503, "");
+                return;
+            }
+
             // 验证
             if (!validateHeader(exchange))
             {
