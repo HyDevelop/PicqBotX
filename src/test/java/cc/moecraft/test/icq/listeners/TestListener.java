@@ -4,12 +4,10 @@ import cc.moecraft.icq.PicqBotX;
 import cc.moecraft.icq.event.EventHandler;
 import cc.moecraft.icq.event.IcqListener;
 import cc.moecraft.icq.event.events.message.EventPrivateMessage;
-import cc.moecraft.icq.sender.IcqHttpApi;
 import cc.moecraft.icq.sender.message.MessageBuilder;
 import cc.moecraft.icq.sender.message.components.ComponentImageBase64;
 import cc.moecraft.icq.sender.returndata.ReturnListData;
 import cc.moecraft.icq.sender.returndata.returnpojo.get.RGroup;
-import com.google.gson.JsonElement;
 
 /**
  * 此类由 Hykilpikonna 在 2018/05/24 创建!
@@ -34,10 +32,7 @@ public class TestListener extends IcqListener
 
         if (event.getMessage().equals("测试给小桂发Hi"))
         {
-            JsonElement response = event.getHttpApi().send(IcqHttpApi.SEND_PRIVATE_MSG,
-                    "user_id", 565656,
-                    "message", "hi",
-                    "auto_escape", false);
+            event.getHttpApi().sendPrivateMsg(565656, "hi");
         }
 
         if (event.getMessage().equals("测试回复数据"))
