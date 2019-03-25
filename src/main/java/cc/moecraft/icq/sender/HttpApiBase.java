@@ -1,6 +1,7 @@
 package cc.moecraft.icq.sender;
 
 import cc.moecraft.icq.PicqBotX;
+import cc.moecraft.icq.accounts.BotAccount;
 import cc.moecraft.icq.event.events.local.EventLocalSendDiscussMessage;
 import cc.moecraft.icq.event.events.local.EventLocalSendGroupMessage;
 import cc.moecraft.icq.event.events.local.EventLocalSendPrivateMessage;
@@ -92,18 +93,20 @@ public abstract class HttpApiBase
 
     protected final PicqBotX bot;
 
-    protected long selfId;
+    protected final BotAccount account;
 
     /**
      * 构造一个 HttpApi 发送对象
      *
      * @param bot 机器人
+     * @param account 账号
      * @param baseUrl URL
      * @param port 端口
      */
-    public HttpApiBase(PicqBotX bot, String baseUrl, int port)
+    public HttpApiBase(PicqBotX bot, BotAccount account, String baseUrl, int port)
     {
         this.bot = bot;
+        this.account = account;
 
         // 获取 BaseUrl
         baseUrl = baseUrl.toLowerCase();
@@ -112,12 +115,6 @@ public abstract class HttpApiBase
             baseUrl = "http://" + baseUrl;
         }
         this.baseUrl = baseUrl + ":" + port + "/";
-
-        // 设置 SelfID
-        if (this instanceof IcqHttpApi)
-        {
-            selfId = ((IcqHttpApi) this).getLoginInfo().getData().getUserId();
-        }
     }
 
     /**
@@ -265,7 +262,7 @@ public abstract class HttpApiBase
     public ReturnData<RMessageReturnData> sendPrivateMsg(long qq, String message, boolean autoEscape)
     {
         EventLocalSendPrivateMessage event = new EventLocalSendPrivateMessage(qq, message, autoEscape);
-        event.selfId = selfId;
+        event.selfId = account.getId();
         bot.getEventManager().call(event);
         if (event.isCancelled())
         {
@@ -297,7 +294,7 @@ public abstract class HttpApiBase
     public ReturnData<RMessageReturnData> sendGroupMsg(long groupId, String message, boolean autoEscape)
     {
         EventLocalSendGroupMessage event = new EventLocalSendGroupMessage(groupId, message, autoEscape);
-        event.selfId = selfId;
+        event.selfId = account.getId();
         bot.getEventManager().call(event);
         if (event.isCancelled())
         {
@@ -329,7 +326,7 @@ public abstract class HttpApiBase
     public ReturnData<RMessageReturnData> sendDiscussMsg(long groupId, String message, boolean autoEscape)
     {
         EventLocalSendDiscussMessage event = new EventLocalSendDiscussMessage(groupId, message, autoEscape);
-        event.selfId = selfId;
+        event.selfId = account.getId();
         bot.getEventManager().call(event);
         if (event.isCancelled())
         {
