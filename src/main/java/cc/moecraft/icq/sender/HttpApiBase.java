@@ -1,6 +1,6 @@
 package cc.moecraft.icq.sender;
 
-import cc.moecraft.icq.event.EventManager;
+import cc.moecraft.icq.PicqBotX;
 import cc.moecraft.icq.event.events.local.EventLocalSendDiscussMessage;
 import cc.moecraft.icq.event.events.local.EventLocalSendGroupMessage;
 import cc.moecraft.icq.event.events.local.EventLocalSendPrivateMessage;
@@ -91,9 +91,9 @@ public abstract class HttpApiBase
 
     protected long selfId;
 
-    public HttpApiBase(EventManager eventManager, String baseUrl, int port)
+    public HttpApiBase(PicqBotX bot, String baseUrl, int port)
     {
-        this.eventManager = eventManager;
+        this.bot = bot;
 
         baseUrl = baseUrl.toLowerCase();
 
@@ -102,6 +102,7 @@ public abstract class HttpApiBase
             baseUrl = "http://" + baseUrl;
         }
         this.baseURL = baseUrl + ":" + port + "/";
+
         if (this instanceof IcqHttpApi)
         {
             selfId = ((IcqHttpApi) this).getLoginInfo().getData().getUserId();
@@ -233,7 +234,7 @@ public abstract class HttpApiBase
     {
         EventLocalSendPrivateMessage event = new EventLocalSendPrivateMessage(qq, message, autoEscape);
         event.selfId = selfId;
-        eventManager.call(event);
+        bot.getEventManager().call(event);
         if (event.isCancelled())
         {
             return null;
@@ -265,7 +266,7 @@ public abstract class HttpApiBase
     {
         EventLocalSendGroupMessage event = new EventLocalSendGroupMessage(groupId, message, autoEscape);
         event.selfId = selfId;
-        eventManager.call(event);
+        bot.getEventManager().call(event);
         if (event.isCancelled())
         {
             return null;
@@ -297,7 +298,7 @@ public abstract class HttpApiBase
     {
         EventLocalSendDiscussMessage event = new EventLocalSendDiscussMessage(groupId, message, autoEscape);
         event.selfId = selfId;
-        eventManager.call(event);
+        bot.getEventManager().call(event);
         if (event.isCancelled())
         {
             return null;
