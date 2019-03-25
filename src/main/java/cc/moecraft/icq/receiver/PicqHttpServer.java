@@ -4,6 +4,7 @@ import cc.moecraft.icq.PicqBotX;
 import cc.moecraft.icq.event.events.local.EventLocalHttpFail;
 import cc.moecraft.icq.event.events.local.EventLocalHttpFail.Reason;
 import cc.moecraft.icq.exceptions.HttpServerException;
+import cc.moecraft.icq.utils.SHA1Utils;
 import cc.moecraft.logger.HyLogger;
 import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
@@ -16,6 +17,7 @@ import java.io.OutputStream;
 import java.net.InetSocketAddress;
 
 import static cc.moecraft.icq.PicqConstants.HTTP_API_VERSION_DETECTION;
+import static cc.moecraft.icq.event.events.local.EventLocalHttpFail.Reason.*;
 import static cc.moecraft.icq.utils.NetUtils.read;
 
 /**
@@ -150,7 +152,18 @@ public class PicqHttpServer
             return failed(INCORRECT_VERSION, "Supported Version: " + HTTP_API_VERSION_DETECTION);
         }
 
-        // TODO: validate SHA
+        return true;
+    }
+
+    /**
+     * 验证 HAMC SHA1 (如果有的话)
+     *
+     * @param exchange 请求
+     * @param data 数据
+     * @return 如果有, 是否验证成功
+     */
+    private boolean validateSHA1(HttpExchange exchange, String data)
+    {
         return true;
     }
 
