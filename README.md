@@ -170,34 +170,50 @@ PicqConfig config = new PicqConfig(31092);
 PicqBotX bot = new PicqBotX(config);
 ```
 
-注册监听器: <br>
-可以注册多个监听器 <br>
-监听器的构造器可以有参数
+接下来要添加机器人账户:<br>
+(一个酷Q端就是一个机器人账户嗯)
 
 ```java
-bot.getEventManager().registerListener(new 监听器());
+// 添加一个机器人账户 ( 传入名字, 酷Q URL, 酷Q端口 )
+bot.addAccount("Bot01", "127.0.0.1", 31091);
+```
+
+注册监听器: <br>
+可以注册多个监听器, <br>
+监听器的构造器可以有参数, <br>
+如何创建监听器请看[这里](#events)
+
+```java
+// 注册事件监听器, 可以注册多个监听器
+bot.getEventManager().registerListeners(new 监听器1(), new 监听器2(), ...);
 ```
 
 启用指令管理器: <br>
-如果不想用自带的指令管理器, 想自己写指令管理器, 不写这行就好了. <br>
-不过这个指令管理器真的很方便哦! 注册都完全是自动的_(:з」∠)_ <br>
-因为完全自动注册, 所以只要这一行就行了!
+如果不想用自带的指令管理器, 不写这行就好了. <br>
+不过这个指令管理器真的很方便哦w!
 
 ```java
-// 启用指令管理器, 启用的时候会自动注册指令
+// 启用指令管理器
 // 这些字符串是指令前缀, 比如 !help 的前缀就是"!"
 bot.enableCommandManager("bot -", "!", "/", "~");
+```
+
+注册指令:
+
+```java
+// 注册指令, 可以注册多个指令
+bot.getCommandManager().registerCommands(new 指令1(), new 指令2(), ...);
 ```
 
 启动机器人: 
 
 ```java
-// 启动机器人, 这个因为会占用线程, 所以必须放到最后
-bot.startBot(); 
+// 启动机器人, 不会占用主线程
+bot.startBot();
 ```
 
 嗯, 然后就没了!<br>
-就这么简单方便!!<br>
+就这么简单方便w!<br>
 完整例子代码:
 
 ```java
@@ -205,34 +221,39 @@ public class TestBot
 {
     public static void main(String[] args)
     {
-        // 创建机器人对象 ( 信息发送URL, 发送端口, 接收端口, 是否DEBUG )
-        PicqBotX bot = new PicqBotX("127.0.0.1", 31091, 31092, false);
+        // 创建机器人对象 ( 传入配置 )
+        PicqBotX bot = new PicqBotX(new PicqConfig(31092).setDebug(true));
 
-        try
-        {
-            bot.getEventManager()
-                    .registerListener(new TestListener()) // 注册监听器
-                    .registerListener(new RequestListener()); // 可以注册多个监听器
-                    
-            if (!bot.isDebug()) bot.getEventManager().registerListener(new SimpleTextLoggingListener()); // 条件下注册监听器
+        // 添加一个机器人账户 ( 名字, 发送URL, 发送端口 )
+        bot.addAccount("Bot01", "127.0.0.1", 31091);
 
-            // 启用指令管理器, 启用的时候会自动注册指令
-            // 这些字符串是指令前缀, 比如!help的前缀就是!
-            bot.enableCommandManager("bot -", "!", "/", "~");
+        // 注册事件监听器, 可以注册多个监听器
+        bot.getEventManager().registerListeners(
+                new TestListener(), 
+                new RequestListener(),
+                new ExceptionListener()
+        );
 
-        // 启动机器人, 这个因为会占用线程, 所以必须放到最后
-            bot.startBot(); 
-        }
-        catch (HttpServerStartFailedException | VersionIncorrectException | IllegalAccessException | InstantiationException e)
-        {
-            e.printStackTrace(); // 启动失败, 结束程序
-        }
+        // 启用指令管理器
+        // 这些字符串是指令前缀, 比如指令"!help"的前缀就是"!"
+        bot.enableCommandManager("bot -", "!", "/", "~");
+
+        // 注册指令, 可以注册多个指令
+        bot.getCommandManager().registerCommands(
+                new CommandSay(),
+                new CommandTest(),
+                new CommandVersion()
+        );
+
+        // 启动机器人, 不会占用主线程
+        bot.startBot();
     }
 }
 ```
 
 ##### 其他例子去看[TestBot](https://github.com/hydevelop/PicqBotX/blob/master/src/test/java/cc/moecraft/test/icq/TestBot.java)!
 
+<a name="events"></a>
 
 #### 监听事件:
 

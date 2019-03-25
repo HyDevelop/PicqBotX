@@ -98,7 +98,7 @@ public class TestBot
         // Debug输出所有已注册的指令
         bot.getLogger().debug(bot.getCommandManager().getCommands().toString());
 
-        // 启动机器人
+        // 启动机器人, 不会占用主线程
         bot.startBot();
     }
 }
