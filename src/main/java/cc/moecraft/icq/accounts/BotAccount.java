@@ -33,7 +33,7 @@ public class BotAccount
         this.postUrl = postUrl;
         this.postPort = postPort;
 
-        this.httpApi = new IcqHttpApi(bot, postUrl, postPort);
-        this.id = httpApi.getSelfId();
+        this.httpApi = new IcqHttpApi(bot, this, postUrl, postPort);
+        this.id = httpApi.getLoginInfo().getData().getUserId();
     }
 }
