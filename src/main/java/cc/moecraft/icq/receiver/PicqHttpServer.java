@@ -184,6 +184,13 @@ public class PicqHttpServer
 
         // 生成 SHA1
         String generatedSignature = SHA1Utils.generateHAMCSHA1(data, bot.getConfig().getSecret());
+
+        // 判断生成的和获取的是不是一样的
+        if (!signature.equals(generatedSignature))
+        {
+            return failed(INCORRECT_SHA1, "Signature Mismatch: \n" +
+                    "- Sent: " + signature + "\n- Generated: " + generatedSignature);
+        }
         return true;
     }
 
