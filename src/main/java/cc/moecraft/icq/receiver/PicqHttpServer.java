@@ -113,7 +113,7 @@ public class PicqHttpServer
             // 验证 SHA1
             if (!validateSHA1(exchange, data))
             {
-                respondAndClose(exchange, 404, "");
+                respondAndClose(exchange, 403, "");
                 return;
             }
 
