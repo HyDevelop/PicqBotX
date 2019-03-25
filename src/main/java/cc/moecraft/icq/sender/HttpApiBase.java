@@ -88,24 +88,32 @@ public abstract class HttpApiBase
     @Deprecated
     public static final String SEND_MSG = "send_msg";  // 这个不需要, 因为最后也要指定类型
 
-    private final String baseURL;
+    private final String baseUrl;
 
     protected final PicqBotX bot;
 
     protected long selfId;
 
+    /**
+     * 构造一个 HttpApi 发送对象
+     *
+     * @param bot 机器人
+     * @param baseUrl URL
+     * @param port 端口
+     */
     public HttpApiBase(PicqBotX bot, String baseUrl, int port)
     {
         this.bot = bot;
 
+        // 获取 BaseUrl
         baseUrl = baseUrl.toLowerCase();
-
-        if (!baseUrl.contains("http://"))
+        if (!baseUrl.startsWith("http://") && !baseUrl.startsWith("https://"))
         {
             baseUrl = "http://" + baseUrl;
         }
-        this.baseURL = baseUrl + ":" + port + "/";
+        this.baseUrl = baseUrl + ":" + port + "/";
 
+        // 设置 SelfID
         if (this instanceof IcqHttpApi)
         {
             selfId = ((IcqHttpApi) this).getLoginInfo().getData().getUserId();

@@ -21,6 +21,6 @@ public class IcqHttpAsyncApi extends HttpApiBase
     @Override
     public String makeUrl(String api)
     {
-        return getBaseURL() + api + "_async";
+        return getBaseUrl() + api + "_async";
     }
 }
