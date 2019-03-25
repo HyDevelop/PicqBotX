@@ -54,7 +54,7 @@ public class EventManager
      * 版本 v3.0.0.611 后, 反射注册类改为手动注册类
      * 因为这样可以减少 ≈600ms 的启动延迟
      */
-    private static final Set<Class<? extends Event>> eventClasses = new HashSet<>(asList(
+    private static final List<Class<? extends Event>> eventClasses = asList(
             EventLocal.class,
             EventLocalException.class,
             EventLocalHttpFail.class,
@@ -89,7 +89,7 @@ public class EventManager
             EventGroupAddRequest.class,
             EventGroupInviteRequest.class,
             EventRequest.class
-    ));
+    );
 
     public EventManager(PicqBotX bot)
     {
