@@ -144,6 +144,9 @@ public class HttpApiTest
     @Test
     public void testDeleteMsg()
     {
+        // Doesn't work async, because message id can't be obtained.
+        if (bot.getConfig().isApiAsync()) return;
+
         long toDelete = api.sendGroupMsg(TEST_RECEIVE_GR, "Unit test - testDeleteMsg()").getData().getMessageId();
         ThreadUtil.safeSleep(2000);
         api.deleteMsg(toDelete);
