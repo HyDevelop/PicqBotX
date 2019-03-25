@@ -11,8 +11,11 @@ import cc.moecraft.icq.sender.returndata.ReturnListData;
 import cc.moecraft.icq.sender.returndata.returnpojo.ReturnPojoBase;
 import cc.moecraft.icq.sender.returndata.returnpojo.send.RMessageReturnData;
 import cc.moecraft.utils.MapBuilder;
+import cn.hutool.http.HttpRequest;
+import cn.hutool.json.JSONObject;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 import lombok.Getter;
 
 import java.lang.reflect.Type;
@@ -110,104 +113,125 @@ public abstract class HttpApiBase
     }
 
     /**
+     * 生成URL
+     *
+     * @param api API节点
+     * @return 完整URL
+     */
+    public abstract String makeUrl(String api);
+
+    /**
      * 发送请求
      *
-     * @param request 请求
-     * @param parameters 参数
+     * @param api API节点
+     * @param params 参数
      * @return 响应
      */
-    public abstract JsonElement send(String request, Map<String, Object> parameters);
-
-    /**
-     * 发送请求 封装x1
-     *
-     * @param request 请求
-     * @param parameters 参数
-     * @return 响应
-     */
-    public JsonElement send(String request, Object... parameters)
+    public JsonElement send(String api, Map<String, Object> params)
     {
-        return send(request, MapBuilder.build(String.class, Object.class, parameters));
+        // 创建请求
+        HttpRequest request = HttpRequest.post(makeUrl(api)).body(new JSONObject(params)).timeout(5000);
+
+        // 判断有没有 Access Token, 并加到头上w
+        if (!bot.getConfig().getAccessToken().isEmpty())
+        {
+            request.header("Authorization", "Bearer " + bot.getConfig().getAccessToken());
+        }
+
+        // 发送并返回
+        return new JsonParser().parse(request.execute().body());
     }
 
     /**
      * 发送请求 封装
      *
-     * @param request 请求
-     * @param parameters 参数
+     * @param api API节点
+     * @param params 参数
      * @return 响应
      */
-    public RawReturnData sendReturnRaw(String request, Map<String, Object> parameters)
+    public JsonElement send(String api, Object... params)
     {
-        return new Gson().fromJson(send(request, parameters), RawReturnData.class);
+        return send(api, MapBuilder.build(String.class, Object.class, params));
     }
 
     /**
      * 发送请求 封装
      *
-     * @param request 请求
-     * @param parameters 参数
+     * @param api API节点
+     * @param params 参数
      * @return 响应
      */
-    public RawReturnData sendReturnRaw(String request, Object... parameters)
+    public RawReturnData sendReturnRaw(String api, Map<String, Object> params)
     {
-        return sendReturnRaw(request, MapBuilder.build(String.class, Object.class, parameters));
+        return new Gson().fromJson(send(api, params), RawReturnData.class);
     }
 
     /**
      * 发送请求 封装
      *
-     * @param typeOfT 返回数据类型
-     * @param request 请求
-     * @param parameters 参数
+     * @param api API节点
+     * @param params 参数
+     * @return 响应
+     */
+    public RawReturnData sendReturnRaw(String api, Object... params)
+    {
+        return sendReturnRaw(api, MapBuilder.build(String.class, Object.class, params));
+    }
+
+    /**
+     * 发送请求 封装
+     *
+     * @param type 返回数据类型
+     * @param api API节点
+     * @param params 参数
      * @param <T> 返回值的类型
      * @return 响应
      */
-    public <T extends ReturnPojoBase> ReturnData<T> send(Type typeOfT, String request, Map<String, Object> parameters)
+    public <T extends ReturnPojoBase> ReturnData<T> send(Type type, String api, Map<String, Object> params)
     {
-        return sendReturnRaw(request, parameters).processData(typeOfT);
+        return sendReturnRaw(api, params).processData(type);
     }
 
     /**
      * 发送请求 封装
      *
-     * @param typeOfT 返回数据类型
-     * @param request 请求
-     * @param parameters 参数
+     * @param type 返回数据类型
+     * @param api API节点
+     * @param params 参数
      * @param <T> 返回值的类型
      * @return 响应
      */
-    public <T extends ReturnPojoBase> ReturnData<T> send(Class<T> typeOfT, String request, Object... parameters)
+    public <T extends ReturnPojoBase> ReturnData<T> send(Class<T> type, String api, Object... params)
     {
-        return send(typeOfT, request, MapBuilder.build(String.class, Object.class, parameters));
+        return send(type, api, MapBuilder.build(String.class, Object.class, params));
     }
 
     /**
      * 发送请求 封装
      *
-     * @param typeOfT 返回数据类型
-     * @param request 请求
-     * @param parameters 参数
+     * @param type 返回数据类型
+     * @param api API节点
+     * @param params 参数
      * @param <T> 返回值的类型
      * @return 响应
      */
-    public <T extends ReturnPojoBase> ReturnListData<T> sendReturnList(Type typeOfT, String request, Map<String, Object> parameters)
+    public <T extends ReturnPojoBase> ReturnListData<T> sendReturnList(Type type, String api, Map<String, Object> params)
     {
-        return sendReturnRaw(request, parameters).processDataAsList(typeOfT);
+        return sendReturnRaw(api, params).processDataAsList(type);
     }
 
     /**
      * 发送请求 封装
      *
-     * @param typeOfT 返回数据类型
-     * @param request 请求
-     * @param parameters 参数
+     * @param type 返回数据类型
+     * @param api API节点
+     * @param params 参数
      * @param <T> 返回值的类型
      * @return 响应
      */
-    public <T extends ReturnPojoBase> ReturnListData<T> sendReturnList(Class<T> typeOfT, String request, Object... parameters)
+    public <T extends ReturnPojoBase> ReturnListData<T> sendReturnList(Class<T> type, String api, Object... params)
     {
-        return sendReturnList(typeOfT, request, MapBuilder.build(String.class, Object.class, parameters));
+        return sendReturnList(type, api, MapBuilder.build(String.class, Object.class, params));
     }
 
     /**
