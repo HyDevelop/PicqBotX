@@ -137,7 +137,33 @@ PicqConfig config = new PicqConfig(31092);
 
 **注意: 这里的`Picq端口`要和酷Q`config.cfg`配置里面设置的`Picq端口`一样!!**<br>
 之后可以通过`config.set...`来配置机器人了.<br>
-可配置的项目如下:
+下面这些是可以配置的配置项:<br>
+
+| 配置项 Set 方法和默认值 | 配置项介绍 |
+| :------------ | :------------ |
+| `setDebug(false)` | 是否输出Debug消息 |
+| `setNoVerify(false)` | 是否跳过酷Q版本验证 (不推荐) |
+| `setUseAsyncCommands(false)` | 是否异步执行指令 |
+| `setMaintenanceMode(false)` | 是否启用维护模式 |
+| `setmaintenanceResponse("- 机器人正在维护 -")` | 维护模式回复 (设为空就不会回复了) |
+| `setMultiAccountOptimizatinos(true)` | 是否开启多账号优化 |
+| `setEventPaused(false)` | 是否暂停事件 |
+| `setHttpPaused(false)` | 是否暂停HTTP接收 |
+| `setSecret("")` | SHA1 验证秘钥 (设置为空就是不验证w) |
+| `setAccessToken("")` | Access Token 访问令牌 (设置为空就是不用令牌) |
+| `setApiRateLimited(false)` | 是否启用限速调用API (需要enable_rate_limited_actions=true) |
+| `setApiAsync(false)` | 是否异步调用API |
+
+还有一些必须在启动之前设置的配置项:<br>
+这些项启动之后改掉也没用了啦w<br>
+
+| 配置项 Set 方法和默认值 | 配置项介绍 |
+| :------------ | :------------ |
+| `setColorSupportLevel(FORCED)` | Logger颜色支持级别 (设为DISABLED就没有颜色了) |
+| `setLogPath("logs")` | Logger日志路径 (设为空就不输出文件了) |
+| `setLogFileName("PicqBotX-Log")` | Logger日志文件名 |
+
+
 
 
 
