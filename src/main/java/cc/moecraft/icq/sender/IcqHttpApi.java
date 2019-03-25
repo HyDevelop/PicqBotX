@@ -1,6 +1,7 @@
 package cc.moecraft.icq.sender;
 
 import cc.moecraft.icq.PicqBotX;
+import cc.moecraft.icq.accounts.BotAccount;
 import cc.moecraft.icq.sender.returndata.ReturnData;
 import cc.moecraft.icq.sender.returndata.ReturnListData;
 import cc.moecraft.icq.sender.returndata.returnpojo.get.*;
@@ -15,19 +16,17 @@ import cc.moecraft.icq.sender.returndata.returnpojo.get.*;
  */
 public class IcqHttpApi extends HttpApiBase
 {
-    public final IcqHttpAsyncApi async;
-
     /**
      * 构造一个 IcqHttpApi 发送对象
      *
      * @param bot 机器人
+     * @param account 账号
      * @param baseUrl URL
      * @param port 端口
      */
-    public IcqHttpApi(PicqBotX bot, String baseUrl, int port)
+    public IcqHttpApi(PicqBotX bot, BotAccount account, String baseUrl, int port)
     {
-        super(bot, baseUrl, port);
-        async = new IcqHttpAsyncApi(this, bot, baseUrl, port);
+        super(bot, account, baseUrl, port);
     }
 
     @Override
