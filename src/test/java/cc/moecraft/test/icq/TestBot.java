@@ -64,8 +64,8 @@ public class TestBot
 
     public static void main(String[] args)
     {
-        // 创建机器人对象 ( 接收端口 )
-        PicqBotX bot = new PicqBotX(new PicqConfig(31092).setDebug(false));
+        // 创建机器人对象 ( 传入配置 )
+        PicqBotX bot = new PicqBotX(new PicqConfig(31092).setDebug(true).setSecret("This is secret"));
 
         // 添加一个机器人账户 ( 名字, 发送URL, 发送端口 )
         bot.addAccount("Bot01", "127.0.0.1", 31091);
