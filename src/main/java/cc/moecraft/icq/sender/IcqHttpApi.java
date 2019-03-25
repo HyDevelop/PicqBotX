@@ -15,24 +15,25 @@ import cc.moecraft.icq.sender.returndata.returnpojo.get.*;
  */
 public class IcqHttpApi extends HttpApiBase
 {
-    public IcqHttpAsyncApi async;
+    public final IcqHttpAsyncApi async;
 
+    /**
+     * 构造一个 IcqHttpApi 发送对象
+     *
+     * @param bot 机器人
+     * @param baseUrl URL
+     * @param port 端口
+     */
     public IcqHttpApi(PicqBotX bot, String baseUrl, int port)
     {
         super(bot, baseUrl, port);
         async = new IcqHttpAsyncApi(this, bot, baseUrl, port);
     }
 
-    /**
-     *
-     *
-     * @param api API节点
-     * @return
-     */
     @Override
     public String makeUrl(String api)
     {
-        return getBaseURL() + api;
+        return getBaseUrl() + api;
     }
 
     /**
