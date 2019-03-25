@@ -57,6 +57,9 @@ public class PicqConfig
     /** X-Signature SHA1 验证秘钥 (设置为空就是不用秘钥w) */
     private String secret = "";
 
+    /** Access Token 访问令牌 (设置为空就是不用令牌) */
+    private String accessToken = "";
+
     // 一次配置项 | Unchangeable config fields
     // 这里的配置init之后就不能变了w
 
