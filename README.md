@@ -128,13 +128,21 @@ post_url=http://127.0.0.1:Picq端口
 
 #### 启动机器人 (Main类):
 
-在 main 方法中, 先创建一个机器人对象: <br>
-注意: 因为所有事件和指令执行的时候都能获取到机器人对象, <br>
-所以不建议把机器人对象设置为 static 或者全局变量.
+在 main 方法中, 先创建一个机器人配置对象: <br>
 
 ```java
-// 创建机器人对象 ( 信息发送 URL, 发送端口, 接收端口, 是否 DEBUG )
-PicqBotX bot = new PicqBotX("127.0.0.1", 31091, 31092, false);
+// 创建机器人配置 ( 传入Picq端口 )
+PicqConfig config = new PicqConfig(31092);
+```
+
+之后可以通过`config.set...`来配置机器人了.<br>
+可配置的项目如下:
+
+
+
+```java
+// 创建机器人对象 ( 传入机器人配置对象 )
+PicqBotX bot = new PicqBotX(config);
 ```
 **注意: 酷Q 配置里的`发送端口`要和传进 Picq 的`接收端口`一样, 然后 Picq 的`发送端口`也要和 酷Q 的`接收端口`一样!<br>
 注意: 酷Q 配置里的`发送端口`要和传进 Picq 的`接收端口`一样, 然后 Picq 的`发送端口`也要和 酷Q 的`接收端口`一样!<br>
