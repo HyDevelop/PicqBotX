@@ -1,12 +1,6 @@
 package cc.moecraft.icq.sender;
 
 import cc.moecraft.icq.PicqBotX;
-import cn.hutool.http.HttpUtil;
-import cn.hutool.json.JSONObject;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
-
-import java.util.Map;
 
 /**
  * 此类由 Hykilpikonna 在 2018/19/24 创建!
@@ -24,16 +18,9 @@ public class IcqHttpAsyncApi extends HttpApiBase
         super.selfId = api.selfId;
     }
 
-    /**
-     * 发送请求
-     *
-     * @param request 请求
-     * @param parameters 参数
-     * @return 响应
-     */
     @Override
-    public JsonElement send(String request, Map<String, Object> parameters)
+    public String makeUrl(String api)
     {
-        return new JsonParser().parse(HttpUtil.post(getBaseURL() + request + "_async", new JSONObject(parameters).toString(), 5000));
+        return getBaseURL() + api + "_async";
     }
 }
