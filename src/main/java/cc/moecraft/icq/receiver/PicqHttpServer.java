@@ -103,6 +103,13 @@ public class PicqHttpServer
             // 获取请求数据
             String data = read(exchange.getRequestBody());
 
+            // 验证 SHA1
+            if (!validateSHA1(exchange, data))
+            {
+                respondAndClose(exchange, 404, "");
+                return;
+            }
+
             // 输出Debug
             printDebug(exchange, data);
 
