@@ -32,13 +32,24 @@ public class IcqHttpApi extends HttpApiBase
     /**
      * 发送请求
      *
-     * @param request 请求
+     * @param api API节点
      * @param parameters 参数
      * @return 响应
      */
-    public JsonElement send(String request, Map<String, Object> parameters)
+    public JsonElement send(String api, Map<String, Object> parameters)
     {
-        return new JsonParser().parse(HttpUtil.post(baseURL + request, new JSONObject(parameters).toString(), 5000));
+        HttpRequest request = HttpRequest
+                .post(getBaseURL() + api)
+                .body(new JSONObject(parameters))
+                .timeout(5000);
+
+        // 判断有没有 Access Token, 并加到头上w
+        if (!bot.getConfig().getAccessToken().isEmpty())
+        {
+            request.header("Authorization", "Bearer " + bot.getConfig().getAccessToken());
+        }
+
+        return new JsonParser().parse(request.execute().body());
     }
 
     /**
