@@ -181,6 +181,9 @@ public class PicqHttpServer
 
         // 获取 SHA1 里面的 SHA1 嗯x
         signature = signature.replace("sha1=", "");
+
+        // 生成 SHA1
+        String generatedSignature = SHA1Utils.generateHAMCSHA1(data, bot.getConfig().getSecret());
         return true;
     }
 
