@@ -403,7 +403,7 @@ public abstract class HttpApiBase
     /**
      * 群组匿名用户禁言
      *
-     * @param flag 要禁言的匿名用户的 flag（需从群消息上报的数据中获得）
+     * @param flag 要禁言的匿名用户的 flag (需从群消息上报的数据中获得)
      * @param groupId 群号
      * @param duration 禁言时长，单位秒，无法取消匿名用户禁言
      * @return 执行结果
@@ -416,7 +416,7 @@ public abstract class HttpApiBase
     /**
      * 群组匿名用户禁言
      *
-     * @param anonymous 要禁言的匿名用户的 Anonymous对象（需从群消息上报的数据中获得）
+     * @param anonymous 要禁言的匿名用户的 Anonymous对象 (需从群消息上报的数据中获得)
      * @param groupId 群号
      * @param duration 禁言时长，单位秒，无法取消匿名用户禁言
      * @return 执行结果
@@ -464,7 +464,7 @@ public abstract class HttpApiBase
     }
 
     /**
-     * 设置群名片（群备注）
+     * 设置群名片 (群备注)
      *
      * @param groupId 群号
      * @param qq 要设置的 QQ 号
@@ -529,7 +529,7 @@ public abstract class HttpApiBase
     /**
      * 退出讨论组
      *
-     * @param discussId 讨论组 ID（正常情况下看不到，需要从讨论组消息上报的数据中获得）
+     * @param discussId 讨论组 ID (正常情况下看不到，需要从讨论组消息上报的数据中获得)
      * @return 执行结果
      */
     public RawReturnData setDiscussLeave(long discussId)
@@ -540,7 +540,7 @@ public abstract class HttpApiBase
     /**
      * 处理加好友请求
      *
-     * @param flag 加好友请求的 flag（需从上报的数据中获得）
+     * @param flag 加好友请求的 flag (需从上报的数据中获得)
      * @param approve 是否同意请求
      * @return 执行结果
      */
@@ -552,9 +552,9 @@ public abstract class HttpApiBase
     /**
      * 处理加好友请求
      *
-     * @param flag 加好友请求的 flag（需从上报的数据中获得）
+     * @param flag 加好友请求的 flag (需从上报的数据中获得)
      * @param approve 是否同意请求
-     * @param remark 添加后的好友备注（仅在同意时有效）
+     * @param remark 添加后的好友备注 (仅在同意时有效)
      * @return 执行结果
      */
     public RawReturnData setFriendAndRequest(String flag, boolean approve, String remark)
@@ -565,10 +565,10 @@ public abstract class HttpApiBase
     /**
      * 处理加群请求/邀请
      *
-     * @param flag 加好友请求的 flag（需从上报的数据中获得）
-     * @param type add 或 invite，请求类型（需要和上报消息中的 sub_type 字段相符）
+     * @param flag 加好友请求的 flag (需从上报的数据中获得)
+     * @param type add 或 invite，请求类型 (需要和上报消息中的 sub_type 字段相符)
      * @param approve 是否同意请求/邀请
-     * @param reason 拒绝理由（仅在拒绝时有效）
+     * @param reason 拒绝理由 (仅在拒绝时有效)
      * @return 执行结果
      */
     public RawReturnData setGroupAndRequest(String flag, String type, boolean approve, String reason)
@@ -579,8 +579,8 @@ public abstract class HttpApiBase
     /**
      * 同意加群请求／邀请
      *
-     * @param flag 加好友请求的 flag（需从上报的数据中获得）
-     * @param type add 或 invite，请求类型（需要和上报消息中的 sub_type 字段相符）
+     * @param flag 加好友请求的 flag (需从上报的数据中获得)
+     * @param type add 或 invite，请求类型 (需要和上报消息中的 sub_type 字段相符)
      * @return 执行结果
      */
     public RawReturnData approveGroupRequest(String flag, String type)
@@ -591,8 +591,8 @@ public abstract class HttpApiBase
     /**
      * 拒绝加群请求／邀请
      *
-     * @param flag 加好友请求的 flag（需从上报的数据中获得）
-     * @param type add 或 invite，请求类型（需要和上报消息中的 sub_type 字段相符）
+     * @param flag 加好友请求的 flag (需从上报的数据中获得)
+     * @param type add 或 invite，请求类型 (需要和上报消息中的 sub_type 字段相符)
      * @param reason 拒绝理由
      * @return 执行结果
      */
