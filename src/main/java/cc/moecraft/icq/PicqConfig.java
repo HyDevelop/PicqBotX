@@ -36,8 +36,8 @@ public class PicqConfig
     /** 是否跳过酷Q版本验证 (不推荐) */
     private boolean noVerify = false;
 
-    /** 是否启用异步 */
-    private boolean useAsync = false;
+    /** 是否异步执行指令 */
+    private boolean useAsyncCommands = false;
 
     /** 是否启用维护模式 */
     private boolean maintenanceMode = false;

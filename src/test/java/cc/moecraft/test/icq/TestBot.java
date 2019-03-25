@@ -78,7 +78,7 @@ public class TestBot
         bot.setUniversalHyExpSupport(true);
 
         // 设置异步
-        bot.getConfig().setUseAsync(true);
+        bot.getConfig().setUseAsyncCommands(true);
 
         // 注册事件监听器, 可以注册多个监听器
         bot.getEventManager().registerListeners(listeners);
