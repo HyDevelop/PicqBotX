@@ -164,6 +164,12 @@ public class PicqHttpServer
      */
     private boolean validateSHA1(HttpExchange exchange, String data)
     {
+        // 是否启用验证
+        if (bot.getConfig().getSecret().isEmpty())
+        {
+            return true;
+        }
+
         return true;
     }
 
