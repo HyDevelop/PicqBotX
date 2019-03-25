@@ -86,6 +86,13 @@ public class IcqHttpApi
             return url + "_rate_limited";
         }
 
+        // 有没有设置异步
+        if (bot.getConfig().isApiAsync())
+        {
+            return url + "_async";
+        }
+
+        // 全都没有的话直接返回
         return url;
     }
 
