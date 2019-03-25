@@ -128,7 +128,7 @@ post_url=http://127.0.0.1:Picq端口
 
 #### 启动机器人 (Main类):
 
-在 main 方法中, 先创建一个机器人配置对象: <br>
+在 main 方法中, 先创建一个机器人配置对象:
 
 ```java
 // 创建机器人配置 ( 传入Picq端口 )
@@ -137,7 +137,7 @@ PicqConfig config = new PicqConfig(31092);
 
 **注意: 这里的`Picq端口`要和酷Q`config.cfg`配置里面设置的`Picq端口`一样!!**<br>
 之后可以通过`config.set...`来配置机器人了.<br>
-下面这些是可以配置的配置项:<br>
+下面这些是可以配置的配置项:
 
 | 配置项 Set 方法和默认值 | 配置项介绍 |
 | :------------ | :------------ |
@@ -155,7 +155,7 @@ PicqConfig config = new PicqConfig(31092);
 | `setApiAsync(false)` | 是否异步调用API |
 
 还有一些必须在启动之前设置的配置项:<br>
-这些项启动之后改掉也没用了啦w<br>
+这些项启动之后改掉也没用了啦w
 
 | 配置项 Set 方法和默认值 | 配置项介绍 |
 | :------------ | :------------ |
@@ -163,21 +163,12 @@ PicqConfig config = new PicqConfig(31092);
 | `setLogPath("logs")` | Logger日志路径 (设为空就不输出文件了) |
 | `setLogFileName("PicqBotX-Log")` | Logger日志文件名 |
 
-
-
-
-
+接下来创建一个机器人对象:
 
 ```java
 // 创建机器人对象 ( 传入机器人配置对象 )
 PicqBotX bot = new PicqBotX(config);
 ```
-( 这是因为 酷Q 需要发送到 Picq 的接收端口去, 而不是发送到对方的发送端口ww )<br>
-重要的事情要加粗说三遍了w<br>
-已经有4个人问我为什么端口不对了噗...<br>
-
-例子: 如果你的 酷Q 的 `port` 写的是 `12345`, 然后 `post_url` 写的是 `http://127.0.0.1:54321`,<br>
-      那么你的传入 PicqBotX 的 `postPort` 就应该是 `12345`, 然后 `socketPort` 就应该是 `54321`.
 
 注册监听器: <br>
 可以注册多个监听器 <br>
