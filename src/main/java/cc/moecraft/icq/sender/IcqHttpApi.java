@@ -1,10 +1,10 @@
 package cc.moecraft.icq.sender;
 
-import cc.moecraft.icq.event.EventManager;
+import cc.moecraft.icq.PicqBotX;
 import cc.moecraft.icq.sender.returndata.ReturnData;
 import cc.moecraft.icq.sender.returndata.ReturnListData;
 import cc.moecraft.icq.sender.returndata.returnpojo.get.*;
-import cn.hutool.http.HttpUtil;
+import cn.hutool.http.HttpRequest;
 import cn.hutool.json.JSONObject;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
@@ -23,10 +23,10 @@ public class IcqHttpApi extends HttpApiBase
 {
     public IcqHttpAsyncApi async;
 
-    public IcqHttpApi(EventManager eventManager, String baseUrl, int port)
+    public IcqHttpApi(PicqBotX bot, String baseUrl, int port)
     {
-        super(eventManager, baseUrl, port);
-        async = new IcqHttpAsyncApi(this, eventManager, baseUrl, port);
+        super(bot, baseUrl, port);
+        async = new IcqHttpAsyncApi(this, bot, baseUrl, port);
     }
 
     /**

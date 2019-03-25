@@ -174,7 +174,7 @@ public class PicqBotX
     {
         try
         {
-            this.accountManager.addAccount(new BotAccount(name, eventManager, postUrl, postPort));
+            this.accountManager.addAccount(new BotAccount(name, this, postUrl, postPort));
         }
         catch (HttpException e)
         {

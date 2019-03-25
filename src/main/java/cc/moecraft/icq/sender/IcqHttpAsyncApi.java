@@ -1,6 +1,6 @@
 package cc.moecraft.icq.sender;
 
-import cc.moecraft.icq.event.EventManager;
+import cc.moecraft.icq.PicqBotX;
 import cn.hutool.http.HttpUtil;
 import cn.hutool.json.JSONObject;
 import com.google.gson.JsonElement;
@@ -18,9 +18,9 @@ import java.util.Map;
  */
 public class IcqHttpAsyncApi extends HttpApiBase
 {
-    public IcqHttpAsyncApi(IcqHttpApi api, EventManager eventManager, String baseUrl, int port)
+    public IcqHttpAsyncApi(IcqHttpApi api, PicqBotX bot, String baseUrl, int port)
     {
-        super(eventManager, baseUrl, port);
+        super(bot, baseUrl, port);
         super.selfId = api.selfId;
     }
 
@@ -34,6 +34,6 @@ public class IcqHttpAsyncApi extends HttpApiBase
     @Override
     public JsonElement send(String request, Map<String, Object> parameters)
     {
-        return new JsonParser().parse(HttpUtil.post(baseURL + request + "_async", new JSONObject(parameters).toString(), 5000));
+        return new JsonParser().parse(HttpUtil.post(getBaseURL() + request + "_async", new JSONObject(parameters).toString(), 5000));
     }
 }
