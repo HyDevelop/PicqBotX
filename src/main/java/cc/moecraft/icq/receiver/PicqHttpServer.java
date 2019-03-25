@@ -159,10 +159,10 @@ public class PicqHttpServer
      *
      * @param reason 失败原因
      */
-    private boolean failed(Reason reason, HttpExchange exchange)
+    private boolean failed(Reason reason, String text)
     {
         getBot().getEventManager().call(new EventLocalHttpFail(reason));
-        logger.debug("Http Failed: {}: {}", reason, exchange);
+        logger.debug("Http Failed: {}: {}", reason, text);
         return false;
     }
 
