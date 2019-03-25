@@ -1,6 +1,9 @@
 package cc.moecraft.icq.utils;
 
 import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Scanner;
 
 /**
@@ -25,5 +28,24 @@ public class NetUtils
     {
         Scanner scanner = new Scanner(in, "UTF-8").useDelimiter("\\A");
         return scanner.hasNext() ? scanner.next() : "";
+    }
+
+    /**
+     * 用主机地址和端口创建URL
+     *
+     * @param host 主机地址
+     * @param port 端口
+     * @return URL
+     */
+    public static String url(String host, int port)
+    {
+        try
+        {
+            return new URI("http", null, host, port, "/", null, null).toURL().toString();
+        }
+        catch (MalformedURLException | URISyntaxException e)
+        {
+            throw new RuntimeException(e);
+        }
     }
 }
