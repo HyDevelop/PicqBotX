@@ -60,7 +60,7 @@ public class PicqConfig
     /** Access Token 访问令牌 (设置为空就是不用令牌) */
     private String accessToken = "";
 
-    /** 是否启用限速调用API ( 需要enable_rate_limited_actions=true ) */
+    /** 是否启用限速调用API (需要enable_rate_limited_actions=true) */
     private boolean apiRateLimited = false;
 
     /** 是否异步调用API */
@@ -72,7 +72,7 @@ public class PicqConfig
     /** Logger颜色支持级别 */
     private ColorSupportLevel colorSupportLevel = FORCED;
 
-    /** Logger日志路径 */
+    /** Logger日志路径 (设为空就不输出文件了) */
     private String logPath = "logs";
 
     /** Logger日志文件名 */

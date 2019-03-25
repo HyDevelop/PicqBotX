@@ -16,7 +16,6 @@ import cc.moecraft.icq.user.UserManager;
 import cc.moecraft.logger.HyLogger;
 import cc.moecraft.logger.LoggerInstanceManager;
 import cc.moecraft.logger.environments.ConsoleColoredEnv;
-import cc.moecraft.logger.environments.ConsoleEnv;
 import cc.moecraft.logger.environments.FileEnv;
 import cc.moecraft.logger.format.AnsiColor;
 import cc.moecraft.utils.HyExpressionResolver;
@@ -127,9 +126,11 @@ public class PicqBotX
     {
         // 日志管理器
         loggerInstanceManager = new LoggerInstanceManager();
-        loggerInstanceManager.addEnvironment(new FileEnv(config.getLogPath(), config.getLogFileName()));
-        loggerInstanceManager.addEnvironment(config.getColorSupportLevel() == null
-                ? new ConsoleEnv() : new ConsoleColoredEnv(config.getColorSupportLevel()));
+        loggerInstanceManager.addEnvironment(new ConsoleColoredEnv(config.getColorSupportLevel()));
+        if (!config.getLogPath().isEmpty())
+        {
+            loggerInstanceManager.addEnvironment(new FileEnv(config.getLogPath(), config.getLogFileName()));
+        }
 
         // 日志对象
         logger = loggerInstanceManager.getLoggerInstance("PicqBotX", config.isDebug());
