@@ -63,10 +63,6 @@ public class PicqConfig
     /** 是否启用限速调用API ( 需要enable_rate_limited_actions=true ) */
     private boolean apiRateLimited = false;
 
-    ///** 限速调用的速度, 单位: ms */
-    // private int apiRateLimitInterval = 500;
-    // 结构暂时不支持.
-
     /** 是否异步调用API */
     private boolean apiAsync = false;
 
