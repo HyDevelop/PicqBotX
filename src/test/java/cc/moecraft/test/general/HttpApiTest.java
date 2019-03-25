@@ -1,6 +1,7 @@
 package cc.moecraft.test.general;
 
 import cc.moecraft.icq.PicqBotX;
+import cc.moecraft.icq.PicqConfig;
 import cc.moecraft.icq.sender.IcqHttpApi;
 import cc.moecraft.logger.HyLogger;
 import cc.moecraft.test.icq.listeners.ExceptionListener;
@@ -35,7 +36,11 @@ public class HttpApiTest
     public static void init()
     {
         // 创建机器人对象 ( 接收端口 )
-        PicqBotX bot = new PicqBotX(30192);
+        PicqBotX bot = new PicqBotX(new PicqConfig(31092)
+                .setDebug(true)
+                .setSecret("This is secret")
+                .setAccessToken("Brq4KSm+3UdaUJnLZ+AJfj**v-vePWL$")
+        );
 
         // 添加一个机器人账户 ( 名字, 发送URL, 发送端口 )
         bot.addAccount("Bot01", "127.0.0.1", 31091);
