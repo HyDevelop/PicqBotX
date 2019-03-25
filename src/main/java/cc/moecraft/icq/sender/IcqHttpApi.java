@@ -24,6 +24,7 @@ import java.lang.reflect.Type;
 import java.util.Map;
 
 import static cc.moecraft.icq.sender.HttpApiNode.*;
+import static cc.moecraft.icq.utils.NetUtils.url;
 
 /**
  * 此类由 Hykilpikonna 在 2018/19/24 创建!
@@ -53,21 +54,14 @@ public class IcqHttpApi
      *
      * @param bot 机器人
      * @param account 账号
-     * @param baseUrl URL
+     * @param host 主机地址
      * @param port 端口
      */
-    public IcqHttpApi(PicqBotX bot, BotAccount account, String baseUrl, int port)
+    public IcqHttpApi(PicqBotX bot, BotAccount account, String host, int port)
     {
         this.bot = bot;
         this.account = account;
-
-        // 获取 BaseUrl
-        baseUrl = baseUrl.toLowerCase();
-        if (!baseUrl.startsWith("http://") && !baseUrl.startsWith("https://"))
-        {
-            baseUrl = "http://" + baseUrl;
-        }
-        this.baseUrl = baseUrl + ":" + port + "/";
+        this.baseUrl = url(host, port);
     }
 
     /**
