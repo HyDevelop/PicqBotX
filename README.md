@@ -135,8 +135,10 @@ post_url=http://127.0.0.1:Picq端口
 PicqConfig config = new PicqConfig(31092);
 ```
 
+**注意: 这里的`Picq端口`要和酷Q`config.cfg`配置里面设置的`Picq端口`一样!!**<br>
 之后可以通过`config.set...`来配置机器人了.<br>
 可配置的项目如下:
+
 
 
 
@@ -144,9 +146,6 @@ PicqConfig config = new PicqConfig(31092);
 // 创建机器人对象 ( 传入机器人配置对象 )
 PicqBotX bot = new PicqBotX(config);
 ```
-**注意: 酷Q 配置里的`发送端口`要和传进 Picq 的`接收端口`一样, 然后 Picq 的`发送端口`也要和 酷Q 的`接收端口`一样!<br>
-注意: 酷Q 配置里的`发送端口`要和传进 Picq 的`接收端口`一样, 然后 Picq 的`发送端口`也要和 酷Q 的`接收端口`一样!<br>
-注意: 酷Q 配置里的`发送端口`要和传进 Picq 的`接收端口`一样, 然后 Picq 的`发送端口`也要和 酷Q 的`接收端口`一样!**<br>
 ( 这是因为 酷Q 需要发送到 Picq 的接收端口去, 而不是发送到对方的发送端口ww )<br>
 重要的事情要加粗说三遍了w<br>
 已经有4个人问我为什么端口不对了噗...<br>
