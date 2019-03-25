@@ -170,6 +170,14 @@ public class PicqHttpServer
             return true;
         }
 
+        // 获取 SHA1
+        String signature = exchange.getRequestHeaders().getFirst("x-signature");
+
+        // CoolQ HTTP 是否有发送 SHA1
+        if (signature == null || signature.isEmpty())
+        {
+            return failed(INCORRECT_SHA1, "Signature Empty");
+        }
         return true;
     }
 
