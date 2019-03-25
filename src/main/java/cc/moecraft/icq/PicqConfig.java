@@ -60,7 +60,7 @@ public class PicqConfig
     /** Access Token 访问令牌 (设置为空就是不用令牌) */
     private String accessToken = "";
 
-    /** 是否启用限速调用API ( https://cqhttp.cc/docs/4.8/#/API?id=限速调用 ) */
+    /** 是否启用限速调用API ( 需要enable_rate_limited_actions=true ) */
     private boolean apiRateLimited = false;
 
     ///** 限速调用的速度, 单位: ms */
