@@ -72,7 +72,21 @@ public class IcqHttpApi
      */
     public String makeUrl(HttpApiNode api)
     {
-        return getBaseUrl() + api.getSubUrl();
+        String url = getBaseUrl() + api.getSubUrl();
+
+        // 不能异步的话直接返回
+        if (!api.isCanAsync())
+        {
+            return url;
+        }
+
+        // 有没有设置限制速度
+        if (bot.getConfig().isApiRateLimited())
+        {
+            return url + "_rate_limited";
+        }
+
+        return url;
     }
 
     /**
