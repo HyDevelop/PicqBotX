@@ -27,6 +27,7 @@ import java.util.Map;
  * @author Hykilpikonna
  */
 @SuppressWarnings("UnusedReturnValue")
+@Getter
 public abstract class HttpApiBase
 {
     // 发送区
@@ -84,12 +85,11 @@ public abstract class HttpApiBase
     @Deprecated
     public static final String SEND_MSG = "send_msg";  // 这个不需要, 因为最后也要指定类型
 
-    final String baseURL;
+    private final String baseURL;
 
-    final EventManager eventManager;
+    protected final PicqBotX bot;
 
-    @Getter
-    long selfId;
+    protected long selfId;
 
     public HttpApiBase(EventManager eventManager, String baseUrl, int port)
     {
