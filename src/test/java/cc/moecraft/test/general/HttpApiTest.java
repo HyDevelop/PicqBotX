@@ -40,6 +40,7 @@ public class HttpApiTest
                 .setDebug(true)
                 .setSecret("This is secret")
                 .setAccessToken("Brq4KSm+3UdaUJnLZ+AJfj**v-vePWL$")
+                .setUseAsync(true)
         );
 
         // 添加一个机器人账户 ( 名字, 发送URL, 发送端口 )
