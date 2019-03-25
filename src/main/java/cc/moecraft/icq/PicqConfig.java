@@ -63,6 +63,9 @@ public class PicqConfig
     /** 是否启用限速调用API ( https://cqhttp.cc/docs/4.8/#/API?id=限速调用 ) */
     private boolean apiRateLimited = false;
 
+    /** 是否异步调用API */
+    private boolean apiAsync = false;
+
     // 一次配置项 | Unchangeable config fields
     // 这里的配置init之后就不能变了w
 
