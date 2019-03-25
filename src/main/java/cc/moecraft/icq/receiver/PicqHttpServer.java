@@ -123,7 +123,7 @@ public class PicqHttpServer
         // 必须是 POST
         if (!exchange.getRequestMethod().toLowerCase().equals("post"))
         {
-            return failed(Reason.INCORRECT_REQUEST_METHOD, exchange);
+            return failed(INCORRECT_REQUEST_METHOD, "Not POST");
         }
 
         // 获取头
@@ -134,20 +134,20 @@ public class PicqHttpServer
         // 必须是 UTF-8
         if (!contentType.toLowerCase().contains("charset=utf-8"))
         {
-            return failed(Reason.INCORRECT_CHARSET, exchange);
+            return failed(INCORRECT_CHARSET, "Not UTF-8");
         }
 
         // 必须是 JSON
         if (!contentType.contains("application/json"))
         {
-            return failed(Reason.INCORRECT_APPLICATION_TYPE, exchange);
+            return failed(INCORRECT_APPLICATION_TYPE, "Not JSON");
         }
 
         // 判断版本
         if (!userAgent.matches(HTTP_API_VERSION_DETECTION))
         {
             reportIncorrectVersion(userAgent);
-            return failed(Reason.INCORRECT_VERSION, exchange);
+            return failed(INCORRECT_VERSION, "Supported Version: " + HTTP_API_VERSION_DETECTION);
         }
 
         // TODO: validate SHA
