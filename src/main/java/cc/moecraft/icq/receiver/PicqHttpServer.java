@@ -178,6 +178,9 @@ public class PicqHttpServer
         {
             return failed(INCORRECT_SHA1, "Signature Empty");
         }
+
+        // 获取 SHA1 里面的 SHA1 嗯x
+        signature = signature.replace("sha1=", "");
         return true;
     }
 
