@@ -4,12 +4,6 @@ import cc.moecraft.icq.PicqBotX;
 import cc.moecraft.icq.sender.returndata.ReturnData;
 import cc.moecraft.icq.sender.returndata.ReturnListData;
 import cc.moecraft.icq.sender.returndata.returnpojo.get.*;
-import cn.hutool.http.HttpRequest;
-import cn.hutool.json.JSONObject;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
-
-import java.util.Map;
 
 /**
  * 此类由 Hykilpikonna 在 2018/19/24 创建!
@@ -30,26 +24,15 @@ public class IcqHttpApi extends HttpApiBase
     }
 
     /**
-     * 发送请求
+     *
      *
      * @param api API节点
-     * @param parameters 参数
-     * @return 响应
+     * @return
      */
-    public JsonElement send(String api, Map<String, Object> parameters)
+    @Override
+    public String makeUrl(String api)
     {
-        HttpRequest request = HttpRequest
-                .post(getBaseURL() + api)
-                .body(new JSONObject(parameters))
-                .timeout(5000);
-
-        // 判断有没有 Access Token, 并加到头上w
-        if (!bot.getConfig().getAccessToken().isEmpty())
-        {
-            request.header("Authorization", "Bearer " + bot.getConfig().getAccessToken());
-        }
-
-        return new JsonParser().parse(request.execute().body());
+        return getBaseURL() + api;
     }
 
     /**
