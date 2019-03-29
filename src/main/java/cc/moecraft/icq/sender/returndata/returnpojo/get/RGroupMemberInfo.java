@@ -10,12 +10,11 @@ import lombok.*;
  *
  * @author Hykilpikonna
  */
-@EqualsAndHashCode(callSuper = true)
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter(AccessLevel.NONE)
-public class RGroupMemberInfo extends ReturnPojoBase
+public class RGroupMemberInfo implements ReturnPojoBase
 {
     @SerializedName("age")
     @Expose

@@ -5,7 +5,6 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import lombok.AccessLevel;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.Setter;
 
 import java.util.List;
@@ -18,10 +17,9 @@ import java.util.List;
  *
  * @author Hykilpikonna
  */
-@EqualsAndHashCode(callSuper = true)
 @Data
 @Setter(AccessLevel.NONE)
-public class RGroupDetail extends ReturnPojoBase
+public class RGroupDetail implements ReturnPojoBase
 {
     @SerializedName("admin_count")
     @Expose

@@ -5,7 +5,6 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import lombok.AccessLevel;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.Setter;
 
 /**
@@ -19,10 +18,9 @@ import lombok.Setter;
  * @author Vanilla (https://github.com/VergeDX)
  * @since 2019-03-23 11:09
  */
-@EqualsAndHashCode(callSuper = true)
 @Data
 @Setter(AccessLevel.NONE)
-public class RBoolean extends ReturnPojoBase
+public class RBoolean implements ReturnPojoBase
 {
     @SerializedName("yes")
     @Expose
