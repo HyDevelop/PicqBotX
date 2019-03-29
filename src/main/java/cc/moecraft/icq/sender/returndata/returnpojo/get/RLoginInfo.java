@@ -5,7 +5,6 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import lombok.AccessLevel;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.Setter;
 
 /**
@@ -13,10 +12,9 @@ import lombok.Setter;
  *
  * @author Hykilpikonna
  */
-@EqualsAndHashCode(callSuper = true)
 @Data
 @Setter(AccessLevel.NONE)
-public class RLoginInfo extends ReturnPojoBase
+public class RLoginInfo implements ReturnPojoBase
 {
     @SerializedName("nickname")
     @Expose
