@@ -121,12 +121,12 @@ post_url=http://127.0.0.1:Picq端口
 <br>
 
 <a name="development"></a>
-开发:
+基础开发概括:
 --------
 
 ##### [开发文档 (JavaDocs)](https://hydevelop.github.io/picqbotx/javadocs/)
 
-#### 启动机器人 (Main类):
+#### 启动机器人: 基础开发概括 (Main类):
 
 在 main 方法中, 先创建一个机器人配置对象:
 
