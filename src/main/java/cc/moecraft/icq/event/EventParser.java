@@ -134,7 +134,7 @@ public class EventParser
             }
             default: // 未识别
             {
-                reportUnrecognized(EVENT_KEY_POST_TYPE, postType);
+                reportUnrecognized(EVENT_KEY_POST_TYPE, postType, json);
                 break;
             }
         }
@@ -178,7 +178,7 @@ public class EventParser
             }
             default: // 未识别
             {
-                reportUnrecognized(EVENT_KEY_MESSAGE_TYPE, messageType);
+                reportUnrecognized(EVENT_KEY_MESSAGE_TYPE, messageType, json);
                 break;
             }
         }
@@ -220,7 +220,7 @@ public class EventParser
                     }
                     default: // 未识别
                     {
-                        reportUnrecognized(EVENT_KEY_SUBTYPE, subtype);
+                        reportUnrecognized(EVENT_KEY_SUBTYPE, subtype, json);
                         break;
                     }
                 }
@@ -228,7 +228,7 @@ public class EventParser
             }
             default: // 未识别
             {
-                reportUnrecognized(EVENT_KEY_REQUEST_TYPE, requestType);
+                reportUnrecognized(EVENT_KEY_REQUEST_TYPE, requestType, json);
                 break;
             }
         }
@@ -288,7 +288,7 @@ public class EventParser
                     }
                     default: // 未识别
                     {
-                        reportUnrecognized(EVENT_KEY_SUBTYPE, subtype);
+                        reportUnrecognized(EVENT_KEY_SUBTYPE, subtype, json);
                         break;
                     }
                 }
@@ -328,7 +328,7 @@ public class EventParser
                     }
                     default: // 未识别
                     {
-                        reportUnrecognized(EVENT_KEY_SUBTYPE, subtype);
+                        reportUnrecognized(EVENT_KEY_SUBTYPE, subtype, json);
                         break;
                     }
                 }
@@ -362,7 +362,7 @@ public class EventParser
                     }
                     default: // 未识别
                     {
-                        reportUnrecognized(EVENT_KEY_SUBTYPE, subtype);
+                        reportUnrecognized(EVENT_KEY_SUBTYPE, subtype, json);
                         break;
                     }
                 }
@@ -370,7 +370,7 @@ public class EventParser
             }
             default: // 未识别
             {
-                reportUnrecognized(EVENT_KEY_NOTICE_TYPE, noticeType);
+                reportUnrecognized(EVENT_KEY_NOTICE_TYPE, noticeType, json);
                 break;
             }
         }
@@ -382,8 +382,9 @@ public class EventParser
      * @param key 字段
      * @param val 获取的值
      */
-    private void reportUnrecognized(String key, String val)
+    private void reportUnrecognized(String key, String val, Object json)
     {
         manager.getBot().getLogger().error("Unrecognized Key (未识别的字段): {}={}", key, val);
+        manager.getBot().getLogger().error("- {}", json);
     }
 }
