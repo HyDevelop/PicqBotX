@@ -3,6 +3,11 @@ package cc.moecraft.test.general;
 import cc.moecraft.icq.PicqBotX;
 import cc.moecraft.icq.PicqConfig;
 import cc.moecraft.icq.sender.IcqHttpApi;
+import cc.moecraft.icq.sender.message.components.ComponentImage;
+import cc.moecraft.icq.sender.returndata.RawReturnData;
+import cc.moecraft.icq.sender.returndata.ReturnData;
+import cc.moecraft.icq.sender.returndata.ReturnListData;
+import cc.moecraft.icq.sender.returndata.ReturnStatus;
 import cc.moecraft.icq.sender.returndata.returnpojo.get.RStatus;
 import cc.moecraft.logger.HyLogger;
 import cc.moecraft.test.icq.listeners.ExceptionListener;
@@ -10,6 +15,7 @@ import cc.moecraft.test.icq.listeners.TestListener;
 import cn.hutool.core.thread.ThreadUtil;
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
@@ -170,6 +176,13 @@ public class HttpApiTest
     public void testGetVersionInfo()
     {
         test(api.getVersionInfo());
+    }
+
+    @Test
+    @Ignore // 忽略, 因为需要手动获取一个图片ID
+    public void testGetImage()
+    {
+        test(api.getImage("E779A15BE07A796AAA0A6124F071DA36.png"));
     }
 
     @Test
