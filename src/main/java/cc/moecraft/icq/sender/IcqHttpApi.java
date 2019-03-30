@@ -769,7 +769,7 @@ public class IcqHttpApi
      */
     public ReturnData<RFile> getRecord(String file, String format, boolean fullPath)
     {
-        return send(RFile.class, GET_RECORD, "file", file, "format", format, "full_path", fullPath);
+        return send(RFile.class, GET_RECORD, "file", file, "out_format", format, "full_path", fullPath);
     }
 
     /**
