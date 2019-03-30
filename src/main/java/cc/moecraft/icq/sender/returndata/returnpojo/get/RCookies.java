@@ -18,5 +18,5 @@ public class RCookies implements ReturnPojoBase
 {
     @SerializedName("cookies")
     @Expose
-    public String cookies;
+    private String cookies;
 }

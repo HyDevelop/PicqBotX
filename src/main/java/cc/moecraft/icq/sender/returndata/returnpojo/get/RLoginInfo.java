@@ -18,9 +18,9 @@ public class RLoginInfo implements ReturnPojoBase
 {
     @SerializedName("nickname")
     @Expose
-    public String nickname;
+    private String nickname;
 
     @SerializedName("user_id")
     @Expose
-    public Long userId;
+    private Long userId;
 }

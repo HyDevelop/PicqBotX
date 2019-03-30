@@ -66,6 +66,7 @@ public class RGroupDetail implements ReturnPojoBase
     private Long ownerId;
 
     @Data
+    @Setter(AccessLevel.NONE)
     public static class Admin
     {
         @SerializedName("nickname")

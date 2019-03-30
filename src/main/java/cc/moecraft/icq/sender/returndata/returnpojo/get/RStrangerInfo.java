@@ -18,17 +18,17 @@ public class RStrangerInfo implements ReturnPojoBase
 {
     @SerializedName("age")
     @Expose
-    public Long age;
+    private Long age;
 
     @SerializedName("nickname")
     @Expose
-    public String nickname;
+    private String nickname;
 
     @SerializedName("sex")
     @Expose
-    public String sex;
+    private String sex;
 
     @SerializedName("user_id")
     @Expose
-    public Long userId;
+    private Long userId;
 }

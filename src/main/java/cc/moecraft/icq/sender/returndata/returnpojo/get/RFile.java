@@ -25,5 +25,5 @@ public class RFile implements ReturnPojoBase
 {
     @SerializedName("file")
     @Expose
-    public String file;
+    private String file;
 }

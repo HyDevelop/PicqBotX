@@ -18,29 +18,29 @@ public class RVipInfo implements ReturnPojoBase
 {
     @SerializedName("level")
     @Expose
-    public Long level;
+    private Long level;
 
     @SerializedName("level_speed")
     @Expose
-    public Double levelSpeed;
+    private Double levelSpeed;
 
     @SerializedName("nickname")
     @Expose
-    public String nickname;
+    private String nickname;
 
     @SerializedName("user_id")
     @Expose
-    public Long userId;
+    private Long userId;
 
     @SerializedName("vip_growth_speed")
     @Expose
-    public Long vipGrowthSpeed;
+    private Long vipGrowthSpeed;
 
     @SerializedName("vip_growth_total")
     @Expose
-    public Long vipGrowthTotal;
+    private Long vipGrowthTotal;
 
     @SerializedName("vip_level")
     @Expose
-    public String vipLevel;
+    private String vipLevel;
 }

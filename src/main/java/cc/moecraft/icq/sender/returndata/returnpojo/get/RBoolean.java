@@ -24,5 +24,5 @@ public class RBoolean implements ReturnPojoBase
 {
     @SerializedName("yes")
     @Expose
-    public Boolean yes;
+    private Boolean yes;
 }
