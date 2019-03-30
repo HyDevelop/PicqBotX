@@ -193,6 +193,13 @@ public class HttpApiTest
     }
 
     @Test
+    @Ignore // 忽略, 因为需要手动获取一个图片ID
+    public void testGetRecord()
+    {
+        test(api.getRecord("1C8CBE1C8970963517057906489438AB.amr", "mp3", true));
+    }
+
+    @Test
     public void testPM()
     {
         test(api.sendPrivateMsg(TEST_RECEIVE_QQ, "Unit test - testPM()"));
