@@ -39,11 +39,6 @@ import static cc.moecraft.icq.utils.NetUtils.url;
 @SuppressWarnings("UnusedReturnValue")
 public class IcqHttpApi
 {
-
-
-    @Deprecated
-    public static final String SEND_MSG = "send_msg";  // 这个不需要, 因为最后也要指定类型
-
     private final String baseUrl;
 
     protected final PicqBotX bot;
