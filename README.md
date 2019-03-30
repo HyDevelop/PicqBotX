@@ -157,7 +157,7 @@ bot.addAccount("Bot01", "127.0.0.1", 31091);
 注册监听器: <br>
 可以注册多个监听器, <br>
 监听器的构造器可以有参数, <br>
-如何创建监听器请看[这里](#events)
+如何创建监听器请看[事件说明](#events)
 
 ```java
 // 注册事件监听器, 可以注册多个监听器
@@ -268,7 +268,7 @@ PicqConfig config = new PicqConfig(31092);
 
 <a name="events"></a>
 
-#### 监听事件:
+#### 2. 监听事件:
 
 ```java
 public class 类名随意 extends IcqListener // 必须继承 IcqListener 监听器类
@@ -325,7 +325,7 @@ public class 类名随意 extends IcqListener // 必须继承 IcqListener 监听
 | EventMetaLifecycle | 生命周期事件 |
 | EventMetaHeartbeat | 心跳事件 |
 
-##### 例子:
+##### 例子1:
 
 ```java
 public class TestListener extends IcqListener
@@ -342,7 +342,7 @@ public class TestListener extends IcqListener
 }
 ```
 
-##### 用事件监听实现消息替换过滤:
+##### 例子2. 用事件监听实现消息替换过滤:
 
 ```java
 public class TestFilter extends IcqListener
@@ -366,7 +366,7 @@ public class TestFilter extends IcqListener
 
 <br>
 
-#### 发送信息:
+#### 3. 发送/获取信息:
 
 ```java
 // TODO: 改这个, 加一个可调用列表, 写加密说明
@@ -432,7 +432,7 @@ new MessageBuilder()
 
 <br>
 
-#### 指令
+#### 4. 指令
 
 每一个指令需要单独创建一个类, 实现一个指令接口<br>
 如果这个指令在所有消息环境内都能执行的话, 实现 `EverywhereCommand` 类<br>
