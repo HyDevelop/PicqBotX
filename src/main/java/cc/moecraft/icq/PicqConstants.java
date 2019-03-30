@@ -33,6 +33,7 @@ public class PicqConstants
     public static final String EVENT_KEY_POST_TYPE_MESSAGE = "message";
     public static final String EVENT_KEY_POST_TYPE_NOTICE = "notice";
     public static final String EVENT_KEY_POST_TYPE_REQUEST = "request";
+    public static final String EVENT_KEY_POST_TYPE_META = "meta_event";
 
     public static final String EVENT_KEY_MESSAGE_TYPE = "message_type";
     public static final String EVENT_KEY_MESSAGE_TYPE_PRIVATE = "private";
@@ -59,6 +60,9 @@ public class PicqConstants
     public static final String EVENT_KEY_NOTICE_TYPE_GROUP_INCREASE_APPROVE = "approve";
     public static final String EVENT_KEY_NOTICE_TYPE_GROUP_INCREASE_INVITE = "invite";
 
+    public static final String EVENT_KEY_META_TYPE = "meta_event_type";
+    public static final String EVENT_KEY_META_TYPE_HEARTBEAT = "meta_event_type_heartbeat";
+    public static final String EVENT_KEY_META_TYPE_LIFECYCLE = "meta_event_type_lifecycle";
 
 
     // GSON 常量
