@@ -20,6 +20,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import lombok.Getter;
 
+import java.io.File;
 import java.lang.reflect.Type;
 import java.util.Map;
 
@@ -779,6 +780,17 @@ public class IcqHttpApi
     public ReturnData<RFile> getImage(String file)
     {
         return send(RFile.class, GET_RECORD, "file", file);
+    }
+
+    /**
+     * 获取图片文件 (封装)
+     *
+     * @param file 收到的图片文件名 (CQ码的file参数), 如 6B4DE3DFD1BD271E3297859D41C530F5.jpg
+     * @return 图片文件对象
+     */
+    public File getImageFile(String file)
+    {
+        return new File(getImage(file).getData().getFile());
     }
 
     /**
