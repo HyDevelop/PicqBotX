@@ -780,7 +780,7 @@ public class IcqHttpApi
      */
     public ReturnData<RFile> getImage(String file)
     {
-        return send(RFile.class, GET_RECORD, "file", file);
+        return send(RFile.class, GET_IMAGE, "file", file);
     }
 
     /**
