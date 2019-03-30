@@ -229,6 +229,7 @@ public class TestBot
 
 ##### 其他例子去看[TestBot](https://github.com/hydevelop/PicqBotX/blob/master/src/test/java/cc/moecraft/test/icq/TestBot.java)!
 
+<br>
 
 <a name="development-full"></a>
 完整开发文档:
