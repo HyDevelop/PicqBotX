@@ -427,7 +427,8 @@ icqHttpApi.send(".handle_quick_operation",
 
 ##### 封装方法表:
 
-TODO: 小桂懒得写了, 去看[IcqHttpApi.java](/src/main/java/cc/moecraft/icq/sender/IcqHttpApi.java)吧w (已经在JavaDocs里面说明了用处啦w)
+小桂很懒w<br>
+去看[IcqHttpApi.java](/src/main/java/cc/moecraft/icq/sender/IcqHttpApi.java)吧w (已经在JavaDocs里面说明了用处啦w)
 
 ##### 返回数据:
 
