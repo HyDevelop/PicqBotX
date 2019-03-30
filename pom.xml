@@ -24,6 +24,13 @@
         </developer>
     </developers>
 
+    <licenses>
+        <license>
+            <name>GNU General Public License v3.0</name>
+            <url>https://github.com/HyDevelop/PicqBotX/blob/master/LICENSE</url>
+        </license>
+    </licenses>
+
     <groupId>cc.moecraft</groupId>
     <artifactId>PicqBotX</artifactId>
     <version>3.0.4.810</version>
