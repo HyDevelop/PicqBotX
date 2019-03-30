@@ -1,7 +1,6 @@
 package cc.moecraft.icq.exceptions;
 
 import cc.moecraft.logger.HyLogger;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -15,17 +14,20 @@ import lombok.EqualsAndHashCode;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-@AllArgsConstructor
 public class HttpServerException extends RuntimeException
 {
     private HyLogger logger;
 
-    private Exception subException;
+    public HttpServerException(HyLogger logger, Exception cause)
+    {
+        super(cause);
+        this.logger = logger;
+    }
 
     @Override
     public void printStackTrace()
     {
-        if (subException.getMessage().toLowerCase().contains("address already in use:"))
+        if (getCause().getMessage() != null && getCause().getMessage().toLowerCase().contains("address already in use:"))
         {
             logger.error("端口已经被占用了... 是不是写错了?");
             logger.error("默认的31091是发送, 31092是接收哦!");
@@ -33,7 +35,7 @@ public class HttpServerException extends RuntimeException
         else
         {
             super.printStackTrace();
-            subException.printStackTrace();
+            getCause().printStackTrace();
         }
     }
 }
