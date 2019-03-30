@@ -61,8 +61,8 @@ public class PicqConstants
     public static final String EVENT_KEY_NOTICE_TYPE_GROUP_INCREASE_INVITE = "invite";
 
     public static final String EVENT_KEY_META_TYPE = "meta_event_type";
-    public static final String EVENT_KEY_META_TYPE_HEARTBEAT = "meta_event_type_heartbeat";
-    public static final String EVENT_KEY_META_TYPE_LIFECYCLE = "meta_event_type_lifecycle";
+    public static final String EVENT_KEY_META_TYPE_HEARTBEAT = "heartbeat";
+    public static final String EVENT_KEY_META_TYPE_LIFECYCLE = "lifecycle";
 
 
     // GSON 常量
