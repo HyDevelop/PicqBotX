@@ -3,6 +3,8 @@ package cc.moecraft.icq.event;
 import cc.moecraft.icq.event.events.message.EventDiscussMessage;
 import cc.moecraft.icq.event.events.message.EventGroupMessage;
 import cc.moecraft.icq.event.events.message.EventPrivateMessage;
+import cc.moecraft.icq.event.events.meta.EventMetaHeartbeat;
+import cc.moecraft.icq.event.events.meta.EventMetaLifecycle;
 import cc.moecraft.icq.event.events.notice.EventNoticeFriendAdd;
 import cc.moecraft.icq.event.events.notice.EventNoticeGroupUpload;
 import cc.moecraft.icq.event.events.notice.groupadmin.EventNoticeGroupAdminRemove;
@@ -130,6 +132,11 @@ public class EventParser
             case EVENT_KEY_POST_TYPE_REQUEST: // 请求事件
             {
                 callRequest(json);
+                break;
+            }
+            case EVENT_KEY_POST_TYPE_META: // Meta事件
+            {
+                callMeta(json);
                 break;
             }
             default: // 未识别
@@ -371,6 +378,37 @@ public class EventParser
             default: // 未识别
             {
                 reportUnrecognized(EVENT_KEY_NOTICE_TYPE, noticeType, json);
+                break;
+            }
+        }
+    }
+
+    /**
+     * 执行Meta事件
+     *
+     * @param json JSON输入
+     */
+    private void callMeta(JsonObject json)
+    {
+        String metaType = json.get(EVENT_KEY_META_TYPE).getAsString();
+        switch (metaType)
+        {
+            // 生命周期
+            case EVENT_KEY_META_TYPE_LIFECYCLE:
+            {
+                call(gsonRead.fromJson(json, EventMetaLifecycle.class));
+                break;
+            }
+            // 心跳
+            case EVENT_KEY_META_TYPE_HEARTBEAT:
+            {
+                call(gsonRead.fromJson(json, EventMetaHeartbeat.class));
+                break;
+            }
+            // 未识别
+            default:
+            {
+                reportUnrecognized(EVENT_KEY_NOTICE_TYPE, metaType, json);
                 break;
             }
         }
