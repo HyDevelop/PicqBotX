@@ -267,7 +267,10 @@ public class HttpApiTest
     @Test
     public void testCleanDataDir()
     {
-        api.cleanDataDir();
+        test(api.cleanDataDir("image"));
+        test(api.cleanDataDir("record"));
+        test(api.cleanDataDir("show"));
+        test(api.cleanDataDir("bface"));
     }
 
     // Manual test: cleanPluginLog
