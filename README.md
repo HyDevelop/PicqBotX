@@ -263,7 +263,7 @@ public class 类名随意 extends IcqListener // 必须继承 IcqListener 监听
     @EventHandler // 这个注解必须加, 用于反射时判断哪些方法是事件方法的, 不用 @Override
     public void 方法名随意(事件类名 event) // 想监听什么事件就写在事件类名这里, 一个方法只能有一个事件参数
     {
-    // 处理
+        // 处理
     }
 
     @EventHandler
@@ -317,11 +317,11 @@ public class TestListener extends IcqListener
     @EventHandler
     public void onPMEvent(EventPrivateMessage event)
     {
-    System.out.println("接到消息");
-
-    // 判断消息是不是这段文字, 如果是就回复那段文字, 很简单的测试_(:з」∠)_
-    if (event.getMessage().equals("你以为这是 yangjinhe/maintain-robot?"))
-        event.respond("其实是我 HyDevelop/PicqBotX 哒!");
+        System.out.println("接到消息");
+    
+        // 判断消息是不是这段文字, 如果是就回复那段文字, 很简单的测试_(:з」∠)_
+        if (event.getMessage().equals("你以为这是 yangjinhe/maintain-robot?"))
+            event.respond("其实是我 HyDevelop/PicqBotX 哒!");
     }
 }
 ```
@@ -352,8 +352,12 @@ public class TestFilter extends IcqListener
 
 #### 发送信息:
 
-需要一个 bot 对象, **请不要使用全局变量存 bot 对象**<br>
-其实监听器里的话直接用 `event.getBot()` 就行了, 不是监听器的话也很少会直接用到 bot 对象...<br>
+```java
+// TODO: 改这个, 加一个可调用列表, 写加密说明
+```
+
+需要一个`IcqHttpApi`对象, **请不要使用全局变量存`IcqHttpApi`对象**<br>
+其实监听器里的话直接用 `event.getHttpApi()` 就行了, 不是监听器的话也很少会直接用到 bot 对象...<br>
 返回数据为 `ReturnData<Pojo 数据类>` 形式, 获取数据的话用 `response.getData()` 就行了.<br>
 
 ##### 如果已经封装过了的话, 这样发送:
@@ -378,7 +382,7 @@ ReturnData<RMessageReturnData> response = event.getHttpApi().send(IcqHttpApi.SEN
 
 ##### 复杂的消息建造 (比如图片什么的) 用 MessageBuilder 类:
 
-注意: .add(object) 方法对于所有类型的对象都有效, 只要能 toString 就行
+注意: `.add(Object)` 方法对于所有类型的对象都有效, 只要能 `toString()` 就行
 
 ```java
 new MessageBuilder()
@@ -417,8 +421,7 @@ new MessageBuilder()
 每一个指令需要单独创建一个类, 实现一个指令接口<br>
 如果这个指令在所有消息环境内都能执行的话, 实现 `EverywhereCommand` 类<br>
 如果这个指令只需要在 群 或者 讨论组 或者 私聊 执行的话, <br>
-实现 `GroupCommand` 或者 `DiscussCommand` 或者 `PrivateCommand` 就可以了<br>
-因为启动的时候自动注册指令, 不需要做任何其他事情, 只创建类就能用了!
+实现 `GroupCommand` 或者 `DiscussCommand` 或者 `PrivateCommand` 就可以了w<br>
 
 例子:
 
@@ -443,6 +446,13 @@ public class CommandVersion implements EverywhereCommand // 实现EverywhereComm
         return "TestBot - PicqBotX v3.0.4.810";
     }
 }
+```
+
+注册指令:
+
+```java
+// 注册指令, 可以注册多个指令
+bot.getCommandManager().registerCommands(new 指令1(), new 指令2(), ...);
 ```
 
 <a name="qa"></a>
