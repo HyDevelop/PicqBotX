@@ -33,7 +33,7 @@
 
     <groupId>cc.moecraft</groupId>
     <artifactId>PicqBotX</artifactId>
-    <version>3.0.4.810</version>
+    <version>3.2.0.875</version>
 
     <properties>
         <maven.compiler.target>1.8</maven.compiler.target>
