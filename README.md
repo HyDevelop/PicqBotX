@@ -124,7 +124,7 @@ post_url=http://127.0.0.1:Picq端口
 基础开发概括:
 --------
 
-##### [开发文档 (JavaDocs)](https://hydevelop.github.io/picqbotx/javadocs/)
+##### [开发文档 (JavaDocs)](http://gitpage.hydev.pw/PicqBotX/)
 
 #### 启动机器人: 基础开发概括 (Main类):
 
