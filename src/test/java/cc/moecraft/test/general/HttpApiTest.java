@@ -62,6 +62,59 @@ public class HttpApiTest
         ThreadUtil.safeSleep(2000);
     }
 
+    /**
+     * Test if a return data is not failed.
+     *
+     * @param data Return data
+     */
+    private void test(ReturnData data)
+    {
+        test(data.getStatus(), data.getReturnCode(), data);
+    }
+
+    /**
+     * Test if a return list data is not failed.
+     *
+     * @param data Return list data
+     */
+    private void test(ReturnListData data)
+    {
+        test(data.getStatus(), data.getReturnCode(), data);
+    }
+
+    /**
+     * Test if a raw return data is not failed.
+     *
+     * @param data Raw return data
+     */
+    private void test(RawReturnData data)
+    {
+        test(data.getStatus(), data.getReturnCode(), data);
+    }
+
+    /**
+     * Test return data
+     *
+     * @param status Status
+     * @param code Return Code
+     * @param data Return Data
+     */
+    private void test(ReturnStatus status, Long code, Object data)
+    {
+        try
+        {
+            assert status != ReturnStatus.failed;
+            assert code == 0 || code == 1;
+        }
+        catch (AssertionError e)
+        {
+            logger.error("Error: " + data);
+            throw e;
+        }
+
+        logger.log(data.toString());
+    }
+
     @Test
     public void testGetStatus()
     {
