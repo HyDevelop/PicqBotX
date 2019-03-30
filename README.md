@@ -428,6 +428,11 @@ icqHttpApi.send(".handle_quick_operation",
 
 TODO: 小桂懒得写了, 去看[IcqHttpApi.java](/src/main/java/cc/moecraft/icq/sender/IcqHttpApi.java)吧w (已经在JavaDocs里面说明了用处啦w)
 
+##### 返回数据:
+
+大部分返回数据为 `ReturnData<Pojo 数据类>` 形式, 获取数据的话用 `response.getData()` 就行了w<br>
+列表的话会返回 `ReturnListData<Pojo 数据类>` 形式.
+
 ##### 复杂的消息建造 (比如图片什么的) 用 MessageBuilder 类:
 
 注意: `.add(Object)` 方法对于所有类型的对象都有效, 只要能 `toString()` 就行
