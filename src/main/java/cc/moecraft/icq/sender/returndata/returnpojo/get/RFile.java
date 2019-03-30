@@ -23,7 +23,7 @@ import lombok.Setter;
 @Setter(AccessLevel.NONE)
 public class RFile implements ReturnPojoBase
 {
-    @SerializedName("group_id")
+    @SerializedName("file")
     @Expose
-    public Long groupId;
+    public Long file;
 }
