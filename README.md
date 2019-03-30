@@ -424,6 +424,10 @@ icqHttpApi.send(".handle_quick_operation",
     "operation", ...); 
 ```
 
+##### 封装方法表:
+
+TODO: 小桂懒得写了, 去看[IcqHttpApi.java](/src/main/java/cc/moecraft/icq/sender/IcqHttpApi.java)吧w (已经在JavaDocs里面说明了用处啦w)
+
 ##### 复杂的消息建造 (比如图片什么的) 用 MessageBuilder 类:
 
 注意: `.add(Object)` 方法对于所有类型的对象都有效, 只要能 `toString()` 就行
