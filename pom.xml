@@ -8,6 +8,22 @@
     <description>A chat bot library for Tencent QQ based on CQHTTP</description>
     <url>https://github.com/HyDevelop/PicqBotX</url>
 
+    <developers>
+        <developer>
+            <name>Hykilpikonna</name>
+            <email>admin@moecraft.cc</email>
+            <organization>HyDEV (HyDevelop)</organization>
+            <organizationUrl>https://github.com/HyDevelop</organizationUrl>
+        </developer>
+
+        <developer>
+            <name>Vanilla</name>
+            <email>wxy20001225@126.com</email>
+            <organization>HyDEV (HyDevelop)</organization>
+            <organizationUrl>https://github.com/HyDevelop</organizationUrl>
+        </developer>
+    </developers>
+
     <groupId>cc.moecraft</groupId>
     <artifactId>PicqBotX</artifactId>
     <version>3.0.4.810</version>
