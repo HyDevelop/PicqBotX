@@ -94,6 +94,8 @@ public class AccountManager
         // Loop through all of the accounts.
         for (BotAccount account : accounts)
         {
+            idIndex.put(account.getId(), account);
+
             // Loop through all of the groups for each account.
             for (RGroup group : account.getHttpApi().getGroupList().getData())
             {
@@ -105,7 +107,6 @@ public class AccountManager
 
                 // Set the group message count to 0 and add to ID index.
                 groupAccountIndex.get(group.groupId).put(account, 0L);
-                idIndex.put(account.getId(), account);
             }
         }
     }
