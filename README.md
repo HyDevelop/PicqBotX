@@ -308,6 +308,9 @@ public class 类名随意 extends IcqListener // 必须继承 IcqListener 监听
 | EventLocalSendPrivateMessage | 发送私聊消息事件 |
 | EventLocalHttpRecieveEvent | 接收HTTP请求事件 |
 | EventLocalHttpFailEvent | 接收HTTP请求失败事件 |
+| EventMeta | Meta事件 |
+| EventMetaLifecycle | 生命周期事件 |
+| EventMetaHeartbeat | 心跳事件 |
 
 ##### 例子:
 
