@@ -28,10 +28,7 @@ import static cc.moecraft.icq.sender.HttpApiNode.*;
 import static cc.moecraft.icq.utils.NetUtils.url;
 
 /**
- * 此类由 Hykilpikonna 在 2018/19/24 创建!
- * Created by Hykilpikonna on 2018/19/24!
- * Github: https://github.com/hykilpikonna
- * Meow!
+ * 酷Q HTTP插件的API客户端w
  *
  * @author Hykilpikonna
  */
