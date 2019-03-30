@@ -18,5 +18,5 @@ public class RCsrfToken implements ReturnPojoBase
 {
     @SerializedName("token")
     @Expose
-    public Long token;
+    private Long token;
 }

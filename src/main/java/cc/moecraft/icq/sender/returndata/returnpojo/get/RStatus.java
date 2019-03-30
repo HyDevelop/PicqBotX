@@ -18,27 +18,27 @@ public class RStatus implements ReturnPojoBase
 {
     @SerializedName("app_enabled")
     @Expose
-    public Boolean appEnabled;
+    private Boolean appEnabled;
 
     @SerializedName("app_good")
     @Expose
-    public Boolean appGood;
+    private Boolean appGood;
 
     @SerializedName("app_initialized")
     @Expose
-    public Boolean appInitialized;
+    private Boolean appInitialized;
 
     @SerializedName("good")
     @Expose
-    public Boolean good;
+    private Boolean good;
 
     @SerializedName("online")
     @Expose
-    public Boolean online;
+    private Boolean online;
 
     @SerializedName("plugins_good")
     @Expose
-    public PluginsGood pluginsGood;
+    private PluginsGood pluginsGood;
 
     @Data
     @Setter(AccessLevel.NONE)
@@ -46,82 +46,82 @@ public class RStatus implements ReturnPojoBase
     {
         @SerializedName("async_actions")
         @Expose
-        public Boolean asyncActions;
+        private Boolean asyncActions;
 
         @SerializedName("backward_compatibility")
         @Expose
-        public Boolean backwardCompatibility;
+        private Boolean backwardCompatibility;
 
         @SerializedName("default_config_generator")
         @Expose
-        public Boolean defaultConfigGenerator;
+        private Boolean defaultConfigGenerator;
 
         @SerializedName("event_data_patcher")
         @Expose
-        public Boolean eventDataPatcher;
+        private Boolean eventDataPatcher;
 
         @SerializedName("event_filter")
         @Expose
-        public Boolean eventFilter;
+        private Boolean eventFilter;
 
         @SerializedName("experimental_actions")
         @Expose
-        public Boolean experimentalActions;
+        private Boolean experimentalActions;
 
         @SerializedName("extension_loader")
         @Expose
-        public Boolean extensionLoader;
+        private Boolean extensionLoader;
 
         @SerializedName("heartbeat_generator")
         @Expose
-        public Boolean heartbeatGenerator;
+        private Boolean heartbeatGenerator;
 
         @SerializedName("http")
         @Expose
-        public Boolean http;
+        private Boolean http;
 
         @SerializedName("ini_config_loader")
         @Expose
-        public Boolean iniConfigLoader;
+        private Boolean iniConfigLoader;
 
         @SerializedName("json_config_loader")
         @Expose
-        public Boolean jsonConfigLoader;
+        private Boolean jsonConfigLoader;
 
         @SerializedName("loggers")
         @Expose
-        public Boolean loggers;
+        private Boolean loggers;
 
         @SerializedName("message_enhancer")
         @Expose
-        public Boolean messageEnhancer;
+        private Boolean messageEnhancer;
 
         @SerializedName("post_message_formatter")
         @Expose
-        public Boolean postMessageFormatter;
+        private Boolean postMessageFormatter;
 
         @SerializedName("rate_limited_actions")
         @Expose
-        public Boolean rateLimitedActions;
+        private Boolean rateLimitedActions;
 
         @SerializedName("restarter")
         @Expose
-        public Boolean restarter;
+        private Boolean restarter;
 
         @SerializedName("updater")
         @Expose
-        public Boolean updater;
+        private Boolean updater;
 
         @SerializedName("websocket")
         @Expose
-        public Boolean websocket;
+        private Boolean websocket;
 
         @SerializedName("websocket_reverse")
         @Expose
-        public Boolean websocketReverse;
+        private Boolean websocketReverse;
 
         @SerializedName("worker_pool_resizer")
         @Expose
-        public Boolean workerPoolResizer;
+        private Boolean workerPoolResizer;
     }
 }

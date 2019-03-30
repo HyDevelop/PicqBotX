@@ -18,21 +18,21 @@ public class RVersionInfo implements ReturnPojoBase
 {
     @SerializedName("coolq_directory")
     @Expose
-    public String coolqDirectory;
+    private String coolqDirectory;
 
     @SerializedName("coolq_edition")
     @Expose
-    public String coolqEdition;
+    private String coolqEdition;
 
     @SerializedName("plugin_build_configuration")
     @Expose
-    public String pluginBuildConfiguration;
+    private String pluginBuildConfiguration;
 
     @SerializedName("plugin_build_number")
     @Expose
-    public Long pluginBuildNumber;
+    private Long pluginBuildNumber;
 
     @SerializedName("plugin_version")
     @Expose
-    public String pluginVersion;
+    private String pluginVersion;
 }

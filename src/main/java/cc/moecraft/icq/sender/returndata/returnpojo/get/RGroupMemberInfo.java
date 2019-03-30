@@ -18,61 +18,61 @@ public class RGroupMemberInfo implements ReturnPojoBase
 {
     @SerializedName("age")
     @Expose
-    public Long age;
+    private Long age;
 
     @SerializedName("area")
     @Expose
-    public String area;
+    private String area;
 
     @SerializedName("card")
     @Expose
-    public String card;
+    private String card;
 
     @SerializedName("card_changeable")
     @Expose
-    public Boolean cardChangeable;
+    private Boolean cardChangeable;
 
     @SerializedName("group_id")
     @Expose
-    public Long groupId;
+    private Long groupId;
 
     @SerializedName("join_time")
     @Expose
-    public Long joinTime;
+    private Long joinTime;
 
     @SerializedName("last_sent_time")
     @Expose
-    public Long lastSentTime;
+    private Long lastSentTime;
 
     @SerializedName("level")
     @Expose
-    public String level;
+    private String level;
 
     @SerializedName("nickname")
     @Expose
-    public String nickname;
+    private String nickname;
 
     @SerializedName("role")
     @Expose
-    public String role;
+    private String role;
 
     @SerializedName("sex")
     @Expose
-    public String sex;
+    private String sex;
 
     @SerializedName("title")
     @Expose
-    public String title;
+    private String title;
 
     @SerializedName("title_expire_time")
     @Expose
-    public Long titleExpireTime;
+    private Long titleExpireTime;
 
     @SerializedName("unfriendly")
     @Expose
-    public Boolean unfriendly;
+    private Boolean unfriendly;
 
     @SerializedName("user_id")
     @Expose
-    public Long userId;
+    private Long userId;
 }

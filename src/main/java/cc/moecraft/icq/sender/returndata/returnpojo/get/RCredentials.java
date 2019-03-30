@@ -18,9 +18,9 @@ public class RCredentials implements ReturnPojoBase
 {
     @SerializedName("cookies")
     @Expose
-    public String cookies;
+    private String cookies;
 
     @SerializedName("csrf_token")
     @Expose
-    public Long csrfToken;
+    private Long csrfToken;
 }

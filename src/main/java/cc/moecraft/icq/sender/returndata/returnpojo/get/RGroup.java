@@ -18,9 +18,9 @@ public class RGroup implements ReturnPojoBase
 {
     @SerializedName("group_id")
     @Expose
-    public Long groupId;
+    private Long groupId;
 
     @SerializedName("group_name")
     @Expose
-    public String groupName;
+    private String groupName;
 }
