@@ -196,6 +196,12 @@ public class HttpApiTest
         test(api.sendGroupMsg(TEST_RECEIVE_GR, "Unit test - testGMAutoEscape()", true));
     }
 
+    @Test
+    public void testSendImage()
+    {
+        test(api.sendGroupMsg(TEST_RECEIVE_GR, new ComponentImage("https://i.imgur.com/noTnhSM.png").toString()));
+    }
+
     // TODO: Test DM
 
     @Test
