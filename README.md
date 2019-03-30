@@ -538,6 +538,29 @@ bot.getCommandManager().registerCommands(new 指令1(), new 指令2(), ...);
 然后每个账号判断`getId()`好啦w<br>
 
 <br>
+
+#### Q: 如何加密?
+
+随便生成一个Secret, 和一个AccessToken嗯<br>
+(可以用 https://passwordsgenerator.net/ 生成)<br>
+<br>
+然后在酷Q HTTP插件的配置`config.cfg`里面写:<br>
+
+```ini
+secret=这里填Secret
+access_token=这里填AccessToken
+```
+
+然后在Picq的配置里面写:<br>
+
+```java
+config.setSecret("这里填Secret")
+    .setAccessToken("这里填AccessToken");
+```
+
+然后重启就有加密啦w<br>
+
+<br>
 <br>
 
 #### 如果发现 Bug 的话, 请开一个 [issue](https://github.com/HyDevelop/PicqBotX/issues) 说明问题
