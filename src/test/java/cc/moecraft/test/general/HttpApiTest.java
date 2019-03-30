@@ -127,73 +127,73 @@ public class HttpApiTest
     @Test
     public void testGetStrangerInfo()
     {
-        logger.debug(api.getStrangerInfo(TEST_RECEIVE_QQ).toString());
+        test(api.getStrangerInfo(TEST_RECEIVE_QQ));
     }
 
     @Test
     public void testGetVIPInfo()
     {
-        logger.debug(api.getVIPInfo(TEST_RECEIVE_QQ).toString());
+        test(api.getVIPInfo(TEST_RECEIVE_QQ));
     }
 
     @Test
     public void testGetGroupList()
     {
-        logger.debug(api.getGroupList().toString());
+        test(api.getGroupList());
     }
 
     @Test
     public void testGetGroupMemberInfo()
     {
-        logger.debug(api.getGroupMemberInfo(TEST_RECEIVE_GR, TEST_RECEIVE_QQ).toString());
+        test(api.getGroupMemberInfo(TEST_RECEIVE_GR, TEST_RECEIVE_QQ));
     }
 
     @Test
     public void testGetGroupInfo()
     {
-        logger.debug(api.getGroupInfo(TEST_RECEIVE_GR).toString());
+        test(api.getGroupInfo(TEST_RECEIVE_GR));
     }
 
     @Test
     public void testGetGroupMemberList()
     {
-        logger.debug(api.getGroupMemberList(TEST_RECEIVE_GR).toString());
+        test(api.getGroupMemberList(TEST_RECEIVE_GR));
     }
 
     @Test
     public void testGetFriendList()
     {
-        logger.debug(api.getFriendList().toString());
+        test(api.getFriendList());
     }
 
     @Test
     public void testGetVersionInfo()
     {
-        logger.debug(api.getVersionInfo().toString());
+        test(api.getVersionInfo());
     }
 
     @Test
     public void testPM()
     {
-        api.sendPrivateMsg(TEST_RECEIVE_QQ, "Unit test - testPM()");
+        test(api.sendPrivateMsg(TEST_RECEIVE_QQ, "Unit test - testPM()"));
     }
 
     @Test
     public void testPMAutoEscape()
     {
-        api.sendPrivateMsg(TEST_RECEIVE_QQ, "Unit test - testPMAutoEscape()", true);
+        test(api.sendPrivateMsg(TEST_RECEIVE_QQ, "Unit test - testPMAutoEscape()", true));
     }
 
     @Test
     public void testGM()
     {
-        api.sendGroupMsg(TEST_RECEIVE_GR, "Unit test - testGM()");
+        test(api.sendGroupMsg(TEST_RECEIVE_GR, "Unit test - testGM()"));
     }
 
     @Test
     public void testGMAutoEscape()
     {
-        api.sendGroupMsg(TEST_RECEIVE_GR, "Unit test - testGMAutoEscape()", true);
+        test(api.sendGroupMsg(TEST_RECEIVE_GR, "Unit test - testGMAutoEscape()", true));
     }
 
     // TODO: Test DM
@@ -206,13 +206,13 @@ public class HttpApiTest
 
         long toDelete = api.sendGroupMsg(TEST_RECEIVE_GR, "Unit test - testDeleteMsg()").getData().getMessageId();
         ThreadUtil.safeSleep(2000);
-        api.deleteMsg(toDelete);
+        test(api.deleteMsg(toDelete));
     }
 
     @Test
     public void testSendLike()
     {
-        api.sendLike(TEST_RECEIVE_QQ, 2);
+        test(api.sendLike(TEST_RECEIVE_QQ, 2));
     }
 
     @Test
@@ -224,34 +224,34 @@ public class HttpApiTest
     @Test
     public void testGroupBan()
     {
-        api.setGroupBan(TEST_RECEIVE_GR, TEST_RECEIVE_QQ, 1);
+        test(api.setGroupBan(TEST_RECEIVE_GR, TEST_RECEIVE_QQ, 1));
     }
 
     @Test
     public void testGroupWholeBan()
     {
-        api.setGroupWholeBan(TEST_RECEIVE_GR, true);
-        api.setGroupWholeBan(TEST_RECEIVE_GR, false);
+        test(api.setGroupWholeBan(TEST_RECEIVE_GR, true));
+        test(api.setGroupWholeBan(TEST_RECEIVE_GR, false));
     }
 
     @Test
     public void testSetGroupAdmin()
     {
-        api.setGroupAdmin(TEST_RECEIVE_GR, TEST_RECEIVE_QQ, true);
-        api.setGroupAdmin(TEST_RECEIVE_GR, TEST_RECEIVE_QQ, false);
+        test(api.setGroupAdmin(TEST_RECEIVE_GR, TEST_RECEIVE_QQ, true));
+        test(api.setGroupAdmin(TEST_RECEIVE_GR, TEST_RECEIVE_QQ, false));
     }
 
     @Test
     public void testSetGroupAnonymous()
     {
-        api.setGroupAnonymous(TEST_RECEIVE_GR, false);
-        api.setGroupAnonymous(TEST_RECEIVE_GR, true);
+        test(api.setGroupAnonymous(TEST_RECEIVE_GR, false));
+        test(api.setGroupAnonymous(TEST_RECEIVE_GR, true));
     }
 
     @Test
     public void testSetGroupCard()
     {
-        api.setGroupCard(TEST_RECEIVE_GR, TEST_RECEIVE_QQ, "UT-GC");
+        test(api.setGroupCard(TEST_RECEIVE_GR, TEST_RECEIVE_QQ, "UT-GC"));
     }
 
     // TODO: setGroupLeave
@@ -259,7 +259,7 @@ public class HttpApiTest
     @Test
     public void testSetGroupSpecialTitle()
     {
-        api.setGroupSpecialTitle(TEST_RECEIVE_GR, TEST_RECEIVE_QQ, "UT-GC", 200);
+        test(api.setGroupSpecialTitle(TEST_RECEIVE_GR, TEST_RECEIVE_QQ, "UT-GC", 200));
     }
 
     // Manual test: setFriendAndRequest, setGroupAndRequest, approveGroupRequest, setRestart
