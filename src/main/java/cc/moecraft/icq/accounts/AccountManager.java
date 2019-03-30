@@ -100,13 +100,13 @@ public class AccountManager
             for (RGroup group : account.getHttpApi().getGroupList().getData())
             {
                 // Register the group to the index.
-                if (!groupAccountIndex.containsKey(group.groupId))
+                if (!groupAccountIndex.containsKey(group.getGroupId()))
                 {
-                    groupAccountIndex.put(group.groupId, new HashMap<>());
+                    groupAccountIndex.put(group.getGroupId(), new HashMap<>());
                 }
 
                 // Set the group message count to 0 and add to ID index.
-                groupAccountIndex.get(group.groupId).put(account, 0L);
+                groupAccountIndex.get(group.getGroupId()).put(account, 0L);
             }
         }
     }
