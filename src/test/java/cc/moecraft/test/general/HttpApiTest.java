@@ -3,6 +3,7 @@ package cc.moecraft.test.general;
 import cc.moecraft.icq.PicqBotX;
 import cc.moecraft.icq.PicqConfig;
 import cc.moecraft.icq.sender.IcqHttpApi;
+import cc.moecraft.icq.sender.returndata.returnpojo.get.RStatus;
 import cc.moecraft.logger.HyLogger;
 import cc.moecraft.test.icq.listeners.ExceptionListener;
 import cc.moecraft.test.icq.listeners.TestListener;
@@ -64,7 +65,10 @@ public class HttpApiTest
     @Test
     public void testGetStatus()
     {
-        logger.debug(api.getStatus().toString());
+        RStatus status = api.getStatus().getData();
+        logger.debug(status.toString());
+
+        assert status.getGood();
     }
 
     @Test
