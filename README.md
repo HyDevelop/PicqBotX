@@ -368,32 +368,55 @@ public class TestFilter extends IcqListener
 
 #### 3. 发送/获取信息:
 
-```java
-// TODO: 改这个, 加一个可调用列表, 写加密说明
-```
+##### 获取`IcqHttpApi`对象:
 
 需要一个`IcqHttpApi`对象, **请不要使用全局变量存`IcqHttpApi`对象**<br>
-其实监听器里的话直接用 `event.getHttpApi()` 就行了, 不是监听器的话也很少会直接用到 bot 对象...<br>
-返回数据为 `ReturnData<Pojo 数据类>` 形式, 获取数据的话用 `response.getData()` 就行了.<br>
+其实监听器里的话直接用 `event.getHttpApi()` 就行了w<br>
+<br>
+如果不在事件里,<br>
+但是只有一个账号的话,<br>
+用 `bot.getAccountManager().getNonAccountSpecifiedApi()` 就好啦w<br>
+如果有多个账号, 要用所有账号的话,<br>
+可以用 `bot.getAccountManager().getAccounts()` 获取账号列表循环一下w<br>
 
-##### 如果已经封装过了的话, 这样发送:
+##### 发送/获取信息:
+
+如果已经封装过了的话, 这样发送:
+
 ```java
-ReturnData<RMessageReturnData> response = event.getHttpApi().封装方法名(参数); // response就是响应数据
+icqHttpApi.封装方法名(参数); // 返回的就是响应数据啦w
 ```
-##### 例子:
+
+例子1. 发送:
+
 ```java
-ReturnData<RMessageReturnData> response = event.getHttpApi().sendPrivateMsg(871674895, "hi"); // 给871674895发送hi
+icqHttpApi.sendPrivateMsg(871674895, "hi"); // 给小桂发送"hi"
 ```
-##### 如果没有封装过的话, 或者想手动添加参数对的话, 这样发送:
+
+例子2. 获取:
+
 ```java
-ReturnData<RMessageReturnData> response = event.getHttpApi().send(请求目标, 参数); // 请求目标在IcqHttpApi里面有常量
+RStatus status = icqHttpApi.getStatus().getData(); // 获取当前运行状态
 ```
-##### 例子:
+
+如果没有封装过的话, 或者想手动添加参数对的话, 这样发送:
+
 ```java
-ReturnData<RMessageReturnData> response = event.getHttpApi().send(IcqHttpApi.SEND_PRIVATE_MSG, 
-    "user_id", 871674895,
-    "message", "hi",
-    "auto_escape", false); // 这个参数因为不常用就没有封装, 所以要用的话这样发送
+icqHttpApi.send(请求目标, 参数);
+```
+
+例子:
+
+```java
+// 因为是隐藏接口, 就没有封装, 所以要用的话这样发送w
+// 检查更新:
+icqHttpApi.send(".check_update", 
+    "automatic", false); 
+
+// 对事件执行快速操作:
+icqHttpApi.send(".handle_quick_operation", 
+    "context", ...,
+    "operation", ...); 
 ```
 
 ##### 复杂的消息建造 (比如图片什么的) 用 MessageBuilder 类:
