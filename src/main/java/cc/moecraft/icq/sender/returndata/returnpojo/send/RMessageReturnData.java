@@ -18,5 +18,5 @@ public class RMessageReturnData implements ReturnPojoBase
 {
     @SerializedName("message_id")
     @Expose
-    public Long messageId;
+    private Long messageId;
 }

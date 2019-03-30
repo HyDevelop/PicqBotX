@@ -23,15 +23,15 @@ public class RawReturnData
 {
     @SerializedName("data")
     @Expose
-    public JsonElement data;
+    private JsonElement data;
 
     @SerializedName("retcode")
     @Expose
-    public Long returnCode;
+    private Long returnCode;
 
     @SerializedName("status")
     @Expose
-    public ReturnStatus status;
+    private ReturnStatus status;
 
     /**
      * 处理数据
