@@ -758,6 +758,18 @@ public class IcqHttpApi
     }
 
     /**
+     * 获取语音文件
+     *
+     * @param file 收到的语音文件名 (CQ码的file参数), 如 0B38145AA44505000B38145AA4450500.silk
+     * @param format 要转换到的格式, 目前支持 mp3, amr, wma, m4a, spx, ogg, wav, flac
+     * @param fullPath 是否返回完整路径 (Windows环境下建议使用, Docker中不建议)
+     * @return 语音文件
+     */
+    public ReturnData<RFile> getRecord(String file, String format, boolean fullPath)
+    {
+        return send(RFile.class, GET_RECORD, "file", file, "format", format, "full_path", fullPath);
+    }
+    /**
      * 检查是否可以发送图片
      *
      * @return 是否可以发送图片
