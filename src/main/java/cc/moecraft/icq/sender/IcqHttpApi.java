@@ -769,6 +769,18 @@ public class IcqHttpApi
     {
         return send(RFile.class, GET_RECORD, "file", file, "format", format, "full_path", fullPath);
     }
+
+    /**
+     * 获取图片文件完整路径
+     *
+     * @param file 收到的图片文件名 (CQ码的file参数), 如 6B4DE3DFD1BD271E3297859D41C530F5.jpg
+     * @return 下载后的图片文件路径
+     */
+    public ReturnData<RFile> getImage(String file)
+    {
+        return send(RFile.class, GET_RECORD, "file", file);
+    }
+
     /**
      * 检查是否可以发送图片
      *
