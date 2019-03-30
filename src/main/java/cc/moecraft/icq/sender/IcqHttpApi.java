@@ -616,13 +616,14 @@ public class IcqHttpApi
     }
 
     /**
-     * 清空数据文件夹
-     *
-     * @return 执行结果
+     * 清空所有数据文件夹
      */
-    public RawReturnData cleanDataDir()
+    public void cleanDataDir()
     {
-        return sendReturnRaw(CLEAN_DATA_DIR);
+        cleanDataDir("image");
+        cleanDataDir("record");
+        cleanDataDir("show");
+        cleanDataDir("bface");
     }
 
     /**
