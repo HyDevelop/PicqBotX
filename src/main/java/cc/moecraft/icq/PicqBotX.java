@@ -247,7 +247,7 @@ public class PicqBotX
 
                 if (!versionInfo.getCoolqEdition().equalsIgnoreCase("pro"))
                 {
-                    logger.error(prefix + "版本正确, 不过用酷Q Pro的话效果更好哦!");
+                    logger.warning(prefix + "版本正确, 不过用酷Q Pro的话效果更好哦!");
                 }
             }
             catch (HttpException e)
