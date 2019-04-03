@@ -124,7 +124,15 @@ post_url=http://127.0.0.1:Picq端口
 基础开发概括:
 --------
 
-##### [开发文档 (JavaDocs)](http://gitpage.hydev.pw/PicqBotX/)
+
+#### 开发文档 [(JavaDocs)](http://gitpage.hydev.pw/PicqBotX/)
+
+
+* **不过Gitpage可能被墙了x**
+* 墙了的话, 去`git clone`或者`download zip`
+* 然后打开`Docs`文件夹,
+* 打开`Index.html`就是一样的啦w
+
 
 #### 启动机器人: 基础开发概括 (Main类):
 
