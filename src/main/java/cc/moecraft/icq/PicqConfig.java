@@ -37,7 +37,7 @@ public class PicqConfig
     private boolean noVerify = false;
 
     /** 是否异步执行指令 */
-    private boolean useAsyncCommands = false;
+    private boolean useAsyncCommands = true;
 
     /** 是否启用维护模式 */
     private boolean maintenanceMode = false;
