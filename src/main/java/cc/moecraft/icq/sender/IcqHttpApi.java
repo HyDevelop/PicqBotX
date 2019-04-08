@@ -225,6 +225,11 @@ public class IcqHttpApi
      */
     public ReturnData<RMessageReturnData> sendPrivateMsg(long qq, String message, boolean autoEscape)
     {
+        if (message == null || message.isEmpty())
+        {
+            return null;
+        }
+
         EventLocalSendPrivateMessage event = new EventLocalSendPrivateMessage(qq, message, autoEscape);
         event.selfId = account.getId();
         bot.getEventManager().call(event);
@@ -257,6 +262,11 @@ public class IcqHttpApi
      */
     public ReturnData<RMessageReturnData> sendGroupMsg(long groupId, String message, boolean autoEscape)
     {
+        if (message == null || message.isEmpty())
+        {
+            return null;
+        }
+
         EventLocalSendGroupMessage event = new EventLocalSendGroupMessage(groupId, message, autoEscape);
         event.selfId = account.getId();
         bot.getEventManager().call(event);
@@ -289,6 +299,11 @@ public class IcqHttpApi
      */
     public ReturnData<RMessageReturnData> sendDiscussMsg(long groupId, String message, boolean autoEscape)
     {
+        if (message == null || message.isEmpty())
+        {
+            return null;
+        }
+
         EventLocalSendDiscussMessage event = new EventLocalSendDiscussMessage(groupId, message, autoEscape);
         event.selfId = account.getId();
         bot.getEventManager().call(event);
