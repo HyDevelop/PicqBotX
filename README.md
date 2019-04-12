@@ -125,7 +125,7 @@ post_url=http://127.0.0.1:Picq端口
 --------
 
 
-#### 开发文档 [(JavaDocs)](http://gitpage.hydev.pw/PicqBotX/)
+#### 开发文档 [(JavaDocs)](http://gitpage.hydev.org/PicqBotX/)
 
 
 * **不过Gitpage可能被墙了x**
