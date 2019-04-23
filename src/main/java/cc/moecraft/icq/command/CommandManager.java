@@ -32,6 +32,8 @@ import static cc.moecraft.icq.command.CommandArgsParser.parse;
 @Getter
 public class CommandManager
 {
+    private PicqBotX bot;
+
     /** 指令前缀 */
     private final String[] prefixes;
 
@@ -43,8 +45,9 @@ public class CommandManager
      *
      * @param prefixes 前缀
      */
-    public CommandManager(String... prefixes)
+    public CommandManager(PicqBotX bot, String... prefixes)
     {
+        this.bot = bot;
         this.prefixes = prefixes;
     }
 
