@@ -105,8 +105,22 @@ public class PicqBotX
      */
     public PicqBotX(PicqConfig config)
     {
+        this(config, true);
+    }
+
+    /**
+     * 构造器
+     *
+     * @param config Picq配置
+     * @param init 是否启动服务器
+     */
+    public PicqBotX(PicqConfig config, boolean init)
+    {
         this.config = config;
-        init();
+        if (init)
+        {
+            init();
+        }
     }
 
     /**
