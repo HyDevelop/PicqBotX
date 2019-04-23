@@ -53,7 +53,8 @@ public class CommandArgsParser
         fullCommand += " ;";
 
         // 分解指令args
-        ArrayList<String> args = new ArrayList<>(Arrays.asList(fullCommand.split(" ")));
+        ArrayList<String> args = new ArrayList<>(Arrays.asList(fullCommand.split(
+                manager.getBot().getConfig().getCommandArgsSplitRegex())));
 
         // 移除结尾添加的字符
         args.remove(args.size() - 1);
