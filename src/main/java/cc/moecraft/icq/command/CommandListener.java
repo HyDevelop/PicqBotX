@@ -8,6 +8,7 @@ import cc.moecraft.icq.event.events.message.EventMessage;
 import cc.moecraft.icq.event.events.message.EventPrivateMessage;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -26,7 +27,7 @@ public class CommandListener extends IcqListener
     private final CommandManager commandManager;
 
     @Getter
-    private Map<String, CommandRunnable> runningAsyncThreads = new LinkedHashMap<>();
+    private Map<String, Thread> runningAsyncThreads = new LinkedHashMap<>();
 
     @EventHandler
     public void onPrivateMessage(EventPrivateMessage event)
@@ -52,7 +53,10 @@ public class CommandListener extends IcqListener
 
         if (event.getBot().getConfig().isUseAsyncCommands())
         {
-            runnable.runAsync();
+            Thread thread = new Thread(runnable, "Thread-" + System.currentTimeMillis());
+            thread.start();
+            runningAsyncThreads.put(thread.getName(), thread);
+            runnable.setCallback(() -> runningAsyncThreads.remove(thread.getName()));
         }
         else
         {
@@ -60,22 +64,17 @@ public class CommandListener extends IcqListener
         }
     }
 
+    @Setter
+    @Getter
     @RequiredArgsConstructor
     private class CommandRunnable implements Runnable
     {
         private final EventMessage event;
-
-        private Thread thread;
-
-        private boolean async = false;
+        private Runnable callback;
 
         @Override
         public void run()
         {
-            if (async)
-            {
-                runningAsyncThreads.put(thread.getName(), this);
-            }
             try
             {
                 commandManager.runCommand(event);
@@ -84,17 +83,11 @@ public class CommandListener extends IcqListener
             {
                 event.getBot().getEventManager().callError(event, e);
             }
-            if (async)
-            {
-                runningAsyncThreads.remove(thread.getName());
-            }
-        }
 
-        public void runAsync()
-        {
-            async = true;
-            thread = new Thread(this, "Thread-" + System.currentTimeMillis());
-            thread.start();
+            if (callback != null)
+            {
+                callback.run();
+            }
         }
     }
 }
