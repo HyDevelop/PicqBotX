@@ -224,7 +224,7 @@ public class PicqBotX
     {
         logger.timing.init();
 
-        commandManager = new CommandManager(prefixes);
+        commandManager = new CommandManager(this, prefixes);
         eventManager.registerListener(new CommandListener(commandManager));
         logInitDone(logger, "指令管理器     ", 6, 0);
 

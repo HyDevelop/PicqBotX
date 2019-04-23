@@ -1,5 +1,7 @@
 package cc.moecraft.test.general;
 
+import cc.moecraft.icq.PicqBotX;
+import cc.moecraft.icq.PicqConfig;
 import cc.moecraft.icq.command.CommandArgs;
 import cc.moecraft.icq.command.CommandManager;
 import cc.moecraft.icq.command.exceptions.CommandNotFoundException;
@@ -20,7 +22,7 @@ public class StaticDebug
 {
     public static void main(String[] args) throws NotACommandException, CommandNotFoundException
     {
-        CommandManager commandManager = new CommandManager("!", "bot -");
+        CommandManager commandManager = new CommandManager(new PicqBotX(new PicqConfig(1234), false), "!", "bot -");
         commandManager.registerCommand(new CommandTest());
 
         CommandArgs commandArgs = parse(commandManager, "   !  test a b  cc d   ", true);
