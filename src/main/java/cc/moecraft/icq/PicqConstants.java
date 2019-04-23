@@ -18,7 +18,7 @@ public class PicqConstants
     // 版本常量 | Version constant
 
     /** 当前版本 */
-    public static final String VERSION = "3.2.0.875";
+    public static final String VERSION = "3.2.2.892";
 
     /** 兼容版本检测Regex */
     public static final String HTTP_API_VERSION_DETECTION = ".*4.8.*";
