@@ -66,6 +66,9 @@ public class PicqConfig
     /** 是否异步调用API */
     private boolean apiAsync = false;
 
+    /** 解析指令的时候用来分割参数的正则 */
+    private String commandArgsSplitRegex = " ";
+
     // 一次配置项 | Unchangeable config fields
     // 这里的配置init之后就不能变了w
 
