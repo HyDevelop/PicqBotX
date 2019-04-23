@@ -269,6 +269,7 @@ PicqConfig config = new PicqConfig(31092);
 | `setAccessToken("")` | Access Token 访问令牌 (设置为空就是不用令牌) |
 | `setApiRateLimited(false)` | 是否启用限速调用API (需要enable_rate_limited_actions=true) |
 | `setApiAsync(false)` | 是否异步调用API |
+| `setCommandArgsSplitRegex(" ")` | 解析指令的时候用来分割参数的正则 |
 
 还有一些必须在启动之前设置的配置项:<br>
 这些项启动之后改掉也没用了啦w
