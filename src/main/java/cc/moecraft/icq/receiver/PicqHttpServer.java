@@ -100,7 +100,7 @@ public class PicqHttpServer
                 return;
             }
 
-            // 验证
+            // 验证 HTTP头
             if (!validateHeader(exchange))
             {
                 respondAndClose(exchange, 200, "Oh hi there! How are you?");
@@ -160,7 +160,7 @@ public class PicqHttpServer
         }
 
         // 判断版本
-        if (!userAgent.matches(HTTP_API_VERSION_DETECTION))
+        if (!bot.getConfig().isNoVerify() && !userAgent.matches(HTTP_API_VERSION_DETECTION))
         {
             reportIncorrectVersion(userAgent);
             return failed(INCORRECT_VERSION, "Supported Version: " + HTTP_API_VERSION_DETECTION);
