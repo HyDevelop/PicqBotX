@@ -240,6 +240,7 @@ public class PicqBotX
     {
         if (config.isNoVerify())
         {
+            logger.warning("已跳过版本验证w");
             return true;
         }
 
