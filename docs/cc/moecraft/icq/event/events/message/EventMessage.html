@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":6,"i1":10,"i2":6,"i3":10,"i4":10};
+var methods = {"i0":10,"i1":6,"i2":10,"i3":6,"i4":10,"i5":10};
 var tabs = {65535:["t0","所有方法"],2:["t2","实例方法"],4:["t3","抽象方法"],8:["t4","具体方法"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -112,6 +112,10 @@ var activeTableTab = "activeTableTab";
 <ul class="blockList">
 <li class="blockList">
 <dl>
+<dt>所有已实现的接口:</dt>
+<dd><a href="../../../../../../cc/moecraft/icq/event/ContentComparable.html" title="cc.moecraft.icq.event中的接口">ContentComparable</a></dd>
+</dl>
+<dl>
 <dt>直接已知子类:</dt>
 <dd><a href="../../../../../../cc/moecraft/icq/event/events/message/EventGroupOrDiscussMessage.html" title="cc.moecraft.icq.event.events.message中的类">EventGroupOrDiscussMessage</a>, <a href="../../../../../../cc/moecraft/icq/event/events/message/EventPrivateMessage.html" title="cc.moecraft.icq.event.events.message中的类">EventPrivateMessage</a></dd>
 </dl>
@@ -119,10 +123,7 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public abstract class <span class="typeNameLabel">EventMessage</span>
 extends <a href="../../../../../../cc/moecraft/icq/event/Event.html" title="cc.moecraft.icq.event中的类">Event</a></pre>
-<div class="block">此类由 Hykilpikonna 在 2018/05/24 创建!
- Created by Hykilpikonna on 2018/05/24!
- Github: https://github.com/hykilpikonna
- QQ: admin@moecraft.cc -OR- 871674895</div>
+<div class="block">消息事件</div>
 <dl>
 <dt><span class="simpleTagLabel">作者:</span></dt>
 <dd>Hykilpikonna</dd>
@@ -209,31 +210,37 @@ extends <a href="../../../../../../cc/moecraft/icq/event/Event.html" title="cc.m
 <th class="colLast" scope="col">方法和说明</th>
 </tr>
 <tr id="i0" class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../cc/moecraft/icq/event/events/message/EventMessage.html#contentEquals-java.lang.Object-">contentEquals</a></span>(java.lang.Object&nbsp;o)</code>
+<div class="block">内容是否和另一个相同</div>
+</td>
+</tr>
+<tr id="i1" class="rowColor">
 <td class="colFirst"><code>abstract <a href="../../../../../../cc/moecraft/icq/user/User.html" title="cc.moecraft.icq.user中的类">User</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../cc/moecraft/icq/event/events/message/EventMessage.html#getSender--">getSender</a></span>()</code>
 <div class="block">获取消息发送者的用户对象</div>
 </td>
 </tr>
-<tr id="i1" class="rowColor">
+<tr id="i2" class="altColor">
 <td class="colFirst"><code><a href="../../../../../../cc/moecraft/icq/sender/returndata/ReturnData.html" title="cc.moecraft.icq.sender.returndata中的类">ReturnData</a>&lt;<a href="../../../../../../cc/moecraft/icq/sender/returndata/returnpojo/send/RMessageReturnData.html" title="cc.moecraft.icq.sender.returndata.returnpojo.send中的类">RMessageReturnData</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../cc/moecraft/icq/event/events/message/EventMessage.html#respond-java.lang.String-">respond</a></span>(java.lang.String&nbsp;message)</code>
 <div class="block">回复消息</div>
 </td>
 </tr>
-<tr id="i2" class="altColor">
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>abstract <a href="../../../../../../cc/moecraft/icq/sender/returndata/ReturnData.html" title="cc.moecraft.icq.sender.returndata中的类">ReturnData</a>&lt;<a href="../../../../../../cc/moecraft/icq/sender/returndata/returnpojo/send/RMessageReturnData.html" title="cc.moecraft.icq.sender.returndata.returnpojo.send中的类">RMessageReturnData</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../cc/moecraft/icq/event/events/message/EventMessage.html#respond-java.lang.String-boolean-">respond</a></span>(java.lang.String&nbsp;message,
        boolean&nbsp;raw)</code>
 <div class="block">回复消息</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code><a href="../../../../../../cc/moecraft/icq/sender/returndata/ReturnData.html" title="cc.moecraft.icq.sender.returndata中的类">ReturnData</a>&lt;<a href="../../../../../../cc/moecraft/icq/sender/returndata/returnpojo/send/RMessageReturnData.html" title="cc.moecraft.icq.sender.returndata.returnpojo.send中的类">RMessageReturnData</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../cc/moecraft/icq/event/events/message/EventMessage.html#respondPrivateMessage-java.lang.String-">respondPrivateMessage</a></span>(java.lang.String&nbsp;message)</code>
 <div class="block">回复到私聊</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code><a href="../../../../../../cc/moecraft/icq/sender/returndata/ReturnData.html" title="cc.moecraft.icq.sender.returndata中的类">ReturnData</a>&lt;<a href="../../../../../../cc/moecraft/icq/sender/returndata/returnpojo/send/RMessageReturnData.html" title="cc.moecraft.icq.sender.returndata.returnpojo.send中的类">RMessageReturnData</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../cc/moecraft/icq/event/events/message/EventMessage.html#respondPrivateMessage-java.lang.String-boolean-">respondPrivateMessage</a></span>(java.lang.String&nbsp;message,
                      boolean&nbsp;raw)</code>
@@ -431,7 +438,7 @@ public&nbsp;java.lang.Long senderId</pre>
 <a name="getSender--">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>getSender</h4>
 <pre>public abstract&nbsp;<a href="../../../../../../cc/moecraft/icq/user/User.html" title="cc.moecraft.icq.user中的类">User</a>&nbsp;getSender()</pre>
@@ -439,6 +446,27 @@ public&nbsp;java.lang.Long senderId</pre>
 <dl>
 <dt><span class="returnLabel">返回:</span></dt>
 <dd>用户对象</dd>
+</dl>
+</li>
+</ul>
+<a name="contentEquals-java.lang.Object-">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>contentEquals</h4>
+<pre>public&nbsp;boolean&nbsp;contentEquals(java.lang.Object&nbsp;o)</pre>
+<div class="block"><span class="descfrmTypeLabel">从接口复制的说明:&nbsp;<code><a href="../../../../../../cc/moecraft/icq/event/ContentComparable.html#contentEquals-java.lang.Object-">ContentComparable</a></code></span></div>
+<div class="block">内容是否和另一个相同</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">指定者:</span></dt>
+<dd><code><a href="../../../../../../cc/moecraft/icq/event/ContentComparable.html#contentEquals-java.lang.Object-">contentEquals</a></code>&nbsp;在接口中&nbsp;<code><a href="../../../../../../cc/moecraft/icq/event/ContentComparable.html" title="cc.moecraft.icq.event中的接口">ContentComparable</a></code></dd>
+<dt><span class="overrideSpecifyLabel">覆盖:</span></dt>
+<dd><code><a href="../../../../../../cc/moecraft/icq/event/Event.html#contentEquals-java.lang.Object-">contentEquals</a></code>&nbsp;在类中&nbsp;<code><a href="../../../../../../cc/moecraft/icq/event/Event.html" title="cc.moecraft.icq.event中的类">Event</a></code></dd>
+<dt><span class="paramLabel">参数:</span></dt>
+<dd><code>o</code> - 另一个</dd>
+<dt><span class="returnLabel">返回:</span></dt>
+<dd>是否相同</dd>
 </dl>
 </li>
 </ul>
