@@ -262,7 +262,8 @@ PicqConfig config = new PicqConfig(31092);
 | `setUseAsyncCommands(true)` | 是否异步执行指令 |
 | `setMaintenanceMode(false)` | 是否启用维护模式 |
 | `setmaintenanceResponse("- 机器人正在维护 -")` | 维护模式回复 (设为空就不会回复了) |
-| `setMultiAccountOptimizatinos(true)` | 是否开启多账号优化 |
+| `setAutoMultiAccountOptimizatinos(true)` | 是否自动判断是否开启多账号优化 |
+| `setMultiAccountOptimizatinos(true)` | 不自动判断的时候是否手动开启多账号优化 |
 | `setEventPaused(false)` | 是否暂停事件 |
 | `setHttpPaused(false)` | 是否暂停HTTP接收 |
 | `setSecret("")` | SHA1 验证秘钥 (设置为空就是不验证w) |
