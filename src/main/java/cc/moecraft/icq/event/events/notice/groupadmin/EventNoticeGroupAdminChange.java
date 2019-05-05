@@ -1,7 +1,6 @@
 package cc.moecraft.icq.event.events.notice.groupadmin;
 
 import cc.moecraft.icq.accounts.BotAccount;
-import cc.moecraft.icq.event.ContentComparable;
 import cc.moecraft.icq.event.events.notice.EventNotice;
 import cc.moecraft.icq.event.methodsets.GroupEventMethods;
 import com.google.gson.annotations.Expose;
@@ -17,7 +16,7 @@ import lombok.*;
 @Data
 @Setter(AccessLevel.NONE)
 @ToString(callSuper = true)
-public class EventNoticeGroupAdminChange extends EventNotice implements ContentComparable<EventNoticeGroupAdminChange>
+public class EventNoticeGroupAdminChange extends EventNotice
 {
     @SerializedName("group_id")
     @Expose
@@ -30,9 +29,13 @@ public class EventNoticeGroupAdminChange extends EventNotice implements ContentC
     private GroupEventMethods groupMethods = null;
 
     @Override
-    public boolean contentEquals(EventNoticeGroupAdminChange other)
+    public boolean contentEquals(Object o)
     {
-        return other.getGroupId().equals(getGroupId()) &&
+        if (!(o instanceof EventNoticeGroupAdminChange)) return false;
+        EventNoticeGroupAdminChange other = (EventNoticeGroupAdminChange) o;
+
+        return super.contentEquals(o) &&
+                other.getGroupId().equals(getGroupId()) &&
                 other.getSubType().equals(getSubType()) &&
                 other.getUserId().equals(getUserId());
     }
