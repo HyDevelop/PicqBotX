@@ -338,6 +338,19 @@ public class IcqHttpApi
     }
 
     /**
+     * 发布群公告
+     *
+     * @param groupId 群号
+     * @param title 标题
+     * @param content 内容
+     * @return 执行结果
+     */
+    public RawReturnData sendGroupNotice(long groupId, String title, String content)
+    {
+        return sendReturnRaw(SEND_GROUP_NOTICE, "group_id", groupId, "title", title, "content", content);
+    }
+
+    /**
      * 群组踢人
      *
      * @param groupId 群号
