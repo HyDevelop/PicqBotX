@@ -57,7 +57,7 @@ public class EventParser
     @SuppressWarnings("unchecked")
     private <T extends Event & ContentComparable> boolean isNew(T event, String identifier)
     {
-        if (!manager.getBot().getConfig().isMultiAccountOptimizations())
+        if (!manager.getBot().getConfig().isMultiAccountOptimizations(manager.getBot()))
         {
             return true;
         }
