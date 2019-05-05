@@ -18,6 +18,12 @@
     catch(err) {
     }
 //-->
+var methods = {"i0":10};
+var tabs = {65535:["t0","所有方法"],2:["t2","实例方法"],8:["t4","具体方法"]};
+var altColor = "altColor";
+var rowColor = "rowColor";
+var tableTab = "tableTab";
+var activeTableTab = "activeTableTab";
 </script>
 <noscript>
 <div>您的浏览器已禁用 JavaScript。</div>
@@ -70,13 +76,13 @@
 <li>嵌套&nbsp;|&nbsp;</li>
 <li><a href="#field.summary">字段</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">构造器</a>&nbsp;|&nbsp;</li>
-<li><a href="#methods.inherited.from.class.cc.moecraft.icq.event.Event">方法</a></li>
+<li><a href="#method.summary">方法</a></li>
 </ul>
 <ul class="subNavList">
 <li>详细资料:&nbsp;</li>
 <li><a href="#field.detail">字段</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.detail">构造器</a>&nbsp;|&nbsp;</li>
-<li>方法</li>
+<li><a href="#method.detail">方法</a></li>
 </ul>
 </div>
 <a name="skip.navbar.top">
@@ -106,6 +112,10 @@
 <ul class="blockList">
 <li class="blockList">
 <dl>
+<dt>所有已实现的接口:</dt>
+<dd><a href="../../../../../../cc/moecraft/icq/event/ContentComparable.html" title="cc.moecraft.icq.event中的接口">ContentComparable</a></dd>
+</dl>
+<dl>
 <dt>直接已知子类:</dt>
 <dd><a href="../../../../../../cc/moecraft/icq/event/events/notice/EventNoticeFriendAdd.html" title="cc.moecraft.icq.event.events.notice中的类">EventNoticeFriendAdd</a>, <a href="../../../../../../cc/moecraft/icq/event/events/notice/groupadmin/EventNoticeGroupAdminChange.html" title="cc.moecraft.icq.event.events.notice.groupadmin中的类">EventNoticeGroupAdminChange</a>, <a href="../../../../../../cc/moecraft/icq/event/events/notice/groupmember/EventNoticeGroupMemberChange.html" title="cc.moecraft.icq.event.events.notice.groupmember中的类">EventNoticeGroupMemberChange</a>, <a href="../../../../../../cc/moecraft/icq/event/events/notice/EventNoticeGroupUpload.html" title="cc.moecraft.icq.event.events.notice中的类">EventNoticeGroupUpload</a></dd>
 </dl>
@@ -113,10 +123,7 @@
 <br>
 <pre>public class <span class="typeNameLabel">EventNotice</span>
 extends <a href="../../../../../../cc/moecraft/icq/event/Event.html" title="cc.moecraft.icq.event中的类">Event</a></pre>
-<div class="block">此类由 Hykilpikonna 在 2018/05/25 创建!
- Created by Hykilpikonna on 2018/05/25!
- Github: https://github.com/hykilpikonna
- Meow!</div>
+<div class="block">通知事件</div>
 <dl>
 <dt><span class="simpleTagLabel">作者:</span></dt>
 <dd>Hykilpikonna</dd>
@@ -180,6 +187,19 @@ extends <a href="../../../../../../cc/moecraft/icq/event/Event.html" title="cc.m
 <!--   -->
 </a>
 <h3>方法概要</h3>
+<table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="方法概要表, 列表方法和解释">
+<caption><span id="t0" class="activeTableTab"><span>所有方法</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">实例方法</a></span><span class="tabEnd">&nbsp;</span></span><span id="t4" class="tableTab"><span><a href="javascript:show(8);">具体方法</a></span><span class="tabEnd">&nbsp;</span></span></caption>
+<tr>
+<th class="colFirst" scope="col">限定符和类型</th>
+<th class="colLast" scope="col">方法和说明</th>
+</tr>
+<tr id="i0" class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../cc/moecraft/icq/event/events/notice/EventNotice.html#contentEquals-java.lang.Object-">contentEquals</a></span>(java.lang.Object&nbsp;o)</code>
+<div class="block">内容是否和另一个相同</div>
+</td>
+</tr>
+</table>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.cc.moecraft.icq.event.Event">
 <!--   -->
@@ -249,6 +269,35 @@ public&nbsp;java.lang.Long userId</pre>
 </ul>
 </li>
 </ul>
+<!-- ============ METHOD DETAIL ========== -->
+<ul class="blockList">
+<li class="blockList"><a name="method.detail">
+<!--   -->
+</a>
+<h3>方法详细资料</h3>
+<a name="contentEquals-java.lang.Object-">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>contentEquals</h4>
+<pre>public&nbsp;boolean&nbsp;contentEquals(java.lang.Object&nbsp;o)</pre>
+<div class="block"><span class="descfrmTypeLabel">从接口复制的说明:&nbsp;<code><a href="../../../../../../cc/moecraft/icq/event/ContentComparable.html#contentEquals-java.lang.Object-">ContentComparable</a></code></span></div>
+<div class="block">内容是否和另一个相同</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">指定者:</span></dt>
+<dd><code><a href="../../../../../../cc/moecraft/icq/event/ContentComparable.html#contentEquals-java.lang.Object-">contentEquals</a></code>&nbsp;在接口中&nbsp;<code><a href="../../../../../../cc/moecraft/icq/event/ContentComparable.html" title="cc.moecraft.icq.event中的接口">ContentComparable</a></code></dd>
+<dt><span class="overrideSpecifyLabel">覆盖:</span></dt>
+<dd><code><a href="../../../../../../cc/moecraft/icq/event/Event.html#contentEquals-java.lang.Object-">contentEquals</a></code>&nbsp;在类中&nbsp;<code><a href="../../../../../../cc/moecraft/icq/event/Event.html" title="cc.moecraft.icq.event中的类">Event</a></code></dd>
+<dt><span class="paramLabel">参数:</span></dt>
+<dd><code>o</code> - 另一个</dd>
+<dt><span class="returnLabel">返回:</span></dt>
+<dd>是否相同</dd>
+</dl>
+</li>
+</ul>
+</li>
+</ul>
 </li>
 </ul>
 </div>
@@ -302,13 +351,13 @@ public&nbsp;java.lang.Long userId</pre>
 <li>嵌套&nbsp;|&nbsp;</li>
 <li><a href="#field.summary">字段</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">构造器</a>&nbsp;|&nbsp;</li>
-<li><a href="#methods.inherited.from.class.cc.moecraft.icq.event.Event">方法</a></li>
+<li><a href="#method.summary">方法</a></li>
 </ul>
 <ul class="subNavList">
 <li>详细资料:&nbsp;</li>
 <li><a href="#field.detail">字段</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.detail">构造器</a>&nbsp;|&nbsp;</li>
-<li>方法</li>
+<li><a href="#method.detail">方法</a></li>
 </ul>
 </div>
 <a name="skip.navbar.bottom">

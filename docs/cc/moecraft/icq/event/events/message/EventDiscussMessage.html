@@ -123,17 +123,13 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <dl>
 <dt>所有已实现的接口:</dt>
-<dd><a href="../../../../../../cc/moecraft/icq/event/ContentComparable.html" title="cc.moecraft.icq.event中的接口">ContentComparable</a>&lt;<a href="../../../../../../cc/moecraft/icq/event/events/message/EventDiscussMessage.html" title="cc.moecraft.icq.event.events.message中的类">EventDiscussMessage</a>&gt;</dd>
+<dd><a href="../../../../../../cc/moecraft/icq/event/ContentComparable.html" title="cc.moecraft.icq.event中的接口">ContentComparable</a></dd>
 </dl>
 <hr>
 <br>
 <pre>public class <span class="typeNameLabel">EventDiscussMessage</span>
-extends <a href="../../../../../../cc/moecraft/icq/event/events/message/EventGroupOrDiscussMessage.html" title="cc.moecraft.icq.event.events.message中的类">EventGroupOrDiscussMessage</a>
-implements <a href="../../../../../../cc/moecraft/icq/event/ContentComparable.html" title="cc.moecraft.icq.event中的接口">ContentComparable</a>&lt;<a href="../../../../../../cc/moecraft/icq/event/events/message/EventDiscussMessage.html" title="cc.moecraft.icq.event.events.message中的类">EventDiscussMessage</a>&gt;</pre>
-<div class="block">此类由 Hykilpikonna 在 2018/05/24 创建!
- Created by Hykilpikonna on 2018/05/24!
- Github: https://github.com/hykilpikonna
- Meow!</div>
+extends <a href="../../../../../../cc/moecraft/icq/event/events/message/EventGroupOrDiscussMessage.html" title="cc.moecraft.icq.event.events.message中的类">EventGroupOrDiscussMessage</a></pre>
+<div class="block">讨论组消息事件</div>
 <dl>
 <dt><span class="simpleTagLabel">作者:</span></dt>
 <dd>Hykilpikonna</dd>
@@ -208,7 +204,7 @@ implements <a href="../../../../../../cc/moecraft/icq/event/ContentComparable.ht
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../cc/moecraft/icq/event/events/message/EventDiscussMessage.html#contentEquals-cc.moecraft.icq.event.events.message.EventDiscussMessage-">contentEquals</a></span>(<a href="../../../../../../cc/moecraft/icq/event/events/message/EventDiscussMessage.html" title="cc.moecraft.icq.event.events.message中的类">EventDiscussMessage</a>&nbsp;other)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../cc/moecraft/icq/event/events/message/EventDiscussMessage.html#contentEquals-java.lang.Object-">contentEquals</a></span>(java.lang.Object&nbsp;o)</code>
 <div class="block">内容是否和另一个相同</div>
 </td>
 </tr>
@@ -386,20 +382,22 @@ public&nbsp;java.lang.Long discussId</pre>
 </dl>
 </li>
 </ul>
-<a name="contentEquals-cc.moecraft.icq.event.events.message.EventDiscussMessage-">
+<a name="contentEquals-java.lang.Object-">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>contentEquals</h4>
-<pre>public&nbsp;boolean&nbsp;contentEquals(<a href="../../../../../../cc/moecraft/icq/event/events/message/EventDiscussMessage.html" title="cc.moecraft.icq.event.events.message中的类">EventDiscussMessage</a>&nbsp;other)</pre>
-<div class="block"><span class="descfrmTypeLabel">从接口复制的说明:&nbsp;<code><a href="../../../../../../cc/moecraft/icq/event/ContentComparable.html#contentEquals-T-">ContentComparable</a></code></span></div>
+<pre>public&nbsp;boolean&nbsp;contentEquals(java.lang.Object&nbsp;o)</pre>
+<div class="block"><span class="descfrmTypeLabel">从接口复制的说明:&nbsp;<code><a href="../../../../../../cc/moecraft/icq/event/ContentComparable.html#contentEquals-java.lang.Object-">ContentComparable</a></code></span></div>
 <div class="block">内容是否和另一个相同</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">指定者:</span></dt>
-<dd><code><a href="../../../../../../cc/moecraft/icq/event/ContentComparable.html#contentEquals-T-">contentEquals</a></code>&nbsp;在接口中&nbsp;<code><a href="../../../../../../cc/moecraft/icq/event/ContentComparable.html" title="cc.moecraft.icq.event中的接口">ContentComparable</a>&lt;<a href="../../../../../../cc/moecraft/icq/event/events/message/EventDiscussMessage.html" title="cc.moecraft.icq.event.events.message中的类">EventDiscussMessage</a>&gt;</code></dd>
+<dd><code><a href="../../../../../../cc/moecraft/icq/event/ContentComparable.html#contentEquals-java.lang.Object-">contentEquals</a></code>&nbsp;在接口中&nbsp;<code><a href="../../../../../../cc/moecraft/icq/event/ContentComparable.html" title="cc.moecraft.icq.event中的接口">ContentComparable</a></code></dd>
+<dt><span class="overrideSpecifyLabel">覆盖:</span></dt>
+<dd><code><a href="../../../../../../cc/moecraft/icq/event/events/message/EventMessage.html#contentEquals-java.lang.Object-">contentEquals</a></code>&nbsp;在类中&nbsp;<code><a href="../../../../../../cc/moecraft/icq/event/events/message/EventMessage.html" title="cc.moecraft.icq.event.events.message中的类">EventMessage</a></code></dd>
 <dt><span class="paramLabel">参数:</span></dt>
-<dd><code>other</code> - 另一个</dd>
+<dd><code>o</code> - 另一个</dd>
 <dt><span class="returnLabel">返回:</span></dt>
 <dd>是否相同</dd>
 </dl>
