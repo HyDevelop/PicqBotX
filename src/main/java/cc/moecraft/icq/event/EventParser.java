@@ -43,7 +43,7 @@ public class EventParser
 {
     private final EventManager manager;
 
-    private final Map<Class<? extends Event>, Map<String, ArrayList<ContentComparable<?>>>> cache = new HashMap<>();
+    private final Map<Class<? extends Event>, Map<String, ArrayList<ContentComparable>>> cache = new HashMap<>();
 
     /**
      * 判断一个事件是不是新的
@@ -55,7 +55,7 @@ public class EventParser
      * @return 是不是新的
      */
     @SuppressWarnings("unchecked")
-    private <T extends Event & ContentComparable<T>> boolean isNew(T event, String identifier)
+    private <T extends Event & ContentComparable> boolean isNew(T event, String identifier)
     {
         if (!manager.getBot().getConfig().isMultiAccountOptimizations())
         {
@@ -67,13 +67,13 @@ public class EventParser
         {
             cache.put(eventClass, new HashMap<>());
         }
-        Map<String, ArrayList<ContentComparable<?>>> cachedEventMap = cache.get(eventClass);
+        Map<String, ArrayList<ContentComparable>> cachedEventMap = cache.get(eventClass);
 
         if (!cachedEventMap.containsKey(identifier))
         {
             cachedEventMap.put(identifier, new ArrayList<>());
         }
-        ArrayList<ContentComparable<?>> cachedEvents = cachedEventMap.get(identifier);
+        ArrayList<ContentComparable> cachedEvents = cachedEventMap.get(identifier);
 
         for (ContentComparable comparable : cachedEvents)
         {
