@@ -603,7 +603,7 @@ public class IcqHttpApi
      *
      * @return 执行结果
      */
-    public RawReturnData setRestart()
+    public RawReturnData setRestartUnsafe()
     {
         return sendReturnRaw(SET_RESTART);
     }
@@ -616,7 +616,7 @@ public class IcqHttpApi
      * @param cleanEvent 是否在重启时清空酷Q的事件数据库 (eventv2.db)
      * @return 执行结果
      */
-    public RawReturnData setRestart(boolean cleanLog, boolean cleanCache, boolean cleanEvent)
+    public RawReturnData setRestartUnsafe(boolean cleanLog, boolean cleanCache, boolean cleanEvent)
     {
         return sendReturnRaw(SET_RESTART, "clean_log", cleanLog,
                 "clean_cache", cleanCache, "clean_event", cleanEvent);
