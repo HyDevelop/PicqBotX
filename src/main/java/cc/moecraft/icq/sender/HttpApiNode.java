@@ -23,6 +23,7 @@ public enum HttpApiNode
     SEND_DISCUSS_MSG        ("send_discuss_msg",        true),
     SEND_LIKE               ("send_like",               true),
     DELETE_MSG              ("delete_msg",              true),
+    SEND_GROUP_NOTICE       ("_send_group_notice",      true),
 
     // 应用设置区
     SET_GROUP_KICK          ("set_group_kick",          true),
@@ -55,6 +56,7 @@ public enum HttpApiNode
     GET_VIP_INFO            ("_get_vip_info",           false),
     GET_RECORD              ("get_record",              false),
     GET_IMAGE               ("get_image",               false),
+    GET_GROUP_NOTICE        ("_get_group_notice",       false),
 
     // 条件判断区
     CAN_SEND_IMAGE          ("can_send_image",          false),
