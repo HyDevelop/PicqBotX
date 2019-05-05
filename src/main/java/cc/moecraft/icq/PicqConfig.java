@@ -45,7 +45,10 @@ public class PicqConfig
     /** 维护模式回复 (设为空就不会回复了) */
     private String maintenanceResponse = "- 机器人正在维护 -";
 
-    /** 是否开启多账号优化 */
+    /** 是否自动判断是否开启多账号优化 */
+    private boolean autoMultiAccountOptimizations = true;
+
+    /** 上面那个是false的时候是否开启多账号优化 */
     private boolean multiAccountOptimizations = true;
 
     /** 是否暂停事件 */
@@ -80,4 +83,15 @@ public class PicqConfig
 
     /** Logger日志文件名 */
     private String logFileName = "PicqBotX-Log";
+
+    // 方法 | Methods
+
+    /**
+     * @return 是否开启多账号优化
+     */
+    public boolean isMultiAccountOptimizations(PicqBotX bot)
+    {
+        return !autoMultiAccountOptimizations ? multiAccountOptimizations :
+                bot.getAccountManager().getAccounts().size() > 1;
+    }
 }
