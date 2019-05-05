@@ -164,7 +164,6 @@ public class EventGroupMessage extends EventGroupOrDiscussMessage
         if (!(o instanceof EventGroupMessage)) return false;
         EventGroupMessage other = (EventGroupMessage) o;
 
-        return super.contentEquals(o) &&
-                other.getGroupId().equals(this.getGroupId());
+        return super.contentEquals(o) && other.getGroupId().equals(this.getGroupId());
     }
 }
