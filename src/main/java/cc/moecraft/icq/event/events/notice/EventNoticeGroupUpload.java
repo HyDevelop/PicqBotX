@@ -1,7 +1,6 @@
 package cc.moecraft.icq.event.events.notice;
 
 import cc.moecraft.icq.accounts.BotAccount;
-import cc.moecraft.icq.event.ContentComparable;
 import cc.moecraft.icq.event.methodsets.GroupEventMethods;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -16,7 +15,7 @@ import lombok.*;
 @Data
 @Setter(AccessLevel.NONE)
 @ToString(callSuper = true)
-public class EventNoticeGroupUpload extends EventNotice implements ContentComparable<EventNoticeGroupUpload>
+public class EventNoticeGroupUpload extends EventNotice
 {
     @SerializedName("file")
     @Expose
@@ -25,30 +24,6 @@ public class EventNoticeGroupUpload extends EventNotice implements ContentCompar
     @SerializedName("group_id")
     @Expose
     public Long groupId;
-
-    private GroupEventMethods groupMethods = null;
-
-    @Override
-    public boolean contentEquals(EventNoticeGroupUpload other)
-    {
-        return other.getGroupId().equals(getGroupId()) &&
-                other.getFile().equals(getFile());
-    }
-
-    public GroupEventMethods getGroupMethods()
-    {
-        if (groupMethods != null)
-        {
-            return groupMethods;
-        }
-        return groupMethods = new GroupEventMethods(this, groupId);
-    }
-
-    @Override
-    public BotAccount getBotAccount()
-    {
-        return getGroupMethods().getBotAccount();
-    }
 
     @Data
     @Setter(AccessLevel.NONE)
@@ -69,5 +44,33 @@ public class EventNoticeGroupUpload extends EventNotice implements ContentCompar
         @SerializedName("size")
         @Expose
         public Long size;
+    }
+
+    private GroupEventMethods groupMethods = null;
+
+    @Override
+    public boolean contentEquals(Object o)
+    {
+        if (!(o instanceof EventNoticeGroupUpload)) return false;
+        EventNoticeGroupUpload other = (EventNoticeGroupUpload) o;
+
+        return super.contentEquals(o) &&
+                other.getGroupId().equals(getGroupId()) &&
+                other.getFile().equals(getFile());
+    }
+
+    public GroupEventMethods getGroupMethods()
+    {
+        if (groupMethods != null)
+        {
+            return groupMethods;
+        }
+        return groupMethods = new GroupEventMethods(this, groupId);
+    }
+
+    @Override
+    public BotAccount getBotAccount()
+    {
+        return getGroupMethods().getBotAccount();
     }
 }
