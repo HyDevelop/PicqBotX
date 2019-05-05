@@ -19,7 +19,7 @@ import lombok.Setter;
  */
 @Data
 @Setter(AccessLevel.NONE)
-public abstract class Event
+public abstract class Event implements ContentComparable
 {
     @SerializedName("post_type")
     @Expose
@@ -49,5 +49,16 @@ public abstract class Event
     public BotAccount getBotAccount()
     {
         return getBot().getAccountManager().getIdIndex().get(selfId);
+    }
+
+    @Override
+    public boolean contentEquals(Object o)
+    {
+        if (!(o instanceof Event)) return false;
+        Event other = (Event) o;
+
+        // ID 不能用来判断是不是相等...
+        // 因为不同酷Q端发来的的ID不一样啦w
+        return other.getBot() == this.getBot() && other.getTime().equals(this.getTime());
     }
 }
