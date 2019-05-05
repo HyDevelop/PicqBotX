@@ -8,6 +8,8 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import lombok.*;
 
+import static cc.moecraft.icq.utils.CQUtils.removeCqCode;
+
 /**
  * 此类由 Hykilpikonna 在 2018/05/24 创建!
  * Created by Hykilpikonna on 2018/05/24!
@@ -95,4 +97,16 @@ public abstract class EventMessage extends Event
      * @return 用户对象
      */
     public abstract User getSender();
+
+    @Override
+    public boolean contentEquals(Object o)
+    {
+        if (!(o instanceof EventMessage)) return false;
+        EventMessage other = (EventMessage) o;
+
+        return super.contentEquals(o) &&
+                other.getSenderId().equals(this.getSenderId()) &&
+                other.getMessageType().equals(this.getMessageType()) &&
+                removeCqCode(other.getMessage()).equals(removeCqCode(this.getMessage()));
+    }
 }
