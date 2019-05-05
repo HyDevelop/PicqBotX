@@ -60,7 +60,6 @@ public abstract class Event implements ContentComparable
 
         // ID 不能用来判断是不是相等...
         // 因为不同酷Q端发来的的ID不一样啦w
-        return other.getBot() == this.getBot() &&
-                Math.abs(other.getTime() - this.getTime()) < PicqConstants.MAO_JUDGEMENT_TIME_INTERVAL_SEC;
+        return Math.abs(other.getTime() - this.getTime()) < PicqConstants.MAO_JUDGEMENT_TIME_INTERVAL_SEC;
     }
 }
