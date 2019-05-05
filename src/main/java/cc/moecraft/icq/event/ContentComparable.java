@@ -8,7 +8,7 @@ package cc.moecraft.icq.event;
  *
  * @author Hykilpikonna
  */
-public interface ContentComparable<T>
+public interface ContentComparable
 {
     /**
      * 内容是否和另一个相同
@@ -16,5 +16,5 @@ public interface ContentComparable<T>
      * @param other 另一个
      * @return 是否相同
      */
-    boolean contentEquals(T other);
+    boolean contentEquals(Object other);
 }
