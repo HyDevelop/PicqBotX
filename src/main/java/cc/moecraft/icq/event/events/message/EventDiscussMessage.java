@@ -1,6 +1,5 @@
 package cc.moecraft.icq.event.events.message;
 
-import cc.moecraft.icq.event.ContentComparable;
 import cc.moecraft.icq.sender.returndata.ReturnData;
 import cc.moecraft.icq.sender.returndata.returnpojo.send.RMessageReturnData;
 import cc.moecraft.icq.user.Group;
@@ -8,9 +7,6 @@ import cc.moecraft.icq.user.User;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import lombok.*;
-
-import static cc.moecraft.icq.event.ComparableConstants.TimeDetectionRangeInSeconds;
-import static cc.moecraft.icq.utils.CQUtils.removeCqCode;
 
 /**
  * 此类由 Hykilpikonna 在 2018/05/24 创建!
@@ -24,7 +20,7 @@ import static cc.moecraft.icq.utils.CQUtils.removeCqCode;
 @Data
 @Setter(AccessLevel.NONE)
 @ToString(callSuper = true)
-public class EventDiscussMessage extends EventGroupOrDiscussMessage implements ContentComparable<EventDiscussMessage>
+public class EventDiscussMessage extends EventGroupOrDiscussMessage
 {
     @SerializedName("discuss_id")
     @Expose
@@ -55,11 +51,11 @@ public class EventDiscussMessage extends EventGroupOrDiscussMessage implements C
     }
 
     @Override
-    public boolean contentEquals(EventDiscussMessage other)
+    public boolean contentEquals(Object o)
     {
-        return removeCqCode(other.getMessage()).equals(removeCqCode(getMessage())) &&
-                other.getSenderId().equals(getSenderId()) &&
-                Math.abs(other.getTime() - getTime()) < TimeDetectionRangeInSeconds &&
-                other.getDiscussId().equals(getDiscussId());
+        if (!(o instanceof EventDiscussMessage)) return false;
+        EventDiscussMessage other = (EventDiscussMessage) o;
+
+        return super.contentEquals(o) && other.getDiscussId().equals(this.getDiscussId());
     }
 }
