@@ -27,7 +27,7 @@ import static cc.moecraft.icq.utils.CQUtils.removeCqCode;
 @Data
 @Setter(AccessLevel.NONE)
 @ToString(callSuper = true)
-public class EventGroupMessage extends EventGroupOrDiscussMessage implements ContentComparable<EventGroupMessage>
+public class EventGroupMessage extends EventGroupOrDiscussMessage
 {
     @SerializedName("anonymous")
     @Expose
