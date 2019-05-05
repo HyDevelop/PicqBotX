@@ -815,6 +815,17 @@ public class IcqHttpApi
     }
 
     /**
+     * 获取一个群的所有公告
+     *
+     * @param groupId 群ID
+     * @return 所有公告
+     */
+    public ReturnListData<RGroupNotice> getGroupNotices(long groupId)
+    {
+        return sendReturnList(RGroupNotice.class, GET_GROUP_NOTICE, "group_id", groupId);
+    }
+
+    /**
      * 检查是否可以发送图片
      *
      * @return 是否可以发送图片
