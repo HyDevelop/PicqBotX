@@ -39,7 +39,7 @@ public enum HttpApiNode
     SET_GROUP_ADD_REQUEST   ("set_group_add_request",   true),
 
     // ICQ(酷Q, 以及HTTP插件)设置区
-    SET_RESTART             ("set_restart",             true),
+    SET_RESTART             ("_set_restart",            true),
     SET_RESTART_PLUGIN      ("set_restart_plugin",      true),
     CLEAN_DATA_DIR          ("clean_data_dir",          true),
     CLEAN_PLUGIN_LOG        ("clean_plugin_log",        true),
