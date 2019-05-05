@@ -25,11 +25,15 @@ public class PicqConstants
 
 
     // 可变常量 | Variable constant
-    public static final String EVENT_KEY_SUBTYPE = "sub_type";
-    public static final String EVENT_KEY_POST_TYPE = "post_type";
+
+    /** 多账号优化用来判断一个事件是不是新的的时间间隔 */
+    public static int MAO_JUDGEMENT_TIME_INTERVAL_SEC = 2;
 
 
     // 事件字段名 | Event key names
+    public static final String EVENT_KEY_SUBTYPE = "sub_type";
+    public static final String EVENT_KEY_POST_TYPE = "post_type";
+
     public static final String EVENT_KEY_POST_TYPE_MESSAGE = "message";
     public static final String EVENT_KEY_POST_TYPE_NOTICE = "notice";
     public static final String EVENT_KEY_POST_TYPE_REQUEST = "request";
