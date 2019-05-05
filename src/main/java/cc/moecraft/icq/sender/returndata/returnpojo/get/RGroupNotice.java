@@ -1,5 +1,6 @@
 package cc.moecraft.icq.sender.returndata.returnpojo.get;
 
+import cc.moecraft.icq.sender.returndata.returnpojo.ReturnPojoBase;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import lombok.*;
@@ -18,7 +19,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter(AccessLevel.NONE)
-public class RGroupNotice
+public class RGroupNotice implements ReturnPojoBase
 {
     @SerializedName("cn")
     @Expose
