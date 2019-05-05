@@ -43,6 +43,7 @@ public class CommandManager
     /**
      * 构造一个指令管理器
      *
+     * @param bot 机器人对象
      * @param prefixes 前缀
      */
     public CommandManager(PicqBotX bot, String... prefixes)

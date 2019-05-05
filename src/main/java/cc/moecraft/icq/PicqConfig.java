@@ -87,6 +87,7 @@ public class PicqConfig
     // 方法 | Methods
 
     /**
+     * @param bot 机器人对象
      * @return 是否开启多账号优化
      */
     public boolean isMultiAccountOptimizations(PicqBotX bot)
