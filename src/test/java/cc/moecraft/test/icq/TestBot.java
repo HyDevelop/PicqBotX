@@ -48,7 +48,11 @@ public class TestBot
             new CommandEncode(),
             new CommandDecode(),
             new CommandSay(),
-            new CommandSayRaw()
+            new CommandSayRaw(),
+
+            new CommandJS() // TODO: 做权限管理
+
+            , new CommandTestSleep()
     };
 
     /**
@@ -72,6 +76,7 @@ public class TestBot
         );
 
         // 添加一个机器人账户 ( 名字, 发送URL, 发送端口 )
+        bot.addAccount("Bot00", "127.0.0.1", 31090);
         bot.addAccount("Bot01", "127.0.0.1", 31091);
 
         // 启用HyExp ( 非必要 )
