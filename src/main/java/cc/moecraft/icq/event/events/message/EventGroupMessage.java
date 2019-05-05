@@ -1,7 +1,6 @@
 package cc.moecraft.icq.event.events.message;
 
 import cc.moecraft.icq.accounts.BotAccount;
-import cc.moecraft.icq.event.ContentComparable;
 import cc.moecraft.icq.sender.returndata.RawReturnData;
 import cc.moecraft.icq.sender.returndata.ReturnData;
 import cc.moecraft.icq.sender.returndata.returnpojo.send.RMessageReturnData;
@@ -11,9 +10,6 @@ import cc.moecraft.icq.user.User;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import lombok.*;
-
-import static cc.moecraft.icq.event.ComparableConstants.TimeDetectionRangeInSeconds;
-import static cc.moecraft.icq.utils.CQUtils.removeCqCode;
 
 /**
  * 此类由 Hykilpikonna 在 2018/05/24 创建!
@@ -41,6 +37,23 @@ public class EventGroupMessage extends EventGroupOrDiscussMessage
     @Expose
     public String subType;
 
+    @Data
+    @Setter(AccessLevel.NONE)
+    public class Anonymous
+    {
+        @SerializedName("flag")
+        @Expose
+        public String flag;
+
+        @SerializedName("id")
+        @Expose
+        public Long id;
+
+        @SerializedName("name")
+        @Expose
+        public String name;
+    }
+
     @Override
     public BotAccount getBotAccount()
     {
@@ -51,15 +64,6 @@ public class EventGroupMessage extends EventGroupOrDiscussMessage
     public ReturnData<RMessageReturnData> respond(String message, boolean raw)
     {
         return getHttpApi().sendGroupMsg(groupId, message, raw);
-    }
-
-    @Override
-    public boolean contentEquals(EventGroupMessage other)
-    {
-        return removeCqCode(other.getMessage()).equals(removeCqCode(getMessage())) &&
-                other.getSenderId().equals(getSenderId()) &&
-                Math.abs(other.getTime() - getTime()) < TimeDetectionRangeInSeconds &&
-                other.getGroupId().equals(getGroupId());
     }
 
     /**
@@ -154,20 +158,13 @@ public class EventGroupMessage extends EventGroupOrDiscussMessage
         return delete();
     }
 
-    @Data
-    @Setter(AccessLevel.NONE)
-    public class Anonymous
+    @Override
+    public boolean contentEquals(Object o)
     {
-        @SerializedName("flag")
-        @Expose
-        public String flag;
+        if (!(o instanceof EventGroupMessage)) return false;
+        EventGroupMessage other = (EventGroupMessage) o;
 
-        @SerializedName("id")
-        @Expose
-        public Long id;
-
-        @SerializedName("name")
-        @Expose
-        public String name;
+        return super.contentEquals(o) &&
+                other.getGroupId().equals(this.getGroupId());
     }
 }
