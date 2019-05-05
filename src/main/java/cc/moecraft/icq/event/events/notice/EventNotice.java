@@ -6,10 +6,7 @@ import com.google.gson.annotations.SerializedName;
 import lombok.*;
 
 /**
- * 此类由 Hykilpikonna 在 2018/05/25 创建!
- * Created by Hykilpikonna on 2018/05/25!
- * Github: https://github.com/hykilpikonna
- * Meow!
+ * 通知事件
  *
  * @author Hykilpikonna
  */
@@ -26,4 +23,15 @@ public class EventNotice extends Event
     @SerializedName("user_id")
     @Expose
     public Long userId;
+
+    @Override
+    public boolean contentEquals(Object o)
+    {
+        if (!(o instanceof EventNotice)) return false;
+        EventNotice other = (EventNotice) o;
+
+        return super.contentEquals(o) &&
+                other.getNoticeType().equals(this.getNoticeType()) &&
+                other.getUserId().equals(this.getUserId());
+    }
 }
