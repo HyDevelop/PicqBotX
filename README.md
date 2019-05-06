@@ -272,7 +272,7 @@ PicqConfig config = new PicqConfig(31092);
 | `setApiAsync(false)` | 是否异步调用API |
 | `setCommandArgsSplitRegex(" ")` | 解析指令的时候用来分割参数的正则 |
 
-还有一些必须在启动之前设置的配置项:<br>
+还有一些必须在`new PicqBotX(config)`之前设置的配置项:<br>
 这些项启动之后改掉也没用了啦w
 
 | 配置项 Set 方法和默认值 | 配置项介绍 |
