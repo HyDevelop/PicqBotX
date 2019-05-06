@@ -20,6 +20,11 @@ public class EventFriendRequest extends EventRequest
         getHttpApi().setFriendAndRequest(flag, true);
     }
 
+    public void reject()
+    {
+        reject(null);
+    }
+
     @Override
     public void reject(String reason)
     {
