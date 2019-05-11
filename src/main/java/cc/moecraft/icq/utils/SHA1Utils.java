@@ -37,7 +37,7 @@ public class SHA1Utils
             mac.init(signingKey);
 
             // Compute the hmac on input data bytes
-            byte[] rawHmac = mac.doFinal(data.getBytes());
+            byte[] rawHmac = mac.doFinal(data.getBytes("UTF-8"));
 
             //  Covert array of Hex bytes to a String
             return toHexString(rawHmac);
