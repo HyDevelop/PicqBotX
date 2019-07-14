@@ -27,7 +27,7 @@ public class ComponentMusic extends MessageComponent
     @AllArgsConstructor
     public enum MusicSourceType
     {
-        qq("qq"), netease("163");
+        qq("qq"), netease("163"), xiami("xiami");
 
         public String type;
 
@@ -35,6 +35,15 @@ public class ComponentMusic extends MessageComponent
         public String toString()
         {
             return type;
+        }
+        
+        public static MusicSourceType of(String type) {
+        	switch(type) {
+        	case "qq":    return qq;
+        	case "163":   return netease;
+        	case "xiami": return xiami;
+        	default:      return null;
+        	}
         }
     }
 }

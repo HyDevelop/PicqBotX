@@ -12,6 +12,12 @@ import cc.moecraft.icq.sender.message.MessageComponent;
  */
 public class ComponentDice extends MessageComponent
 {
+	/**
+	 * 骰子结果<br>
+	 * 但是发送时不能自定义，所以仅仅用于接收
+	 */
+	public int type;
+	
     @Override
     public String toString()
     {
