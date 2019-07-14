@@ -65,6 +65,7 @@ public class PicqHttpServer
 
     /**
      * 启动 Http 服务器
+     * @throws HttpServerException 启动HTTP服务器异常时抛出异常
      */
     public void start()
     {

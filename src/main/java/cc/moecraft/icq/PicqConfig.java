@@ -83,6 +83,12 @@ public class PicqConfig
 
     /** Logger日志文件名 */
     private String logFileName = "PicqBotX-Log";
+    
+    /** 是否显示初始化日志 */
+    private boolean logInit = true;
+    
+    /** 是否禁止显示Pro建议 */
+    private boolean noProAd = false;
 
     // 方法 | Methods
 
@@ -95,4 +101,6 @@ public class PicqConfig
         return !autoMultiAccountOptimizations ? multiAccountOptimizations :
                 bot.getAccountManager().getAccounts().size() > 1;
     }
+    
+    
 }

@@ -6,6 +6,7 @@ import cc.moecraft.icq.accounts.BotAccount;
 import cc.moecraft.icq.command.CommandListener;
 import cc.moecraft.icq.command.CommandManager;
 import cc.moecraft.icq.event.EventManager;
+import cc.moecraft.icq.exceptions.HttpServerException;
 import cc.moecraft.icq.exceptions.VerifyFailedException;
 import cc.moecraft.icq.listeners.HyExpressionListener;
 import cc.moecraft.icq.receiver.PicqHttpServer;
@@ -150,30 +151,30 @@ public class PicqBotX
         logger = loggerInstanceManager.getLoggerInstance("PicqBotX", config.isDebug());
         logger.timing.init();
         logResource(logger, config.getColorSupportLevel() == null ? "splash" : "splash-precolored", "version", VERSION);
-        logInitDone(logger, "日志管理器     ", 0, 6);
+        if(config.isLogInit()) logInitDone(logger, "日志管理器     ", 0, 6);
 
         // 用户和群缓存管理器
         userManager = new UserManager(this);
         groupUserManager = new GroupUserManager(this);
         groupManager = new GroupManager(this);
-        logInitDone(logger, "缓存管理器     ", 1, 5);
+        if(config.isLogInit()) logInitDone(logger, "缓存管理器     ", 1, 5);
 
         // Debug设置没啦w
-        logInitDone(logger, "DEBUG设置     ", 2, 4);
+        if(config.isLogInit()) logInitDone(logger, "DEBUG设置     ", 2, 4);
 
         // 事件管理器
         eventManager = new EventManager(this);
         eventManager.registerListener(new HyExpressionListener());
-        logInitDone(logger, "事件管理器     ", 3, 3);
+        if(config.isLogInit()) logInitDone(logger, "事件管理器     ", 3, 3);
 
         // 账号管理器
         accountManager = new AccountManager();
         eventManager.registerListener(new AccountManagerListener(accountManager));
-        logInitDone(logger, "账号管理器     ", 4, 2);
+        if(config.isLogInit()) logInitDone(logger, "账号管理器     ", 4, 2);
 
         // HTTP监听服务器
         httpServer = new PicqHttpServer(config.getSocketPort(), this);
-        logInitDone(logger, "HTTP监听服务器 ", 5, 1);
+        if(config.isLogInit()) logInitDone(logger, "HTTP监听服务器 ", 5, 1);
 
         logger.timing.clear();
     }
@@ -184,6 +185,7 @@ public class PicqBotX
      * @param name 名字
      * @param postUrl 发送URL (Eg. 127.0.0.1)
      * @param postPort 发送端口 (Eg. 31091)
+     * @throws RuntimeException 账号添加失败时抛出异常
      */
     public void addAccount(String name, String postUrl, int postPort)
     {
@@ -202,6 +204,9 @@ public class PicqBotX
 
     /**
      * 启动机器人
+     * 
+     * @throws VerifyFailedException HTTP插件验证失败时抛出异常
+     * @throws HttpServerException 启动HTTP服务器异常时抛出异常
      */
     public void startBot()
     {
@@ -226,7 +231,7 @@ public class PicqBotX
 
         commandManager = new CommandManager(this, prefixes);
         eventManager.registerListener(new CommandListener(commandManager));
-        logInitDone(logger, "指令管理器     ", 6, 0);
+        if(config.isLogInit()) logInitDone(logger, "指令管理器     ", 6, 0);
 
         logger.timing.clear();
     }
@@ -262,7 +267,7 @@ public class PicqBotX
 
                 if (!versionInfo.getCoolqEdition().equalsIgnoreCase("pro"))
                 {
-                    logger.warning(prefix + "版本正确, 不过用酷Q Pro的话效果更好哦!");
+                    if(!config.isNoProAd()) logger.warning(prefix + "版本正确, 不过用酷Q Pro的话效果更好哦!");
                 }
             }
             catch (HttpException e)
