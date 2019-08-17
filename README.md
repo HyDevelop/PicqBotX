@@ -542,6 +542,8 @@ bot.getCommandManager().registerCommands(new 指令1(), new 指令2(), ...);
 所以 `event.getBot().getAccountManager().refreshCache();` 就行啦w<br>
 ( 前提是加了这个群!
 
+<br>
+
 #### Q: 如何在事件外获取`IcqHttpApi`对象用来发消息?
 
 因为有多账号管理,<br>
