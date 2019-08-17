@@ -529,9 +529,18 @@ bot.getCommandManager().registerCommands(new 指令1(), new 指令2(), ...);
 因为用户信息在账号管理器里缓存了啦...<br>
 不会自动刷新的...<br>
 监听加群的事件然后<br>
-```event.getBot().getAccountManager().refreshCache();``` 就行啦w
+`event.getBot().getAccountManager().refreshCache();` 就行啦w
 
 <br>
+
+#### Q: `java.lang.NullPointerException at cc.moecraft.icq.accounts.AccountManager.getOptimal(...)`?
+
+和上一条一样<br>
+因为 `groupAccountIndex` 里面如果没有这个群的话,<br>
+`groupAccountIndex.get(groupId)` 就是 `null` 了w<br>
+所以用 `null` 调用 `.entrySet()` 就会丢报错w<br>
+所以 `event.getBot().getAccountManager().refreshCache();` 就行啦w<br>
+( 前提是加了这个群!
 
 #### Q: 如何在事件外获取`IcqHttpApi`对象用来发消息?
 
