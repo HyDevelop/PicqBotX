@@ -593,6 +593,6 @@ config.setSecret("这里填Secret")
 <br>
 
 <a name="license"></a>
-[开源条款](https://choosealicense.com/licenses/gpl-3.0/): GNU / GPL
+[开源条款](https://choosealicense.com/licenses/mit/): MIT
 --------
 
