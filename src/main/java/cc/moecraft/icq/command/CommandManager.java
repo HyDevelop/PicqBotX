@@ -166,8 +166,6 @@ public class CommandManager
      */
     public ArrayList<String> getCommandNameList()
     {
-        ArrayList<String> result = new ArrayList<>();
-        getCommandList().forEach(command -> result.add(command.properties().getName()));
-        return result;
+        return new ArrayList<>(commands.keySet());
     }
 }
