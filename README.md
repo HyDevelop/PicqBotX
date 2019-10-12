@@ -245,7 +245,7 @@ public class TestBot
 
 <a name="config"></a>
 
-#### 1. 配置:
+### 1. 配置:
 
 ```java
 // 创建机器人配置 ( 传入Picq端口 )
@@ -285,7 +285,7 @@ PicqConfig config = new PicqConfig(31092);
 
 <a name="events"></a>
 
-#### 2. 监听事件:
+### 2. 监听事件:
 
 ```java
 public class 类名随意 extends IcqListener // 必须继承 IcqListener 监听器类
@@ -304,7 +304,7 @@ public class 类名随意 extends IcqListener // 必须继承 IcqListener 监听
 
 嗯... 创建一个类, 写成上面那个样子就行了_(:з」∠)_
 
-可用事件:
+#### 可用事件:
 
 | 事件类名                 | 事件介绍 |
 | :------------ | :------------ |
@@ -342,7 +342,7 @@ public class 类名随意 extends IcqListener // 必须继承 IcqListener 监听
 | EventMetaLifecycle | 生命周期事件 |
 | EventMetaHeartbeat | 心跳事件 |
 
-##### 例子1:
+#### 例子1:
 
 ```java
 public class TestListener extends IcqListener
@@ -359,7 +359,7 @@ public class TestListener extends IcqListener
 }
 ```
 
-##### 例子2. 用事件监听实现消息替换过滤:
+#### 例子2. 用事件监听实现消息替换过滤:
 
 ```java
 public class TestFilter extends IcqListener
@@ -383,9 +383,9 @@ public class TestFilter extends IcqListener
 
 <br>
 
-#### 3. 发送/获取信息:
+### 3. 发送/获取信息:
 
-##### 获取`IcqHttpApi`对象:
+#### 获取`IcqHttpApi`对象:
 
 需要一个`IcqHttpApi`对象, **请不要使用全局变量存`IcqHttpApi`对象**<br>
 其实监听器里的话直接用 `event.getHttpApi()` 就行了w<br>
@@ -396,7 +396,7 @@ public class TestFilter extends IcqListener
 如果有多个账号, 要用所有账号的话,<br>
 可以用 `bot.getAccountManager().getAccounts()` 获取账号列表循环一下w<br>
 
-##### 发送/获取信息:
+#### 发送/获取信息:
 
 如果已经封装过了的话, 这样发送:
 
@@ -404,25 +404,73 @@ public class TestFilter extends IcqListener
 icqHttpApi.封装方法名(参数); // 返回的就是响应数据啦w
 ```
 
-例子1. 发送:
+#### 封装方法列表:
+
+| IcqHttpApi 封装方法 | 作用 |
+| :------------ | :------------ |
+| .sendPrivateMsg | 发送私聊消息 |
+| .sendGroupMsg | 发送群聊消息 |
+| .sendDiscussMsg | 发送讨论组消息 |
+| .deleteMsg | 撤回消息 |
+| .sendLike | 好友点赞 |
+| .sendGroupNotice | 发送群公告 |
+| .setGroupKick | 飞机票 |
+| .setGroupBan | 群用户禁言 |
+| .setGroupAnonymousBan | 群匿名用户禁言 |
+| .setGroupWholeBan | 群全体禁言<br>(什么鬼方法名x<br>(怪 RC! (摔w |
+| .setGroupAdmin | 设置管理员 |
+| .setGroupAnonymous | 设置是否允许匿名 |
+| .setGroupCard | 设置群备注 |
+| .setGroupLeave | 退出群 |
+| .setGroupSpecialTitle | 设置专属头衔 |
+| .setDiscussLeave | 退出讨论组 |
+| .setFriendAndRequest | 处理加好友请求 |
+| .setGroupAndRequest | 处理加群请求 |
+| .approveGroupRequest | 同意加群请求 |
+| .rejectGroupRequest | 拒绝加群请求 |
+| .setRestartPlugin | 重启插件 |
+| .setRestartUnsafe | 重启酷Q (不安全) |
+| .cleanDataDir | 清空数据文件夹 |
+| .clearPluginLog | 清空插件日志 |
+| .getLoginInfo | 获取登录号信息 |
+| .getStrangerInfo | 获取陌生人信息 |
+| .getVIPInfo | 获取会员信息 |
+| .getGroupList | 获取群列表 |
+| .getGroupMemberInfo | 获取群成员信息 |
+| .getGroupInfo | 获取群信息 |
+| .getGroupMemberList | 获取群成员列表 |
+| .getFriendList | 获取好友列表 |
+| .getRecord | 获取语音文件 |
+| .getImage | 获取图片路径 (String) |
+| .getImageFile | 获取图片路径 (File) |
+| .getGroupNotices | 获取群公告列表 |
+| .canSendImage | 能不能发图 |
+| .canSendRecord | 能不能发语音 |
+| .getVersionInfo | 获取版本信息 |
+| .getCookies | 抢走曲奇w |
+| .getCsrfToken | 获取 CSRF TOKEN |
+| .getCredentials | 上面两个加起来 |
+| .getStatus | 获取运行状态 |
+
+#### 例子1. 发送:
 
 ```java
 icqHttpApi.sendPrivateMsg(871674895, "hi"); // 给小桂发送"hi"
 ```
 
-例子2. 获取:
+#### 例子2. 获取:
 
 ```java
 RStatus status = icqHttpApi.getStatus().getData(); // 获取当前运行状态
 ```
 
-如果没有封装过的话, 或者想手动添加参数对的话, 这样发送:
+#### 如果没有封装过的话, 或者想手动添加参数对的话, 这样发送:
 
 ```java
 icqHttpApi.send(请求目标, 参数);
 ```
 
-例子:
+#### 例子:
 
 ```java
 // 因为是隐藏接口, 就没有封装, 所以要用的话这样发送w
@@ -436,17 +484,12 @@ icqHttpApi.send(".handle_quick_operation",
     "operation", ...); 
 ```
 
-##### 封装方法表:
-
-小桂很懒w<br>
-去看[IcqHttpApi.java](/src/main/java/cc/moecraft/icq/sender/IcqHttpApi.java)吧w (已经在JavaDocs里面说明了用处啦w)
-
-##### 返回数据:
+#### 返回数据:
 
 大部分返回数据为 `ReturnData<Pojo 数据类>` 形式, 获取数据的话用 `response.getData()` 就行了w<br>
 列表的话会返回 `ReturnListData<Pojo 数据类>` 形式.
 
-##### 复杂的消息建造 (比如图片什么的) 用 MessageBuilder 类:
+### 复杂的消息建造 (比如图片什么的) 用 MessageBuilder 类:
 
 注意: `.add(Object)` 方法对于所有类型的对象都有效, 只要能 `toString()` 就行
 
@@ -482,7 +525,7 @@ new MessageBuilder()
 
 <br>
 
-#### 4. 指令
+### 4. 指令
 
 每一个指令需要单独创建一个类, 实现一个指令接口<br>
 如果这个指令在所有消息环境内都能执行的话, 实现 `EverywhereCommand` 类<br>
@@ -525,7 +568,7 @@ bot.getCommandManager().registerCommands(new 指令1(), new 指令2(), ...);
 常见问题:
 --------
 
-#### Q: 为什么刚加的群不能回复消息?
+### Q: 为什么刚加的群不能回复消息?
 
 因为用户信息在账号管理器里缓存了啦...<br>
 不会自动刷新的...<br>
