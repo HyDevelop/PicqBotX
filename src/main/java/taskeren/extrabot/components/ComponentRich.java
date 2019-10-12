@@ -1,8 +1,12 @@
 package taskeren.extrabot.components;
 
+import cn.hutool.json.JSONObject;
+import cn.hutool.json.JSONUtil;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.ToString;
+import taskeren.extrabot.components.richs.ComponentRichMusic;
+import taskeren.extrabot.components.richs.ComponentRichNews;
 
 /**
  * 这是一个神奇的组件，富文本组件。
@@ -19,5 +23,50 @@ public class ComponentRich extends Component {
 	final String title;
 	final String text;
 	final String content;
+
+	public class To {
+
+		/**
+		 * 转换为音乐分享富文本组件。
+		 */
+		public ComponentRichMusic music() {
+			JSONObject json = JSONUtil.parseObj(content);
+			if(json.containsKey("music")) {
+				JSONObject d = json.getJSONObject("music");
+				return new ComponentRichMusic(
+						d.getStr("title"),
+						d.getStr("desc"),
+						d.getStr("preview"),
+						d.getStr("tag"),
+						d.getStr("musicUrl"),
+						d.getStr("jumpUrl")
+				);
+			}
+			else {
+				throw new UnsupportedOperationException();
+			}
+		}
+
+		/**
+		 * 转换为网页分享富文本组件。
+		 */
+		public ComponentRichNews news() {
+			JSONObject json = JSONUtil.parseObj(content);
+			if(json.containsKey("news")) {
+				JSONObject d = json.getJSONObject("news");
+				return new ComponentRichNews(
+						d.getStr("title"),
+						d.getStr("desc"),
+						d.getStr("preview"),
+						d.getStr("tag"),
+						d.getStr("jumpUrl")
+				);
+			}
+			else {
+				throw new UnsupportedOperationException();
+			}
+		}
+
+	}
 
 }
