@@ -1,0 +1,23 @@
+JavaDocs Generation Config:
+
+Scope: Whole project
+Output Directory: PicqBotX/docs
+
+Box1: Protected
+
+Box2: 
+√ Hierarchy Tree
+√ Nav Bar
+√ Index
+√ Index per Letter
+
+Box3:
+口 @use
+√ @author
+√ @version
+√ @deprecated
+√ deprecated list
+
+Locale: zh_CN
+Other arguments: -encoding utf-8 -charset utf-8 -windowtitle "JavaDoc开发文档 - PicqBotX" -notimestamp
+Maximum heap size: 4096

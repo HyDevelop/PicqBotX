@@ -5,6 +5,7 @@ import cc.moecraft.utils.cli.ResourceUtils;
 
 import static cc.moecraft.logger.format.AnsiColor.*;
 import static cc.moecraft.logger.format.AnsiFormat.replaceAllFormatWithANSI;
+import static cc.moecraft.utils.StringUtils.repeat;
 
 /**
  * The class {@code MiscUtils} is an utilities class for random things.
@@ -18,6 +19,8 @@ import static cc.moecraft.logger.format.AnsiFormat.replaceAllFormatWithANSI;
  */
 public class MiscUtils
 {
+    public static boolean disabled = false;
+
     /**
      * 输出一行"初始化完成"的日志
      *
@@ -28,21 +31,14 @@ public class MiscUtils
      */
     public static void logInitDone(HyLogger logger, String name, int greens, int reds)
     {
-        StringBuilder greenStars = new StringBuilder();
-        StringBuilder redStars = new StringBuilder();
+        if (disabled) return;
 
-        for (int i = 0; i < greens; i++)
-        {
-            greenStars.append("*");
-        }
-        for (int i = 0; i < reds; i++)
-        {
-            redStars.append("*");
-        }
+        String green = repeat("*", greens);
+        String red = repeat("*", reds);
 
         logger.log(String.format("%s%s%s初始化完成%s [%s%s%s%s%s] ...(%s ms)",
                 YELLOW, name, GREEN, YELLOW,
-                GREEN, greenStars.toString(), RED, redStars.toString(), YELLOW,
+                GREEN, green, RED, red, YELLOW,
                 Math.round(logger.timing.getMilliseconds() * 100d) / 100d));
 
         logger.timing.reset();
@@ -57,6 +53,8 @@ public class MiscUtils
      */
     public static void logResource(HyLogger logger, String name, Object... vars)
     {
+        if (disabled) return;
+
         ResourceUtils.printResource(MiscUtils.class.getClassLoader(),
                 s -> logger.log(replaceAllFormatWithANSI(s)), name, vars);
     }

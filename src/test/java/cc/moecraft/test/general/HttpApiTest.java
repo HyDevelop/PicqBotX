@@ -29,6 +29,7 @@ import org.junit.runners.MethodSorters;
  * @author Vanilla (https://github.com/VergeDX)
  * @since 2019-03-21 21:05
  */
+@Ignore
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class HttpApiTest
 {
