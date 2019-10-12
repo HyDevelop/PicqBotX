@@ -342,6 +342,8 @@ public class PicqBotX
 
     /**
      * 获取Debug信息w
+     *
+     * @return Debug 信息
      */
     public String printDebugSupportInfo()
     {
