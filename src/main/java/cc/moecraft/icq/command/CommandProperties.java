@@ -55,6 +55,7 @@ public class CommandProperties
 
     /**
      * 构造CommandProperty
+     *
      * @param name 指令名称
      */
     public static CommandProperties name(String name) {
@@ -63,6 +64,7 @@ public class CommandProperties
 
     /**
      * 添加指令别名
+     *
      * @param alias 指令别名
      */
     public CommandProperties alias(String alias) {
