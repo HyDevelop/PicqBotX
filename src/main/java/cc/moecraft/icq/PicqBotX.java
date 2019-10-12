@@ -9,6 +9,7 @@ import cc.moecraft.icq.event.EventManager;
 import cc.moecraft.icq.exceptions.VerifyFailedException;
 import cc.moecraft.icq.listeners.HyExpressionListener;
 import cc.moecraft.icq.receiver.PicqHttpServer;
+import cc.moecraft.icq.sender.message.MessageBuilder;
 import cc.moecraft.icq.sender.returndata.returnpojo.get.RVersionInfo;
 import cc.moecraft.icq.user.GroupManager;
 import cc.moecraft.icq.user.GroupUserManager;
@@ -21,6 +22,8 @@ import cc.moecraft.logger.format.AnsiColor;
 import cc.moecraft.utils.HyExpressionResolver;
 import cc.moecraft.utils.ThreadUtils;
 import cn.hutool.http.HttpException;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import lombok.Getter;
 
 import static cc.moecraft.icq.PicqConstants.HTTP_API_VERSION_DETECTION;
@@ -306,5 +309,21 @@ public class PicqBotX
     public void setUniversalHyExpSupport(boolean value, boolean safeMode)
     {
         hyExpressionResolver = value ? new HyExpressionResolver(safeMode) : null;
+    }
+
+    /**
+     * 获取Debug信息w
+     */
+    public String printDebugSupportInfo()
+    {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+        MessageBuilder builder = new MessageBuilder()
+                .add("===== 配置 =====").newLine()
+                .add(gson.toJson(config)).newLine()
+                .add("===== 账号 =====").newLine()
+                .add(gson.toJson(accountManager.getAccounts()));
+
+        return builder.toString();
     }
 }
