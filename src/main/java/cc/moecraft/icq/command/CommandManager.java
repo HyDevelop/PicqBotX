@@ -152,7 +152,10 @@ public class CommandManager
     public ArrayList<IcqCommand> getCommandList()
     {
         ArrayList<IcqCommand> result = new ArrayList<>();
-        commands.forEach((k, v) -> result.add(v));
+        commands.forEach((k, v) ->
+        {
+            if (!result.contains(v)) result.add(v);
+        });
         return result;
     }
 
@@ -163,8 +166,6 @@ public class CommandManager
      */
     public ArrayList<String> getCommandNameList()
     {
-        ArrayList<String> result = new ArrayList<>();
-        getCommandList().forEach(command -> result.add(command.properties().getName()));
-        return result;
+        return new ArrayList<>(commands.keySet());
     }
 }

@@ -866,6 +866,17 @@ public class IcqHttpApi
     }
 
     /**
+     * 抢走酷Q的曲奇饼w
+     *
+     * @param domain 需要抢走曲奇的域名w
+     * @return Cookies
+     */
+    public ReturnData<RCookies> getCookies(String domain)
+    {
+        return send(RCookies.class, GET_COOKIES, "domain", domain);
+    }
+
+    /**
      * 获取CSRF Token
      *
      * @return CSRF Token
