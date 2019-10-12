@@ -164,7 +164,9 @@ public class PicqBotX
         }
 
         // Debug设置没啦w
-        logInitDone(logger, "DEBUG设置     ", 2, 4);
+        if(config.isLogInit()){
+	        logInitDone(logger, "DEBUG设置     ", 2, 4);
+        }
 
         // 事件管理器
         eventManager = new EventManager(this);
