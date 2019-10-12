@@ -290,7 +290,9 @@ public class PicqBotX
 
                 if (!versionInfo.getCoolqEdition().equalsIgnoreCase("pro"))
                 {
-                    logger.warning(prefix + "版本正确, 不过用酷Q Pro的话效果更好哦!");
+                    if(config.isLogInit()){
+	                    logger.warning(prefix + "版本正确, 不过用酷Q Pro的话效果更好哦!");
+                    }
                 }
             }
             catch (HttpException e)
@@ -310,7 +312,10 @@ public class PicqBotX
                 logger.error(e);
                 return false;
             }
-            logger.log(AnsiColor.YELLOW + prefix + AnsiColor.GREEN + "  版本验证完成!");
+
+            if(config.isLogInit()){
+            	logger.log(AnsiColor.YELLOW + prefix + AnsiColor.GREEN + "  版本验证完成!");
+            }
         }
         return true;
     }
