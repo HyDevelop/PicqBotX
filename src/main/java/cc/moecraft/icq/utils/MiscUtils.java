@@ -23,12 +23,14 @@ public class MiscUtils
      * 输出一行"初始化完成"的日志
      *
      * @param logger 日志对象
+     * @param log 是否日志
      * @param name 要输出的名字
      * @param greens 绿色星号数量
      * @param reds 红色星号数量
      */
-    public static void logInitDone(HyLogger logger, String name, int greens, int reds)
+    public static void logInitDone(HyLogger logger, boolean log, String name, int greens, int reds)
     {
+        if (!log) return;
 
         String green = repeat("*", greens);
         String red = repeat("*", reds);
