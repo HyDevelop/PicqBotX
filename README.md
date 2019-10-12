@@ -404,6 +404,54 @@ public class TestFilter extends IcqListener
 icqHttpApi.封装方法名(参数); // 返回的就是响应数据啦w
 ```
 
+##### 封装方法列表:
+
+| IcqHttpApi 封装方法 | 作用 |
+| :------------ | :------------ |
+| .sendPrivateMsg | 发送私聊消息 |
+| .sendGroupMsg | 发送群聊消息 |
+| .sendDiscussMsg | 发送讨论组消息 |
+| .deleteMsg | 撤回消息 |
+| .sendLike | 好友点赞 |
+| .sendGroupNotice | 发送群公告 |
+| .setGroupKick | 飞机票 |
+| .setGroupBan | 群用户禁言 |
+| .setGroupAnonymousBan | 群匿名用户禁言 |
+| .setGroupWholeBan | 群全体禁言<br>(什么鬼方法名x<br>(怪 RC! (摔w |
+| .setGroupAdmin | 设置管理员 |
+| .setGroupAnonymous | 设置是否允许匿名 |
+| .setGroupCard | 设置群备注 |
+| .setGroupLeave | 退出群 |
+| .setGroupSpecialTitle | 设置专属头衔 |
+| .setDiscussLeave | 退出讨论组 |
+| .setFriendAndRequest | 处理加好友请求 |
+| .setGroupAndRequest | 处理加群请求 |
+| .approveGroupRequest | 同意加群请求 |
+| .rejectGroupRequest | 拒绝加群请求 |
+| .setRestartPlugin | 重启插件 |
+| .setRestartUnsafe | 重启酷Q (不安全) |
+| .cleanDataDir | 清空数据文件夹 |
+| .clearPluginLog | 清空插件日志 |
+| .getLoginInfo | 获取登录号信息 |
+| .getStrangerInfo | 获取陌生人信息 |
+| .getVIPInfo | 获取会员信息 |
+| .getGroupList | 获取群列表 |
+| .getGroupMemberInfo | 获取群成员信息 |
+| .getGroupInfo | 获取群信息 |
+| .getGroupMemberList | 获取群成员列表 |
+| .getFriendList | 获取好友列表 |
+| .getRecord | 获取语音文件 |
+| .getImage | 获取图片路径 (String) |
+| .getImageFile | 获取图片路径 (File) |
+| .getGroupNotices | 获取群公告列表 |
+| .canSendImage | 能不能发图 |
+| .canSendRecord | 能不能发语音 |
+| .getVersionInfo | 获取版本信息 |
+| .getCookies | 抢走曲奇w |
+| .getCsrfToken | 获取 CSRF TOKEN |
+| .getCredentials | 上面两个加起来 |
+| .getStatus | 获取运行状态 |
+
 例子1. 发送:
 
 ```java
