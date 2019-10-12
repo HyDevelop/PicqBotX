@@ -40,7 +40,7 @@ Maven 导入:
 <dependency>
     <groupId>com.github.hydevelop</groupId>
     <artifactId>PicqBotX</artifactId>
-    <version>4.10.1.928</version>
+    <version>4.11.0.971</version>
 </dependency>
 ```
 
@@ -67,13 +67,13 @@ allprojects {
 
 ```gradle
 dependencies {
-    implementation 'com.github.hydevelop:PicqBotX:4.10.1.928'
+    implementation 'com.github.hydevelop:PicqBotX:4.11.0.971'
 }
 ```
 
 <!-- 每次更新都要手动改这些版本号好烦的_(:з」∠)_... -->
 
-#### [其他导入(SBT / Leiningen)](https://jitpack.io/#hydevelop/PicqBotX/4.10.1.928)
+#### [其他导入(SBT / Leiningen)](https://jitpack.io/#hydevelop/PicqBotX/4.11.0.971)
 
 <br>
 
@@ -81,7 +81,7 @@ dependencies {
 配置环境:
 --------
 
-##### 注意: 下面的教程适用于 Windows `酷Q v5.13.2`, Linux 教程以后可能会进行补充<br>还有, HTTP 插件支持的版本是`v4.10.1`, `2019/08/27`刚检查过
+##### 注意: 下面的教程适用于 Windows `酷Q v5.13.2`, Linux 教程以后可能会进行补充<br>还有, HTTP 插件支持的版本是`v4.11.0`, `2019/10/12`刚检查过
 
 #### 1. 下载 [酷Q](https://cqp.cc/)... (如果有 酷Q Pro 的话效果更好哦!)
 
@@ -509,7 +509,7 @@ public class CommandVersion implements EverywhereCommand // 实现EverywhereComm
     {
         // 处理, 返回值会自动回复回去
         // 这里因为这个指令是用来查版本的, 所以直接返回字符串了
-        return "TestBot - PicqBotX v4.10.1.928";
+        return "TestBot - PicqBotX v4.11.0.971";
     }
 }
 ```
