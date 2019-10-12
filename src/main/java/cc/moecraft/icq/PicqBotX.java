@@ -19,9 +19,10 @@ import cc.moecraft.logger.environments.ConsoleColoredEnv;
 import cc.moecraft.logger.environments.FileEnv;
 import cc.moecraft.logger.format.AnsiColor;
 import cc.moecraft.utils.HyExpressionResolver;
-import cc.moecraft.utils.ThreadUtils;
 import cn.hutool.http.HttpException;
 import lombok.Getter;
+
+import java.util.function.Consumer;
 
 import static cc.moecraft.icq.PicqConstants.HTTP_API_VERSION_DETECTION;
 import static cc.moecraft.icq.PicqConstants.VERSION;
@@ -194,20 +195,33 @@ public class PicqBotX
      * @param name 名字
      * @param postUrl 发送URL (Eg. 127.0.0.1)
      * @param postPort 发送端口 (Eg. 31091)
+     * @return 是否成功添加
      */
-    public void addAccount(String name, String postUrl, int postPort)
+    public boolean addAccount(String name, String postUrl, int postPort)
     {
-        try
-        {
-            this.accountManager.addAccount(new BotAccount(name, this, postUrl, postPort));
-        }
-        catch (HttpException e)
-        {
-            logger.error("HTTP发送错误: " + e.getLocalizedMessage());
-            logger.error("- 检查一下是不是忘记开酷Q了, 或者写错地址了");
-            ThreadUtils.safeSleep(5);
-            throw new RuntimeException(e);
-        }
+        return addAccount(name, postUrl, postPort, (ex)->{
+	        logger.error("HTTP发送错误: " + ex.getLocalizedMessage());
+	        logger.error("- 检查一下是不是忘记开酷Q了, 或者写错地址了");
+        });
+    }
+
+	/**
+	 * 添加机器人账号
+	 *
+	 * @param name         名字
+	 * @param postUrl      发送URL（Eg. 127.0.0.1）
+	 * @param postPort     发送端口（Eg. 31091）
+	 * @param errorHandler 错误处理（HttpException）
+	 * @return 是否成功添加
+	 */
+    public boolean addAccount(String name, String postUrl, int postPort, Consumer<HttpException> errorHandler) {
+    	try {
+		    this.accountManager.addAccount(new BotAccount(name, this, postUrl, postPort));
+		    return true;
+	    } catch (HttpException ex) {
+    		errorHandler.accept(ex);
+    		return false;
+	    }
     }
 
     /**
@@ -236,7 +250,9 @@ public class PicqBotX
 
         commandManager = new CommandManager(this, prefixes);
         eventManager.registerListener(new CommandListener(commandManager));
-        logInitDone(logger, "指令管理器     ", 6, 0);
+        if(config.isLogInit()){
+	        logInitDone(logger, "指令管理器     ", 6, 0);
+        }
 
         logger.timing.clear();
     }
