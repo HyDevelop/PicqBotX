@@ -84,6 +84,9 @@ public class PicqConfig
     /** Logger日志文件名 */
     private String logFileName = "PicqBotX-Log";
 
+    // Taskeren 配置项
+    private boolean logInit = true;
+
     // 方法 | Methods
 
     /**

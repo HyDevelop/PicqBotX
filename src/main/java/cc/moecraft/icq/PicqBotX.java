@@ -149,14 +149,18 @@ public class PicqBotX
         // 日志对象
         logger = loggerInstanceManager.getLoggerInstance("PicqBotX", config.isDebug());
         logger.timing.init();
-        logResource(logger, config.getColorSupportLevel() == null ? "splash" : "splash-precolored", "version", VERSION);
-        logInitDone(logger, "日志管理器     ", 0, 6);
+        if(config.isLogInit()){
+	        logResource(logger, config.getColorSupportLevel() == null ? "splash" : "splash-precolored", "version", VERSION);
+	        logInitDone(logger, "日志管理器     ", 0, 6);
+        }
 
         // 用户和群缓存管理器
         userManager = new UserManager(this);
         groupUserManager = new GroupUserManager(this);
         groupManager = new GroupManager(this);
-        logInitDone(logger, "缓存管理器     ", 1, 5);
+        if(config.isLogInit()){
+	        logInitDone(logger, "缓存管理器     ", 1, 5);
+        }
 
         // Debug设置没啦w
         logInitDone(logger, "DEBUG设置     ", 2, 4);
@@ -164,16 +168,22 @@ public class PicqBotX
         // 事件管理器
         eventManager = new EventManager(this);
         eventManager.registerListener(new HyExpressionListener());
-        logInitDone(logger, "事件管理器     ", 3, 3);
+        if(config.isLogInit()){
+	        logInitDone(logger, "事件管理器     ", 3, 3);
+        }
 
         // 账号管理器
         accountManager = new AccountManager();
         eventManager.registerListener(new AccountManagerListener(accountManager));
-        logInitDone(logger, "账号管理器     ", 4, 2);
+        if(config.isLogInit()){
+	        logInitDone(logger, "账号管理器     ", 4, 2);
+        }
 
         // HTTP监听服务器
         httpServer = new PicqHttpServer(config.getSocketPort(), this);
-        logInitDone(logger, "HTTP监听服务器 ", 5, 1);
+        if(config.isLogInit()){
+	        logInitDone(logger, "HTTP监听服务器 ", 5, 1);
+        }
 
         logger.timing.clear();
     }
