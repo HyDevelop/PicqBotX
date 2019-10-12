@@ -280,6 +280,7 @@ PicqConfig config = new PicqConfig(31092);
 | `setColorSupportLevel(FORCED)` | Logger颜色支持级别 (设为DISABLED就没有颜色了) |
 | `setLogPath("logs")` | Logger日志路径 (设为空就不输出文件了) |
 | `setLogFileName("PicqBotX-Log")` | Logger日志文件名 |
+| `setLogInit(true)` | 是否输出启动日志 |
 
 
 <a name="events"></a>
