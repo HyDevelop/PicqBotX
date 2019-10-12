@@ -28,7 +28,7 @@ import static cc.moecraft.logger.environments.ColorSupportLevel.FORCED;
 public class PicqConfig
 {
     /** 接收端口 */
-    private final int socketPort;
+    private final transient int socketPort;
 
     /** 是否输出Debug消息 */
     private boolean debug = false;
@@ -58,10 +58,10 @@ public class PicqConfig
     private boolean httpPaused = false;
 
     /** X-Signature SHA1 验证秘钥 (设置为空就是不用秘钥w) */
-    private String secret = "";
+    private transient String secret = "";
 
     /** Access Token 访问令牌 (设置为空就是不用令牌) */
-    private String accessToken = "";
+    private transient String accessToken = "";
 
     /** 是否启用限速调用API (需要enable_rate_limited_actions=true) */
     private boolean apiRateLimited = false;
