@@ -5,6 +5,7 @@ import cc.moecraft.icq.event.events.local.*;
 import cc.moecraft.icq.event.events.message.*;
 import cc.moecraft.icq.event.events.notice.EventNotice;
 import cc.moecraft.icq.event.events.notice.EventNoticeFriendAdd;
+import cc.moecraft.icq.event.events.notice.EventNoticeGroupBan;
 import cc.moecraft.icq.event.events.notice.EventNoticeGroupUpload;
 import cc.moecraft.icq.event.events.notice.groupadmin.EventNoticeGroupAdminChange;
 import cc.moecraft.icq.event.events.notice.groupadmin.EventNoticeGroupAdminRemove;
@@ -70,6 +71,7 @@ public class EventManager
             EventPrivateMessage.class,
             EventMessage.class,
 
+            EventNoticeGroupBan.class,
             EventNoticeGroupAdminChange.class,
             EventNoticeGroupAdminRemove.class,
             EventNoticeGroupAdminSet.class,
