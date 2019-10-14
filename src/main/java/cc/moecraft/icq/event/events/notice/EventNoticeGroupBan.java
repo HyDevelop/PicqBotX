@@ -20,6 +20,26 @@ import lombok.*;
 @ToString(callSuper = true)
 public class EventNoticeGroupBan extends EventNotice
 {
+    @SerializedName("sub_type")
+    @Expose
+    public BanType type;
+
+    @SerializedName("group_id")
+    @Expose
+    public Long groupId;
+
+    @SerializedName("operator_id")
+    @Expose
+    public Long operatorId;
+
+    @SerializedName("user_id")
+    @Expose
+    public Long userId;
+
+    @SerializedName("duration")
+    @Expose
+    public Long duration;
+
     public enum BanType
     {
         @SerializedName("ban")
