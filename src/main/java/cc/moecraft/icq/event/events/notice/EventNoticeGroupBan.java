@@ -48,4 +48,18 @@ public class EventNoticeGroupBan extends EventNotice
         @SerializedName("lift_ban")
         LIFT_BAN;
     }
+
+    @Override
+    public boolean contentEquals(Object o)
+    {
+        if (!(o instanceof EventNoticeGroupBan)) return false;
+        EventNoticeGroupBan other = (EventNoticeGroupBan) o;
+
+        return super.contentEquals(o) &&
+                other.getGroupId().equals(getGroupId()) &&
+                other.getOperatorId().equals(getOperatorId()) &&
+                other.getUserId().equals(getUserId()) &&
+                other.getDuration().equals(getDuration()) &&
+                other.getType().equals(getType());
+    }
 }
