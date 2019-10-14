@@ -805,6 +805,16 @@ public class IcqHttpApi
     }
 
     /**
+     * 获取好友列表
+     *
+     * @return 好友列表
+     */
+    public ReturnListData<RFriend> getFriendList()
+    {
+        return sendReturnList(RFriend.class, GET_FRIEND_LIST_NEW);
+    }
+
+    /**
      * 获取语音文件
      *
      * @param file 收到的语音文件名 (CQ码的file参数), 如 0B38145AA44505000B38145AA4450500.silk
