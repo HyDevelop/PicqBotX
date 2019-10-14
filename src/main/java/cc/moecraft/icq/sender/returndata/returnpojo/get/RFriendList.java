@@ -19,7 +19,6 @@ import java.util.List;
  */
 @Data
 @Setter(AccessLevel.NONE)
-@Deprecated
 public class RFriendList implements ReturnPojoBase
 {
     @SerializedName("friend_group_id")
