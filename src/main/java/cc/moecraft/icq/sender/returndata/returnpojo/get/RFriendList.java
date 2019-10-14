@@ -32,22 +32,5 @@ public class RFriendList implements ReturnPojoBase
 
     @SerializedName("friends")
     @Expose
-    private List<Friend> friends = null;
-
-    @Data
-    @Setter(AccessLevel.NONE)
-    public class Friend
-    {
-        @SerializedName("nickname")
-        @Expose
-        private String nickname;
-
-        @SerializedName("remark")
-        @Expose
-        private String remark;
-
-        @SerializedName("user_id")
-        @Expose
-        private Long userId;
-    }
+    private List<RFriend> friends = null;
 }
