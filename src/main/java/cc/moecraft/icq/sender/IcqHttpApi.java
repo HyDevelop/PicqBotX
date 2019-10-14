@@ -763,12 +763,25 @@ public class IcqHttpApi
      * 获取群信息
      *
      * @param groupId 群号
+     * @param noCache 是否不适用缓存
      * @return 群信息
      */
-    @Deprecated
-    public ReturnData<RGroup> getGroupInfo(long groupId)
+    public ReturnData<RGroupInfo> getGroupInfo(long groupId, boolean noCache)
     {
-        return send(RGroupDetail.class, GET_GROUP_INFO_NEW, "group_id", groupId);
+        return send(RGroupInfo.class, GET_GROUP_INFO_NEW, "group_id", groupId, "no_cache", noCache);
+    }
+
+    /**
+     * 获取群信息
+     *
+     * @param groupId 群号
+     * @return 群信息
+     */
+    public ReturnData<RGroupInfo> getGroupInfo(long groupId)
+    {
+        return getGroupInfo(groupId, false);
+    }
+
     /**
      * 获取群成员列表
      *
