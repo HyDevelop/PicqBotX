@@ -760,6 +760,16 @@ public class IcqHttpApi
     }
 
     /**
+     * 获取群信息
+     *
+     * @param groupId 群号
+     * @return 群信息
+     */
+    @Deprecated
+    public ReturnData<RGroup> getGroupInfo(long groupId)
+    {
+        return send(RGroupDetail.class, GET_GROUP_INFO_NEW, "group_id", groupId);
+    /**
      * 获取群成员列表
      *
      * @param groupId 群号
