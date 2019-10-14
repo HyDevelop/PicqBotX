@@ -10,12 +10,10 @@ import lombok.Setter;
 import java.util.List;
 
 /**
- * 此类由 Hykilpikonna 在 2018/07/20 创建!
- * Created by Hykilpikonna on 2018/07/20!
- * Github: https://github.com/hykilpikonna
- * QQ: admin@moecraft.cc -OR- 871674895
+ * 群信息
  *
  * @author Hykilpikonna
+ * @deprecated 因为不稳定被 RGroupInfo 代替了w
  */
 @Data
 @Setter(AccessLevel.NONE)
