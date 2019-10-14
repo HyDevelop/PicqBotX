@@ -753,9 +753,10 @@ public class IcqHttpApi
      * @param groupId 群号
      * @return 群信息
      */
+    @Deprecated
     public ReturnData<RGroupDetail> getGroupInfo(long groupId)
     {
-        return send(RGroupDetail.class, GET_GROUP_INFO, "group_id", groupId);
+        return send(RGroupDetail.class, GET_GROUP_INFO_OLD, "group_id", groupId);
     }
 
     /**
@@ -774,9 +775,10 @@ public class IcqHttpApi
      *
      * @return 好友列表
      */
-    public ReturnListData<RFriendList> getFriendList()
+    @Deprecated
+    public ReturnListData<RFriendList> getFriendListOld()
     {
-        return sendReturnList(RFriendList.class, GET_FRIEND_LIST);
+        return sendReturnList(RFriendList.class, GET_FRIEND_LIST_OLD);
     }
 
     /**
