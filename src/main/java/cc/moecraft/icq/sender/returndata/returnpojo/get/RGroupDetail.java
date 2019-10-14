@@ -19,6 +19,7 @@ import java.util.List;
  */
 @Data
 @Setter(AccessLevel.NONE)
+@Deprecated
 public class RGroupDetail implements ReturnPojoBase
 {
     @SerializedName("admin_count")
