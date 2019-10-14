@@ -6,6 +6,7 @@ import cc.moecraft.icq.event.events.message.EventPrivateMessage;
 import cc.moecraft.icq.event.events.meta.EventMetaHeartbeat;
 import cc.moecraft.icq.event.events.meta.EventMetaLifecycle;
 import cc.moecraft.icq.event.events.notice.EventNoticeFriendAdd;
+import cc.moecraft.icq.event.events.notice.EventNoticeGroupBan;
 import cc.moecraft.icq.event.events.notice.EventNoticeGroupUpload;
 import cc.moecraft.icq.event.events.notice.groupadmin.EventNoticeGroupAdminRemove;
 import cc.moecraft.icq.event.events.notice.groupadmin.EventNoticeGroupAdminSet;
@@ -372,6 +373,16 @@ public class EventParser
                         reportUnrecognized(EVENT_KEY_SUBTYPE, subtype, json);
                         break;
                     }
+                }
+                break;
+            }
+            // 群禁言
+            case EVENT_KEY_NOTICE_TYPE_GROUP_BAN:
+            {
+                EventNoticeGroupBan event = gsonRead.fromJson(json, EventNoticeGroupBan.class);
+                if (isNew(event, event.getGroupId().toString()))
+                {
+                    call(event);
                 }
                 break;
             }
