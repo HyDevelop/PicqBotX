@@ -753,7 +753,6 @@ public class IcqHttpApi
      * @param groupId 群号
      * @return 群信息
      */
-    @Deprecated
     public ReturnData<RGroupDetail> getGroupInfoUnstable(long groupId)
     {
         return send(RGroupDetail.class, GET_GROUP_INFO_OLD, "group_id", groupId);
@@ -798,7 +797,6 @@ public class IcqHttpApi
      *
      * @return 好友列表
      */
-    @Deprecated
     public ReturnListData<RFriendList> getFriendListUnstable()
     {
         return sendReturnList(RFriendList.class, GET_FRIEND_LIST_OLD);
