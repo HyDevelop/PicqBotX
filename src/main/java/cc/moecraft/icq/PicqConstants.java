@@ -21,7 +21,7 @@ public class PicqConstants
     public static final String VERSION = "4.12.0.989.PRE";
 
     /** 兼容版本检测Regex */
-    public static String HTTP_API_VERSION_DETECTION = ".*4.10.*";
+    public static String HTTP_API_VERSION_DETECTION = ".*4.12.*";
 
 
     // 可变常量 | Variable constant
