@@ -1,5 +1,6 @@
 package taskeren.extrabot.components;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.ToString;
@@ -10,13 +11,25 @@ import lombok.ToString;
  * @author Taskeren
  */
 @ToString
-@AllArgsConstructor
 @Getter
-public class ComponentAt extends Component {
+public class ComponentAt extends ComponentSendable {
 
 	/**
 	 * 被AT的QQ号
 	 */
 	protected final long at;
 
+	/**
+	 * 构建一个AT组件
+	 *
+	 * @param at 被AT的QQ号
+	 */
+	public ComponentAt(long at) {
+		this.at = at;
+	}
+
+	@Override
+	public String toCQCode() {
+		return "[CQ:at,qq=" + at + "]";
+	}
 }

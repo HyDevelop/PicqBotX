@@ -1,5 +1,6 @@
 package taskeren.extrabot.components;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.ToString;
@@ -10,7 +11,7 @@ import lombok.ToString;
  * @author Taskeren
  */
 @ToString
-@AllArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PACKAGE)
 @Getter
 public class ComponentContact extends Component {
 
