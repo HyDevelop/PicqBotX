@@ -1,5 +1,6 @@
 package taskeren.extrabot.components;
 
+import cc.moecraft.icq.sender.message.MessageBuilder;
 import lombok.ToString;
 
 import java.util.ArrayList;

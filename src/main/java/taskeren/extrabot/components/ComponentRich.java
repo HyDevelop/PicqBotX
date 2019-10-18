@@ -2,6 +2,7 @@ package taskeren.extrabot.components;
 
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.ToString;
@@ -16,7 +17,7 @@ import taskeren.extrabot.components.richs.ComponentRichNews;
  * @author Taskeren
  */
 @ToString
-@AllArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PACKAGE)
 @Getter
 public class ComponentRich extends Component {
 

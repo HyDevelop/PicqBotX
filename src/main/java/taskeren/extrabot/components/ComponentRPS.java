@@ -1,5 +1,6 @@
 package taskeren.extrabot.components;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.ToString;
@@ -10,9 +11,8 @@ import lombok.ToString;
  * @author Taskeren
  */
 @ToString
-@AllArgsConstructor
 @Getter
-public class ComponentRPS extends Component {
+public class ComponentRPS extends ComponentSendable {
 
 	public enum RPS {
 		ROCK,     // 石头
@@ -34,4 +34,23 @@ public class ComponentRPS extends Component {
 	 */
 	final RPS type;
 
+	/**
+	 * 构造一个内部石头剪刀布组件
+	 * @param rps
+	 */
+	protected ComponentRPS(RPS rps) {
+		this.type = rps;
+	}
+
+	/**
+	 * 构造一个石头剪刀布组件（随机）
+	 */
+	public ComponentRPS() {
+		this(null);
+	}
+
+	@Override
+	public String toCQCode() {
+		return "[CQ:rps,type=1]";
+	}
 }
