@@ -82,6 +82,7 @@ public class CommandListener extends IcqListener
             catch (Throwable e)
             {
                 event.getBot().getEventManager().callError(event, e);
+                event.getBot().getConfig().getCommandErrorHandler().accept(e);
             }
 
             if (callback != null)
