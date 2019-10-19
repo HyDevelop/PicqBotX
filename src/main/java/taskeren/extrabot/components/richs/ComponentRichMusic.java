@@ -15,7 +15,6 @@ import taskeren.extrabot.components.Component;
 @Getter
 public class ComponentRichMusic extends Component
 {
-
     /**
      * 歌曲名称
      */
@@ -47,5 +46,4 @@ public class ComponentRichMusic extends Component
      * 音乐网页
      */
     final String urlPage;
-
 }

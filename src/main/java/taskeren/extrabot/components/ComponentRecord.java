@@ -12,7 +12,6 @@ import lombok.ToString;
 @Getter
 public class ComponentRecord extends ComponentSendable
 {
-
     /**
      * 语音储存在本地的位置
      */

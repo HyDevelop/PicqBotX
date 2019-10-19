@@ -15,7 +15,5 @@ import lombok.ToString;
 @Getter
 public class ComponentString extends Component
 {
-
     final String message;
-
 }

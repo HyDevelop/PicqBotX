@@ -16,7 +16,6 @@ import java.util.regex.Pattern;
 @ToString
 public class Component
 {
-
     private static final String REGEX_CQ_CODE = "(\\[CQ:.*?,.*?])";
 
     private static final Pattern CQC = Pattern.compile(REGEX_CQ_CODE);

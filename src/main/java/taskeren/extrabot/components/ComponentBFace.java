@@ -12,7 +12,6 @@ import lombok.ToString;
 @Getter
 public class ComponentBFace extends ComponentSendable
 {
-
     final int p;
 
     final String id;
