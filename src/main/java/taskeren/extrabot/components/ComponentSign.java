@@ -13,21 +13,22 @@ import lombok.ToString;
 @ToString
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
 @Getter
-public class ComponentSign extends Component {
+public class ComponentSign extends Component
+{
 
-	/**
-	 * 签到地点
-	 */
-	final String location;
+    /**
+     * 签到地点
+     */
+    final String location;
 
-	/**
-	 * 签到内容
-	 */
-	final String title;
+    /**
+     * 签到内容
+     */
+    final String title;
 
-	/**
-	 * 签到图片
-	 */
-	final String image;
+    /**
+     * 签到图片
+     */
+    final String image;
 
 }

@@ -1,7 +1,5 @@
 package taskeren.extrabot.components;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.ToString;
 
@@ -12,12 +10,16 @@ import lombok.ToString;
  */
 @ToString
 @Getter
-public class ComponentShake extends ComponentSendable {
+public class ComponentShake extends ComponentSendable
+{
 
-	public ComponentShake() {}
+    public ComponentShake()
+    {
+    }
 
-	@Override
-	public String toCQCode() {
-		return "[CQ:shake]";
-	}
+    @Override
+    public String toCQCode()
+    {
+        return "[CQ:shake]";
+    }
 }
