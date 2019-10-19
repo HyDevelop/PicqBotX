@@ -19,17 +19,28 @@ public class GroupUserManager
 {
     private final PicqBotX bot;
 
-    public Map<Long, GroupUser> userCache = new HashMap<>();
+    // <GroupID, <UserID, UserCache>>
+    public Map<Long, Map<Long, GroupUser>> groupCache = new HashMap<>();
 
     /**
-     * 用ID获取User
+     * 用 ID 和群对象获取用户对象
      *
-     * @param id QQ号
+     * @param id 用户 ID
      * @param group 群对象
-     * @return User对象
+     * @return 用户对象
      */
     public GroupUser getUserFromID(long id, Group group)
     {
+        // 没有群缓存
+        if (!groupCache.containsKey(id))
+        {
+            groupCache.put(group.getId(), new HashMap<>());
+        }
+
+        // 获取用户缓存
+        Map<Long, GroupUser> userCache = groupCache.get(id);
+
+        // 获取用户
         if (userCache.containsKey(id))
         {
             return userCache.get(id);
