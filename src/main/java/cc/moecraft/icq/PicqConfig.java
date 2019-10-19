@@ -5,8 +5,6 @@ import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.Accessors;
 
-import java.util.function.Consumer;
-
 import static cc.moecraft.logger.environments.ColorSupportLevel.FORCED;
 
 /**
@@ -88,9 +86,6 @@ public class PicqConfig
 
     /** 是否输出 Init 日志 */
     private boolean logInit = true;
-
-    /** 执行指令时抛出异常处理 */
-    private Consumer<Throwable> commandErrorHandler = (ex) -> {};
 
     // 方法 | Methods
 
