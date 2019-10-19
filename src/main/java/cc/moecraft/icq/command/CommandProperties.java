@@ -52,4 +52,24 @@ public class CommandProperties
     {
         this(name, new ArrayList<>(Arrays.asList(alias)));
     }
+
+    /**
+     * 构造CommandProperty
+     *
+     * @param name 指令名称
+     */
+    public static CommandProperties name(String name) {
+        return new CommandProperties(name);
+    }
+
+    /**
+     * 添加指令别名
+     *
+     * @param alias 指令别名
+     */
+    public CommandProperties alias(String alias) {
+        this.alias.add(alias);
+        return this;
+    }
+
 }

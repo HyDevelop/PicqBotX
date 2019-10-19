@@ -50,6 +50,11 @@ public class PicqHttpServer
     protected final HyLogger logger;
 
     /**
+     * HttpServer 对象
+     */
+    protected HttpServer server;
+
+    /**
      * 构造一个Http服务器
      *
      * @param port 端口
@@ -71,7 +76,7 @@ public class PicqHttpServer
         try
         {
             // 使用 Java SE 6 内置的 HttpServer
-            HttpServer server = HttpServer.create(new InetSocketAddress(port), 0);
+            server = HttpServer.create(new InetSocketAddress(port), 0);
 
             // 添加监听器
             server.createContext("/", new PicqHttpHandler());
