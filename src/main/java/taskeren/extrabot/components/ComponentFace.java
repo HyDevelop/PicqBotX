@@ -12,7 +12,6 @@ import lombok.ToString;
 @Getter
 public class ComponentFace extends ComponentSendable
 {
-
     /**
      * 表情ID
      */

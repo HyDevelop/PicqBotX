@@ -12,7 +12,6 @@ import lombok.ToString;
 @Getter
 public class ComponentAt extends ComponentSendable
 {
-
     /**
      * 被AT的QQ号
      */

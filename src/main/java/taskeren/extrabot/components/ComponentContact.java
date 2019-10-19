@@ -15,7 +15,6 @@ import lombok.ToString;
 @Getter
 public class ComponentContact extends Component
 {
-
     /**
      * 名片指向的QQ号或群号
      */
@@ -45,5 +44,4 @@ public class ComponentContact extends Component
             }
         }
     }
-
 }

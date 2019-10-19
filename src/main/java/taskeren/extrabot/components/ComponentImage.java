@@ -13,7 +13,6 @@ import lombok.ToString;
 @Getter
 public class ComponentImage extends ComponentSendable
 {
-
     /**
      * 图片暂存于腾讯服务器上的地址
      */

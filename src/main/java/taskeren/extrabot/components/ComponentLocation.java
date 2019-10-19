@@ -15,7 +15,6 @@ import lombok.ToString;
 @Getter
 public class ComponentLocation extends Component
 {
-
     /**
      * 经度
      */
@@ -40,5 +39,4 @@ public class ComponentLocation extends Component
      * 样式代码（未知）
      */
     final int style;
-
 }

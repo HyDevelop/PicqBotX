@@ -12,7 +12,6 @@ import lombok.ToString;
 @Getter
 public class ComponentRPS extends ComponentSendable
 {
-
     /**
      * 石头剪刀布
      */

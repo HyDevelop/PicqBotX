@@ -15,7 +15,6 @@ import lombok.ToString;
 @Getter
 public class ComponentSign extends Component
 {
-
     /**
      * 签到地点
      */

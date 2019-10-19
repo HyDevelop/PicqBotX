@@ -21,16 +21,12 @@ import taskeren.extrabot.components.richs.ComponentRichNews;
 @Getter
 public class ComponentRich extends Component
 {
-
     final String title;
-
     final String text;
-
     final String content;
 
     public class To
     {
-
         /**
          * 转换为音乐分享富文本组件。
          */
@@ -77,7 +73,5 @@ public class ComponentRich extends Component
                 throw new UnsupportedOperationException();
             }
         }
-
     }
-
 }

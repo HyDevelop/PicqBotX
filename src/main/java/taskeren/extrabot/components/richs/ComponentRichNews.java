@@ -15,7 +15,6 @@ import taskeren.extrabot.components.Component;
 @Getter
 public class ComponentRichNews extends Component
 {
-
     /**
      * 页面名称
      */
@@ -40,5 +39,4 @@ public class ComponentRichNews extends Component
      * 页面地址
      */
     final String url;
-
 }

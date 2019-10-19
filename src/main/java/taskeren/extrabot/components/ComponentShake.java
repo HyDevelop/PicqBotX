@@ -12,10 +12,7 @@ import lombok.ToString;
 @Getter
 public class ComponentShake extends ComponentSendable
 {
-
-    public ComponentShake()
-    {
-    }
+    public ComponentShake() {}
 
     @Override
     public String toCQCode()

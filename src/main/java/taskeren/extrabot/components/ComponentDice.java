@@ -12,7 +12,6 @@ import lombok.ToString;
 @Getter
 public class ComponentDice extends ComponentSendable
 {
-
     /**
      * 投到的点数
      */
