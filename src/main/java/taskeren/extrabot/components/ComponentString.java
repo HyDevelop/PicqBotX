@@ -13,8 +13,9 @@ import lombok.ToString;
 @ToString
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
 @Getter
-public class ComponentString extends Component {
+public class ComponentString extends Component
+{
 
-	final String message;
+    final String message;
 
 }

@@ -13,31 +13,32 @@ import lombok.ToString;
 @ToString
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
 @Getter
-public class ComponentLocation extends Component {
+public class ComponentLocation extends Component
+{
 
-	/**
-	 * 经度
-	 */
-	final String lat;
+    /**
+     * 经度
+     */
+    final String lat;
 
-	/**
-	 * 纬度
-	 */
-	final String lon;
+    /**
+     * 纬度
+     */
+    final String lon;
 
-	/**
-	 * 粗略地名
-	 */
-	final String title;
+    /**
+     * 粗略地名
+     */
+    final String title;
 
-	/**
-	 * 详细地址
-	 */
-	final String content;
+    /**
+     * 详细地址
+     */
+    final String content;
 
-	/**
-	 * 样式代码（未知）
-	 */
-	final int style;
+    /**
+     * 样式代码（未知）
+     */
+    final int style;
 
 }

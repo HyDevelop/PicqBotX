@@ -13,31 +13,32 @@ import taskeren.extrabot.components.Component;
 @ToString
 @AllArgsConstructor
 @Getter
-public class ComponentRichNews extends Component {
+public class ComponentRichNews extends Component
+{
 
-	/**
-	 * 页面名称
-	 */
-	final String title;
+    /**
+     * 页面名称
+     */
+    final String title;
 
-	/**
-	 * 页面描述
-	 */
-	final String desc;
+    /**
+     * 页面描述
+     */
+    final String desc;
 
-	/**
-	 * 页面预览
-	 */
-	final String preview;
+    /**
+     * 页面预览
+     */
+    final String preview;
 
-	/**
-	 * APP标签
-	 */
-	final String tag;
+    /**
+     * APP标签
+     */
+    final String tag;
 
-	/**
-	 * 页面地址
-	 */
-	final String url;
+    /**
+     * 页面地址
+     */
+    final String url;
 
 }

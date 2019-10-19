@@ -1,7 +1,5 @@
 package taskeren.extrabot.components;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.ToString;
 
@@ -12,24 +10,27 @@ import lombok.ToString;
  */
 @ToString
 @Getter
-public class ComponentAt extends ComponentSendable {
+public class ComponentAt extends ComponentSendable
+{
 
-	/**
-	 * 被AT的QQ号
-	 */
-	protected final long at;
+    /**
+     * 被AT的QQ号
+     */
+    protected final long at;
 
-	/**
-	 * 构建一个AT组件
-	 *
-	 * @param at 被AT的QQ号
-	 */
-	public ComponentAt(long at) {
-		this.at = at;
-	}
+    /**
+     * 构建一个AT组件
+     *
+     * @param at 被AT的QQ号
+     */
+    public ComponentAt(long at)
+    {
+        this.at = at;
+    }
 
-	@Override
-	public String toCQCode() {
-		return "[CQ:at,qq=" + at + "]";
-	}
+    @Override
+    public String toCQCode()
+    {
+        return "[CQ:at,qq=" + at + "]";
+    }
 }

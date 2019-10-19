@@ -13,30 +13,37 @@ import lombok.ToString;
 @ToString
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
 @Getter
-public class ComponentContact extends Component {
+public class ComponentContact extends Component
+{
 
-	public enum ContactTo {
-		USER, GROUP;
+    /**
+     * 名片指向的QQ号或群号
+     */
+    final long id;
 
-		public static ContactTo parse(String str){
-			switch(str) {
-				case "qq":     return USER;
-				case "group":  return GROUP;
-				default:       return null;
-			}
-		}
-	}
+    /**
+     * 名片类型（QQ用户或QQ群）
+     *
+     * @see ContactTo
+     */
+    final ContactTo to;
 
-	/**
-	 * 名片指向的QQ号或群号
-	 */
-	final long id;
+    public enum ContactTo
+    {
+        USER, GROUP;
 
-	/**
-	 * 名片类型（QQ用户或QQ群）
-	 *
-	 * @see ContactTo
-	 */
-	final ContactTo to;
+        public static ContactTo parse(String str)
+        {
+            switch (str)
+            {
+                case "qq":
+                    return USER;
+                case "group":
+                    return GROUP;
+                default:
+                    return null;
+            }
+        }
+    }
 
 }
