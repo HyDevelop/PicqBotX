@@ -25,7 +25,7 @@ public abstract class Event implements ContentComparable
 
     @SerializedName("self_id")
     @Expose
-    protected Long selfId;
+    public Long selfId;
 
     @SerializedName("time")
     @Expose
