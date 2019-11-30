@@ -23,27 +23,27 @@ public abstract class EventMessage extends Event
 {
     @SerializedName("message_type")
     @Expose
-    public String messageType;
+    protected String messageType;
 
     @SerializedName("font")
     @Expose
-    public Long font;
+    protected Long font;
 
     @SerializedName("message")
     @Expose
-    public String message;
+    protected String message;
 
     @SerializedName("message_id")
     @Expose
-    public Long messageId;
+    protected Long messageId;
 
     @SerializedName("raw_message")
     @Expose
-    public String rawMessage;
+    protected String rawMessage;
 
     @SerializedName("user_id")
     @Expose
-    public Long senderId;
+    protected Long senderId;
 
     /**
      * 回复消息

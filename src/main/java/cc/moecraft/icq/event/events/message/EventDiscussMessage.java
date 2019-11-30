@@ -21,7 +21,7 @@ public class EventDiscussMessage extends EventGroupOrDiscussMessage
 {
     @SerializedName("discuss_id")
     @Expose
-    public Long discussId;
+    protected Long discussId;
 
     @Override
     public ReturnData<RMessageReturnData> respond(String message, boolean raw)

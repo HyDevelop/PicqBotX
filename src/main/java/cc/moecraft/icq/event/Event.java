@@ -21,17 +21,17 @@ public abstract class Event implements ContentComparable
 {
     @SerializedName("post_type")
     @Expose
-    public String postType;
+    protected String postType;
 
     @SerializedName("self_id")
     @Expose
-    public Long selfId;
+    protected Long selfId;
 
     @SerializedName("time")
     @Expose
-    public Long time;
+    protected Long time;
 
-    public PicqBotX bot;
+    protected PicqBotX bot;
 
     public Event setBot(PicqBotX bot)
     {

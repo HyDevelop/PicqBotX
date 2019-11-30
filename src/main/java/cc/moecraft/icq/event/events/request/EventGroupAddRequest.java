@@ -18,11 +18,11 @@ public class EventGroupAddRequest extends EventRequest
 {
     @SerializedName("group_id")
     @Expose
-    public Long groupId;
+    protected Long groupId;
 
     @SerializedName("sub_type")
     @Expose
-    public String subType;
+    protected String subType;
 
     @Override
     public void accept()

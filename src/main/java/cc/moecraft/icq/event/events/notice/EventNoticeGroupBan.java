@@ -22,23 +22,23 @@ public class EventNoticeGroupBan extends EventNotice
 {
     @SerializedName("sub_type")
     @Expose
-    public BanType type;
+    protected BanType type;
 
     @SerializedName("group_id")
     @Expose
-    public Long groupId;
+    protected Long groupId;
 
     @SerializedName("operator_id")
     @Expose
-    public Long operatorId;
+    protected Long operatorId;
 
     @SerializedName("user_id")
     @Expose
-    public Long userId;
+    protected Long userId;
 
     @SerializedName("duration")
     @Expose
-    public Long duration;
+    protected Long duration;
 
     public enum BanType
     {
