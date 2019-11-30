@@ -16,15 +16,15 @@ import java.util.ArrayList;
 @Data
 public class EventLocalHttpReceive extends EventLocal
 {
-    public String[] info;
+    protected String[] info;
 
-    public ArrayList<String> otherInfo;
+    protected ArrayList<String> otherInfo;
 
-    public String contentType;
+    protected String contentType;
 
-    public String charset;
+    protected String charset;
 
-    public String userAgent;
+    protected String userAgent;
 
-    public String data;
+    protected String data;
 }
