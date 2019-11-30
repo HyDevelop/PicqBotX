@@ -31,7 +31,7 @@ public abstract class EventMessage extends Event
 
     @SerializedName("message")
     @Expose
-    protected String message;
+    public String message;
 
     @SerializedName("message_id")
     @Expose
