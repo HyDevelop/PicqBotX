@@ -20,7 +20,7 @@ public class EventPrivateMessage extends EventMessage
 {
     @SerializedName("sub_type")
     @Expose
-    public String subType;
+    protected String subType;
 
     @Override
     public ReturnData<RMessageReturnData> respond(String message, boolean raw)
