@@ -13,11 +13,11 @@ import lombok.EqualsAndHashCode;
 @Data
 public class EventLocalSendMessage extends EventLocal
 {
-    public long id;
+    protected long id;
 
-    public String message;
+    protected String message;
 
-    public boolean autoEscape = false;
+    protected boolean autoEscape = false;
 
     public EventLocalSendMessage(long id, String message)
     {

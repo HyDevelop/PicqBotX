@@ -20,13 +20,13 @@ public class EventNoticeGroupAdminChange extends EventNotice
 {
     @SerializedName("group_id")
     @Expose
-    public Long groupId;
+    protected Long groupId;
 
     @SerializedName("sub_type")
     @Expose
-    public String subType;
+    protected String subType;
 
-    private GroupEventMethods groupMethods = null;
+    protected GroupEventMethods groupMethods = null;
 
     @Override
     public boolean contentEquals(Object o)
