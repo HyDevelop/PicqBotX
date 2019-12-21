@@ -24,15 +24,15 @@ public class EventGroupMessage extends EventGroupOrDiscussMessage
 {
     @SerializedName("anonymous")
     @Expose
-    public Anonymous anonymous;
+    protected Anonymous anonymous;
 
     @SerializedName("group_id")
     @Expose
-    public Long groupId;
+    protected Long groupId;
 
     @SerializedName("sub_type")
     @Expose
-    public String subType;
+    protected String subType;
 
     @Data
     @Setter(AccessLevel.NONE)
@@ -40,15 +40,15 @@ public class EventGroupMessage extends EventGroupOrDiscussMessage
     {
         @SerializedName("flag")
         @Expose
-        public String flag;
+        protected String flag;
 
         @SerializedName("id")
         @Expose
-        public Long id;
+        protected Long id;
 
         @SerializedName("name")
         @Expose
-        public String name;
+        protected String name;
     }
 
     @Override
