@@ -18,19 +18,19 @@ public abstract class EventRequest extends Event
 {
     @SerializedName("request_type")
     @Expose
-    public String requestType;
+    protected String requestType;
 
     @SerializedName("flag")
     @Expose
-    public String flag;
+    protected String flag;
 
     @SerializedName("comment")
     @Expose
-    public String comment;
+    protected String comment;
 
     @SerializedName("user_id")
     @Expose
-    public Long userId;
+    protected Long userId;
 
     /**
      * 同意申请

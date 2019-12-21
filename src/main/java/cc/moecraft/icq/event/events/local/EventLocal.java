@@ -13,5 +13,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public abstract class EventLocal extends Event
 {
-    public boolean cancelled = false;
+    protected boolean cancelled = false;
 }

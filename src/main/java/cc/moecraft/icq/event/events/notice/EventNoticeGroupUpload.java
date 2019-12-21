@@ -19,11 +19,11 @@ public class EventNoticeGroupUpload extends EventNotice
 {
     @SerializedName("file")
     @Expose
-    public File file;
+    protected File file;
 
     @SerializedName("group_id")
     @Expose
-    public Long groupId;
+    protected Long groupId;
 
     @Data
     @Setter(AccessLevel.NONE)
@@ -31,19 +31,19 @@ public class EventNoticeGroupUpload extends EventNotice
     {
         @SerializedName("busid")
         @Expose
-        public Long busid;
+        protected Long busid;
 
         @SerializedName("id")
         @Expose
-        public String id;
+        protected String id;
 
         @SerializedName("name")
         @Expose
-        public String name;
+        protected String name;
 
         @SerializedName("size")
         @Expose
-        public Long size;
+        protected Long size;
     }
 
     private GroupEventMethods groupMethods = null;

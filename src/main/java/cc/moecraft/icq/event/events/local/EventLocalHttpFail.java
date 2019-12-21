@@ -13,7 +13,7 @@ import lombok.EqualsAndHashCode;
 @AllArgsConstructor
 public class EventLocalHttpFail extends EventLocal
 {
-    public Reason fail; // 怎样失败的
+    protected Reason fail; // 怎样失败的
 
     public enum Reason
     {

@@ -18,11 +18,11 @@ public class EventNotice extends Event
 {
     @SerializedName("notice_type")
     @Expose
-    public String noticeType;
+    protected String noticeType;
 
     @SerializedName("user_id")
     @Expose
-    public Long userId;
+    protected Long userId;
 
     @Override
     public boolean contentEquals(Object o)
