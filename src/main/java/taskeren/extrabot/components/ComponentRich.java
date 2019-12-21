@@ -22,7 +22,9 @@ import taskeren.extrabot.components.richs.ComponentRichNews;
 public class ComponentRich extends Component
 {
     final String title;
+
     final String text;
+
     final String content;
 
     public class To
