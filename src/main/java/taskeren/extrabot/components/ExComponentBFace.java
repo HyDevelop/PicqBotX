@@ -10,7 +10,7 @@ import lombok.ToString;
  */
 @ToString
 @Getter
-public class ComponentBFace extends ComponentSendable
+public class ExComponentBFace extends ExComponentSendable
 {
     final int p;
 
@@ -21,7 +21,7 @@ public class ComponentBFace extends ComponentSendable
      *
      * @param id 表情ID
      */
-    public ComponentBFace(int id)
+    public ExComponentBFace(int id)
     {
         this(-1, Integer.toString(id));
     }
@@ -32,7 +32,7 @@ public class ComponentBFace extends ComponentSendable
      * @param p 未知
      * @param id 表情ID
      */
-    protected ComponentBFace(int p, String id)
+    protected ExComponentBFace(int p, String id)
     {
         this.p = p;
         this.id = id;

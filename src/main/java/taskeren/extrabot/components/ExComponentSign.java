@@ -13,7 +13,7 @@ import lombok.ToString;
 @ToString
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
 @Getter
-public class ComponentSign extends Component
+public class ExComponentSign extends ExComponent
 {
     /**
      * 签到地点

@@ -10,7 +10,7 @@ import lombok.ToString;
  */
 @ToString
 @Getter
-public class ComponentRecord extends ComponentSendable
+public class ExComponentRecord extends ExComponentSendable
 {
     /**
      * 语音储存在本地的位置
@@ -28,7 +28,7 @@ public class ComponentRecord extends ComponentSendable
      * @param file 语音本地地址
      * @param magic 是否启用变声器
      */
-    protected ComponentRecord(String file, boolean magic)
+    protected ExComponentRecord(String file, boolean magic)
     {
         this.file = file;
         this.magic = magic;
@@ -39,7 +39,7 @@ public class ComponentRecord extends ComponentSendable
      *
      * @param fileOrUrl 语音地址
      */
-    public ComponentRecord(String fileOrUrl)
+    public ExComponentRecord(String fileOrUrl)
     {
         this(fileOrUrl, false);
     }

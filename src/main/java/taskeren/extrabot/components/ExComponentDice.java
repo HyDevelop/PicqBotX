@@ -10,7 +10,7 @@ import lombok.ToString;
  */
 @ToString
 @Getter
-public class ComponentDice extends ComponentSendable
+public class ExComponentDice extends ExComponentSendable
 {
     /**
      * 投到的点数
@@ -20,7 +20,7 @@ public class ComponentDice extends ComponentSendable
     /**
      * 构造一个骰子组件。（数字随机）
      */
-    public ComponentDice()
+    public ExComponentDice()
     {
         this.type = 0;
     }
@@ -30,7 +30,7 @@ public class ComponentDice extends ComponentSendable
      *
      * @param type 数字
      */
-    protected ComponentDice(int type)
+    protected ExComponentDice(int type)
     {
         this.type = type;
     }

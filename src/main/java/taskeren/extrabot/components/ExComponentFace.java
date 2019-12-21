@@ -10,7 +10,7 @@ import lombok.ToString;
  */
 @ToString
 @Getter
-public class ComponentFace extends ComponentSendable
+public class ExComponentFace extends ExComponentSendable
 {
     /**
      * 表情ID
@@ -22,7 +22,7 @@ public class ComponentFace extends ComponentSendable
      *
      * @param id 表情ID
      */
-    public ComponentFace(int id)
+    public ExComponentFace(int id)
     {
         this.id = id;
     }

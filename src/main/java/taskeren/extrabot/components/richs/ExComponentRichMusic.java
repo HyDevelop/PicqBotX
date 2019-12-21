@@ -3,7 +3,7 @@ package taskeren.extrabot.components.richs;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.ToString;
-import taskeren.extrabot.components.Component;
+import taskeren.extrabot.components.ExComponent;
 
 /**
  * 音乐分享富文本组件。
@@ -13,7 +13,7 @@ import taskeren.extrabot.components.Component;
 @ToString
 @AllArgsConstructor
 @Getter
-public class ComponentRichMusic extends Component
+public class ExComponentRichMusic extends ExComponent
 {
     /**
      * 歌曲名称

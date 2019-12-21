@@ -1,7 +1,7 @@
 package cc.moecraft.icq.sender.message;
 
 import lombok.Getter;
-import taskeren.extrabot.components.ComponentSendable;
+import taskeren.extrabot.components.ExComponentSendable;
 
 import java.util.ArrayList;
 
@@ -30,7 +30,7 @@ public class MessageBuilder
         return this;
     }
 
-    public MessageBuilder add(ComponentSendable sendable) {
+    public MessageBuilder add(ExComponentSendable sendable) {
         add(sendable.toCQCode());
         return this;
     }

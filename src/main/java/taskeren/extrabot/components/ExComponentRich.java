@@ -6,8 +6,8 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.ToString;
-import taskeren.extrabot.components.richs.ComponentRichMusic;
-import taskeren.extrabot.components.richs.ComponentRichNews;
+import taskeren.extrabot.components.richs.ExComponentRichMusic;
+import taskeren.extrabot.components.richs.ExComponentRichNews;
 
 /**
  * 这是一个神奇的组件，富文本组件。
@@ -19,7 +19,7 @@ import taskeren.extrabot.components.richs.ComponentRichNews;
 @ToString
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
 @Getter
-public class ComponentRich extends Component
+public class ExComponentRich extends ExComponent
 {
     final String title;
 
@@ -32,13 +32,13 @@ public class ComponentRich extends Component
         /**
          * 转换为音乐分享富文本组件。
          */
-        public ComponentRichMusic music()
+        public ExComponentRichMusic music()
         {
             JSONObject json = JSONUtil.parseObj(content);
             if (json.containsKey("music"))
             {
                 JSONObject d = json.getJSONObject("music");
-                return new ComponentRichMusic(
+                return new ExComponentRichMusic(
                         d.getStr("title"),
                         d.getStr("desc"),
                         d.getStr("preview"),
@@ -56,13 +56,13 @@ public class ComponentRich extends Component
         /**
          * 转换为网页分享富文本组件。
          */
-        public ComponentRichNews news()
+        public ExComponentRichNews news()
         {
             JSONObject json = JSONUtil.parseObj(content);
             if (json.containsKey("news"))
             {
                 JSONObject d = json.getJSONObject("news");
-                return new ComponentRichNews(
+                return new ExComponentRichNews(
                         d.getStr("title"),
                         d.getStr("desc"),
                         d.getStr("preview"),

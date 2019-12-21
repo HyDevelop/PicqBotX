@@ -13,7 +13,7 @@ import lombok.ToString;
 @ToString
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
 @Getter
-public class ComponentContact extends Component
+public class ExComponentContact extends ExComponent
 {
     /**
      * 名片指向的QQ号或群号

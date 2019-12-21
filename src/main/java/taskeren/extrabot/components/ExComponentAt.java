@@ -10,7 +10,7 @@ import lombok.ToString;
  */
 @ToString
 @Getter
-public class ComponentAt extends ComponentSendable
+public class ExComponentAt extends ExComponentSendable
 {
     /**
      * 被AT的QQ号
@@ -22,7 +22,7 @@ public class ComponentAt extends ComponentSendable
      *
      * @param at 被AT的QQ号
      */
-    public ComponentAt(long at)
+    public ExComponentAt(long at)
     {
         this.at = at;
     }
