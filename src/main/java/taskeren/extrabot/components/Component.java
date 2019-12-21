@@ -151,10 +151,10 @@ public class Component
         for (String s : array)
         {
             String[] s0 = s.split("[:=]", 2);
-			if (s0.length < 2)
-			{
-				continue;
-			}
+            if (s0.length < 2)
+            {
+                continue;
+            }
             map.put(s0[0], s0[1]);
         }
 
