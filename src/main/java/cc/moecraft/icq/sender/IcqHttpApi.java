@@ -99,7 +99,7 @@ public class IcqHttpApi
     public JsonElement send(HttpApiNode api, Map<String, Object> params)
     {
         // 创建请求
-        HttpRequest request = HttpRequest.post(makeUrl(api)).body(new JSONObject(params)).timeout(5000);
+        HttpRequest request = HttpRequest.post(makeUrl(api)).body(new JSONObject(params).toString()).timeout(5000);
 
         // 判断有没有 Access Token, 并加到头上w
         if (!bot.getConfig().getAccessToken().isEmpty())
