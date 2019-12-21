@@ -11,7 +11,7 @@ import lombok.ToString;
  */
 @ToString
 @Getter
-public class ComponentImage extends ComponentSendable
+public class ExComponentImage extends ExComponentSendable
 {
     /**
      * 图片暂存于腾讯服务器上的地址
@@ -32,7 +32,7 @@ public class ComponentImage extends ComponentSendable
      * @param url 图片在线地址
      * @param file 图片离线地址
      */
-    protected ComponentImage(String url, String file)
+    protected ExComponentImage(String url, String file)
     {
         this.url = url;
         this.file = file;
@@ -43,7 +43,7 @@ public class ComponentImage extends ComponentSendable
      *
      * @param fileOrUrl 图片地址
      */
-    public ComponentImage(String fileOrUrl)
+    public ExComponentImage(String fileOrUrl)
     {
         this(fileOrUrl, false);
     }
@@ -54,7 +54,7 @@ public class ComponentImage extends ComponentSendable
      * @param fileOrUrlOrB64 图片或B64编码图片地址
      * @param isBase64 是否是B64编码图片
      */
-    public ComponentImage(String fileOrUrlOrB64, boolean isBase64)
+    public ExComponentImage(String fileOrUrlOrB64, boolean isBase64)
     {
         this.file = isBase64 ? "base64://" + fileOrUrlOrB64 : fileOrUrlOrB64;
         this.url = null;

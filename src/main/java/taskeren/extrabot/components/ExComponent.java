@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
  * @author Taskeren
  */
 @ToString
-public class Component
+public class ExComponent
 {
     private static final String REGEX_CQ_CODE = "(\\[CQ:.*?,.*?])";
 
@@ -26,7 +26,7 @@ public class Component
      * @param message 消息原文
      * @return 解析后的组件
      */
-    public static Component parseComponent(String message)
+    public static ExComponent parseComponent(String message)
     {
         String s0 = message.substring(1, message.length() - 1); // 去掉头尾的"[]"
         String[] s1 = s0.split(","); // 处理成数据对，像这样：["CQ:at", "qq=123456"]
@@ -39,49 +39,49 @@ public class Component
             {
 
                 case "face":
-                    return new ComponentFace(data.getInteger("id"));
+                    return new ExComponentFace(data.getInteger("id"));
 
                 case "bface":
-                    return new ComponentBFace(data.getInteger("p"), data.get("id"));
+                    return new ExComponentBFace(data.getInteger("p"), data.get("id"));
 
                 case "image":
-                    return new ComponentImage(data.get("file"), data.get("url"));
+                    return new ExComponentImage(data.get("file"), data.get("url"));
 
                 case "record":
-                    return new ComponentRecord(data.get("file"), data.getBoolean("magic"));
+                    return new ExComponentRecord(data.get("file"), data.getBoolean("magic"));
 
                 case "at":
-                    return new ComponentAt(data.getLong("qq"));
+                    return new ExComponentAt(data.getLong("qq"));
 
                 case "rps":
-                    return new ComponentRPS(ComponentRPS.RPS.parse(data.getInteger("type")));
+                    return new ExComponentRPS(ExComponentRPS.RPS.parse(data.getInteger("type")));
 
                 case "dice":
-                    return new ComponentDice(data.getInteger("type"));
+                    return new ExComponentDice(data.getInteger("type"));
 
                 case "shake":
-                    return new ComponentShake();
+                    return new ExComponentShake();
 
                 case "sign":
-                    return new ComponentSign(data.get("location"), data.get("title"), data.get("image"));
+                    return new ExComponentSign(data.get("location"), data.get("title"), data.get("image"));
 
                 case "rich":
-                    return new ComponentRich(data.get("title"), data.get("text"), data.get("content"));
+                    return new ExComponentRich(data.get("title"), data.get("text"), data.get("content"));
 
                 case "location":
-                    return new ComponentLocation(data.get("lat"), data.get("lon"), data.get("title"), data.get("content"),
+                    return new ExComponentLocation(data.get("lat"), data.get("lon"), data.get("title"), data.get("content"),
                             data.getInteger("style"));
 
                 case "contact":
-                    return new ComponentContact(data.getLong("id"), ComponentContact.ContactTo.parse(data.get("type")));
+                    return new ExComponentContact(data.getLong("id"), ExComponentContact.ContactTo.parse(data.get("type")));
 
                 default:
-                    return new ComponentString(message);
+                    return new ExComponentString(message);
             }
         }
         catch (Exception e)
         {
-            return new ComponentString(message);
+            return new ExComponentString(message);
         }
     }
 
@@ -91,9 +91,9 @@ public class Component
      * @param s 消息
      * @return 解析后组件列表
      */
-    public static ArrayList<Component> parseComponents(String s)
+    public static ArrayList<ExComponent> parseComponents(String s)
     {
-        ArrayList<Component> components = new ArrayList<>();
+        ArrayList<ExComponent> components = new ArrayList<>();
         int count = 0;
 
         Matcher matcher = CQC.matcher(s);
@@ -104,10 +104,10 @@ public class Component
             if (matcher.start() > end)
             {
                 String strBefore = s.substring(end, matcher.start());
-                components.add(new ComponentString(strBefore));
+                components.add(new ExComponentString(strBefore));
             }
             String content = matcher.group();
-            Component component = parseComponent(content);
+            ExComponent component = parseComponent(content);
             components.add(component);
             end = matcher.end();
             count++;
@@ -116,12 +116,12 @@ public class Component
         if (end < s.length())
         {
             String strAfter = s.substring(end);
-            components.add(new ComponentString(strAfter));
+            components.add(new ExComponentString(strAfter));
             count++;
         }
         if (count == 0)
         {
-            components.add(new ComponentString(s));
+            components.add(new ExComponentString(s));
         }
         return components;
     }
@@ -132,9 +132,9 @@ public class Component
      * @param args 消息列表
      * @return 解析后组件列表
      */
-    public static ArrayList<Component> parseComponents(ArrayList<String> args)
+    public static ArrayList<ExComponent> parseComponents(ArrayList<String> args)
     {
-        ArrayList<Component> components = new ArrayList<>();
+        ArrayList<ExComponent> components = new ArrayList<>();
 
         for (String arg : args)
         {

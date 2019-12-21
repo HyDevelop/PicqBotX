@@ -1,6 +1,6 @@
 package taskeren.extrabot.components;
 
-public abstract class ComponentSendable extends Component
+public abstract class ExComponentSendable extends ExComponent
 {
     public abstract String toCQCode();
 }

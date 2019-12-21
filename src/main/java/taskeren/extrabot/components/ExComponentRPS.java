@@ -10,7 +10,7 @@ import lombok.ToString;
  */
 @ToString
 @Getter
-public class ComponentRPS extends ComponentSendable
+public class ExComponentRPS extends ExComponentSendable
 {
     /**
      * 石头剪刀布
@@ -22,7 +22,7 @@ public class ComponentRPS extends ComponentSendable
      *
      * @param rps
      */
-    protected ComponentRPS(RPS rps)
+    protected ExComponentRPS(RPS rps)
     {
         this.type = rps;
     }
@@ -30,7 +30,7 @@ public class ComponentRPS extends ComponentSendable
     /**
      * 构造一个石头剪刀布组件（随机）
      */
-    public ComponentRPS()
+    public ExComponentRPS()
     {
         this(null);
     }
