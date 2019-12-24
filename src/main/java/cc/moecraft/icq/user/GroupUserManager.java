@@ -25,27 +25,28 @@ public class GroupUserManager
     /**
      * 用 ID 和群对象获取用户对象
      *
-     * @param id 用户 ID
+     * @param userId 用户 ID
      * @param group 群对象
      * @return 用户对象
      */
-    public GroupUser getUserFromID(long id, Group group)
+    public GroupUser getUserFromID(long userId, Group group)
     {
         // 没有群缓存
-        if (!groupCache.containsKey(id))
+        if (!groupCache.containsKey(group.getId()))
         {
             groupCache.put(group.getId(), new HashMap<>());
         }
 
         // 获取用户缓存
-        Map<Long, GroupUser> userCache = groupCache.get(id);
+        Map<Long, GroupUser> userCache = groupCache.get(group.getId());
 
         // 获取用户
-        if (userCache.containsKey(id))
+        if (!userCache.containsKey(userId))
         {
-            return userCache.get(id);
+            userCache.put(userId, new GroupUser(bot, userId, group));
         }
-        userCache.put(id, new GroupUser(bot, id, group));
-        return getUserFromID(id, group);
+
+        // 获取缓存对象
+        return userCache.get(userId);
     }
 }
