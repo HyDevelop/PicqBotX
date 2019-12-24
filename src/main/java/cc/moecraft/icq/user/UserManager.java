@@ -29,11 +29,10 @@ public class UserManager
      */
     public User getUserFromID(long id)
     {
-        if (userCache.containsKey(id))
+        if (!userCache.containsKey(id))
         {
-            return userCache.get(id);
+            userCache.put(id, new User(bot, id));
         }
-        userCache.put(id, new User(bot, id));
-        return getUserFromID(id);
+        return userCache.get(id);
     }
 }
