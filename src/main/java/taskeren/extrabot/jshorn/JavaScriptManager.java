@@ -2,6 +2,8 @@ package taskeren.extrabot.jshorn;
 
 import cc.moecraft.icq.PicqBotX;
 import cc.moecraft.icq.event.Event;
+import cc.moecraft.logger.HyLogger;
+import cc.moecraft.logger.LoggerInstanceManager;
 import cn.hutool.script.JavaScriptEngine;
 import cn.hutool.script.ScriptUtil;
 import lombok.Getter;
@@ -17,12 +19,16 @@ public class JavaScriptManager {
 
 	protected final JavaScriptEventListener listener;
 
+	protected static HyLogger logger = null;
+
 	public JavaScriptManager(PicqBotX bot) {
 		this.bot = bot;
 		this.engine = ScriptUtil.getJavaScriptEngine();
 		this.listener = new JavaScriptEventListener(this);
 
 		this.bot.getEventManager().registerListener(listener);
+
+		logger = bot.getLogger().getInstanceManager().getLoggerInstance("Jshorn", bot.getConfig().isDebug());
 	}
 
 	// Event类索引
@@ -63,11 +69,11 @@ public class JavaScriptManager {
 			if (Event.class.isAssignableFrom(cls)) {
 				clsEvt = (Class<? extends Event>) cls;
 			} else {
-				System.err.println("Cannot cast '" + clazz + "' to Event");
+				logger.error("函数注册失败：无效类名（"+clazz+"）");
 			}
 		}
 		getFunctionList(clsEvt).add(name);
-		System.out.println("Registered Function(" + name + ") as Event(" + JshornUtil.getLastClassName(clsEvt) + ") Listener");
+		logger.log("成功注册函数（"+name+"）作为事件（"+JshornUtil.getLastClassName(clsEvt)+"）监听器");
 	}
 
 	/**
@@ -91,7 +97,7 @@ public class JavaScriptManager {
 	 * @param evt 事件实例
 	 */
 	public void callFunction(Class<? extends Event> cls, Event evt) {
-		System.out.println(cls + " called");
+		logger.debug("正在调用事件（"+JshornUtil.getLastClassName(cls)+"）的监听函数。");
 		invokeFunctions(getFunctionList(cls), evt);
 	}
 
