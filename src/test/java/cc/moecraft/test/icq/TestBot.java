@@ -18,6 +18,8 @@ import cc.moecraft.test.icq.listeners.ExceptionListener;
 import cc.moecraft.test.icq.listeners.RequestListener;
 import cc.moecraft.test.icq.listeners.SimpleTextLoggingListener;
 import cc.moecraft.test.icq.listeners.TestListener;
+import cn.hutool.core.io.FileUtil;
+import taskeren.extrabot.jshorn.JavaScriptManager;
 
 /**
  * 功能测试机器人!
@@ -77,7 +79,7 @@ public class TestBot
 
         // 添加一个机器人账户 ( 名字, 发送URL, 发送端口 )
         bot.addAccount("Bot00", "127.0.0.1", 31090);
-        bot.addAccount("Bot01", "127.0.0.1", 31091);
+        // bot.addAccount("Bot01", "127.0.0.1", 31091);
 
         // 启用HyExp ( 非必要 )
         bot.setUniversalHyExpSupport(true);
@@ -105,5 +107,8 @@ public class TestBot
 
         // 启动机器人, 不会占用主线程
         bot.startBot();
+
+        JavaScriptManager mgr = new JavaScriptManager(bot);
+        mgr.eval(FileUtil.readUtf8String("test.js"));
     }
 }
