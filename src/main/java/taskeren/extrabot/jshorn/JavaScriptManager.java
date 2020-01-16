@@ -1,17 +1,26 @@
 package taskeren.extrabot.jshorn;
 
 import cc.moecraft.icq.PicqBotX;
+import cc.moecraft.icq.command.CommandProperties;
+import cc.moecraft.icq.command.interfaces.EverywhereCommand;
+import cc.moecraft.icq.command.interfaces.IcqCommand;
 import cc.moecraft.icq.event.Event;
+import cc.moecraft.icq.event.events.message.EventMessage;
+import cc.moecraft.icq.sender.IcqHttpApi;
+import cc.moecraft.icq.user.User;
 import cc.moecraft.logger.HyLogger;
-import cc.moecraft.logger.LoggerInstanceManager;
 import cn.hutool.script.JavaScriptEngine;
 import cn.hutool.script.ScriptUtil;
+import jdk.nashorn.api.scripting.ScriptObjectMirror;
 import lombok.Getter;
 
 import javax.script.ScriptException;
 import java.util.*;
 
 public class JavaScriptManager {
+
+	@Getter
+	private static JavaScriptManager Instance;
 
 	@Getter
 	protected final PicqBotX bot;
@@ -22,6 +31,8 @@ public class JavaScriptManager {
 	protected static HyLogger logger = null;
 
 	public JavaScriptManager(PicqBotX bot) {
+		Instance = this;
+
 		this.bot = bot;
 		this.engine = ScriptUtil.getJavaScriptEngine();
 		this.listener = new JavaScriptEventListener(this);
@@ -77,18 +88,44 @@ public class JavaScriptManager {
 	}
 
 	/**
+	 * 指令函数注册方法（用于JavaScript调用）
+	 * <pre>Java.type("taskeren.extrabot.jshorn.JavaScriptManager").addCommand("PrivateCommand(指令短名称)", "test(指令)", "msg0(函数名!注意不是函数本身)");</pre>
+	 * @param clazz    指令类型
+	 * @param property 指令名称
+	 * @param name     函数名称
+	 */
+	public static void addCommand(String clazz, String property, String name) {
+		IcqCommand command = JshornUtil.createCommand(clazz, property, name);
+		if(command == null) {
+			logger.log("函数注册失败：无效类名（"+clazz+"）");
+		}
+		else {
+			getInstance().getBot().getCommandManager().registerCommand(command);
+			logger.log("成功注册函数（"+name+"）作为指令（"+property+"）");
+		}
+	}
+
+	public static IcqHttpApi getApi() {
+		return getInstance().getBot().getAccountManager().getNonAccountSpecifiedApi();
+	}
+
+	Object invokeFunction(String name, Object...objects) {
+		try {
+			logger.debug("正在调用函数（"+name+"）&参数："+Arrays.toString(objects));
+			return engine.invokeFunction(name, objects);
+		} catch (ScriptException | NoSuchMethodException ex) {
+			ex.printStackTrace();
+			return null;
+		}
+	}
+
+	/**
 	 * 调用所有列表中的函数
 	 * @param names   函数名列表
 	 * @param objects 函数参数
 	 */
 	void invokeFunctions(List<String> names, Object...objects) {
-		for(String name : names) {
-			try {
-				engine.invokeFunction(name, objects);
-			} catch (Exception ex) {
-				ex.printStackTrace();
-			}
-		}
+		names.forEach(n -> invokeFunction(n, objects));
 	}
 
 	/**
@@ -97,7 +134,6 @@ public class JavaScriptManager {
 	 * @param evt 事件实例
 	 */
 	public void callFunction(Class<? extends Event> cls, Event evt) {
-		logger.debug("正在调用事件（"+JshornUtil.getLastClassName(cls)+"）的监听函数。");
 		invokeFunctions(getFunctionList(cls), evt);
 	}
 

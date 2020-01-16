@@ -1,10 +1,11 @@
+var reg = Java.type("taskeren.extrabot.jshorn.JavaScriptManager");
+
 var evt_all = function(evt) {
-    print(evt);
+    // print(evt);
 }
 
 var msg_all = function(evt) {
     print("收到信息："+evt.getMessage());
-    evt.respond("Great!");
 }
 
 var friend_request = function(evt) {
@@ -23,10 +24,28 @@ var local_send = function(evt) {
     }
 }
 
+var API = reg.getApi();
+
+var command_ban = function(evt, sender, group, command, args) {
+    if(args.size() > 0) {
+        API.setGroupKick(group.getId(), args.get(0), false);
+        return("成了。");
+    }
+    else {
+        return("QQ号呢？");
+    }
+}
+
+var command_speak = function(evt, sender, group, command, args) {
+    if(args.size() > 0) {
+        var msg = args.get(0);
+    }
+}
+
 /* 函数注册 */
 print("Loading test.js!");
-var reg = Java.type("taskeren.extrabot.jshorn.JavaScriptManager");
 reg.addFunction("Event", "evt_all");
 reg.addFunction("EventMessage", "msg_all");
 reg.addFunction("EventFriendRequest", "friend_request");
 reg.addFunction("Event", "local_send");
+reg.addCommand("GroupCommand", "ban", "command_ban");

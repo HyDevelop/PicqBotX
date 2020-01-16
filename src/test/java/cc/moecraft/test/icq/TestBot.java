@@ -73,8 +73,8 @@ public class TestBot
         // 创建机器人对象 ( 传入配置 )
         PicqBotX bot = new PicqBotX(new PicqConfig(31092)
                 .setDebug(true)
-                .setSecret("This is secret")
-                .setAccessToken("Brq4KSm+3UdaUJnLZ+AJfj**v-vePWL$")
+//                .setSecret("This is secret")
+//                .setAccessToken("Brq4KSm+3UdaUJnLZ+AJfj**v-vePWL$")
         );
 
         // 添加一个机器人账户 ( 名字, 发送URL, 发送端口 )
