@@ -1,16 +1,9 @@
 package exscript;
 
-import cc.moecraft.icq.command.CommandProperties;
 import cc.moecraft.icq.command.interfaces.*;
 import cc.moecraft.icq.event.Event;
-import cc.moecraft.icq.event.events.message.*;
-import cc.moecraft.icq.user.Group;
-import cc.moecraft.icq.user.GroupUser;
-import cc.moecraft.icq.user.User;
-import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.lang.ClassScanner;
 import cn.hutool.core.map.MapUtil;
-import cn.hutool.core.util.StrUtil;
 
 import java.util.*;
 
@@ -33,8 +26,8 @@ public class ExScriptUtil {
 		var0.add(Event.class);
 		var0.forEach(cls -> {
 			if(Event.class.isAssignableFrom(cls)) {
+				eventIndex.put(cls.getSimpleName(), (Class<? extends Event>) cls);
 				eventIndex.put(cls.getCanonicalName(), (Class<? extends Event>) cls);
-				eventIndex.put(getSuperShortedName(cls.getCanonicalName()), (Class<? extends Event>) cls);
 			}
 			else {
 				System.err.println(cls.getCanonicalName()+" isn't assignable to Event.");
@@ -46,17 +39,13 @@ public class ExScriptUtil {
 		Set<Class<?>> var0 = ClassScanner.scanPackageBySuper(PKG_COMMAND, IcqCommand.class);
 		var0.forEach(cls -> {
 			if(IcqCommand.class.isAssignableFrom(cls)) {
+				commandIndex.put(cls.getSimpleName(), (Class<? extends IcqCommand>) cls);
 				commandIndex.put(cls.getCanonicalName(), (Class<? extends IcqCommand>) cls);
-				commandIndex.put(getSuperShortedName(cls.getCanonicalName()), (Class<? extends IcqCommand>) cls);
 			}
 			else {
 				System.err.println(cls.getCanonicalName()+" isn't assignable to IcqCommand.");
 			}
 		});
-	}
-
-	public static String getSuperShortedName(String className) {
-		return CollectionUtil.getLast(StrUtil.split(className, '.'));
 	}
 
 	public static Class<? extends Event> getEventClass(String className) {

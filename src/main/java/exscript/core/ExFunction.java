@@ -1,9 +1,5 @@
 package exscript.core;
 
-import cn.hutool.script.JavaScriptEngine;
-
-import javax.script.ScriptException;
-
 public class ExFunction {
 
 	protected final ExEngine engine;
