@@ -1,4 +1,4 @@
-package taskeren.extrabot.jshorn;
+package exscript;
 
 import cc.moecraft.icq.event.Event;
 import cc.moecraft.icq.event.EventHandler;
@@ -24,145 +24,145 @@ import cc.moecraft.icq.event.events.request.EventGroupAddRequest;
 import cc.moecraft.icq.event.events.request.EventGroupInviteRequest;
 import cc.moecraft.icq.event.events.request.EventRequest;
 
-public class JavaScriptEventListener extends IcqListener {
+public class ExScriptListener extends IcqListener {
 
-	protected final JavaScriptManager mgr;
+	protected final ExScript es;
 
-	public JavaScriptEventListener(JavaScriptManager mgr) {
-		this.mgr = mgr;
+	public ExScriptListener(ExScript es) {
+		this.es = es;
 	}
 
 	// ALL
 
 	@EventHandler
 	public void all(Event evt) {
-		mgr.callFunction(Event.class, evt);
+		es.callFunction(Event.class, evt);
 	}
 
 	// Message Package
 
 	@EventHandler
 	public void message(EventMessage evt) {
-		mgr.callFunction(EventMessage.class, evt);
+		es.callFunction(EventMessage.class, evt);
 	}
 
 	@EventHandler
 	public void messagePrivate(EventPrivateMessage evt) {
-		mgr.callFunction(EventPrivateMessage.class, evt);
+		es.callFunction(EventPrivateMessage.class, evt);
 	}
 
 	@EventHandler
 	public void messageGroup(EventGroupMessage evt) {
-		mgr.callFunction(EventGroupMessage.class, evt);
+		es.callFunction(EventGroupMessage.class, evt);
 	}
 
 	@EventHandler
 	public void messageDiscuss(EventDiscussMessage evt) {
-		mgr.callFunction(EventDiscussMessage.class, evt);
+		es.callFunction(EventDiscussMessage.class, evt);
 	}
 
 	@EventHandler
 	public void messageGroupOrDiscuss(EventGroupOrDiscussMessage evt) {
-		mgr.callFunction(EventGroupOrDiscussMessage.class, evt);
+		es.callFunction(EventGroupOrDiscussMessage.class, evt);
 	}
 
 	// Notice Package
 
 	@EventHandler
 	public void notice(EventNotice evt) {
-		mgr.callFunction(EventNotice.class, evt);
+		es.callFunction(EventNotice.class, evt);
 	}
 
 	@EventHandler
 	public void noticeFriendAdd(EventNoticeFriendAdd evt) {
-		mgr.callFunction(EventNoticeFriendAdd.class, evt);
+		es.callFunction(EventNoticeFriendAdd.class, evt);
 	}
 
 	@EventHandler
 	public void noticeGroupBan(EventNoticeGroupBan evt) {
-		mgr.callFunction(EventNoticeGroupBan.class, evt);
+		es.callFunction(EventNoticeGroupBan.class, evt);
 	}
 
 	@EventHandler
 	public void noticeGroupUpload(EventNoticeGroupUpload evt) {
-		mgr.callFunction(EventNoticeGroupUpload.class, evt);
+		es.callFunction(EventNoticeGroupUpload.class, evt);
 	}
 
 	@EventHandler
 	public void noticeGroupAdminChange(EventNoticeGroupAdminChange evt) {
-		mgr.callFunction(EventNoticeGroupAdminChange.class, evt);
+		es.callFunction(EventNoticeGroupAdminChange.class, evt);
 	}
 
 	@EventHandler
 	public void noticeGroupAdminRemove(EventNoticeGroupAdminRemove evt) {
-		mgr.callFunction(EventNoticeGroupAdminRemove.class, evt);
+		es.callFunction(EventNoticeGroupAdminRemove.class, evt);
 	}
 
 	@EventHandler
 	public void noticeGroupAdminSet(EventNoticeGroupAdminSet evt) {
-		mgr.callFunction(EventNoticeGroupAdminSet.class, evt);
+		es.callFunction(EventNoticeGroupAdminSet.class, evt);
 	}
 
 	@EventHandler
 	public void noticeGroupMemberChange(EventNoticeGroupMemberChange evt) {
-		mgr.callFunction(EventNoticeGroupMemberChange.class, evt);
+		es.callFunction(EventNoticeGroupMemberChange.class, evt);
 	}
 
 	@EventHandler
 	public void noticeGroupMemberDecrease(EventNoticeGroupMemberDecrease evt) {
-		mgr.callFunction(EventNoticeGroupMemberDecrease.class, evt);
+		es.callFunction(EventNoticeGroupMemberDecrease.class, evt);
 	}
 
 	@EventHandler
 	public void noticeGroupMemberKick(EventNoticeGroupMemberKick evt) {
-		mgr.callFunction(EventNoticeGroupMemberKick.class, evt);
+		es.callFunction(EventNoticeGroupMemberKick.class, evt);
 	}
 
 	@EventHandler
 	public void noticeGroupMemberKickBot(EventNoticeGroupMemberKickBot evt) {
-		mgr.callFunction(EventNoticeGroupMemberKickBot.class, evt);
+		es.callFunction(EventNoticeGroupMemberKickBot.class, evt);
 	}
 
 	@EventHandler
 	public void noticeGroupMemberLeave(EventNoticeGroupMemberLeave evt) {
-		mgr.callFunction(EventNoticeGroupMemberLeave.class, evt);
+		es.callFunction(EventNoticeGroupMemberLeave.class, evt);
 	}
 
 	@EventHandler
 	public void noticeGroupMemberApprove(EventNoticeGroupMemberApprove evt) {
-		mgr.callFunction(EventNoticeGroupMemberApprove.class, evt);
+		es.callFunction(EventNoticeGroupMemberApprove.class, evt);
 	}
 
 	@EventHandler
 	public void noticeGroupMemberIncrease(EventNoticeGroupMemberIncrease evt) {
-		mgr.callFunction(EventNoticeGroupMemberIncrease.class, evt);
+		es.callFunction(EventNoticeGroupMemberIncrease.class, evt);
 	}
 
 	@EventHandler
 	public void noticeGroupMemberInvite(EventNoticeGroupMemberInvite evt) {
-		mgr.callFunction(EventNoticeGroupMemberInvite.class, evt);
+		es.callFunction(EventNoticeGroupMemberInvite.class, evt);
 	}
 
 	// Request Package
 
 	@EventHandler
 	public void friendRequest(EventFriendRequest evt) {
-		mgr.callFunction(EventFriendRequest.class, evt);
+		es.callFunction(EventFriendRequest.class, evt);
 	}
 
 	@EventHandler
 	public void groupAddRequest(EventGroupAddRequest evt) {
-		mgr.callFunction(EventGroupAddRequest.class, evt);
+		es.callFunction(EventGroupAddRequest.class, evt);
 	}
 
 	@EventHandler
 	public void groupInviteRequest(EventGroupInviteRequest evt) {
-		mgr.callFunction(EventGroupInviteRequest.class, evt);
+		es.callFunction(EventGroupInviteRequest.class, evt);
 	}
 
 	@EventHandler
 	public void request(EventRequest evt) {
-		mgr.callFunction(EventRequest.class, evt);
+		es.callFunction(EventRequest.class, evt);
 	}
 
 }

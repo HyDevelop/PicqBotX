@@ -19,7 +19,7 @@ import cc.moecraft.test.icq.listeners.RequestListener;
 import cc.moecraft.test.icq.listeners.SimpleTextLoggingListener;
 import cc.moecraft.test.icq.listeners.TestListener;
 import cn.hutool.core.io.FileUtil;
-import taskeren.extrabot.jshorn.JavaScriptManager;
+import exscript.ExScript;
 
 /**
  * 功能测试机器人!
@@ -108,7 +108,7 @@ public class TestBot
         // 启动机器人, 不会占用主线程
         bot.startBot();
 
-        JavaScriptManager mgr = new JavaScriptManager(bot);
-        mgr.eval(FileUtil.readUtf8String("test.js"));
+        ExScript es = new ExScript(bot);
+        es.loadJS("test.js");
     }
 }

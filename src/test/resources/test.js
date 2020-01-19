@@ -1,4 +1,4 @@
-var reg = Java.type("taskeren.extrabot.jshorn.JavaScriptManager");
+print("Running on "+version);
 
 var evt_all = function(evt) {
     // print(evt);
@@ -24,7 +24,7 @@ var local_send = function(evt) {
     }
 }
 
-var API = reg.getApi();
+var API = ExScript.api();
 
 var command_ban = function(evt, sender, group, command, args) {
     if(args.size() > 0) {
@@ -44,8 +44,8 @@ var command_speak = function(evt, sender, group, command, args) {
 
 /* 函数注册 */
 print("Loading test.js!");
-reg.addFunction("Event", "evt_all");
-reg.addFunction("EventMessage", "msg_all");
-reg.addFunction("EventFriendRequest", "friend_request");
-reg.addFunction("Event", "local_send");
-reg.addCommand("GroupCommand", "ban", "command_ban");
+ExScript.addEvent("Event", "evt_all");
+ExScript.addEvent("EventMessage", "msg_all");
+ExScript.addEvent("EventFriendRequest", "friend_request");
+ExScript.addEvent("Event", "local_send");
+ExScript.addCommand("GroupCommand", "ban", "command_ban");
