@@ -75,6 +75,9 @@ public class ExComponent
                 case "contact":
                     return new ExComponentContact(data.getLong("id"), ExComponentContact.ContactTo.parse(data.get("type")));
 
+                case "share":
+                    return new ExComponentShare(data.get("content"), data.get("img"), data.get("title"), data.get("url"));
+
                 default:
                     return new ExComponentString(message);
             }
