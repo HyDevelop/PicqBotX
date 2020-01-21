@@ -18,8 +18,6 @@ import cc.moecraft.test.icq.listeners.ExceptionListener;
 import cc.moecraft.test.icq.listeners.RequestListener;
 import cc.moecraft.test.icq.listeners.SimpleTextLoggingListener;
 import cc.moecraft.test.icq.listeners.TestListener;
-import cn.hutool.core.io.FileUtil;
-import exscript.ExScript;
 
 /**
  * 功能测试机器人!
@@ -73,13 +71,13 @@ public class TestBot
         // 创建机器人对象 ( 传入配置 )
         PicqBotX bot = new PicqBotX(new PicqConfig(31092)
                 .setDebug(true)
-//                .setSecret("This is secret")
-//                .setAccessToken("Brq4KSm+3UdaUJnLZ+AJfj**v-vePWL$")
+                .setSecret("This is secret")
+                .setAccessToken("Brq4KSm+3UdaUJnLZ+AJfj**v-vePWL$")
         );
 
         // 添加一个机器人账户 ( 名字, 发送URL, 发送端口 )
         bot.addAccount("Bot00", "127.0.0.1", 31090);
-        // bot.addAccount("Bot01", "127.0.0.1", 31091);
+        bot.addAccount("Bot01", "127.0.0.1", 31091);
 
         // 启用HyExp ( 非必要 )
         bot.setUniversalHyExpSupport(true);
@@ -107,8 +105,5 @@ public class TestBot
 
         // 启动机器人, 不会占用主线程
         bot.startBot();
-
-        ExScript es = new ExScript(bot);
-        es.loadJS("test.js");
     }
 }
