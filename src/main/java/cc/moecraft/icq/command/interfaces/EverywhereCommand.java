@@ -2,8 +2,7 @@ package cc.moecraft.icq.command.interfaces;
 
 import cc.moecraft.icq.event.events.message.EventMessage;
 import cc.moecraft.icq.user.User;
-
-import java.util.ArrayList;
+import cc.moecraft.icq.utils.HyArrayList;
 
 /**
  * 此类由 Hykilpikonna 在 2018/05/26 创建!
@@ -24,5 +23,5 @@ public interface EverywhereCommand extends IcqCommand
      * @param args 指令参数 ( 不包含指令名 )
      * @return 发送回去的消息 ( 当然也可以手动发送然后返回空 )
      */
-    String run(EventMessage event, User sender, String command, ArrayList<String> args);
+    String run(EventMessage event, User sender, String command, HyArrayList<String> args);
 }

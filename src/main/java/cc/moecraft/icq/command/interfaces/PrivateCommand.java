@@ -2,8 +2,7 @@ package cc.moecraft.icq.command.interfaces;
 
 import cc.moecraft.icq.event.events.message.EventPrivateMessage;
 import cc.moecraft.icq.user.User;
-
-import java.util.ArrayList;
+import cc.moecraft.icq.utils.HyArrayList;
 
 /**
  * 私聊指令
@@ -21,5 +20,5 @@ public interface PrivateCommand extends IcqCommand
      * @param args 指令参数 ( 不包含指令名 )
      * @return 发送回去的消息 ( 当然也可以手动发送然后返回空 )
      */
-    String privateMessage(EventPrivateMessage event, User sender, String command, ArrayList<String> args);
+    String privateMessage(EventPrivateMessage event, User sender, String command, HyArrayList<String> args);
 }

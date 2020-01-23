@@ -3,8 +3,7 @@ package cc.moecraft.icq.command.interfaces;
 import cc.moecraft.icq.event.events.message.EventDiscussMessage;
 import cc.moecraft.icq.user.Group;
 import cc.moecraft.icq.user.GroupUser;
-
-import java.util.ArrayList;
+import cc.moecraft.icq.utils.HyArrayList;
 
 /**
  * 讨论组指令
@@ -23,5 +22,5 @@ public interface DiscussCommand extends IcqCommand
      * @param args 指令参数 ( 不包含指令名 )
      * @return 发送回去的消息 ( 当然也可以手动发送然后返回空 )
      */
-    String discussMessage(EventDiscussMessage event, GroupUser sender, Group discuss, String command, ArrayList<String> args);
+    String discussMessage(EventDiscussMessage event, GroupUser sender, Group discuss, String command, HyArrayList<String> args);
 }
