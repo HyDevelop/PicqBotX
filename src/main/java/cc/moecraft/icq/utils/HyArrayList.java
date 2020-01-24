@@ -17,6 +17,10 @@ public class HyArrayList<E> extends ArrayList<E> {
 		super(coll);
 	}
 
+	public static <E> HyArrayList<E> of(Collection<E> list) {
+		return new HyArrayList<>(list);
+	}
+
 	@Override
 	public E get(int index) {
 		return index >= size() ? null : super.get(index);
