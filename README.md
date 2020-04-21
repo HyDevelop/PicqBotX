@@ -81,27 +81,28 @@ dependencies {
 配置环境:
 --------
 
-##### 注意: 下面的教程适用于 Windows `酷Q v5.13.2`, Linux 教程以后可能会进行补充<br>还有, HTTP 插件支持的版本是`v4.11.0`, `2019/10/12`刚检查过
+##### 注意: 下面的教程适用于 Windows `酷Q v5.15.10`, Linux 教程以后可能会进行补充<br>还有, HTTP 插件支持的版本是`v4.15.0`, `2020/04/21`刚检查过
 
-#### 1. 下载 [酷Q](https://cqp.cc/)... (如果有 酷Q Pro 的话效果更好哦!)
+#### 1. 下载 酷Q... (如果有 酷Q Pro 的话效果更好哦!)
 
+* 下载地址: https://cqp.cc/b/news (好像是登录之后才能看到下载 Pro 的链接)
 * 下载完后解压到你想安装的目录下
 * 首次启动请运行 `cqa.exe` 或 `cqp.exe`, 并登陆机器人的 QQ 号
 * 然后退出 酷Q (右键悬浮窗点退出)
 
 #### 2. 添加 [酷Q HTTP 插件](https://github.com/richardchien/coolq-http-api/releases):
 
-* 把 `.cpk` 文件下载下来, 放进 `酷Q安装目录\app` 文件夹里
+* 把 `.cpk` 文件下载下来, 放进 `酷Q安装目录/app` 文件夹里
 * 启动 酷Q
 * 右键悬浮窗, 然后点击 `应用 -> 应用管理`
-* 列表里现在应该有 `[未启用] HTTP API`, 点击它, 点击启用
+* 列表里现在应该有 `[未启用] CQHTTP`, 点击它, 点击启用
 * 启用的时候会提示需要一些敏感权限, 选择继续
-* 启用之后在 `酷Q安装目录\app` 文件夹里会出现 `io.github.richardchien.coolqhttpapi` 文件夹
+* 启用之后在 `酷Q安装目录/app` 文件夹里创建 `io.github.richardchien.coolqhttpapi` 文件夹
 * 退出 酷Q<br>
 
 #### 3. 配置 酷Q HTTP 插件:
 
-* 在 `io.github.richardchien.coolqhttpapi` 文件夹里创建一个文件名为 `config.cfg` 的配置文件
+* 在 `app/io.github.richardchien.coolqhttpapi` 文件夹里创建一个文件名为 `config.ini` 的配置文件
 * 并在其中写入以下配置代码
 
 ```
@@ -126,7 +127,6 @@ post_url=http://127.0.0.1:Picq端口
 
 
 #### 开发文档 [(JavaDocs)](http://gitpage.hydev.org/PicqBotX/)
-
 
 * **不过Gitpage可能被墙了x**
 * 墙了的话, 去`git clone`或者`download zip`
