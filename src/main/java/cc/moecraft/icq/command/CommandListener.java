@@ -2,12 +2,9 @@ package cc.moecraft.icq.command;
 
 import cc.moecraft.icq.command.exceptions.CommandNotFoundException;
 import cc.moecraft.icq.command.exceptions.NotACommandException;
-import cc.moecraft.icq.event.EventHandler;
-import cc.moecraft.icq.event.IcqListener;
 import cc.moecraft.icq.event.events.message.EventDiscussMessage;
 import cc.moecraft.icq.event.events.message.EventGroupMessage;
 import cc.moecraft.icq.event.events.message.EventMessage;
-import cc.moecraft.icq.event.events.message.EventPrivateMessage;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -26,42 +23,32 @@ import static cc.moecraft.icq.command.CommandArgsParser.parse;
  * @author Hykilpikonna
  */
 @RequiredArgsConstructor
-public class CommandListener extends IcqListener
+public class CommandListener
 {
     private final CommandManager commandManager;
 
     @Getter
     private Map<String, Thread> runningAsyncThreads = new LinkedHashMap<>();
 
-    @EventHandler
-    public void onPrivateMessage(EventPrivateMessage event)
-    {
-        run(event, false);
-    }
-
-    @EventHandler
-    public void onGroupMessage(EventGroupMessage event)
-    {
-        run(event, true);
-    }
-
-    @EventHandler
-    public void onDiscussMessage(EventDiscussMessage event)
-    {
-        run(event, true);
-    }
-
-    private void run(EventMessage event, boolean isGM)
+    /**
+     * 检查并运行指令
+     *
+     * @param event 事件
+     * @return 是否继续执行后续事件
+     */
+    public boolean check(EventMessage event)
     {
         try
         {
             // 获取Args
-            CommandArgs args = parse(event.getBot().getCommandManager(), event.getMessage(), isGM);
+            CommandArgs args = parse(event.getBot().getCommandManager(), event.getMessage(),
+                event instanceof EventGroupMessage || event instanceof EventDiscussMessage);
             CommandRunnable runnable = new CommandRunnable(event, args);
 
             // 取消后续事件
             if (!event.getBot().getConfig().isCommandsAlsoCallEvents())
             {
+                return false;
             }
 
             // 运行指令
@@ -81,6 +68,8 @@ public class CommandListener extends IcqListener
         {
             // 不是指令
         }
+
+        return true;
     }
 
     @Setter
