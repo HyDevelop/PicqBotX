@@ -41,9 +41,13 @@ public class CommandArgsParser
         String prefix = getPrefix(manager.getPrefixes(), fullCommand);
 
         // 判断有没有前缀, 私聊不需要前缀
-        if (prefix.equals("Not a command") && isGM)
+        if (prefix.equals("Not a command"))
         {
-            throw new NotACommandException();
+            if (isGM)
+            {
+                throw new NotACommandException();
+            }
+            prefix = "";
         }
 
         // 移除前缀, 和前缀与指令第一项之间的空格
