@@ -25,4 +25,8 @@ public class EventMetaHeartbeat extends EventMeta
     @SerializedName("status")
     @Expose
     private RStatus status;
+
+    @SerializedName("interval")
+    @Expose
+    private Long interval;
 }
