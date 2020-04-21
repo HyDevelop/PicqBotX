@@ -259,6 +259,7 @@ PicqConfig config = new PicqConfig(31092);
 | :------------ | :------------ |
 | `setDebug(false)` | 是否输出Debug消息 |
 | `setNoVerify(false)` | 是否跳过酷Q版本验证 (不推荐) |
+| `setCommandAlsoCallEvents(true)` | 指令是否触发消息事件 |
 | `setUseAsyncCommands(true)` | 是否异步执行指令 |
 | `setMaintenanceMode(false)` | 是否启用维护模式 |
 | `setmaintenanceResponse("- 机器人正在维护 -")` | 维护模式回复 (设为空就不会回复了) |
