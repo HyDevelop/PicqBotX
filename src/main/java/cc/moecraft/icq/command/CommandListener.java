@@ -59,6 +59,12 @@ public class CommandListener extends IcqListener
             CommandArgs args = parse(event.getBot().getCommandManager(), event.getMessage(), isGM);
             CommandRunnable runnable = new CommandRunnable(event, args);
 
+            // 取消后续事件
+            if (!event.getBot().getConfig().isCommandsAlsoCallEvents())
+            {
+                event._cancelFutureCalls = true;
+            }
+
             // 运行指令
             if (event.getBot().getConfig().isUseAsyncCommands())
             {
