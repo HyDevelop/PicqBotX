@@ -27,7 +27,7 @@ public class TestListener extends IcqListener
         // 纯属测试没有嘲讽意思啦...
         if (event.getMessage().equals("你以为这是yangjinhe/maintain-robot?"))
         {
-            event.respond("其实是我Hykilpikonna/PicqBotX哒!");
+            event.respond("其实是我HyDevelop/PicqBotX哒!");
         }
 
         if (event.getMessage().equals("测试给小桂发Hi"))
