@@ -36,19 +36,19 @@ public class CommandListener extends IcqListener
     @EventHandler
     public void onPrivateMessage(EventPrivateMessage event)
     {
-        run(event);
+        run(event, false);
     }
 
     @EventHandler
     public void onGroupMessage(EventGroupMessage event)
     {
-        run(event);
+        run(event, true);
     }
 
     @EventHandler
     public void onDiscussMessage(EventDiscussMessage event)
     {
-        run(event);
+        run(event, true);
     }
 
     private void run(EventMessage event, boolean isGM)
