@@ -105,7 +105,7 @@ dependencies {
 * 在 `app/io.github.richardchien.coolqhttpapi` 文件夹里创建一个文件名为 `config.ini` 的配置文件
 * 并在其中写入以下配置代码
 
-```
+```ini
 [general]
 host=0.0.0.0
 port=酷Q端口
