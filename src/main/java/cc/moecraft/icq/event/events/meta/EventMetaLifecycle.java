@@ -27,6 +27,6 @@ public class EventMetaLifecycle extends EventMeta
 
     public enum LifecycleType
     {
-        ENABLE, DISABLE
+        ENABLE, DISABLE, CONNECT
     }
 }
