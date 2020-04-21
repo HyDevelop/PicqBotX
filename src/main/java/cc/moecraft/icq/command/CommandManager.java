@@ -1,8 +1,6 @@
 package cc.moecraft.icq.command;
 
 import cc.moecraft.icq.PicqBotX;
-import cc.moecraft.icq.command.exceptions.CommandNotFoundException;
-import cc.moecraft.icq.command.exceptions.NotACommandException;
 import cc.moecraft.icq.command.interfaces.*;
 import cc.moecraft.icq.event.events.message.EventDiscussMessage;
 import cc.moecraft.icq.event.events.message.EventGroupMessage;
@@ -15,8 +13,6 @@ import lombok.Getter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
-import static cc.moecraft.icq.command.CommandArgsParser.parse;
 
 /**
  * The class {@code CommandManager} is a manager for command registration
@@ -83,26 +79,15 @@ public class CommandManager
      * !ecHO hi there
      *
      * @param event 事件
+     * @param args 解析之后的指令 args
      */
-    public void runCommand(EventMessage event)
+    public void runCommand(EventMessage event, CommandArgs args)
     {
         PicqBotX bot = event.getBot();
 
         final boolean isGM = event instanceof EventGroupMessage;
         final boolean isDM = event instanceof EventDiscussMessage;
         final boolean isPM = event instanceof EventPrivateMessage;
-
-        // 获取Args
-        CommandArgs args;
-
-        try
-        {
-            args = parse(this, event.getMessage(), isDM || isGM);
-        }
-        catch (NotACommandException | CommandNotFoundException e)
-        {
-            return;
-        }
 
         // 判断维护
         if (bot.getConfig().isMaintenanceMode())
