@@ -41,7 +41,7 @@ public class CommandArgsParser
         String prefix = getPrefix(manager.getPrefixes(), fullCommand);
 
         // 判断有没有前缀, 私聊不需要前缀
-        if (prefix.equals("") && isGM)
+        if (prefix.equals("Not a command") && isGM)
         {
             throw new NotACommandException();
         }
@@ -78,7 +78,7 @@ public class CommandArgsParser
      *
      * @param prefixes 可用前缀
      * @param text 消息
-     * @return 是指令的话返回指令前缀, 不是指令的话返回""
+     * @return 是指令的话返回指令前缀, 不是指令的话返回 "Not a command"
      */
     private static String getPrefix(String[] prefixes, String text)
     {
@@ -90,6 +90,6 @@ public class CommandArgsParser
             }
         }
 
-        return "";
+        return "Not a command";
     }
 }
