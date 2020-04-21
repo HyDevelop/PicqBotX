@@ -62,7 +62,6 @@ public class CommandListener extends IcqListener
             // 取消后续事件
             if (!event.getBot().getConfig().isCommandsAlsoCallEvents())
             {
-                event._cancelFutureCalls = true;
             }
 
             // 运行指令

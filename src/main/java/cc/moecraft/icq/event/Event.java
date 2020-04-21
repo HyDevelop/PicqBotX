@@ -31,8 +31,6 @@ public abstract class Event implements ContentComparable
     @Expose
     protected Long time;
 
-    public boolean _cancelFutureCalls = false;
-
     protected PicqBotX bot;
 
     public Event setBot(PicqBotX bot)

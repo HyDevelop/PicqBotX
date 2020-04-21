@@ -186,9 +186,6 @@ public class EventManager
             try
             {
                 registeredListenerMethod.call(event);
-
-                // Cancel future calls
-                if (event._cancelFutureCalls) break;
             }
             catch (IllegalAccessException e)
             {
