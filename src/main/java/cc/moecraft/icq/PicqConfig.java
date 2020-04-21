@@ -38,6 +38,9 @@ public class PicqConfig
     /** 是否跳过酷Q版本验证 (不推荐) */
     private boolean noVerify = false;
 
+    /** 指令是否触发消息事件 */
+    private boolean commandsAlsoCallEvents = true;
+
     /** 是否异步执行指令 */
     private boolean useAsyncCommands = true;
 
