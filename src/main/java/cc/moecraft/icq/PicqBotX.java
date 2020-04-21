@@ -190,13 +190,13 @@ public class PicqBotX
      * 添加机器人账号
      *
      * @param name 名字
-     * @param postUrl 发送URL (Eg. 127.0.0.1)
+     * @param postHost 发送主机 (Eg. 127.0.0.1)
      * @param postPort 发送端口 (Eg. 31091)
      * @return 是否成功添加
      */
-    public boolean addAccount(String name, String postUrl, int postPort)
+    public boolean addAccount(String name, String postHost, int postPort)
     {
-        return addAccount(name, postUrl, postPort, (ex)->
+        return addAccount(name, postHost, postPort, (ex)->
         {
             logger.error("HTTP发送错误: " + ex.getLocalizedMessage());
             logger.error("- 检查一下是不是忘记开酷Q了, 或者写错地址了");
@@ -207,16 +207,16 @@ public class PicqBotX
      * 添加机器人账号
      *
      * @param name 名字
-     * @param postUrl 发送URL（Eg. 127.0.0.1）
+     * @param postHost 发送主机（Eg. 127.0.0.1）
      * @param postPort 发送端口（Eg. 31091）
      * @param errorHandler 错误处理（HttpException）
      * @return 是否成功添加
      */
-    public boolean addAccount(String name, String postUrl, int postPort, Consumer<HttpException> errorHandler)
+    public boolean addAccount(String name, String postHost, int postPort, Consumer<HttpException> errorHandler)
     {
         try
         {
-            this.accountManager.addAccount(new BotAccount(name, this, postUrl, postPort));
+            this.accountManager.addAccount(new BotAccount(name, this, postHost, postPort));
             return true;
         }
         catch (HttpException ex)

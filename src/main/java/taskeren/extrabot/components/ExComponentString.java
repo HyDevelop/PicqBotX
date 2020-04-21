@@ -10,10 +10,13 @@ import lombok.ToString;
  *
  * @author Taskeren
  */
-@ToString
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
 @Getter
 public class ExComponentString extends ExComponent
 {
     final String message;
+
+    public String toString() {
+        return message;
+    }
 }
