@@ -76,7 +76,7 @@ public class TestBot
         );
 
         // 添加一个机器人账户 ( 名字, 发送URL, 发送端口 )
-        bot.addAccount("Bot00", "127.0.0.1", 31090);
+        //bot.addAccount("Bot00", "127.0.0.1", 31090);
         bot.addAccount("Bot01", "127.0.0.1", 31091);
 
         // 启用HyExp ( 非必要 )
