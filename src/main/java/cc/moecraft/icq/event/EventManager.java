@@ -1,6 +1,7 @@
 package cc.moecraft.icq.event;
 
 import cc.moecraft.icq.PicqBotX;
+import cc.moecraft.icq.command.CommandListener;
 import cc.moecraft.icq.event.events.local.*;
 import cc.moecraft.icq.event.events.message.*;
 import cc.moecraft.icq.event.events.notice.EventNotice;
@@ -24,6 +25,7 @@ import cc.moecraft.icq.event.events.request.EventGroupInviteRequest;
 import cc.moecraft.icq.event.events.request.EventRequest;
 import cc.moecraft.icq.utils.CQUtils;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -45,6 +47,9 @@ public class EventManager
     private final PicqBotX bot;
 
     private final EventParser eventParser;
+
+    @Setter
+    private CommandListener commandListener;
 
     private ArrayList<IcqListener> registeredListeners = new ArrayList<>();
 
@@ -172,6 +177,15 @@ public class EventManager
         if (event instanceof EventMessage)
         {
             ((EventMessage) event).message = CQUtils.decodeMessage(((EventMessage) event).getMessage());
+
+            // 检查指令
+            if (commandListener != null)
+            {
+                if (!commandListener.check((EventMessage) event))
+                {
+                    return;
+                }
+            }
         }
 
         String mapKey = event.getClass().getName();
