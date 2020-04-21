@@ -45,12 +45,6 @@ public class CommandListener
                 event instanceof EventGroupMessage || event instanceof EventDiscussMessage);
             CommandRunnable runnable = new CommandRunnable(event, args);
 
-            // 取消后续事件
-            if (!event.getBot().getConfig().isCommandsAlsoCallEvents())
-            {
-                return false;
-            }
-
             // 运行指令
             if (event.getBot().getConfig().isUseAsyncCommands())
             {
@@ -62,6 +56,12 @@ public class CommandListener
             else
             {
                 runnable.run();
+            }
+
+            // 取消后续事件
+            if (!event.getBot().getConfig().isCommandsAlsoCallEvents())
+            {
+                return false;
             }
         }
         catch (NotACommandException | CommandNotFoundException e)
