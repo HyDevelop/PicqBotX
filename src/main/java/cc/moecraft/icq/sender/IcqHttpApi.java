@@ -920,13 +920,24 @@ public class IcqHttpApi
     }
 
     /**
-     * 抢走酷Q的曲奇饼并获取CSRF Token
+     * 抢走酷Q的曲奇饼并获取 CSRF Token
      *
      * @return QQ相关接口凭证
      */
     public ReturnData<RCredentials> getCredentials()
     {
         return send(RCredentials.class, GET_CREDENTIALS);
+    }
+
+    /**
+     * 抢走酷Q的曲奇饼并获取 CSRF Token
+     *
+     * @param domain 需要抢走曲奇的域名w
+     * @return QQ相关接口凭证
+     */
+    public ReturnData<RCredentials> getCredentials(String domain)
+    {
+        return send(RCredentials.class, GET_CREDENTIALS, "domain", domain);
     }
 
     /**
