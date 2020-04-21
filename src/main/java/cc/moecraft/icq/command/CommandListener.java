@@ -1,5 +1,7 @@
 package cc.moecraft.icq.command;
 
+import cc.moecraft.icq.command.exceptions.CommandNotFoundException;
+import cc.moecraft.icq.command.exceptions.NotACommandException;
 import cc.moecraft.icq.event.EventHandler;
 import cc.moecraft.icq.event.IcqListener;
 import cc.moecraft.icq.event.events.message.EventDiscussMessage;
@@ -12,6 +14,8 @@ import lombok.Setter;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
+
+import static cc.moecraft.icq.command.CommandArgsParser.parse;
 
 /**
  * 此类由 Hykilpikonna 在 2018/05/26 创建!
@@ -47,20 +51,30 @@ public class CommandListener extends IcqListener
         run(event);
     }
 
-    private void run(EventMessage event)
+    private void run(EventMessage event, boolean isGM)
     {
-        CommandRunnable runnable = new CommandRunnable(event);
+        try
+        {
+            // 获取Args
+            CommandArgs args = parse(event.getBot().getCommandManager(), event.getMessage(), isGM);
+            CommandRunnable runnable = new CommandRunnable(event, args);
 
-        if (event.getBot().getConfig().isUseAsyncCommands())
-        {
-            Thread thread = new Thread(runnable, "Thread-" + System.currentTimeMillis());
-            thread.start();
-            runningAsyncThreads.put(thread.getName(), thread);
-            runnable.setCallback(() -> runningAsyncThreads.remove(thread.getName()));
+            // 运行指令
+            if (event.getBot().getConfig().isUseAsyncCommands())
+            {
+                Thread thread = new Thread(runnable, "Thread-" + System.currentTimeMillis());
+                thread.start();
+                runningAsyncThreads.put(thread.getName(), thread);
+                runnable.setCallback(() -> runningAsyncThreads.remove(thread.getName()));
+            }
+            else
+            {
+                runnable.run();
+            }
         }
-        else
+        catch (NotACommandException | CommandNotFoundException e)
         {
-            runnable.run();
+            // 不是指令
         }
     }
 
@@ -70,6 +84,7 @@ public class CommandListener extends IcqListener
     private class CommandRunnable implements Runnable
     {
         private final EventMessage event;
+        private final CommandArgs args;
         private Runnable callback;
 
         @Override
@@ -77,7 +92,7 @@ public class CommandListener extends IcqListener
         {
             try
             {
-                commandManager.runCommand(event);
+                commandManager.runCommand(event, args);
             }
             catch (Throwable e)
             {
