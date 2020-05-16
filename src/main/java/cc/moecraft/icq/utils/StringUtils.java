@@ -21,7 +21,11 @@ public class StringUtils
      */
     public static String removeStartingSpace(String original) {
         int i = 0;
-        for (i = 0; original.charAt(i) == ' '; i++) ;
+        
+        while (original.charAt(i) == ' ')
+        {
+            i++;
+        }
         return original.substring(i);
     }
 }
