@@ -19,13 +19,13 @@ public class StringUtils
      * @param original 源字符串
      * @return 移除后的字符串
      */
-    public static String removeStartingSpace(String original)
-    {
-        while (original.startsWith(" "))
+    public static String removeStartingSpace(String original) {
+        int i = 0;
+        
+        while (original.charAt(i) == ' ')
         {
-            original = original.substring(1);
+            i++;
         }
-
-        return original;
+        return original.substring(i);
     }
 }
