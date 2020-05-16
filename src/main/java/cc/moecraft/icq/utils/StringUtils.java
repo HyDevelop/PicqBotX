@@ -19,13 +19,9 @@ public class StringUtils
      * @param original 源字符串
      * @return 移除后的字符串
      */
-    public static String removeStartingSpace(String original)
-    {
-        while (original.startsWith(" "))
-        {
-            original = original.substring(1);
-        }
-
-        return original;
+    public static String removeStartingSpace(String original) {
+        int i = 0;
+        for (i = 0; original.charAt(i) == ' '; i++) ;
+        return original.substring(i);
     }
 }
