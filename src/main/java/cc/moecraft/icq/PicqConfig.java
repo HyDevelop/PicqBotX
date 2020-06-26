@@ -92,8 +92,8 @@ public class PicqConfig
     /** 是否输出 Init 日志 */
     private boolean logInit = true;
 
-    /** 执行指令时抛出异常处理 */
-    private Consumer<Throwable> commandErrorHandler = (ex) -> {};
+    /** 执行指令时抛出异常处理（可以通过把 {@code commandErrorHandler} 设置为 {@code (ex)->{}} 来关闭异常抛出） */
+    private Consumer<Throwable> commandErrorHandler = Throwable::printStackTrace; // 抛出异常，不憋着w
 
     // 方法 | Methods
 
