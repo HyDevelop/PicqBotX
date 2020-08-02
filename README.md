@@ -18,6 +18,14 @@
 </h1>
 
 
+## 2020 Aug 02 注意:
+
+CQ 已经停止运营啦 (cqp.cc), 所以这个项目作为 CQHTTP 的 SDK 也不会继续维护啦w
+
+![img](https://i.imgur.com/n4VtZ9S.png)
+
+<br>
+<br>
 
 <a name="maven"></a>
 Maven 导入:
