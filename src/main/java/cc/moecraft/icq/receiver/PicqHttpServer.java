@@ -153,10 +153,10 @@ public class PicqHttpServer
         String userAgent = headers.getFirst("user-agent");
 
         // 必须是 UTF-8
-        if (!contentType.toLowerCase().contains("charset=utf-8"))
-        {
-            return failed(INCORRECT_CHARSET, "Not UTF-8");
-        }
+//        if (!contentType.toLowerCase().contains("charset=utf-8"))
+//        {
+//            return failed(INCORRECT_CHARSET, "Not UTF-8");
+//        }
 
         // 必须是 JSON
         if (!contentType.contains("application/json"))
