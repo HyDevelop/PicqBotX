@@ -4,6 +4,9 @@ import cc.moecraft.icq.PicqBotX;
 import cc.moecraft.icq.command.CommandListener;
 import cc.moecraft.icq.event.events.local.*;
 import cc.moecraft.icq.event.events.message.*;
+import cc.moecraft.icq.event.events.meta.EventMeta;
+import cc.moecraft.icq.event.events.meta.EventMetaHeartbeat;
+import cc.moecraft.icq.event.events.meta.EventMetaLifecycle;
 import cc.moecraft.icq.event.events.notice.EventNotice;
 import cc.moecraft.icq.event.events.notice.EventNoticeFriendAdd;
 import cc.moecraft.icq.event.events.notice.EventNoticeGroupBan;
@@ -95,7 +98,11 @@ public class EventManager
             EventFriendRequest.class,
             EventGroupAddRequest.class,
             EventGroupInviteRequest.class,
-            EventRequest.class
+            EventRequest.class,
+
+            EventMeta.class,
+            EventMetaLifecycle.class,
+            EventMetaHeartbeat.class
     );
 
     public EventManager(PicqBotX bot)
