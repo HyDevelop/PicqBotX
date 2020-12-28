@@ -15,9 +15,17 @@ public class ComponentImageNoCache extends ComponentImage
         super(fileOrURL);
     }
 
+    public ComponentImageNoCache(String fileOrURL, boolean isLocalFile) {
+        super(fileOrURL, isLocalFile);
+    }
+
     @Override
     public String toString()
     {
-        return "[CQ:image,cache=0,file=" + super.fileOrURL + "]";
+        if (isLocalFile) {
+            return "[CQ:image,cache=0,file=file:///" + super.fileOrURL + "]";
+        } else {
+            return "[CQ:image,cache=0,file=" + super.fileOrURL + "]";
+        }
     }
 }
