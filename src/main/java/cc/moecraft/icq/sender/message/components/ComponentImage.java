@@ -1,7 +1,6 @@
 package cc.moecraft.icq.sender.message.components;
 
 import cc.moecraft.icq.sender.message.MessageComponent;
-import lombok.AllArgsConstructor;
 
 /**
  * 此类由 Hykilpikonna 在 2018/05/26 创建!
@@ -11,14 +10,27 @@ import lombok.AllArgsConstructor;
  *
  * @author Hykilpikonna
  */
-@AllArgsConstructor
 public class ComponentImage extends MessageComponent
 {
     public String fileOrURL;
+    public boolean isLocalFile;
+
+    public ComponentImage(String fileOrURL) {
+        this.fileOrURL = fileOrURL;
+    }
+
+    public ComponentImage(String fileOrURL, boolean isLocalFile) {
+        this.fileOrURL = fileOrURL;
+        this.isLocalFile = isLocalFile;
+    }
 
     @Override
     public String toString()
     {
-        return "[CQ:image,file=" + fileOrURL + "]";
+        if (isLocalFile) {
+            return "[CQ:image,file=file:///" + fileOrURL + "]";
+        } else {
+            return "[CQ:image,file=" + fileOrURL + "]";
+        }
     }
 }
