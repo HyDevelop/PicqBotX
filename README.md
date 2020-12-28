@@ -29,7 +29,7 @@ CQ 已经停止运营啦 (cqp.cc), 所以这个项目作为 CQHTTP 的 SDK 也�
 2021 想开发 bot 的话可以去看看下面几个库：
 
 [Mirai](https://github.com/mamoe/mirai)  
-[YuQ](https://github.com/YuQWorks/YuQ)
+[YuQ](https://github.com/YuQWorks/YuQ-Mirai-Demo)
 
 ( 其实还想继续用 PicqBotX 的话可以去看看 [go-cqhttp](https://github.com/Mrs4s/go-cqhttp) 啦，但是下面"配置环境"的教程帮不到你啦w
 
