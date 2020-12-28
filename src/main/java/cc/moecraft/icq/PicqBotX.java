@@ -167,7 +167,7 @@ public class PicqBotX
         logInitDone(logger, "缓存管理器     ", 1, 5);
 
         // Debug设置没啦w
-        logInitDone(logger, "DEBUG设置     ", 2, 4);
+        logInitDone(logger, "DEBUG设置      ", 2, 4);
 
         // 事件管理器
         eventManager = new EventManager(this);
