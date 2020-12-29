@@ -7,10 +7,7 @@ import cc.moecraft.icq.event.events.message.*;
 import cc.moecraft.icq.event.events.meta.EventMeta;
 import cc.moecraft.icq.event.events.meta.EventMetaHeartbeat;
 import cc.moecraft.icq.event.events.meta.EventMetaLifecycle;
-import cc.moecraft.icq.event.events.notice.EventNotice;
-import cc.moecraft.icq.event.events.notice.EventNoticeFriendAdd;
-import cc.moecraft.icq.event.events.notice.EventNoticeGroupBan;
-import cc.moecraft.icq.event.events.notice.EventNoticeGroupUpload;
+import cc.moecraft.icq.event.events.notice.*;
 import cc.moecraft.icq.event.events.notice.groupadmin.EventNoticeGroupAdminChange;
 import cc.moecraft.icq.event.events.notice.groupadmin.EventNoticeGroupAdminRemove;
 import cc.moecraft.icq.event.events.notice.groupadmin.EventNoticeGroupAdminSet;
@@ -93,6 +90,7 @@ public class EventManager
             EventNoticeGroupMemberChange.class,
             EventNoticeFriendAdd.class,
             EventNoticeGroupUpload.class,
+            EventNoticeGroupRecall.class,
             EventNotice.class,
 
             EventFriendRequest.class,

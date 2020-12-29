@@ -7,6 +7,7 @@ import cc.moecraft.icq.event.events.meta.EventMetaHeartbeat;
 import cc.moecraft.icq.event.events.meta.EventMetaLifecycle;
 import cc.moecraft.icq.event.events.notice.EventNoticeFriendAdd;
 import cc.moecraft.icq.event.events.notice.EventNoticeGroupBan;
+import cc.moecraft.icq.event.events.notice.EventNoticeGroupRecall;
 import cc.moecraft.icq.event.events.notice.EventNoticeGroupUpload;
 import cc.moecraft.icq.event.events.notice.groupadmin.EventNoticeGroupAdminRemove;
 import cc.moecraft.icq.event.events.notice.groupadmin.EventNoticeGroupAdminSet;
@@ -27,6 +28,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static cc.moecraft.icq.PicqConstants.*;
+import static cc.moecraft.icq.PicqConstants.EVENT_KEY_NOTICE_TYPE_GROUP_RECALL;
 
 /**
  * The class {@code EventParser} has methods to decide which event
@@ -380,6 +382,16 @@ public class EventParser
             case EVENT_KEY_NOTICE_TYPE_GROUP_BAN:
             {
                 EventNoticeGroupBan event = gsonRead.fromJson(json, EventNoticeGroupBan.class);
+                if (isNew(event, event.getGroupId().toString()))
+                {
+                    call(event);
+                }
+                break;
+            }
+            // 群消息撤回
+            case EVENT_KEY_NOTICE_TYPE_GROUP_RECALL:
+            {
+                EventNoticeGroupRecall event = gsonRead.fromJson(json, EventNoticeGroupRecall.class);
                 if (isNew(event, event.getGroupId().toString()))
                 {
                     call(event);

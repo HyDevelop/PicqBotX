@@ -64,6 +64,7 @@ public class PicqConstants
     public static final String EVENT_KEY_NOTICE_TYPE_GROUP_INCREASE_APPROVE = "approve";
     public static final String EVENT_KEY_NOTICE_TYPE_GROUP_INCREASE_INVITE = "invite";
     public static final String EVENT_KEY_NOTICE_TYPE_GROUP_BAN = "group_ban";
+    public static final String EVENT_KEY_NOTICE_TYPE_GROUP_RECALL = "group_recall";
 
     public static final String EVENT_KEY_META_TYPE = "meta_event_type";
     public static final String EVENT_KEY_META_TYPE_HEARTBEAT = "heartbeat";
