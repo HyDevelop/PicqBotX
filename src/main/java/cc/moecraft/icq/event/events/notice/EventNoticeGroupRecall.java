@@ -1,5 +1,6 @@
 package cc.moecraft.icq.event.events.notice;
 
+import cc.moecraft.icq.sender.returndata.returnpojo.get.RMessage;
 import cc.moecraft.icq.user.Group;
 import cc.moecraft.icq.user.GroupUser;
 import com.google.gson.annotations.Expose;
@@ -92,6 +93,17 @@ public class EventNoticeGroupRecall extends EventNotice {
     public boolean isAdmin()
     {
         return getBot().getGroupUserManager().getUserFromID(selfId, getGroup()).isAdmin();
+    }
+
+    /**
+     * 获取被撤回的消息
+     *
+     * @param raw 是否获取未经处理的消息
+     * @return 消息内容
+     */
+    public String getMessage(boolean raw) {
+        RMessage message = getHttpApi().getMsg(messageId).getData();
+        return raw ? message.getMessageRaw() : message.getMessage();
     }
 
     @Override
