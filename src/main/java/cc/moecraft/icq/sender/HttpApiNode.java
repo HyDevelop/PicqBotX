@@ -25,6 +25,9 @@ public enum HttpApiNode
     DELETE_MSG              ("delete_msg",              true),
     SEND_GROUP_NOTICE       ("_send_group_notice",      true),
 
+    // 获取区
+    GET_MSG                 ("get_msg",                 true),
+
     // 应用设置区
     SET_GROUP_KICK          ("set_group_kick",          true),
     SET_GROUP_BAN           ("set_group_ban",           true),
