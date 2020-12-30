@@ -91,6 +91,7 @@ public class EventManager
             EventNoticeFriendAdd.class,
             EventNoticeGroupUpload.class,
             EventNoticeGroupRecall.class,
+            EventNoticeFriendRecall.class,
             EventNotice.class,
 
             EventFriendRequest.class,
