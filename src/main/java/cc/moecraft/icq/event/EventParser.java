@@ -5,10 +5,7 @@ import cc.moecraft.icq.event.events.message.EventGroupMessage;
 import cc.moecraft.icq.event.events.message.EventPrivateMessage;
 import cc.moecraft.icq.event.events.meta.EventMetaHeartbeat;
 import cc.moecraft.icq.event.events.meta.EventMetaLifecycle;
-import cc.moecraft.icq.event.events.notice.EventNoticeFriendAdd;
-import cc.moecraft.icq.event.events.notice.EventNoticeGroupBan;
-import cc.moecraft.icq.event.events.notice.EventNoticeGroupRecall;
-import cc.moecraft.icq.event.events.notice.EventNoticeGroupUpload;
+import cc.moecraft.icq.event.events.notice.*;
 import cc.moecraft.icq.event.events.notice.groupadmin.EventNoticeGroupAdminRemove;
 import cc.moecraft.icq.event.events.notice.groupadmin.EventNoticeGroupAdminSet;
 import cc.moecraft.icq.event.events.notice.groupmember.decrease.EventNoticeGroupMemberKick;
@@ -28,7 +25,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static cc.moecraft.icq.PicqConstants.*;
-import static cc.moecraft.icq.PicqConstants.EVENT_KEY_NOTICE_TYPE_GROUP_RECALL;
 
 /**
  * The class {@code EventParser} has methods to decide which event
@@ -396,6 +392,13 @@ public class EventParser
                 {
                     call(event);
                 }
+                break;
+            }
+            // 好友消息撤回
+            case EVENT_KEY_NOTICE_TYPE_FRIEND_RECALL:
+            {
+                EventNoticeFriendRecall event = gsonRead.fromJson(json, EventNoticeFriendRecall.class);
+                call(event);
                 break;
             }
             default: // 未识别

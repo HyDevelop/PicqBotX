@@ -337,6 +337,7 @@ public class 类名随意 extends IcqListener // 必须继承 IcqListener 监听
 | EventNoticeGroupMemberInvite | 群员被邀请进群事件 |
 | EventNoticeGroupUpload | 上传群文件事件 |
 | EventNoticeGroupRecall | 群消息撤回事件 |
+| EventNoticeFriendRecall | 好友消息撤回事件 |
 | EventRequest | 所有请求事件 |
 | EventFriendRequest | 加好友请求事件 |
 | EventGroupAddRequest | 加群请求事件 |
