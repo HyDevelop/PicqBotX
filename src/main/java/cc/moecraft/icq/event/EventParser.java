@@ -401,6 +401,33 @@ public class EventParser
                 call(event);
                 break;
             }
+            case EVENT_KEY_NOTICE_TYPE_NOTIFY:
+            {
+                String subtype = json.get(EVENT_KEY_SUBTYPE).getAsString();
+                switch (subtype)
+                {
+                    case EVENT_KEY_NOTIFY_POKE:
+                        // 此处根据 go-cqhttp 适配, 好友戳一戳和群里戳一戳的差别就在于有没有 group_id 这个字段。
+                        if (json.has("group_id")) {
+                            EventNoticeGroupPoke event = gsonRead.fromJson(json, EventNoticeGroupPoke.class);
+                            if (isNew(event, event.getGroupId().toString()))
+                            {
+                                call(event);
+                            }
+                        } else {
+                            // 好友戳一戳事件是 go-cqhttp 拓展的, OneBot 标准目前没有。
+                            EventNoticeFriendPoke event = gsonRead.fromJson(json, EventNoticeFriendPoke.class);
+                            call(event);
+                        }
+                        break;
+                    case EVENT_KEY_NOTIFY_LUCKY_KING: // todo 群红包运气王
+                    case EVENT_KEY_NOTIFY_HONOR: // todo 群成员荣誉变更
+                    default:
+                        reportUnrecognized(EVENT_KEY_SUBTYPE, subtype, json);
+                        break;
+                }
+                break;
+            }
             default: // 未识别
             {
                 reportUnrecognized(EVENT_KEY_NOTICE_TYPE, noticeType, json);
