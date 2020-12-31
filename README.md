@@ -345,6 +345,10 @@ public class 类名随意 extends IcqListener // 必须继承 IcqListener 监听
 | EventNoticeGroupMemberApprove | 群员被同意进群事件 |
 | EventNoticeGroupMemberInvite | 群员被邀请进群事件 |
 | EventNoticeGroupUpload | 上传群文件事件 |
+| EventNoticeGroupRecall | 群消息撤回事件 |
+| EventNoticeFriendRecall | 好友消息撤回事件 |
+| EventNoticeGroupPoke | 群戳一戳事件 |
+| EventNoticeFriendPoke | 好友戳一戳事件 (go-cqhttp 拓展) |
 | EventRequest | 所有请求事件 |
 | EventFriendRequest | 加好友请求事件 |
 | EventGroupAddRequest | 加群请求事件 |
@@ -528,6 +532,7 @@ new MessageBuilder()
 | 组件类名                 | 组件介绍 |
 | :------------ | :------------ |
 | ComponentAt | @组件 |
+| ComponentReply | 消息回复组件 |
 | ComponentBFace | 原创表情组件 |
 | ComponentEmoji | Emoji 表情组件 |
 | ComponentFace | QQ 表情组件 |

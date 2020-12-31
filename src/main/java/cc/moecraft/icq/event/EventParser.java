@@ -5,9 +5,7 @@ import cc.moecraft.icq.event.events.message.EventGroupMessage;
 import cc.moecraft.icq.event.events.message.EventPrivateMessage;
 import cc.moecraft.icq.event.events.meta.EventMetaHeartbeat;
 import cc.moecraft.icq.event.events.meta.EventMetaLifecycle;
-import cc.moecraft.icq.event.events.notice.EventNoticeFriendAdd;
-import cc.moecraft.icq.event.events.notice.EventNoticeGroupBan;
-import cc.moecraft.icq.event.events.notice.EventNoticeGroupUpload;
+import cc.moecraft.icq.event.events.notice.*;
 import cc.moecraft.icq.event.events.notice.groupadmin.EventNoticeGroupAdminRemove;
 import cc.moecraft.icq.event.events.notice.groupadmin.EventNoticeGroupAdminSet;
 import cc.moecraft.icq.event.events.notice.groupmember.decrease.EventNoticeGroupMemberKick;
@@ -383,6 +381,50 @@ public class EventParser
                 if (isNew(event, event.getGroupId().toString()))
                 {
                     call(event);
+                }
+                break;
+            }
+            // 群消息撤回
+            case EVENT_KEY_NOTICE_TYPE_GROUP_RECALL:
+            {
+                EventNoticeGroupRecall event = gsonRead.fromJson(json, EventNoticeGroupRecall.class);
+                if (isNew(event, event.getGroupId().toString()))
+                {
+                    call(event);
+                }
+                break;
+            }
+            // 好友消息撤回
+            case EVENT_KEY_NOTICE_TYPE_FRIEND_RECALL:
+            {
+                EventNoticeFriendRecall event = gsonRead.fromJson(json, EventNoticeFriendRecall.class);
+                call(event);
+                break;
+            }
+            case EVENT_KEY_NOTICE_TYPE_NOTIFY:
+            {
+                String subtype = json.get(EVENT_KEY_SUBTYPE).getAsString();
+                switch (subtype)
+                {
+                    case EVENT_KEY_NOTIFY_POKE:
+                        // 此处根据 go-cqhttp 适配, 好友戳一戳和群里戳一戳的差别就在于有没有 group_id 这个字段。
+                        if (json.has("group_id")) {
+                            EventNoticeGroupPoke event = gsonRead.fromJson(json, EventNoticeGroupPoke.class);
+                            if (isNew(event, event.getGroupId().toString()))
+                            {
+                                call(event);
+                            }
+                        } else {
+                            // 好友戳一戳事件是 go-cqhttp 拓展的, OneBot 标准目前没有。
+                            EventNoticeFriendPoke event = gsonRead.fromJson(json, EventNoticeFriendPoke.class);
+                            call(event);
+                        }
+                        break;
+                    case EVENT_KEY_NOTIFY_LUCKY_KING: // todo 群红包运气王
+                    case EVENT_KEY_NOTIFY_HONOR: // todo 群成员荣誉变更
+                    default:
+                        reportUnrecognized(EVENT_KEY_SUBTYPE, subtype, json);
+                        break;
                 }
                 break;
             }

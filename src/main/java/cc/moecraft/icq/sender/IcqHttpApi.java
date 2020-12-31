@@ -351,6 +351,16 @@ public class IcqHttpApi
     }
 
     /**
+     * 获取消息
+     *
+     * @param messageId 消息 ID
+     * @return 消息
+     */
+    public ReturnData<RMessage> getMsg(long messageId) {
+        return send(RMessage.class, GET_MSG, "message_id", messageId);
+    }
+
+    /**
      * 群组踢人
      *
      * @param groupId 群号
