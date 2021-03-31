@@ -428,6 +428,7 @@ icqHttpApi.封装方法名(参数); // 返回的就是响应数据啦w
 | .sendGroupMsg | 发送群聊消息 |
 | .sendDiscussMsg | 发送讨论组消息 |
 | .deleteMsg | 撤回消息 |
+| .getMsg | 获取消息 |
 | .sendLike | 好友点赞 |
 | .sendGroupNotice | 发送群公告 |
 | .setGroupKick | 飞机票 |
@@ -534,6 +535,7 @@ new MessageBuilder()
 | ComponentImageBase64 | Base64 编码图片组件 |
 | ComponentSFace | 小表情组件 |
 | ComponentShare | 分享链接组件 |
+| ComponentPoke | 群聊戳一戳组件 (适配 go-cqhttp, 与 OneBot 标准有差异) |
 | ComponentDice | 掷骰子组件 (只能单独发送) |
 | ComponentMusic | 音乐组件 (只能单独发送) |
 | ComponentRecord | 语音组件 (只能单独发送) |
