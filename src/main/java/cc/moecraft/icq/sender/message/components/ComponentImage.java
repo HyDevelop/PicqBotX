@@ -15,8 +15,8 @@ public class ComponentImage extends MessageComponent
     public String fileOrURL;
     public boolean isLocalFile;
 
-    public ComponentImage(String fileOrURL) {
-        this.fileOrURL = fileOrURL;
+    public ComponentImage(String url) {
+        this.fileOrURL = url;
     }
 
     public ComponentImage(String fileOrURL, boolean isLocalFile) {
