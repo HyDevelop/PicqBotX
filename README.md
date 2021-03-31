@@ -349,6 +349,9 @@ public class 类名随意 extends IcqListener // 必须继承 IcqListener 监听
 | EventNoticeFriendRecall | 好友消息撤回事件 |
 | EventNoticeGroupPoke | 群戳一戳事件 |
 | EventNoticeFriendPoke | 好友戳一戳事件 (go-cqhttp 拓展) |
+| EventNoticeGroupCard | 群成员名片更新事件 (go-cqhttp 拓展) |
+| EventNoticeGroupHonor | 群成员荣耀变更事件  |
+| EventNoticeGroupLuckyKing | 群红包运气王事件 |
 | EventRequest | 所有请求事件 |
 | EventFriendRequest | 加好友请求事件 |
 | EventGroupAddRequest | 加群请求事件 |
@@ -434,6 +437,7 @@ icqHttpApi.封装方法名(参数); // 返回的就是响应数据啦w
 | .sendGroupMsg | 发送群聊消息 |
 | .sendDiscussMsg | 发送讨论组消息 |
 | .deleteMsg | 撤回消息 |
+| .getMsg | 获取消息 |
 | .sendLike | 好友点赞 |
 | .sendGroupNotice | 发送群公告 |
 | .setGroupKick | 飞机票 |
@@ -540,6 +544,7 @@ new MessageBuilder()
 | ComponentImageBase64 | Base64 编码图片组件 |
 | ComponentSFace | 小表情组件 |
 | ComponentShare | 分享链接组件 |
+| ComponentPoke | 群聊戳一戳组件 (适配 go-cqhttp, 与 OneBot 标准有差异) |
 | ComponentDice | 掷骰子组件 (只能单独发送) |
 | ComponentMusic | 音乐组件 (只能单独发送) |
 | ComponentRecord | 语音组件 (只能单独发送) |
