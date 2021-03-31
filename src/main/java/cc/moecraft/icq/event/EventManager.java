@@ -94,6 +94,9 @@ public class EventManager
             EventNoticeFriendRecall.class,
             EventNoticeGroupPoke.class,
             EventNoticeFriendPoke.class,
+            EventNoticeGroupLuckyKing.class,
+            EventNoticeGroupHonor.class,
+            EventNoticeGroupCard.class,
             EventNotice.class,
 
             EventFriendRequest.class,
