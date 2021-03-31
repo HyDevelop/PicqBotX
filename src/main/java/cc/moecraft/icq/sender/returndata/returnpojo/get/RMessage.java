@@ -76,6 +76,9 @@ public class RMessage implements ReturnPojoBase {
     }
 
     public String getMessageRaw() {
+        if (messageRaw == null) {
+            return null;
+        }
         return CQUtils.decodeMessage(messageRaw);
     }
 

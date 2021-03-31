@@ -401,11 +401,20 @@ public class EventParser
                 call(event);
                 break;
             }
+            // 群成员名片变更
+            case EVENT_KEY_NOTIFY_GROUP_CARD: {
+                EventNoticeGroupCard event = gsonRead.fromJson(json, EventNoticeGroupCard.class);
+                if (isNew(event, event.getGroupId().toString())) {
+                    call(event);
+                }
+                break;
+            }
             case EVENT_KEY_NOTICE_TYPE_NOTIFY:
             {
                 String subtype = json.get(EVENT_KEY_SUBTYPE).getAsString();
                 switch (subtype)
                 {
+                    // 群戳一戳 & 好友戳一戳
                     case EVENT_KEY_NOTIFY_POKE:
                         // 此处根据 go-cqhttp 适配, 好友戳一戳和群里戳一戳的差别就在于有没有 group_id 这个字段。
                         if (json.has("group_id")) {
@@ -420,8 +429,22 @@ public class EventParser
                             call(event);
                         }
                         break;
-                    case EVENT_KEY_NOTIFY_LUCKY_KING: // todo 群红包运气王
-                    case EVENT_KEY_NOTIFY_HONOR: // todo 群成员荣誉变更
+                    // 群红包运气王
+                    case EVENT_KEY_NOTIFY_LUCKY_KING: {
+                        EventNoticeGroupLuckyKing event = gsonRead.fromJson(json, EventNoticeGroupLuckyKing.class);
+                        if (isNew(event, event.getGroupId().toString())) {
+                            call(event);
+                        }
+                        break;
+                    }
+                    // 群成员荣誉变更
+                    case EVENT_KEY_NOTIFY_HONOR: {
+                        EventNoticeGroupHonor event = gsonRead.fromJson(json, EventNoticeGroupHonor.class);
+                        if (isNew(event, event.getGroupId().toString())) {
+                            call(event);
+                        }
+                        break;
+                    }
                     default:
                         reportUnrecognized(EVENT_KEY_SUBTYPE, subtype, json);
                         break;

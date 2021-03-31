@@ -74,6 +74,6 @@ public class GroupUser
      */
     public boolean isAdmin()
     {
-        return !getInfo().getRole().equals("member");
+        return !"member".equals(getInfo().getRole());
     }
 }

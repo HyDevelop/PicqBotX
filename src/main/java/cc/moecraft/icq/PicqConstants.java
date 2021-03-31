@@ -70,6 +70,7 @@ public class PicqConstants
     public static final String EVENT_KEY_NOTIFY_POKE = "poke";
     public static final String EVENT_KEY_NOTIFY_LUCKY_KING = "lucky_king";
     public static final String EVENT_KEY_NOTIFY_HONOR = "honor";
+    public static final String EVENT_KEY_NOTIFY_GROUP_CARD = "group_card";
 
     public static final String EVENT_KEY_META_TYPE = "meta_event_type";
     public static final String EVENT_KEY_META_TYPE_HEARTBEAT = "heartbeat";

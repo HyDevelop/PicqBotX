@@ -103,7 +103,10 @@ public class EventNoticeGroupRecall extends EventNotice {
      */
     public String getMessage(boolean raw) {
         RMessage message = getHttpApi().getMsg(messageId).getData();
-        return raw ? message.getMessageRaw() : message.getMessage();
+        if (raw && message.getMessageRaw() != null) {
+            return message.getMessageRaw();
+        }
+        return message.getMessage();
     }
 
     @Override
