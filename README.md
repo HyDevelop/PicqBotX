@@ -340,6 +340,9 @@ public class 类名随意 extends IcqListener // 必须继承 IcqListener 监听
 | EventNoticeFriendRecall | 好友消息撤回事件 |
 | EventNoticeGroupPoke | 群戳一戳事件 |
 | EventNoticeFriendPoke | 好友戳一戳事件 (go-cqhttp 拓展) |
+| EventNoticeGroupCard | 群成员名片更新事件 (go-cqhttp 拓展) |
+| EventNoticeGroupHonor | 群成员荣耀变更事件  |
+| EventNoticeGroupLuckyKing | 群红包运气王事件 |
 | EventRequest | 所有请求事件 |
 | EventFriendRequest | 加好友请求事件 |
 | EventGroupAddRequest | 加群请求事件 |
