@@ -15,6 +15,8 @@ import lombok.Getter;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import static cc.moecraft.icq.PicqConstants.HTTP_API_VERSION_DETECTION;
 import static cc.moecraft.icq.event.events.local.EventLocalHttpFail.Reason.*;
@@ -32,8 +34,11 @@ import static cc.moecraft.icq.utils.NetUtils.read;
  * @since 2019-03-23 12:55
  */
 @Getter
-public class PicqHttpServer
-{
+public class PicqHttpServer {
+    /**
+     * 线程池
+     */
+    public static ExecutorService executor = Executors.newFixedThreadPool(10);
     /**
      * 端口号 (0~65535)
      */
@@ -95,6 +100,7 @@ public class PicqHttpServer
      */
     private class PicqHttpHandler implements HttpHandler
     {
+
         @Override
         public void handle(HttpExchange exchange) throws IOException
         {
@@ -124,10 +130,9 @@ public class PicqHttpServer
 
             // 输出Debug
             printDebug(exchange, data);
-
-            // 调用事件
-            bot.getEventManager().getEventParser().call(data);
-
+            System.out.println("收到请求!");
+            // 启用一条线程, 调用事件
+            executor.submit(() -> bot.getEventManager().getEventParser().call(data));
             // 回复成功
             respondAndClose(exchange, 204, "");
         }
